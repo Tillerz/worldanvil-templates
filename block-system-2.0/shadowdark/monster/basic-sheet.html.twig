@@ -1,0 +1,157 @@
+﻿{% set lang = variables.lang|default('hu') %}
+{% set tr = {
+  'en': {
+    'name': 'Name',
+    'szint': 'Level',
+    'vf': 'AC',
+    'p': 'HP',
+    'tmadsok': 'Attacks',
+    'mozgs': 'Movement',
+    'er': 'Strength',
+    'gyessg': 'Dexterity',
+    'llkpessg': 'Stamina',
+    'intelligencia': 'Intelligence',
+    'blcsessg': 'Wisdom',
+    'karizma': 'Charisma',
+    'jellem': 'Alignment',
+    'lers': 'Description',
+    'kpessgek_s_adottsgok': 'Abilities and Traits',
+    'Törvényes': 'Lawful',
+    'Semleges': 'Neutral',
+    'Kaotikus': 'Chaotic',
+    'szerep': 'Role',
+    'None': 'None',
+    'Mook': 'Mook',
+    'Soldier': 'Soldier',
+    'Striker': 'Striker',
+    'Tank': 'Tank',
+    'Controller': 'Controller',
+    'Legendary': 'Legendary'
+  },
+  'hu': {
+    'name': 'Név',
+    'szint': 'Szint',
+    'vf': 'VF',
+    'p': 'ÉP',
+    'tmadsok': 'Támadások',
+    'mozgs': 'Mozgás',
+    'er': 'Erő',
+    'gyessg': 'Ügyesség',
+    'llkpessg': 'Állóképesség',
+    'intelligencia': 'Intelligencia',
+    'blcsessg': 'Bölcsesség',
+    'karizma': 'Karizma',
+    'jellem': 'Jellem',
+    'lers': 'Leírás',
+    'kpessgek_s_adottsgok': 'Képességek és adottságok',
+    'Törvényes': 'Törvényes',
+    'Semleges': 'Semleges',
+    'Kaotikus': 'Kaotikus',
+    'szerep': 'Szerep',
+    'None': 'Nincs',
+    'Mook': 'Gyalog',
+    'Soldier': 'Katona',
+    'Striker': 'Orgyilkos',
+    'Tank': 'Tank',
+    'Controller': 'Kontroll',
+    'Legendary': 'Legendás'
+   }
+} %}
+<div class='container-fluid sheet-shadowdark'>
+  <div class='row'>
+    <div class='col-12 col-md-6 col-lg-5'>
+      <div class='card c' id='card-monster'>
+        {% set lvl = '(' ~ tr[lang]['szint'] ~ ' ' ~ variables.szint|default(1) ~ ')' %}
+        <div class='card-header'>{{variables.name|default}} {{ lvl }}</div>
+        <div class='card-body of'>
+          <div class='row'>
+            <div class='col-6 col-md-4'>
+              <div class="card c">
+                  <div class="card-header sm">{{ tr[lang]['vf'] }}</div>
+                  <div class="var">{{ variables.vf|default }}</div>
+              </div>
+            </div>
+            <div class='col-6 col-md-4'>
+              <div class="card c">
+                  <div class="card-header sm">{{ tr[lang]['p'] }}</div>
+                  <div class="var">{{ variables.p|default }}</div>
+              </div>
+            </div>
+            <div class='col-6 col-md-4'>
+              <div class="card c">
+                  <div class="card-header sm">{{ tr[lang]['jellem'] }}</div>
+                  <div class="var">{{ variables.jellem|default }}</div>
+              </div>
+            </div>
+            <div class='col-6 col-md-6'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['mozgs'] }}</div>
+                <div class="var">{{ variables.mozgs|default }}</div>
+              </div>
+            </div>
+            <div class='col-6 col-md-6'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['szerep'] }}</div>
+                {% set role = variables.szerep|default(tr[lang]['none']) %}{% set role = tr[lang][role] %}
+                <div class="var">{{ role }}</div>
+              </div>
+            </div>
+            <div class='col-12 col-md-12 l'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['tmadsok'] }}</div>
+                  <div class="var l pd">{{ variables.tmadsok|default|nl2br }}</div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['er'] }}</div>
+              <div class="var">{{ variables.er|default }}</div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['gyessg'] }}</div>
+                <div class="var">{{ variables.gyessg|default }}</div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['llkpessg'] }}</div>
+                <div class="var">{{ variables.llkpessg|default }}</div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['intelligencia'] }}</div>
+                <div class="var">{{ variables.intelligencia|default }}</div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['blcsessg'] }}</div>
+                <div class="var">{{ variables.blcsessg|default }}</div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['karizma'] }}</div>
+                <div class="var">{{ variables.karizma|default }}</div>
+              </div>
+            </div>
+            <div class='col-12 col-md-12 l'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['lers'] }}</div>
+                <div class="var l pd">{{ variables.lers|default|nl2br }}</div>
+              </div>
+            </div>
+            <div class='col-12 col-md-12 l'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['kpessgek_s_adottsgok'] }}</div>
+                <div class="var l pd">{{ variables.kpessgek_s_adottsgok|default|nl2br }}</div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

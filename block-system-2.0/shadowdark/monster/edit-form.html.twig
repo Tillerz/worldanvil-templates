@@ -1,0 +1,193 @@
+﻿{% set lang = variables.lang|default('en') %}
+{% set tr = {
+  'en': {
+    'name': 'Name',
+    'szint': 'Level',
+    'vf': 'AC',
+    'p': 'HP',
+    'tmadsok': 'Attacks',
+    'mozgs': 'Movement',
+    'er': 'Strength',
+    'gyessg': 'Dexterity',
+    'llkpessg': 'Stamina',
+    'intelligencia': 'Intelligence',
+    'blcsessg': 'Wisdom',
+    'karizma': 'Charisma',
+    'jellem': 'Alignment',
+    'lers': 'Description',
+    'kpessgek_s_adottsgok': 'Abilities and Traits',
+    'Törvényes': 'Lawful',
+    'Semleges': 'Neutral',
+    'Kaotikus': 'Chaotic',
+    'szerep': 'Role',
+    'None': 'None',
+    'Mook': 'Mook',
+    'Soldier': 'Soldier',
+    'Striker': 'Striker',
+    'Tank': 'Tank',
+    'Controller': 'Controller',
+    'Legendary': 'Legendary'
+  },
+  'hu': {
+    'name': 'Név',
+    'szint': 'Szint',
+    'vf': 'VF',
+    'p': 'ÉP',
+    'tmadsok': 'Támadások',
+    'mozgs': 'Mozgás',
+    'er': 'Erő',
+    'gyessg': 'Ügyesség',
+    'llkpessg': 'Állóképesség',
+    'intelligencia': 'Intelligencia',
+    'blcsessg': 'Bölcsesség',
+    'karizma': 'Karizma',
+    'jellem': 'Jellem',
+    'lers': 'Leírás',
+    'kpessgek_s_adottsgok': 'Képességek és adottságok',
+    'Törvényes': 'Törvényes',
+    'Semleges': 'Semleges',
+    'Kaotikus': 'Kaotikus',
+    'szerep': 'Szerep',
+    'None': 'Nincs',
+    'Mook': 'Gyalog',
+    'Soldier': 'Katona',
+    'Striker': 'Orgyilkos',
+    'Tank': 'Tank',
+    'Controller': 'Kontroll',
+    'Legendary': 'Legendás'
+   }
+} %}
+<div class='container-fluid sheet-shadowdark'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'><div class='card-body pd'>
+        <div class="var"><small>
+          To switch the language, select an entry in the select box on the right, enter a monster name, and then click Save Changes.<br>
+          A nyelv váltásához válaszd ki a nyelvet, adj nevet az NJK-nak/szörnynek, majd kattints a Módosítások mentése gombra.
+        <select class="form-control inline sm" id="lang" name="lang">
+          <option value="en" {% if variables.lang|default|trim == "en" %}selected="selected" {% endif %}>en</option>
+          <option value="hu" {% if variables.lang|default|trim == "hu" %}selected="selected" {% endif %}>hu</option>
+        </select>
+        </small></div></div>
+      </div>
+      <div class='card c' id='card-monster'>
+        <div class='card-body of'>
+          <div class='row'>
+            <div class='col-6 col-md-8'>
+              <div class="card c">
+                <div class="card-header">{{ tr[lang]['name'] }}</div>
+                <div class="var"><input value="{{ variables.name|default }}" required="required" class="form-control" id="name" name="name" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-6 col-md-4'>
+              <div class="card c">
+                <div class="card-header">{{ tr[lang]['szint'] }}</div>
+                <div class="var"><input value="{{ variables.szint|default }}" class="form-control c" id="szint" name="szint" type="number" /></div>
+              </div>
+            </div>
+            <div class='col-6 col-md-4'>
+              <div class="card c">
+                  <div class="card-header sm">{{ tr[lang]['vf'] }}</div>
+                  <div class="var"><input value="{{ variables.vf|default }}" class="form-control c" id="vf" name="vf" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-6 col-md-4'>
+              <div class="card c">
+                  <div class="card-header sm">{{ tr[lang]['p'] }}</div>
+                  <div class="var"><input value="{{ variables.p|default }}" class="form-control c" id="p" name="p" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-6 col-md-4'>
+              <div class="card c">
+                  <div class="card-header sm">{{ tr[lang]['jellem'] }}</div>
+                  <div class="var">
+                    <select class="form-control c" id="jellem" name="jellem">
+                      <option value="Törvényes" {% if variables.jellem|default|trim == "Törvényes" %}selected="selected" {% endif %}>{{tr[lang]['Törvényes']}}</option>
+                      <option value="Semleges" {% if variables.jellem|default|trim == "Semleges" %}selected="selected" {% endif %}>{{tr[lang]['Semleges']}}</option>
+                      <option value="Kaotikus" {% if variables.jellem|default|trim == "Kaotikus" %}selected="selected" {% endif %}>{{tr[lang]['Kaotikus']}}</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+            <div class='col-6 col-md-6'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['mozgs'] }}</div>
+                <div class="var"><input value="{{ variables.mozgs|default }}" class="form-control" id="mozgs" name="mozgs" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-6 col-md-6'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['szerep'] }}</div>
+                <div class="var">
+                    <select class="form-control c" id="szerep" name="szerep">
+                      <option value="None" {% if variables.szerep|default|trim == "None" or variables.szerep|default|trim == "" %}selected="selected" {% endif %}>{{tr[lang]['None']}}</option>
+                      <option value="Mook" {% if variables.szerep|default|trim == "Mook" %}selected="selected" {% endif %}>{{tr[lang]['Mook']}}</option>
+                      <option value="Soldier" {% if variables.szerep|default|trim == "Soldier" %}selected="selected" {% endif %}>{{tr[lang]['Soldier']}}</option>
+                      <option value="Striker" {% if variables.szerep|default|trim == "Striker" %}selected="selected" {% endif %}>{{tr[lang]['Striker']}}</option>
+                      <option value="Tank" {% if variables.szerep|default|trim == "Tank" %}selected="selected" {% endif %}>{{tr[lang]['Tank']}}</option>
+                      <option value="Controller" {% if variables.szerep|default|trim == "Controller" %}selected="selected" {% endif %}>{{tr[lang]['Controller']}}</option>
+                      <option value="Legendary" {% if variables.szerep|default|trim == "Legendary" %}selected="selected" {% endif %}>{{tr[lang]['Legendary']}}</option>
+                    </select>
+                </div>
+              </div>
+            </div>
+            <div class='col-12 col-md-12 l'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['tmadsok'] }}</div>
+                  <div class="var l pd"><textarea class="form-control mention" id="tmadsok" name="tmadsok" rows="3" placeholder="">{{ variables.tmadsok|default }}</textarea></div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['er'] }}</div>
+              <div class="var"><input value="{{ variables.er|default }}" class="form-control c" id="er" name="er" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['gyessg'] }}</div>
+                <div class="var"><input value="{{ variables.gyessg|default }}" class="form-control c" id="gyessg" name="gyessg" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['llkpessg'] }}</div>
+                <div class="var"><input value="{{ variables.llkpessg|default }}" class="form-control c" id="llkpessg" name="llkpessg" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['intelligencia'] }}</div>
+                <div class="var"><input value="{{ variables.intelligencia|default }}" class="form-control c" id="intelligencia" name="intelligencia" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['blcsessg'] }}</div>
+                <div class="var"><input value="{{ variables.blcsessg|default }}" class="form-control c" id="blcsessg" name="blcsessg" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['karizma'] }}</div>
+                <div class="var"><input value="{{ variables.karizma|default }}" class="form-control c" id="karizma" name="karizma" type="text" /></div>
+              </div>
+            </div>
+            <div class='col-12 col-md-12 l'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['lers'] }}</div>
+                <div class="var l pd"><textarea class="form-control mention" id="lers" name="lers" rows="6" placeholder="">{{ variables.lers|default }}</textarea></div>
+              </div>
+            </div>
+            <div class='col-12 col-md-12 l'>
+              <div class="card c">
+                <div class="card-header sm">{{ tr[lang]['kpessgek_s_adottsgok'] }}</div>
+                <div class="var l pd"><textarea class="form-control mention" id="kpessgek_s_adottsgok" name="kpessgek_s_adottsgok" rows="6" placeholder="">{{ variables.kpessgek_s_adottsgok|default }}</textarea></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
