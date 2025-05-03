@@ -1,0 +1,3588 @@
+﻿fields:
+  name:
+    label: "name"
+    input: string
+    description: "Name"
+    placeholder: "Name of the hero"
+    required: true
+  race:
+    label: "race"
+    input: select
+    description: "Race"
+    options:
+      hyur: "Hyur"
+      elezen: "Elezen"
+      lalafell: "Lalafell"
+      miqote: "Miqo'te"
+      roegadyn: "Roegadyn"
+      aura: "Au Ra"
+      viera: "Viera"
+      hrothgar: "Hrothgar"
+  portrait:
+    label: "portrait"
+    input: integer
+    description: "Portrait"
+    render: image
+  job:
+    label: "job"
+    input: select
+    description: "Role / Job"
+    options:
+      paladin: "Paladin (Tank)"
+      darkknight: "Dark Knight (Tank)"
+      warrior: "Warrior (Tank)"
+      whitemage: "White Mage (Healer)"
+      scholar: "Scholar (Healer)"
+      astrologian: "Astrologian (Healer)"
+      monk: "Monk (Melee DPS)"
+      dragoon: "Dragoon (Melee DPS)"
+      ninja: "Ninja (Melee DPS)"
+      bard: "Bard (Ranged DPS)"
+      machinist: "Machinist (Ranged DPS)"
+      blackmage: "Black Mage (Caster DPS)"
+      summoner: "Summoner (Caster DPS)"
+  level:
+    label: "level"
+    input: number
+    description: "Level"
+  str:
+    label: "str"
+    input: number
+    description: "Strength"
+  dex:
+    label: "dex"
+    input: number
+    description: "Dexterity"
+  vit:
+    label: "vit"
+    input: number
+    description: "Vitality"
+  int:
+    label: "int"
+    input: number
+    description: "Intelligence"
+  mind:
+    label: "mind"
+    input: number
+    description: "Mind"
+  def:
+    label: "def"
+    input: number
+    description: "Defense"
+  magical defense:
+    label: "magical defense"
+    input: number
+    description: "Magical Defense"
+  vigilance:
+    label: "vigilance"
+    input: number
+    description: "Vigilance"
+  speed:
+    label: "speed"
+    input: number
+    description: "Speed"
+  mp:
+    label: "mp"
+    input: number
+    description: "MP (Curr)"
+    placeholder: "0"
+  maxmp:
+    label: "maxmp"
+    input: number
+    description: "MP (Max)"
+    placeholder: "0"
+  hp:
+    label: "hp"
+    input: number
+    description: "HP (Curr)"
+    placeholder: "0"
+  maxhp:
+    label: "maxhp"
+    input: number
+    description: "HP (Max)"
+    placeholder: "0"
+  barrier:
+    label: "barrier"
+    input: number
+    description: "Barrier"
+    placeholder: "0"
+  trname 001:
+    label: "trname 001"
+    input: string
+    description: "Trait"
+  trname 002:
+    label: "trname 002"
+    input: string
+    description: "Trait"
+  trname 003:
+    label: "trname 003"
+    input: string
+    description: "Trait"
+  trname 004:
+    label: "trname 004"
+    input: string
+    description: "Trait"
+  trname 005:
+    label: "trname 005"
+    input: string
+    description: "Trait"
+  trtags 001:
+    label: "trtags 001"
+    input: string
+    description: "Tags"
+  trtags 002:
+    label: "trtags 002"
+    input: string
+    description: "Tags"
+  trtags 003:
+    label: "trtags 003"
+    input: string
+    description: "Tags"
+  trtags 004:
+    label: "trtags 004"
+    input: string
+    description: "Tags"
+  trtags 005:
+    label: "trtags 005"
+    input: string
+    description: "Tags"
+  trdescription 001:
+    label: "trdescription 001"
+    input: text
+    description: "Description"
+    rows: 3
+  trdescription 002:
+    label: "trdescription 002"
+    input: text
+    description: "Description"
+    rows: 3
+  trdescription 003:
+    label: "trdescription 003"
+    input: text
+    description: "Description"
+    rows: 3
+  trdescription 004:
+    label: "trdescription 004"
+    input: text
+    description: "Description"
+    rows: 3
+  trdescription 005:
+    label: "trdescription 005"
+    input: text
+    description: "Description"
+    rows: 3
+  trres 001:
+    label: "trres 001"
+    input: integer
+    description: "Job Resource"
+    placeholder: "0"
+  trres 002:
+    label: "trres 002"
+    input: integer
+    description: "Job Resource"
+    placeholder: "0"
+  trres 003:
+    label: "trres 003"
+    input: integer
+    description: "Job Resource"
+    placeholder: "0"
+  trres 004:
+    label: "trres 004"
+    input: integer
+    description: "Job Resource"
+    placeholder: "0"
+  trres 005:
+    label: "trres 005"
+    input: integer
+    description: "Job Resource"
+    placeholder: "0"
+  trmaxres 001:
+    label: "trmaxres 001"
+    input: integer
+    description: "Max Job Resource"
+    placeholder: "0"
+  trmaxres 002:
+    label: "trmaxres 002"
+    input: integer
+    description: "Max Job Resource"
+    placeholder: "0"
+  trmaxres 003:
+    label: "trmaxres 003"
+    input: integer
+    description: "Max Job Resource"
+    placeholder: "0"
+  trmaxres 004:
+    label: "trmaxres 004"
+    input: integer
+    description: "Max Job Resource"
+    placeholder: "0"
+  trmaxres 005:
+    label: "trmaxres 005"
+    input: integer
+    description: "Max Job Resource"
+    placeholder: "0"
+  abtype 001:
+    label: "abtype 001"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 002:
+    label: "abtype 002"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 003:
+    label: "abtype 003"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 004:
+    label: "abtype 004"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 005:
+    label: "abtype 005"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 006:
+    label: "abtype 006"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 007:
+    label: "abtype 007"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 008:
+    label: "abtype 008"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 009:
+    label: "abtype 009"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 010:
+    label: "abtype 010"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 011:
+    label: "abtype 011"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 012:
+    label: "abtype 012"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 013:
+    label: "abtype 013"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 014:
+    label: "abtype 014"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 015:
+    label: "abtype 015"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 016:
+    label: "abtype 016"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 017:
+    label: "abtype 017"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 018:
+    label: "abtype 018"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 019:
+    label: "abtype 019"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 020:
+    label: "abtype 020"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 021:
+    label: "abtype 021"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 022:
+    label: "abtype 022"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 023:
+    label: "abtype 023"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 024:
+    label: "abtype 024"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 025:
+    label: "abtype 025"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 026:
+    label: "abtype 026"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 027:
+    label: "abtype 027"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 028:
+    label: "abtype 028"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 029:
+    label: "abtype 029"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 030:
+    label: "abtype 030"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 031:
+    label: "abtype 031"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 032:
+    label: "abtype 032"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 033:
+    label: "abtype 033"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 034:
+    label: "abtype 034"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 035:
+    label: "abtype 035"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 036:
+    label: "abtype 036"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 037:
+    label: "abtype 037"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 038:
+    label: "abtype 038"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 039:
+    label: "abtype 039"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 040:
+    label: "abtype 040"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 041:
+    label: "abtype 041"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 042:
+    label: "abtype 042"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 043:
+    label: "abtype 043"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 044:
+    label: "abtype 044"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 045:
+    label: "abtype 045"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 046:
+    label: "abtype 046"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 047:
+    label: "abtype 047"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 048:
+    label: "abtype 048"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 049:
+    label: "abtype 049"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abtype 050:
+    label: "abtype 050"
+    input: select
+    description: "Type"
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abname 001:
+    label: "abname 001"
+    input: string
+    description: "Ability Name"
+  abname 002:
+    label: "abname 002"
+    input: string
+    description: "Ability Name"
+  abname 003:
+    label: "abname 003"
+    input: string
+    description: "Ability Name"
+  abname 004:
+    label: "abname 004"
+    input: string
+    description: "Ability Name"
+  abname 005:
+    label: "abname 005"
+    input: string
+    description: "Ability Name"
+  abname 006:
+    label: "abname 006"
+    input: string
+    description: "Ability Name"
+  abname 007:
+    label: "abname 007"
+    input: string
+    description: "Ability Name"
+  abname 008:
+    label: "abname 008"
+    input: string
+    description: "Ability Name"
+  abname 009:
+    label: "abname 009"
+    input: string
+    description: "Ability Name"
+  abname 010:
+    label: "abname 010"
+    input: string
+    description: "Ability Name"
+  abname 011:
+    label: "abname 011"
+    input: string
+    description: "Ability Name"
+  abname 012:
+    label: "abname 012"
+    input: string
+    description: "Ability Name"
+  abname 013:
+    label: "abname 013"
+    input: string
+    description: "Ability Name"
+  abname 014:
+    label: "abname 014"
+    input: string
+    description: "Ability Name"
+  abname 015:
+    label: "abname 015"
+    input: string
+    description: "Ability Name"
+  abname 016:
+    label: "abname 016"
+    input: string
+    description: "Ability Name"
+  abname 017:
+    label: "abname 017"
+    input: string
+    description: "Ability Name"
+  abname 018:
+    label: "abname 018"
+    input: string
+    description: "Ability Name"
+  abname 019:
+    label: "abname 019"
+    input: string
+    description: "Ability Name"
+  abname 020:
+    label: "abname 020"
+    input: string
+    description: "Ability Name"
+  abname 021:
+    label: "abname 021"
+    input: string
+    description: "Ability Name"
+  abname 022:
+    label: "abname 022"
+    input: string
+    description: "Ability Name"
+  abname 023:
+    label: "abname 023"
+    input: string
+    description: "Ability Name"
+  abname 024:
+    label: "abname 024"
+    input: string
+    description: "Ability Name"
+  abname 025:
+    label: "abname 025"
+    input: string
+    description: "Ability Name"
+  abname 026:
+    label: "abname 026"
+    input: string
+    description: "Ability Name"
+  abname 027:
+    label: "abname 027"
+    input: string
+    description: "Ability Name"
+  abname 028:
+    label: "abname 028"
+    input: string
+    description: "Ability Name"
+  abname 029:
+    label: "abname 029"
+    input: string
+    description: "Ability Name"
+  abname 030:
+    label: "abname 030"
+    input: string
+    description: "Ability Name"
+  abname 031:
+    label: "abname 031"
+    input: string
+    description: "Ability Name"
+  abname 032:
+    label: "abname 032"
+    input: string
+    description: "Ability Name"
+  abname 033:
+    label: "abname 033"
+    input: string
+    description: "Ability Name"
+  abname 034:
+    label: "abname 034"
+    input: string
+    description: "Ability Name"
+  abname 035:
+    label: "abname 035"
+    input: string
+    description: "Ability Name"
+  abname 036:
+    label: "abname 036"
+    input: string
+    description: "Ability Name"
+  abname 037:
+    label: "abname 037"
+    input: string
+    description: "Ability Name"
+  abname 038:
+    label: "abname 038"
+    input: string
+    description: "Ability Name"
+  abname 039:
+    label: "abname 039"
+    input: string
+    description: "Ability Name"
+  abname 040:
+    label: "abname 040"
+    input: string
+    description: "Ability Name"
+  abname 041:
+    label: "abname 041"
+    input: string
+    description: "Ability Name"
+  abname 042:
+    label: "abname 042"
+    input: string
+    description: "Ability Name"
+  abname 043:
+    label: "abname 043"
+    input: string
+    description: "Ability Name"
+  abname 044:
+    label: "abname 044"
+    input: string
+    description: "Ability Name"
+  abname 045:
+    label: "abname 045"
+    input: string
+    description: "Ability Name"
+  abname 046:
+    label: "abname 046"
+    input: string
+    description: "Ability Name"
+  abname 047:
+    label: "abname 047"
+    input: string
+    description: "Ability Name"
+  abname 048:
+    label: "abname 048"
+    input: string
+    description: "Ability Name"
+  abname 049:
+    label: "abname 049"
+    input: string
+    description: "Ability Name"
+  abname 050:
+    label: "abname 050"
+    input: string
+    description: "Ability Name"
+  abtags 001:
+    label: "abtags 001"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 002:
+    label: "abtags 002"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 003:
+    label: "abtags 003"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 004:
+    label: "abtags 004"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 005:
+    label: "abtags 005"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 006:
+    label: "abtags 006"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 007:
+    label: "abtags 007"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 008:
+    label: "abtags 008"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 009:
+    label: "abtags 009"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 010:
+    label: "abtags 010"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 011:
+    label: "abtags 011"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 012:
+    label: "abtags 012"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 013:
+    label: "abtags 013"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 014:
+    label: "abtags 014"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 015:
+    label: "abtags 015"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 016:
+    label: "abtags 016"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 017:
+    label: "abtags 017"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 018:
+    label: "abtags 018"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 019:
+    label: "abtags 019"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 020:
+    label: "abtags 020"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 021:
+    label: "abtags 021"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 022:
+    label: "abtags 022"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 023:
+    label: "abtags 023"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 024:
+    label: "abtags 024"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 025:
+    label: "abtags 025"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 026:
+    label: "abtags 026"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 027:
+    label: "abtags 027"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 028:
+    label: "abtags 028"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 029:
+    label: "abtags 029"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 030:
+    label: "abtags 030"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 031:
+    label: "abtags 031"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 032:
+    label: "abtags 032"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 033:
+    label: "abtags 033"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 034:
+    label: "abtags 034"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 035:
+    label: "abtags 035"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 036:
+    label: "abtags 036"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 037:
+    label: "abtags 037"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 038:
+    label: "abtags 038"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 039:
+    label: "abtags 039"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 040:
+    label: "abtags 040"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 041:
+    label: "abtags 041"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 042:
+    label: "abtags 042"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 043:
+    label: "abtags 043"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 044:
+    label: "abtags 044"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 045:
+    label: "abtags 045"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 046:
+    label: "abtags 046"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 047:
+    label: "abtags 047"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 048:
+    label: "abtags 048"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 049:
+    label: "abtags 049"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abtags 050:
+    label: "abtags 050"
+    input: string
+    description: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abcost 001:
+    label: "abcost 001"
+    input: string
+    description: "Cost"
+  abcost 002:
+    label: "abcost 002"
+    input: string
+    description: "Cost"
+  abcost 003:
+    label: "abcost 003"
+    input: string
+    description: "Cost"
+  abcost 004:
+    label: "abcost 004"
+    input: string
+    description: "Cost"
+  abcost 005:
+    label: "abcost 005"
+    input: string
+    description: "Cost"
+  abcost 006:
+    label: "abcost 006"
+    input: string
+    description: "Cost"
+  abcost 007:
+    label: "abcost 007"
+    input: string
+    description: "Cost"
+  abcost 008:
+    label: "abcost 008"
+    input: string
+    description: "Cost"
+  abcost 009:
+    label: "abcost 009"
+    input: string
+    description: "Cost"
+  abcost 010:
+    label: "abcost 010"
+    input: string
+    description: "Cost"
+  abcost 011:
+    label: "abcost 011"
+    input: string
+    description: "Cost"
+  abcost 012:
+    label: "abcost 012"
+    input: string
+    description: "Cost"
+  abcost 013:
+    label: "abcost 013"
+    input: string
+    description: "Cost"
+  abcost 014:
+    label: "abcost 014"
+    input: string
+    description: "Cost"
+  abcost 015:
+    label: "abcost 015"
+    input: string
+    description: "Cost"
+  abcost 016:
+    label: "abcost 016"
+    input: string
+    description: "Cost"
+  abcost 017:
+    label: "abcost 017"
+    input: string
+    description: "Cost"
+  abcost 018:
+    label: "abcost 018"
+    input: string
+    description: "Cost"
+  abcost 019:
+    label: "abcost 019"
+    input: string
+    description: "Cost"
+  abcost 020:
+    label: "abcost 020"
+    input: string
+    description: "Cost"
+  abcost 021:
+    label: "abcost 021"
+    input: string
+    description: "Cost"
+  abcost 022:
+    label: "abcost 022"
+    input: string
+    description: "Cost"
+  abcost 023:
+    label: "abcost 023"
+    input: string
+    description: "Cost"
+  abcost 024:
+    label: "abcost 024"
+    input: string
+    description: "Cost"
+  abcost 025:
+    label: "abcost 025"
+    input: string
+    description: "Cost"
+  abcost 026:
+    label: "abcost 026"
+    input: string
+    description: "Cost"
+  abcost 027:
+    label: "abcost 027"
+    input: string
+    description: "Cost"
+  abcost 028:
+    label: "abcost 028"
+    input: string
+    description: "Cost"
+  abcost 029:
+    label: "abcost 029"
+    input: string
+    description: "Cost"
+  abcost 030:
+    label: "abcost 030"
+    input: string
+    description: "Cost"
+  abcost 031:
+    label: "abcost 031"
+    input: string
+    description: "Cost"
+  abcost 032:
+    label: "abcost 032"
+    input: string
+    description: "Cost"
+  abcost 033:
+    label: "abcost 033"
+    input: string
+    description: "Cost"
+  abcost 034:
+    label: "abcost 034"
+    input: string
+    description: "Cost"
+  abcost 035:
+    label: "abcost 035"
+    input: string
+    description: "Cost"
+  abcost 036:
+    label: "abcost 036"
+    input: string
+    description: "Cost"
+  abcost 037:
+    label: "abcost 037"
+    input: string
+    description: "Cost"
+  abcost 038:
+    label: "abcost 038"
+    input: string
+    description: "Cost"
+  abcost 039:
+    label: "abcost 039"
+    input: string
+    description: "Cost"
+  abcost 040:
+    label: "abcost 040"
+    input: string
+    description: "Cost"
+  abcost 041:
+    label: "abcost 041"
+    input: string
+    description: "Cost"
+  abcost 042:
+    label: "abcost 042"
+    input: string
+    description: "Cost"
+  abcost 043:
+    label: "abcost 043"
+    input: string
+    description: "Cost"
+  abcost 044:
+    label: "abcost 044"
+    input: string
+    description: "Cost"
+  abcost 045:
+    label: "abcost 045"
+    input: string
+    description: "Cost"
+  abcost 046:
+    label: "abcost 046"
+    input: string
+    description: "Cost"
+  abcost 047:
+    label: "abcost 047"
+    input: string
+    description: "Cost"
+  abcost 048:
+    label: "abcost 048"
+    input: string
+    description: "Cost"
+  abcost 049:
+    label: "abcost 049"
+    input: string
+    description: "Cost"
+  abcost 050:
+    label: "abcost 050"
+    input: string
+    description: "Cost"
+  abtarget 001:
+    label: "abtarget 001"
+    input: string
+    description: "Target"
+  abtarget 002:
+    label: "abtarget 002"
+    input: string
+    description: "Target"
+  abtarget 003:
+    label: "abtarget 003"
+    input: string
+    description: "Target"
+  abtarget 004:
+    label: "abtarget 004"
+    input: string
+    description: "Target"
+  abtarget 005:
+    label: "abtarget 005"
+    input: string
+    description: "Target"
+  abtarget 006:
+    label: "abtarget 006"
+    input: string
+    description: "Target"
+  abtarget 007:
+    label: "abtarget 007"
+    input: string
+    description: "Target"
+  abtarget 008:
+    label: "abtarget 008"
+    input: string
+    description: "Target"
+  abtarget 009:
+    label: "abtarget 009"
+    input: string
+    description: "Target"
+  abtarget 010:
+    label: "abtarget 010"
+    input: string
+    description: "Target"
+  abtarget 011:
+    label: "abtarget 011"
+    input: string
+    description: "Target"
+  abtarget 012:
+    label: "abtarget 012"
+    input: string
+    description: "Target"
+  abtarget 013:
+    label: "abtarget 013"
+    input: string
+    description: "Target"
+  abtarget 014:
+    label: "abtarget 014"
+    input: string
+    description: "Target"
+  abtarget 015:
+    label: "abtarget 015"
+    input: string
+    description: "Target"
+  abtarget 016:
+    label: "abtarget 016"
+    input: string
+    description: "Target"
+  abtarget 017:
+    label: "abtarget 017"
+    input: string
+    description: "Target"
+  abtarget 018:
+    label: "abtarget 018"
+    input: string
+    description: "Target"
+  abtarget 019:
+    label: "abtarget 019"
+    input: string
+    description: "Target"
+  abtarget 020:
+    label: "abtarget 020"
+    input: string
+    description: "Target"
+  abtarget 021:
+    label: "abtarget 021"
+    input: string
+    description: "Target"
+  abtarget 022:
+    label: "abtarget 022"
+    input: string
+    description: "Target"
+  abtarget 023:
+    label: "abtarget 023"
+    input: string
+    description: "Target"
+  abtarget 024:
+    label: "abtarget 024"
+    input: string
+    description: "Target"
+  abtarget 025:
+    label: "abtarget 025"
+    input: string
+    description: "Target"
+  abtarget 026:
+    label: "abtarget 026"
+    input: string
+    description: "Target"
+  abtarget 027:
+    label: "abtarget 027"
+    input: string
+    description: "Target"
+  abtarget 028:
+    label: "abtarget 028"
+    input: string
+    description: "Target"
+  abtarget 029:
+    label: "abtarget 029"
+    input: string
+    description: "Target"
+  abtarget 030:
+    label: "abtarget 030"
+    input: string
+    description: "Target"
+  abtarget 031:
+    label: "abtarget 031"
+    input: string
+    description: "Target"
+  abtarget 032:
+    label: "abtarget 032"
+    input: string
+    description: "Target"
+  abtarget 033:
+    label: "abtarget 033"
+    input: string
+    description: "Target"
+  abtarget 034:
+    label: "abtarget 034"
+    input: string
+    description: "Target"
+  abtarget 035:
+    label: "abtarget 035"
+    input: string
+    description: "Target"
+  abtarget 036:
+    label: "abtarget 036"
+    input: string
+    description: "Target"
+  abtarget 037:
+    label: "abtarget 037"
+    input: string
+    description: "Target"
+  abtarget 038:
+    label: "abtarget 038"
+    input: string
+    description: "Target"
+  abtarget 039:
+    label: "abtarget 039"
+    input: string
+    description: "Target"
+  abtarget 040:
+    label: "abtarget 040"
+    input: string
+    description: "Target"
+  abtarget 041:
+    label: "abtarget 041"
+    input: string
+    description: "Target"
+  abtarget 042:
+    label: "abtarget 042"
+    input: string
+    description: "Target"
+  abtarget 043:
+    label: "abtarget 043"
+    input: string
+    description: "Target"
+  abtarget 044:
+    label: "abtarget 044"
+    input: string
+    description: "Target"
+  abtarget 045:
+    label: "abtarget 045"
+    input: string
+    description: "Target"
+  abtarget 046:
+    label: "abtarget 046"
+    input: string
+    description: "Target"
+  abtarget 047:
+    label: "abtarget 047"
+    input: string
+    description: "Target"
+  abtarget 048:
+    label: "abtarget 048"
+    input: string
+    description: "Target"
+  abtarget 049:
+    label: "abtarget 049"
+    input: string
+    description: "Target"
+  abtarget 050:
+    label: "abtarget 050"
+    input: string
+    description: "Target"
+  abrange 001:
+    label: "abrange 001"
+    input: string
+    description: "Range"
+  abrange 002:
+    label: "abrange 002"
+    input: string
+    description: "Range"
+  abrange 003:
+    label: "abrange 003"
+    input: string
+    description: "Range"
+  abrange 004:
+    label: "abrange 004"
+    input: string
+    description: "Range"
+  abrange 005:
+    label: "abrange 005"
+    input: string
+    description: "Range"
+  abrange 006:
+    label: "abrange 006"
+    input: string
+    description: "Range"
+  abrange 007:
+    label: "abrange 007"
+    input: string
+    description: "Range"
+  abrange 008:
+    label: "abrange 008"
+    input: string
+    description: "Range"
+  abrange 009:
+    label: "abrange 009"
+    input: string
+    description: "Range"
+  abrange 010:
+    label: "abrange 010"
+    input: string
+    description: "Range"
+  abrange 011:
+    label: "abrange 011"
+    input: string
+    description: "Range"
+  abrange 012:
+    label: "abrange 012"
+    input: string
+    description: "Range"
+  abrange 013:
+    label: "abrange 013"
+    input: string
+    description: "Range"
+  abrange 014:
+    label: "abrange 014"
+    input: string
+    description: "Range"
+  abrange 015:
+    label: "abrange 015"
+    input: string
+    description: "Range"
+  abrange 016:
+    label: "abrange 016"
+    input: string
+    description: "Range"
+  abrange 017:
+    label: "abrange 017"
+    input: string
+    description: "Range"
+  abrange 018:
+    label: "abrange 018"
+    input: string
+    description: "Range"
+  abrange 019:
+    label: "abrange 019"
+    input: string
+    description: "Range"
+  abrange 020:
+    label: "abrange 020"
+    input: string
+    description: "Range"
+  abrange 021:
+    label: "abrange 021"
+    input: string
+    description: "Range"
+  abrange 022:
+    label: "abrange 022"
+    input: string
+    description: "Range"
+  abrange 023:
+    label: "abrange 023"
+    input: string
+    description: "Range"
+  abrange 024:
+    label: "abrange 024"
+    input: string
+    description: "Range"
+  abrange 025:
+    label: "abrange 025"
+    input: string
+    description: "Range"
+  abrange 026:
+    label: "abrange 026"
+    input: string
+    description: "Range"
+  abrange 027:
+    label: "abrange 027"
+    input: string
+    description: "Range"
+  abrange 028:
+    label: "abrange 028"
+    input: string
+    description: "Range"
+  abrange 029:
+    label: "abrange 029"
+    input: string
+    description: "Range"
+  abrange 030:
+    label: "abrange 030"
+    input: string
+    description: "Range"
+  abrange 031:
+    label: "abrange 031"
+    input: string
+    description: "Range"
+  abrange 032:
+    label: "abrange 032"
+    input: string
+    description: "Range"
+  abrange 033:
+    label: "abrange 033"
+    input: string
+    description: "Range"
+  abrange 034:
+    label: "abrange 034"
+    input: string
+    description: "Range"
+  abrange 035:
+    label: "abrange 035"
+    input: string
+    description: "Range"
+  abrange 036:
+    label: "abrange 036"
+    input: string
+    description: "Range"
+  abrange 037:
+    label: "abrange 037"
+    input: string
+    description: "Range"
+  abrange 038:
+    label: "abrange 038"
+    input: string
+    description: "Range"
+  abrange 039:
+    label: "abrange 039"
+    input: string
+    description: "Range"
+  abrange 040:
+    label: "abrange 040"
+    input: string
+    description: "Range"
+  abrange 041:
+    label: "abrange 041"
+    input: string
+    description: "Range"
+  abrange 042:
+    label: "abrange 042"
+    input: string
+    description: "Range"
+  abrange 043:
+    label: "abrange 043"
+    input: string
+    description: "Range"
+  abrange 044:
+    label: "abrange 044"
+    input: string
+    description: "Range"
+  abrange 045:
+    label: "abrange 045"
+    input: string
+    description: "Range"
+  abrange 046:
+    label: "abrange 046"
+    input: string
+    description: "Range"
+  abrange 047:
+    label: "abrange 047"
+    input: string
+    description: "Range"
+  abrange 048:
+    label: "abrange 048"
+    input: string
+    description: "Range"
+  abrange 049:
+    label: "abrange 049"
+    input: string
+    description: "Range"
+  abrange 050:
+    label: "abrange 050"
+    input: string
+    description: "Range"
+  abcheck 001:
+    label: "abcheck 001"
+    input: string
+    description: "Check"
+  abcheck 002:
+    label: "abcheck 002"
+    input: string
+    description: "Check"
+  abcheck 003:
+    label: "abcheck 003"
+    input: string
+    description: "Check"
+  abcheck 004:
+    label: "abcheck 004"
+    input: string
+    description: "Check"
+  abcheck 005:
+    label: "abcheck 005"
+    input: string
+    description: "Check"
+  abcheck 006:
+    label: "abcheck 006"
+    input: string
+    description: "Check"
+  abcheck 007:
+    label: "abcheck 007"
+    input: string
+    description: "Check"
+  abcheck 008:
+    label: "abcheck 008"
+    input: string
+    description: "Check"
+  abcheck 009:
+    label: "abcheck 009"
+    input: string
+    description: "Check"
+  abcheck 010:
+    label: "abcheck 010"
+    input: string
+    description: "Check"
+  abcheck 011:
+    label: "abcheck 011"
+    input: string
+    description: "Check"
+  abcheck 012:
+    label: "abcheck 012"
+    input: string
+    description: "Check"
+  abcheck 013:
+    label: "abcheck 013"
+    input: string
+    description: "Check"
+  abcheck 014:
+    label: "abcheck 014"
+    input: string
+    description: "Check"
+  abcheck 015:
+    label: "abcheck 015"
+    input: string
+    description: "Check"
+  abcheck 016:
+    label: "abcheck 016"
+    input: string
+    description: "Check"
+  abcheck 017:
+    label: "abcheck 017"
+    input: string
+    description: "Check"
+  abcheck 018:
+    label: "abcheck 018"
+    input: string
+    description: "Check"
+  abcheck 019:
+    label: "abcheck 019"
+    input: string
+    description: "Check"
+  abcheck 020:
+    label: "abcheck 020"
+    input: string
+    description: "Check"
+  abcheck 021:
+    label: "abcheck 021"
+    input: string
+    description: "Check"
+  abcheck 022:
+    label: "abcheck 022"
+    input: string
+    description: "Check"
+  abcheck 023:
+    label: "abcheck 023"
+    input: string
+    description: "Check"
+  abcheck 024:
+    label: "abcheck 024"
+    input: string
+    description: "Check"
+  abcheck 025:
+    label: "abcheck 025"
+    input: string
+    description: "Check"
+  abcheck 026:
+    label: "abcheck 026"
+    input: string
+    description: "Check"
+  abcheck 027:
+    label: "abcheck 027"
+    input: string
+    description: "Check"
+  abcheck 028:
+    label: "abcheck 028"
+    input: string
+    description: "Check"
+  abcheck 029:
+    label: "abcheck 029"
+    input: string
+    description: "Check"
+  abcheck 030:
+    label: "abcheck 030"
+    input: string
+    description: "Check"
+  abcheck 031:
+    label: "abcheck 031"
+    input: string
+    description: "Check"
+  abcheck 032:
+    label: "abcheck 032"
+    input: string
+    description: "Check"
+  abcheck 033:
+    label: "abcheck 033"
+    input: string
+    description: "Check"
+  abcheck 034:
+    label: "abcheck 034"
+    input: string
+    description: "Check"
+  abcheck 035:
+    label: "abcheck 035"
+    input: string
+    description: "Check"
+  abcheck 036:
+    label: "abcheck 036"
+    input: string
+    description: "Check"
+  abcheck 037:
+    label: "abcheck 037"
+    input: string
+    description: "Check"
+  abcheck 038:
+    label: "abcheck 038"
+    input: string
+    description: "Check"
+  abcheck 039:
+    label: "abcheck 039"
+    input: string
+    description: "Check"
+  abcheck 040:
+    label: "abcheck 040"
+    input: string
+    description: "Check"
+  abcheck 041:
+    label: "abcheck 041"
+    input: string
+    description: "Check"
+  abcheck 042:
+    label: "abcheck 042"
+    input: string
+    description: "Check"
+  abcheck 043:
+    label: "abcheck 043"
+    input: string
+    description: "Check"
+  abcheck 044:
+    label: "abcheck 044"
+    input: string
+    description: "Check"
+  abcheck 045:
+    label: "abcheck 045"
+    input: string
+    description: "Check"
+  abcheck 046:
+    label: "abcheck 046"
+    input: string
+    description: "Check"
+  abcheck 047:
+    label: "abcheck 047"
+    input: string
+    description: "Check"
+  abcheck 048:
+    label: "abcheck 048"
+    input: string
+    description: "Check"
+  abcheck 049:
+    label: "abcheck 049"
+    input: string
+    description: "Check"
+  abcheck 050:
+    label: "abcheck 050"
+    input: string
+    description: "Check"
+  abcr 001:
+    label: "abcr 001"
+    input: string
+    description: "CR"
+  abcr 002:
+    label: "abcr 002"
+    input: string
+    description: "CR"
+  abcr 003:
+    label: "abcr 003"
+    input: string
+    description: "CR"
+  abcr 004:
+    label: "abcr 004"
+    input: string
+    description: "CR"
+  abcr 005:
+    label: "abcr 005"
+    input: string
+    description: "CR"
+  abcr 006:
+    label: "abcr 006"
+    input: string
+    description: "CR"
+  abcr 007:
+    label: "abcr 007"
+    input: string
+    description: "CR"
+  abcr 008:
+    label: "abcr 008"
+    input: string
+    description: "CR"
+  abcr 009:
+    label: "abcr 009"
+    input: string
+    description: "CR"
+  abcr 010:
+    label: "abcr 010"
+    input: string
+    description: "CR"
+  abcr 011:
+    label: "abcr 011"
+    input: string
+    description: "CR"
+  abcr 012:
+    label: "abcr 012"
+    input: string
+    description: "CR"
+  abcr 013:
+    label: "abcr 013"
+    input: string
+    description: "CR"
+  abcr 014:
+    label: "abcr 014"
+    input: string
+    description: "CR"
+  abcr 015:
+    label: "abcr 015"
+    input: string
+    description: "CR"
+  abcr 016:
+    label: "abcr 016"
+    input: string
+    description: "CR"
+  abcr 017:
+    label: "abcr 017"
+    input: string
+    description: "CR"
+  abcr 018:
+    label: "abcr 018"
+    input: string
+    description: "CR"
+  abcr 019:
+    label: "abcr 019"
+    input: string
+    description: "CR"
+  abcr 020:
+    label: "abcr 020"
+    input: string
+    description: "CR"
+  abcr 021:
+    label: "abcr 021"
+    input: string
+    description: "CR"
+  abcr 022:
+    label: "abcr 022"
+    input: string
+    description: "CR"
+  abcr 023:
+    label: "abcr 023"
+    input: string
+    description: "CR"
+  abcr 024:
+    label: "abcr 024"
+    input: string
+    description: "CR"
+  abcr 025:
+    label: "abcr 025"
+    input: string
+    description: "CR"
+  abcr 026:
+    label: "abcr 026"
+    input: string
+    description: "CR"
+  abcr 027:
+    label: "abcr 027"
+    input: string
+    description: "CR"
+  abcr 028:
+    label: "abcr 028"
+    input: string
+    description: "CR"
+  abcr 029:
+    label: "abcr 029"
+    input: string
+    description: "CR"
+  abcr 030:
+    label: "abcr 030"
+    input: string
+    description: "CR"
+  abcr 031:
+    label: "abcr 031"
+    input: string
+    description: "CR"
+  abcr 032:
+    label: "abcr 032"
+    input: string
+    description: "CR"
+  abcr 033:
+    label: "abcr 033"
+    input: string
+    description: "CR"
+  abcr 034:
+    label: "abcr 034"
+    input: string
+    description: "CR"
+  abcr 035:
+    label: "abcr 035"
+    input: string
+    description: "CR"
+  abcr 036:
+    label: "abcr 036"
+    input: string
+    description: "CR"
+  abcr 037:
+    label: "abcr 037"
+    input: string
+    description: "CR"
+  abcr 038:
+    label: "abcr 038"
+    input: string
+    description: "CR"
+  abcr 039:
+    label: "abcr 039"
+    input: string
+    description: "CR"
+  abcr 040:
+    label: "abcr 040"
+    input: string
+    description: "CR"
+  abcr 041:
+    label: "abcr 041"
+    input: string
+    description: "CR"
+  abcr 042:
+    label: "abcr 042"
+    input: string
+    description: "CR"
+  abcr 043:
+    label: "abcr 043"
+    input: string
+    description: "CR"
+  abcr 044:
+    label: "abcr 044"
+    input: string
+    description: "CR"
+  abcr 045:
+    label: "abcr 045"
+    input: string
+    description: "CR"
+  abcr 046:
+    label: "abcr 046"
+    input: string
+    description: "CR"
+  abcr 047:
+    label: "abcr 047"
+    input: string
+    description: "CR"
+  abcr 048:
+    label: "abcr 048"
+    input: string
+    description: "CR"
+  abcr 049:
+    label: "abcr 049"
+    input: string
+    description: "CR"
+  abcr 050:
+    label: "abcr 050"
+    input: string
+    description: "CR"
+  abtrigger 001:
+    label: "abtrigger 001"
+    input: string
+    description: "Trigger"
+  abtrigger 002:
+    label: "abtrigger 002"
+    input: string
+    description: "Trigger"
+  abtrigger 003:
+    label: "abtrigger 003"
+    input: string
+    description: "Trigger"
+  abtrigger 004:
+    label: "abtrigger 004"
+    input: string
+    description: "Trigger"
+  abtrigger 005:
+    label: "abtrigger 005"
+    input: string
+    description: "Trigger"
+  abtrigger 006:
+    label: "abtrigger 006"
+    input: string
+    description: "Trigger"
+  abtrigger 007:
+    label: "abtrigger 007"
+    input: string
+    description: "Trigger"
+  abtrigger 008:
+    label: "abtrigger 008"
+    input: string
+    description: "Trigger"
+  abtrigger 009:
+    label: "abtrigger 009"
+    input: string
+    description: "Trigger"
+  abtrigger 010:
+    label: "abtrigger 010"
+    input: string
+    description: "Trigger"
+  abtrigger 011:
+    label: "abtrigger 011"
+    input: string
+    description: "Trigger"
+  abtrigger 012:
+    label: "abtrigger 012"
+    input: string
+    description: "Trigger"
+  abtrigger 013:
+    label: "abtrigger 013"
+    input: string
+    description: "Trigger"
+  abtrigger 014:
+    label: "abtrigger 014"
+    input: string
+    description: "Trigger"
+  abtrigger 015:
+    label: "abtrigger 015"
+    input: string
+    description: "Trigger"
+  abtrigger 016:
+    label: "abtrigger 016"
+    input: string
+    description: "Trigger"
+  abtrigger 017:
+    label: "abtrigger 017"
+    input: string
+    description: "Trigger"
+  abtrigger 018:
+    label: "abtrigger 018"
+    input: string
+    description: "Trigger"
+  abtrigger 019:
+    label: "abtrigger 019"
+    input: string
+    description: "Trigger"
+  abtrigger 020:
+    label: "abtrigger 020"
+    input: string
+    description: "Trigger"
+  abtrigger 021:
+    label: "abtrigger 021"
+    input: string
+    description: "Trigger"
+  abtrigger 022:
+    label: "abtrigger 022"
+    input: string
+    description: "Trigger"
+  abtrigger 023:
+    label: "abtrigger 023"
+    input: string
+    description: "Trigger"
+  abtrigger 024:
+    label: "abtrigger 024"
+    input: string
+    description: "Trigger"
+  abtrigger 025:
+    label: "abtrigger 025"
+    input: string
+    description: "Trigger"
+  abtrigger 026:
+    label: "abtrigger 026"
+    input: string
+    description: "Trigger"
+  abtrigger 027:
+    label: "abtrigger 027"
+    input: string
+    description: "Trigger"
+  abtrigger 028:
+    label: "abtrigger 028"
+    input: string
+    description: "Trigger"
+  abtrigger 029:
+    label: "abtrigger 029"
+    input: string
+    description: "Trigger"
+  abtrigger 030:
+    label: "abtrigger 030"
+    input: string
+    description: "Trigger"
+  abtrigger 031:
+    label: "abtrigger 031"
+    input: string
+    description: "Trigger"
+  abtrigger 032:
+    label: "abtrigger 032"
+    input: string
+    description: "Trigger"
+  abtrigger 033:
+    label: "abtrigger 033"
+    input: string
+    description: "Trigger"
+  abtrigger 034:
+    label: "abtrigger 034"
+    input: string
+    description: "Trigger"
+  abtrigger 035:
+    label: "abtrigger 035"
+    input: string
+    description: "Trigger"
+  abtrigger 036:
+    label: "abtrigger 036"
+    input: string
+    description: "Trigger"
+  abtrigger 037:
+    label: "abtrigger 037"
+    input: string
+    description: "Trigger"
+  abtrigger 038:
+    label: "abtrigger 038"
+    input: string
+    description: "Trigger"
+  abtrigger 039:
+    label: "abtrigger 039"
+    input: string
+    description: "Trigger"
+  abtrigger 040:
+    label: "abtrigger 040"
+    input: string
+    description: "Trigger"
+  abtrigger 041:
+    label: "abtrigger 041"
+    input: string
+    description: "Trigger"
+  abtrigger 042:
+    label: "abtrigger 042"
+    input: string
+    description: "Trigger"
+  abtrigger 043:
+    label: "abtrigger 043"
+    input: string
+    description: "Trigger"
+  abtrigger 044:
+    label: "abtrigger 044"
+    input: string
+    description: "Trigger"
+  abtrigger 045:
+    label: "abtrigger 045"
+    input: string
+    description: "Trigger"
+  abtrigger 046:
+    label: "abtrigger 046"
+    input: string
+    description: "Trigger"
+  abtrigger 047:
+    label: "abtrigger 047"
+    input: string
+    description: "Trigger"
+  abtrigger 048:
+    label: "abtrigger 048"
+    input: string
+    description: "Trigger"
+  abtrigger 049:
+    label: "abtrigger 049"
+    input: string
+    description: "Trigger"
+  abtrigger 050:
+    label: "abtrigger 050"
+    input: string
+    description: "Trigger"
+  abbaseeffect 001:
+    label: "abbaseeffect 001"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 002:
+    label: "abbaseeffect 002"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 003:
+    label: "abbaseeffect 003"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 004:
+    label: "abbaseeffect 004"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 005:
+    label: "abbaseeffect 005"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 006:
+    label: "abbaseeffect 006"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 007:
+    label: "abbaseeffect 007"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 008:
+    label: "abbaseeffect 008"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 009:
+    label: "abbaseeffect 009"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 010:
+    label: "abbaseeffect 010"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 011:
+    label: "abbaseeffect 011"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 012:
+    label: "abbaseeffect 012"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 013:
+    label: "abbaseeffect 013"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 014:
+    label: "abbaseeffect 014"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 015:
+    label: "abbaseeffect 015"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 016:
+    label: "abbaseeffect 016"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 017:
+    label: "abbaseeffect 017"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 018:
+    label: "abbaseeffect 018"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 019:
+    label: "abbaseeffect 019"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 020:
+    label: "abbaseeffect 020"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 021:
+    label: "abbaseeffect 021"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 022:
+    label: "abbaseeffect 022"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 023:
+    label: "abbaseeffect 023"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 024:
+    label: "abbaseeffect 024"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 025:
+    label: "abbaseeffect 025"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 026:
+    label: "abbaseeffect 026"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 027:
+    label: "abbaseeffect 027"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 028:
+    label: "abbaseeffect 028"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 029:
+    label: "abbaseeffect 029"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 030:
+    label: "abbaseeffect 030"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 031:
+    label: "abbaseeffect 031"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 032:
+    label: "abbaseeffect 032"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 033:
+    label: "abbaseeffect 033"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 034:
+    label: "abbaseeffect 034"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 035:
+    label: "abbaseeffect 035"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 036:
+    label: "abbaseeffect 036"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 037:
+    label: "abbaseeffect 037"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 038:
+    label: "abbaseeffect 038"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 039:
+    label: "abbaseeffect 039"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 040:
+    label: "abbaseeffect 040"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 041:
+    label: "abbaseeffect 041"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 042:
+    label: "abbaseeffect 042"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 043:
+    label: "abbaseeffect 043"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 044:
+    label: "abbaseeffect 044"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 045:
+    label: "abbaseeffect 045"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 046:
+    label: "abbaseeffect 046"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 047:
+    label: "abbaseeffect 047"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 048:
+    label: "abbaseeffect 048"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 049:
+    label: "abbaseeffect 049"
+    input: string
+    description: "Base Effect"
+  abbaseeffect 050:
+    label: "abbaseeffect 050"
+    input: string
+    description: "Base Effect"
+  abdirecthit 001:
+    label: "abdirecthit 001"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 002:
+    label: "abdirecthit 002"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 003:
+    label: "abdirecthit 003"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 004:
+    label: "abdirecthit 004"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 005:
+    label: "abdirecthit 005"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 006:
+    label: "abdirecthit 006"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 007:
+    label: "abdirecthit 007"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 008:
+    label: "abdirecthit 008"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 009:
+    label: "abdirecthit 009"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 010:
+    label: "abdirecthit 010"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 011:
+    label: "abdirecthit 011"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 012:
+    label: "abdirecthit 012"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 013:
+    label: "abdirecthit 013"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 014:
+    label: "abdirecthit 014"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 015:
+    label: "abdirecthit 015"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 016:
+    label: "abdirecthit 016"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 017:
+    label: "abdirecthit 017"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 018:
+    label: "abdirecthit 018"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 019:
+    label: "abdirecthit 019"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 020:
+    label: "abdirecthit 020"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 021:
+    label: "abdirecthit 021"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 022:
+    label: "abdirecthit 022"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 023:
+    label: "abdirecthit 023"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 024:
+    label: "abdirecthit 024"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 025:
+    label: "abdirecthit 025"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 026:
+    label: "abdirecthit 026"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 027:
+    label: "abdirecthit 027"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 028:
+    label: "abdirecthit 028"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 029:
+    label: "abdirecthit 029"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 030:
+    label: "abdirecthit 030"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 031:
+    label: "abdirecthit 031"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 032:
+    label: "abdirecthit 032"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 033:
+    label: "abdirecthit 033"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 034:
+    label: "abdirecthit 034"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 035:
+    label: "abdirecthit 035"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 036:
+    label: "abdirecthit 036"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 037:
+    label: "abdirecthit 037"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 038:
+    label: "abdirecthit 038"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 039:
+    label: "abdirecthit 039"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 040:
+    label: "abdirecthit 040"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 041:
+    label: "abdirecthit 041"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 042:
+    label: "abdirecthit 042"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 043:
+    label: "abdirecthit 043"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 044:
+    label: "abdirecthit 044"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 045:
+    label: "abdirecthit 045"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 046:
+    label: "abdirecthit 046"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 047:
+    label: "abdirecthit 047"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 048:
+    label: "abdirecthit 048"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 049:
+    label: "abdirecthit 049"
+    input: string
+    description: "Direct Hit"
+  abdirecthit 050:
+    label: "abdirecthit 050"
+    input: string
+    description: "Direct Hit"
+  ablimitation curr 001:
+    label: "ablimitation curr 001"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 002:
+    label: "ablimitation curr 002"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 003:
+    label: "ablimitation curr 003"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 004:
+    label: "ablimitation curr 004"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 005:
+    label: "ablimitation curr 005"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 006:
+    label: "ablimitation curr 006"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 007:
+    label: "ablimitation curr 007"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 008:
+    label: "ablimitation curr 008"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 009:
+    label: "ablimitation curr 009"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 010:
+    label: "ablimitation curr 010"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 011:
+    label: "ablimitation curr 011"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 012:
+    label: "ablimitation curr 012"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 013:
+    label: "ablimitation curr 013"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 014:
+    label: "ablimitation curr 014"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 015:
+    label: "ablimitation curr 015"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 016:
+    label: "ablimitation curr 016"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 017:
+    label: "ablimitation curr 017"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 018:
+    label: "ablimitation curr 018"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 019:
+    label: "ablimitation curr 019"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 020:
+    label: "ablimitation curr 020"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 021:
+    label: "ablimitation curr 021"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 022:
+    label: "ablimitation curr 022"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 023:
+    label: "ablimitation curr 023"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 024:
+    label: "ablimitation curr 024"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 025:
+    label: "ablimitation curr 025"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 026:
+    label: "ablimitation curr 026"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 027:
+    label: "ablimitation curr 027"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 028:
+    label: "ablimitation curr 028"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 029:
+    label: "ablimitation curr 029"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 030:
+    label: "ablimitation curr 030"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 031:
+    label: "ablimitation curr 031"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 032:
+    label: "ablimitation curr 032"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 033:
+    label: "ablimitation curr 033"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 034:
+    label: "ablimitation curr 034"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 035:
+    label: "ablimitation curr 035"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 036:
+    label: "ablimitation curr 036"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 037:
+    label: "ablimitation curr 037"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 038:
+    label: "ablimitation curr 038"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 039:
+    label: "ablimitation curr 039"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 040:
+    label: "ablimitation curr 040"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 041:
+    label: "ablimitation curr 041"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 042:
+    label: "ablimitation curr 042"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 043:
+    label: "ablimitation curr 043"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 044:
+    label: "ablimitation curr 044"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 045:
+    label: "ablimitation curr 045"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 046:
+    label: "ablimitation curr 046"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 047:
+    label: "ablimitation curr 047"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 048:
+    label: "ablimitation curr 048"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 049:
+    label: "ablimitation curr 049"
+    input: integer
+    description: "Limitation Current"
+  ablimitation curr 050:
+    label: "ablimitation curr 050"
+    input: integer
+    description: "Limitation Current"
+  ablimitation max 001:
+    label: "ablimitation max 001"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 002:
+    label: "ablimitation max 002"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 003:
+    label: "ablimitation max 003"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 004:
+    label: "ablimitation max 004"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 005:
+    label: "ablimitation max 005"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 006:
+    label: "ablimitation max 006"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 007:
+    label: "ablimitation max 007"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 008:
+    label: "ablimitation max 008"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 009:
+    label: "ablimitation max 009"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 010:
+    label: "ablimitation max 010"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 011:
+    label: "ablimitation max 011"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 012:
+    label: "ablimitation max 012"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 013:
+    label: "ablimitation max 013"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 014:
+    label: "ablimitation max 014"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 015:
+    label: "ablimitation max 015"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 016:
+    label: "ablimitation max 016"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 017:
+    label: "ablimitation max 017"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 018:
+    label: "ablimitation max 018"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 019:
+    label: "ablimitation max 019"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 020:
+    label: "ablimitation max 020"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 021:
+    label: "ablimitation max 021"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 022:
+    label: "ablimitation max 022"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 023:
+    label: "ablimitation max 023"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 024:
+    label: "ablimitation max 024"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 025:
+    label: "ablimitation max 025"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 026:
+    label: "ablimitation max 026"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 027:
+    label: "ablimitation max 027"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 028:
+    label: "ablimitation max 028"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 029:
+    label: "ablimitation max 029"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 030:
+    label: "ablimitation max 030"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 031:
+    label: "ablimitation max 031"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 032:
+    label: "ablimitation max 032"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 033:
+    label: "ablimitation max 033"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 034:
+    label: "ablimitation max 034"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 035:
+    label: "ablimitation max 035"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 036:
+    label: "ablimitation max 036"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 037:
+    label: "ablimitation max 037"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 038:
+    label: "ablimitation max 038"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 039:
+    label: "ablimitation max 039"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 040:
+    label: "ablimitation max 040"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 041:
+    label: "ablimitation max 041"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 042:
+    label: "ablimitation max 042"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 043:
+    label: "ablimitation max 043"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 044:
+    label: "ablimitation max 044"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 045:
+    label: "ablimitation max 045"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 046:
+    label: "ablimitation max 046"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 047:
+    label: "ablimitation max 047"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 048:
+    label: "ablimitation max 048"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 049:
+    label: "ablimitation max 049"
+    input: integer
+    description: "Limitation Max"
+  ablimitation max 050:
+    label: "ablimitation max 050"
+    input: integer
+    description: "Limitation Max"
+  ablimitationtype 001:
+    label: "ablimitationtype 001"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 002:
+    label: "ablimitationtype 002"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 003:
+    label: "ablimitationtype 003"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 004:
+    label: "ablimitationtype 004"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 005:
+    label: "ablimitationtype 005"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 006:
+    label: "ablimitationtype 006"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 007:
+    label: "ablimitationtype 007"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 008:
+    label: "ablimitationtype 008"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 009:
+    label: "ablimitationtype 009"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 010:
+    label: "ablimitationtype 010"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 011:
+    label: "ablimitationtype 011"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 012:
+    label: "ablimitationtype 012"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 013:
+    label: "ablimitationtype 013"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 014:
+    label: "ablimitationtype 014"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 015:
+    label: "ablimitationtype 015"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 016:
+    label: "ablimitationtype 016"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 017:
+    label: "ablimitationtype 017"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 018:
+    label: "ablimitationtype 018"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 019:
+    label: "ablimitationtype 019"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 020:
+    label: "ablimitationtype 020"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 021:
+    label: "ablimitationtype 021"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 022:
+    label: "ablimitationtype 022"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 023:
+    label: "ablimitationtype 023"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 024:
+    label: "ablimitationtype 024"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 025:
+    label: "ablimitationtype 025"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 026:
+    label: "ablimitationtype 026"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 027:
+    label: "ablimitationtype 027"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 028:
+    label: "ablimitationtype 028"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 029:
+    label: "ablimitationtype 029"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 030:
+    label: "ablimitationtype 030"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 031:
+    label: "ablimitationtype 031"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 032:
+    label: "ablimitationtype 032"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 033:
+    label: "ablimitationtype 033"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 034:
+    label: "ablimitationtype 034"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 035:
+    label: "ablimitationtype 035"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 036:
+    label: "ablimitationtype 036"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 037:
+    label: "ablimitationtype 037"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 038:
+    label: "ablimitationtype 038"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 039:
+    label: "ablimitationtype 039"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 040:
+    label: "ablimitationtype 040"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 041:
+    label: "ablimitationtype 041"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 042:
+    label: "ablimitationtype 042"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 043:
+    label: "ablimitationtype 043"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 044:
+    label: "ablimitationtype 044"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 045:
+    label: "ablimitationtype 045"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 046:
+    label: "ablimitationtype 046"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 047:
+    label: "ablimitationtype 047"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 048:
+    label: "ablimitationtype 048"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 049:
+    label: "ablimitationtype 049"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  ablimitationtype 050:
+    label: "ablimitationtype 050"
+    input: select
+    description: "Limitation Type"
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+  profile:
+    label: "profile"
+    input: text
+    description: ""
+    rows: 3
+  items:
+    label: "items"
+    input: text
+    description: ""
+    rows: 3
+  notes:
+    label: "notes"
+    input: text
+    description: ""
+    rows: 3

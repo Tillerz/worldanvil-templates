@@ -1,0 +1,42 @@
+<div class='container-fluid ffxiv'>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-mp'>
+        <div class='card-header mp'>Mana Points</div>
+        <div class='card-body of'>
+          <table>
+          <tr><th class='ilbl ilbl-mp' width='70%'><label for='mp'>Max: {{variables.maxmp|default}}, Current:</label></th><td class='ivar ivar-mp c'><input value='{{variables.mp|default}}' class='form-control ivar ivar-mp c' id='mp' name='mp' placeholder='0' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-hp'>
+        <div class='card-header hp'>Health Points</div>
+        <div class='card-body of'>
+          <table>
+          <tr><th class='ilbl ilbl-hp' width='70%'><label for='hp'>Max: {{variables.maxhp|default}}, Current:</label></th><td class='ivar ivar-hp c'><input value='{{variables.hp|default}}' class='form-control ivar ivar-hp c' id='hp' name='hp' placeholder='0' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-items'>
+        <div class='card-header items'>Items</div>
+        <div class='card-body of'>
+          <div class='ivar ivar-items'><div class='iContent'><textarea class='form-control ivar ivar-items mention' id='items' name='items' rows='3'  >{{variables.items|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='ivar ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes mention' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
