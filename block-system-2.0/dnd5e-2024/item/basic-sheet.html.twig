@@ -1,7 +1,19 @@
 {% import _self as sheet %}
+{% set masteries = {
+    "-": "" ,
+    "Cleave": "If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn." ,
+    "Graze": "If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier." ,
+    "Nick": "When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn." ,
+    "Push": "If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller." ,
+    "Sap": "If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn." ,
+    "Slow": "If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet." ,
+    "Topple": "If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition." ,
+    "Vex": "If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+  }
+%}
 {# ---------------------------------------------- #}
 {% macro genTrait(tr = '', type = '') %}{% set base = 'trait' %}{% set list = tr|split(',') %}
-{% for tr in list %}{% if tr != '' and tr != "NONE" %}{% set pf = '' %}
+{% for tr in list %}{% if tr != '' and tr != "NONE" and tr != "-" %}{% set pf = '' %}
     {% set tr = tr|trim|upper %}{% if type != '' %}{% set base = type %}{% endif %}
     {% if tr == 'COMMON' %}{% set pf = 'r_common' %}
     {% elseif tr == 'VARIES' %}{% set pf = 'r_common' %}
@@ -56,22 +68,14 @@
     " 2d20 " : " [roll:2d20] ",
     " 3d20 " : " [roll:3d20] ",
     " 4d20 " : " [roll:4d20] ",
-    "1d20-8" : "[roll:1d20-8|-8]",
-    "1d20-7" : "[roll:1d20-7|-7]",
-    "1d20-6" : "[roll:1d20-6|-6]",
-    "1d20-5" : "[roll:1d20-5|-5]",
     "1d20-4" : "[roll:1d20-4|-4]",
-    "1d20-3" : "[roll:1d20-3|-3]",
-    "1d20-2" : "[roll:1d20-2|-2]",
-    "1d20-1" : "[roll:1d20-1|-1]",
+    "1d20-3" : "[roll:2d20-3|-3]",
+    "1d20-2" : "[roll:3d20-2|-2]",
+    "1d20-1" : "[roll:4d20-1|-1]",
     "1d20+1" : "[roll:1d20+1|+1]",
-    "1d20+2" : "[roll:1d20+2|+2]",
-    "1d20+3" : "[roll:1d20+3|+3]",
-    "1d20+4" : "[roll:1d20+4|+4]",
-    "1d20+5" : "[roll:1d20+5|+5]",
-    "1d20+6" : "[roll:1d20+6|+6]",
-    "1d20+7" : "[roll:1d20+7|+7]",
-    "1d20+8" : "[roll:1d20+8|+8]",
+    "1d20+2" : "[roll:2d20+2|+2]",
+    "1d20+3" : "[roll:3d20+3|+3]",
+    "1d20+4" : "[roll:4d20+4|+4]",
     "(1d4)" : "([roll:1d4])",
     "(2d4)" : "([roll:2d4])",
     "(3d4)" : "([roll:3d4])",
@@ -120,9 +124,12 @@
         {% set wd = 12 %}{% if img > 0 %}{% set wd = 8 %}{% endif %}
         <div class='col-12 col-md-12 col-lg-{{wd}}'>
             <p>
-                {{ sheet.genTrait(variables.item_type|default ~ "," ~ variables.rarity|default ~ "," ~ variables.properties|default ~ ",") }}
+                {{ sheet.genTrait(variables.item_type|default ~ "," ~ variables.rarity|default ~ "," ~ variables.properties|default ~ "," ) }}
                 {% if variables.weapon_damage|default != "" or variables.weapon_range|default != "" %}
                     {{ sheet.genTrait(variables.weapon_damage_type|default ) }}
+                    {% if variables.weapon_mastery|default != "" and variables.weapon_mastery|default != "-" %}
+                        {{ sheet.genTrait(variables.weapon_mastery|default ) }}
+                    {% endif %}
                 {% endif %}
                 {% if variables.attunement %}
                 <span class="trait" title="Attunement">{{ variables.attunement }}</span>
@@ -169,7 +176,8 @@
                         <tr>
                             <th>Type</th>
                             <th>Damage</th>
-                            <th>Damage</th>
+                            <th>Damage Type</th>
+                            <th>Mastery</th>
                             <th>Range</th>
                         </tr>
                         </thead>
@@ -178,6 +186,7 @@
                             <td>{{ variables.weapon_subtype|default }}</td>
                             <td>{{ sheet.addRolls(" " ~ variables.weapon_damage|default ~ " ") }} {% if variables.weapon_secondary_damage|default != "" %}/ {{ sheet.addRolls(" " ~ variables.weapon_secondary_damage|default ~ " ") }} {% endif %}</td>
                             <td>{{ variables.weapon_damage_type|default }} {% if variables.weapon_secondary_damage_type|default != "" %}/ {{ variables.weapon_secondary_damage_type|default }} {% endif %}</td>
+                            <td title='{{masteries[variables.weapon_mastery|default]}}'>{{ variables.weapon_mastery|default }}</td>
                             <td>{{ variables.weapon_range|default }}</td>
                         </tr>
                         </tbody>

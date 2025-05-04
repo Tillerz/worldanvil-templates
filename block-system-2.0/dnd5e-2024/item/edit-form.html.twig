@@ -1,3 +1,15 @@
+{% set masteries = {
+    "-": "" ,
+    "Cleave": "If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn." ,
+    "Graze": "If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier." ,
+    "Nick": "When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn." ,
+    "Push": "If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller." ,
+    "Sap": "If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn." ,
+    "Slow": "If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet." ,
+    "Topple": "If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition." ,
+    "Vex": "If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+  }
+%}
 {% set style = '' %}{% if variables.vintage|default > 0 %}{% set style='-vintage' %}{% endif %}
 <div class='container-fluid dnd5e-2024{{style}}'>
     <div class="row">
@@ -90,7 +102,7 @@
 			<div class="statblock-stat-form">
                 <div class="col-12">
                     <label for="properties" class="control-label"><h4 class="header-title">Properties</h4></label>
-                    <textarea class="form-control mention" id="properties" name="properties" rows="6" placeholder="Magical, Heavy, Cursed, Light, Versatile">{{ variables.properties|default }}</textarea>
+                    <textarea class="form-control" id="properties" name="properties" rows="6" placeholder="Magical, Heavy, Cursed, Light, Versatile">{{ variables.properties|default }}</textarea>
                 </div>
             </div>
         </div>
@@ -140,6 +152,13 @@
                     <option value="Martial Ranged" {% if variables.weapon_subtype|default == "Martial Ranged" %}selected="selected" {% endif %} >Martial Ranged</option>
                 </select>
                 <p class="description form-control-description">Weapon subtype, if the item is a weapon</p>
+                <label for="weapon_mastery" class="control-label"><h4 class="header-title">Weapon Mastery</h4></label>
+                <select class="form-control" id="weapon_mastery" name="weapon_mastery">
+                    {% for m, desc in masteries %}
+                    <option value="{{m}}" {% if variables.weapon_mastery|default == m %}selected="selected" {% endif %} title='{{desc}}'>{{m}}</option>
+                    {% endfor %}
+                </select>
+                <p class="description form-control-description">Weapon mastery, if the item is a weapon</p>
                 <label for="weapon_damage" class="control-label"><h4 class="header-title">Weapon Damage</h4></label>
                 <input value="{{ variables.weapon_damage|default }}" class="form-control" id="weapon_damage" name="weapon_damage" placeholder="1d8+4" type="text" />
                 <p class="description form-control-description">Damage dealt by item, if the item is a weapon</p>

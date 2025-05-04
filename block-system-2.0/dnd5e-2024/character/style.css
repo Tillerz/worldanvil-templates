@@ -219,7 +219,7 @@
   margin:5px}
  .trackable-label { text-align: center; background-color: #80808020}
  .description li { margin-left: 15px}
-.noborder { border: none }
+ .noborder { border: none}
  .card-body { background-color: var(--lightgrey) !important}
  .card-body.nobg { background-color: var(--white) !important}
  .card-body li {
@@ -234,6 +234,7 @@
  .attmod .rolldice { font-size:48px !important}
  .spell-row h2 { font-size:36px; color: var(--gold)}
  .buttlight,  .buttlight:hover { color: var(--gold)}
+ .badge { padding: 3px 6px; font-size:20px; font-weight: 400; font-family: var(--f1)}
  input[type=number],  input[type=number]:focus {
   -moz-appearance: textfield;
   text-align: center}

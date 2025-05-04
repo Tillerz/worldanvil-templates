@@ -5,19 +5,31 @@
 {% set spell_abilities = [ ["NONE","NONE"], ["INT","Intelligence"], ["WIS", "Wisdom"], ["CHA", "Charisma"], ["CON", "Constitution"] ] %}
 {% set xp_list = [ 0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000, 385000, 415000, 445000, 475000, 505000, 535000, 565000, 595000, 625000, 655000 ] %}
 {% set skill_list = [ ["Acrobatics","dexterity"],["Animal Handling","wisdom"],["Arcana","intelligence"],["Athletics","strength"],["Deception","charisma"],["History","intelligence"],["Insight","wisdom"],["Intimidation","charisma"],["Investigation","intelligence"],["Medicine","wisdom"],["Nature","intelligence"],["Perception","wisdom"],["Performance","charisma"],["Persuasion","charisma"],["Religion","intelligence"],["Sleight of Hand","dexterity"],["Stealth","dexterity"],["Survival","wisdom"] ] %}
+{% set masteries = {
+    "-": "" ,
+    "Cleave": "If you hit a creature with a melee attack roll using this weapon, you can make a melee attack roll with the weapon against a second creature within 5 feet of the first that is also within your reach. On a hit, the second creature takes the weapon's damage, but don't add your ability modifier to that damage unless that modifier is negative. You can make this extra attack only once per turn." ,
+    "Graze": "If your attack roll with this weapon misses a creature, you can deal damage to that creature equal to the ability modifier you used to make the attack roll. This damage is the same type dealt by the weapon, and the damage can be increased only by increasing the ability modifier." ,
+    "Nick": "When you make the extra attack of the Light property, you can make it as part of the Attack action instead of as a Bonus Action. You can make this extra attack only once per turn." ,
+    "Push": "If you hit a creature with this weapon, you can push the creature up to 10 feet straight away from yourself if it is Large or smaller." ,
+    "Sap": "If you hit a creature with this weapon, that creature has Disadvantage on its next attack roll before the start of your next turn." ,
+    "Slow": "If you hit a creature with this weapon and deal damage to it, you can reduce its Speed by 10 feet until the start of your next turn. If the creature is hit more than once by weapons that have this property, the Speed reduction doesn't exceed 10 feet." ,
+    "Topple": "If you hit a creature with this weapon, you can force the creature to make a Constitution saving throw (DC 8 plus the ability modifier used to make the attack roll and your Proficiency Bonus). On a failed save, the creature has the Prone condition." ,
+    "Vex": "If you hit a creature with this weapon and deal damage to the creature, you have Advantage on your next attack roll against that creature before the end of your next turn."
+  }
+%}
 {# --- calculate level andf find out if there is a bard --- #}
 {% set level = 0 %}
 {% set blevel = 0 %}
-{% set level_1 = variables.level_1|default(0) %}
+{% set level_1 = variables.level_1|default %}
 {% if level_1 %}{% set level = level + level_1 %}{% endif %}
 {% if 'bard' in variables.class_1|default|lower %}{% set blevel = level_1 %}{% endif %}
-{% set level_2 = variables.level_2|default(0) %}
+{% set level_2 = variables.level_2|default %}
 {% if level_2 %}{% set level = level + level_2 %}{% endif %}
 {% if 'bard' in variables.class_2|default|lower %}{% set blevel = level_2 %}{% endif %}
-{% set level_3 = variables.level_3|default(0) %}
+{% set level_3 = variables.level_3|default %}
 {% if level_3 %}{% set level = level + level_3 %}{% endif %}
 {% if 'bard' in variables.class_3|default|lower %}{% set blevel = level_3 %}{% endif %}
-{% set level_4 = variables.level_4|default(0) %}
+{% set level_4 = variables.level_4|default %}
 {% if level_4 %}{% set level = level + level_4 %}{% endif %}
 {% if 'bard' in variables.class_4|default|lower %}{% set blevel = level_4 %}{% endif %}
 {% if level < 1 %}{% set level = 1 %}{% endif %}
@@ -33,9 +45,9 @@
 {% set con_bonus = ((constitution - 10) // 2) %}
 {% set dex_bonus = ((dexterity - 10) // 2) %}
 {% set str_bonus = ((strength - 10) // 2) %}
-{% set ini_mod = variables.initiative_mod|default(0) %}
+{% set ini_mod = variables.initiative_mod|default %}
 {% if ini_mod == 0 %}{% set ini_mod = 0 %}{% endif %}{# possible replacement of "" to 0 #}
-{% set ini = variables.initiative|default(0) %}
+{% set ini = variables.initiative|default %}
 {# fix for older sheets that had ini instead if ini_mod #}
 {% if ini %}
     {% set ini_mod = ini - dex_bonus %}
@@ -74,14 +86,14 @@
 		{% endif %}
 	{% endif %}
 {% endfor %}
-{% set armor_class_mod = variables.armor_class_mod|default(0)|number_format %}
+{% set armor_class_mod = variables.armor_class_mod|default|number_format %}
 {% if armor_class_mod %}
 	{% set armor_class = armor_class + armor_class_mod|number_format %}
 	{% set ac_txt = ac_txt ~ " + AC Mod. (" ~ armor_class_mod|number_format ~ ")" %}
 {% endif %}
 {% set shield_class = armor_class + shield_class %}
 {# --- HIT POINTS --- #}
-{% set chp = variables.hit_points_current|default(0) %}
+{% set chp = variables.hit_points_current|default %}
 {% if variables.hit_points is defined and variables.hit_points != '' %}
 	{# if the player/dm has entered hitpoints, use them #}
 	{% set hp = variables.hit_points %}
@@ -120,7 +132,7 @@
 {% set sca = variables.spellcasting_ability|default %}
 {% if sca != "NONE" %}
     {% set scm = attribute(variables, sca|lower) %}
-	{% set scm_mod = variables.scm_mod|default(0) %}
+	{% set scm_mod = variables.scm_mod|default %}
 	{% if not scm_mod %}{% set scm_mod = 0 %}{% endif %}
 	{% set scm = ((scm - 10) // 2) + scm_mod %}
 	{% set ssdc = 8 + pb + scm %}
@@ -269,7 +281,7 @@ sam:	spell attack modifier (scm + proficiency)
 {% endif %}
 {% endmacro mark %}
 {# ---------------------------------------------- #}
-{% macro attack(eo, id, prof = 0, name, abiname, mod1, dmg, dmgt, props, pb, pbd, mod2 = 0, worn = 0) %}{% if name is defined and name != '' %}
+{% macro attack(masteries, eo, id, prof = 0, name, abiname, mod1, dmg, dmgt, props = '', mastery = '', pb = 0, pbd = '', mod2 = 0, worn = 0) %}{% if name is defined and name != '' %}
 {% set dmgtitle = "" %}{% set abiname = abiname|upper %}{% set col = '' %}{% if worn == 0 %}{% set col = 'faded' %}{% endif %}
 {% if mod2 > 0 %}
     {% set dmgmod2 = (mod2 - 10) / 2 %}{% set dmgmod2 = dmgmod2|round(0, 'floor') %}
@@ -318,7 +330,12 @@ sam:	spell attack modifier (scm + proficiency)
     <td class="var {{eo}} {{col}} c">{{abiname[:3]}}</td>
     <td class="var {{eo}} {{col}} c" title="{{dmgtitle}}">[roll:{{dmg}}]</td>
     <td class="var {{eo}} {{col}} c">{{dmgt}}</td>
-</tr>{% if props is defined and props != '' %}<tr><td colspan=2 class="var {{eo}} {{col}}">&nbsp;</td><td colspan=5 class="var {{eo}} {{col}}">{{props}}</td></tr>{% endif %}{% endif %}{% endmacro attack %}
+</tr>{% if props is defined and props != '' %}
+<tr>
+	<td colspan=2 class="var {{eo}} {{col}}">&nbsp;</td>
+	<td colspan=4 class="var {{eo}} {{col}}">Properties: {{props}}</td>
+	<td class="var {{eo}} {{col}} c" title='{{masteries[mastery]}}'>{% if mastery != "-" %}<span class='badge'>{{mastery}}</span>{% endif %}</td>
+</tr>{% endif %}{% endif %}{% endmacro attack %}
 {# ---------------------------------------------- #}
 {# 
   Macro: armor
@@ -329,9 +346,9 @@ sam:	spell attack modifier (scm + proficiency)
   - name: Name of the armor.
   - ac: Armor class value.
   - props: Armor properties.
-  - worn: Whether the armor is worn (1) or not (0).
+  - worn: Whether the armor is worn (1) or not .
   - type: Type of armor (light, medium, heavy, or shield).
-  - adddex: Whether to add dexterity bonus (1) or not (0).
+  - adddex: Whether to add dexterity bonus (1) or not .
   - dex_bonus: Dexterity bonus value.
 #}
 {% macro armor(eo, id, name, ac, props, worn = 0, type = 'l', adddex = 0, dex_bonus = 0) %}<tr>
@@ -637,7 +654,7 @@ sam:	spell attack modifier (scm + proficiency)
 							{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
 							{% set name = attribute(variables, 'attack_' ~ id)|default|trim %}
 							{% if name != "" %}
-								{{ sheet.attack(eo, id,
+								{{ sheet.attack(masteries, eo, id,
 									attribute(variables, 'attack_prof_' ~ id)|default,
 									attribute(variables, 'attack_' ~ id)|default,
 									attribute(variables, 'attack_abi_' ~ id)|default,
@@ -645,6 +662,7 @@ sam:	spell attack modifier (scm + proficiency)
 									attribute(variables, 'attack_dmg_' ~ id)|default,
 									attribute(variables, 'attack_dmg_type_' ~ id)|default,
 									attribute(variables, 'attack_props_' ~ id)|default,
+									attribute(variables, 'attack_mastery_' ~ id)|default,
 									pb, pbd,
 									attribute(variables, attribute(variables, 'attack_abi_' ~ id)|default|lower)|default,
 									attribute(variables, 'attack_worn_' ~ id)|default,
