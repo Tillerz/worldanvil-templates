@@ -120,14 +120,17 @@ Example: you want to extract the main content fields of an article:
 
 `extract.py yourworldname\articlebackup.json`
 
-This will extract the main fields (content,sidepanelcontenttop,sidepanelcontent,sidebarcontentbottom,footnotes,fullfooter,displayCss)
-into a sub folder `extract/` with the `article-slug` being the filename, followed by `_<fieldname>` and ending with `.txt`.
+This will extract the main fields (content, sidepanelcontenttop, sidepanelcontent, sidebarcontentbottom, footnotes, fullfooter, displayCss) into a sub folder `extract/` with the `article-slug` being the filename, followed by `_<fieldname>` and ending with `.txt`. The content of each file is plain text and ready for a copy/paste back into your WA article.
 
-The content of each file is plain text and read for a copy/paste back into your WA article.
+Example: you want to extract just the css or whichever two fields:
+
+`extract.py yourworldname\articlebackup.json --fields displayCss`
+`extract.py yourworldname\articlebackup.json --fields fieldname1,fieldname2`
+
+List all the fieldnames of your article backup (just the text ones, no booleans etc):
 
 `extract.py yourworldname\articlebackup.json -l`
 
-This will list all the fieldnames of your article backup (just the text ones, no booleans etc).
 If you want to get ALL fields, you use:
 
 `extract.py yourworldname\articlebackup.json -l -a`
