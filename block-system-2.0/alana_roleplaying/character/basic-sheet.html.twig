@@ -1,0 +1,935 @@
+﻿{% import _self as sheet %}
+{% set skill_count = 99 %}
+{% set skill_list = [
+    [ "skill001", "Communication", "-", "c", "-", "Communication" ],
+    [ "skill002", "Animal Handling", "05", "s", "+", "Communication"],
+    [ "skill003", "Bargain", "05", "s", "+", "Communication"],
+    [ "skill004", "Command/Charm", "05", "s", "+", "Communication"],
+    [ "skill005", "Disguise", "01", "s", "+", "Communication"],
+    [ "skill006", "Etiquette", "05", "s", "+", "Communication"],
+    [ "skill007", "Fast Talk", "05", "s", "+", "Communication"],
+    [ "skill008", "Intrigue", "05", "s", "+", "Communication"],
+    [ "skill009", "Language:", "00", "s", "+", "Communication"],
+    [ "skill010", "Language:", "00", "s", "+", "Communication"],
+    [ "skill011", "Language:", "00", "s", "+", "Communication"],
+    [ "skill012", "Language:", "00", "s", "+", "Communication"],
+    [ "skill013", "Language:", "00", "s", "+", "Communication"],
+    [ "skill014", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill015", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill016", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill017", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill018", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill019", "Persuade", "15", "s", "+", "Communication"],
+    [ "skill020", "Status", "15", "s", "+", "Communication"],
+    [ "skill021", "Manipulation", "-", "c", "-", "Manipulation" ],
+    [ "skill022", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill023", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill024", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill025", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill026", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill027", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill028", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill029", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill030", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill031", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill032", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill033", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill034", "Demolition", "01", "s", "+", "Manipulation" ],
+    [ "skill035", "Fine Manipulation", "05", "s", "+", "Manipulation" ],
+    [ "skill036", "Sleight of Hand", "05", "s", "+", "Manipulation" ],
+    [ "skill037", "Mental", "-", "c", "-", "Mental" ],
+    [ "skill038", "Appraise", "15", "s", "+", "Mental" ],
+    [ "skill039", "First Aid", "30", "s", "+", "Mental" ],
+    [ "skill040", "Gaming", "INT + POW", "s", "+", "Mental" ],
+    [ "skill041", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill042", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill043", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill044", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill045", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill046", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill047", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill048", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill049", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill050", "Medicine", "05", "s", "+", "Mental" ],
+    [ "skill051", "Read/Write:", "01", "s", "+", "Mental" ],
+    [ "skill052", "Read/Write:", "01", "s", "+", "Mental" ],
+    [ "skill053", "Read/Write:", "01", "s", "+", "Mental" ],
+    [ "skill054", "Perception", "-", "c", "-", "Perception" ],
+    [ "skill055", "Insight", "05", "s", "+", "Perception" ],
+    [ "skill056", "Listen", "25", "s", "+", "Perception" ],
+    [ "skill057", "Navigate", "10", "s", "+", "Perception" ],
+    [ "skill058", "Library Use/Research", "25", "s", "+", "Perception" ],
+    [ "skill059", "Sense", "10", "s", "+", "Perception" ],
+    [ "skill060", "Spot", "25", "s", "+", "Perception" ],
+    [ "skill061", "Track", "10", "s", "+", "Perception" ],
+    [ "skill062", "Physical", "-", "c", "-", "Physical" ],
+    [ "skill063", "Climb", "40", "s", "+", "Physical" ],
+    [ "skill064", "Drive:", "20", "s", "+", "Physical" ],
+    [ "skill065", "Drive:", "20", "s", "+", "Physical" ],
+    [ "skill066", "Drive:", "20", "s", "+", "Physical" ],
+    [ "skill067", "Fly", "00", "s", "+", "Physical" ],
+    [ "skill068", "Hide", "10", "s", "+", "Physical" ],
+    [ "skill069", "Jump", "25", "s", "+", "Physical" ],
+    [ "skill070", "Pilot:", "01", "s", "+", "Physical" ],
+    [ "skill071", "Pilot:", "01", "s", "+", "Physical" ],
+    [ "skill072", "Pilot:", "01", "s", "+", "Physical" ],
+    [ "skill073", "Projection", "DEX x 02", "s", "+", "Physical" ],
+    [ "skill074", "Ride:", "05", "s", "+", "Physical" ],
+    [ "skill075", "Ride:", "05", "s", "+", "Physical" ],
+    [ "skill076", "Ride:", "05", "s", "+", "Physical" ],
+    [ "skill077", "Stealth", "10", "s", "+", "Physical" ],
+    [ "skill078", "Swim", "25", "s", "+", "Physical" ],
+    [ "skill079", "Throw", "25", "s", "+", "Physical" ],
+    [ "skill080", "Combat", "-", "c", "-", "Combat" ],
+    [ "skill081", "Artillery:", "-", "s", "+", "Combat" ],
+    [ "skill082", "Dodge", "DEX x 02", "s", "+", "Combat" ],
+    [ "skill083", "Martial Arts", "01", "s", "+", "Combat" ],
+    [ "skill084", "Shield:", "-", "s", "+", "Combat" ],
+    [ "skill085", "Shield:", "-", "s", "+", "Combat" ],
+    [ "skill086", "Firearm:", "-", "s", "+", "Combat" ],
+    [ "skill087", "Firearm:", "-", "s", "+", "Combat" ],
+    [ "skill088", "Missile Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill089", "Missile Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill090", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill091", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill092", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill093", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill094", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill095", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill096", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill097", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill098", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill099", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill100", "-", "-", "s", "+", "Other" ],
+    [ "skill101", "-", "-", "s", "+", "Other" ],
+    [ "skill102", "-", "-", "s", "+", "Other" ],
+    [ "skill103", "-", "-", "s", "+", "Other" ],
+    [ "skill104", "-", "-", "s", "+", "Other" ],
+    [ "skill105", "-", "-", "s", "+", "Other" ],
+    [ "skill106", "-", "-", "s", "+", "Other" ],
+    [ "skill107", "-", "-", "s", "+", "Other" ],
+    [ "skill108", "-", "-", "s", "+", "Other" ],
+    [ "skill109", "-", "-", "s", "+", "Other" ],
+    [ "skill110", "-", "-", "s", "+", "Other" ],
+    [ "skill111", "-", "-", "s", "+", "Other" ],
+    [ "skill112", "-", "-", "s", "+", "Other" ],
+    [ "skill113", "-", "-", "s", "+", "Other" ],
+    [ "skill114", "-", "-", "s", "+", "Other" ],
+    [ "skill115", "-", "-", "s", "+", "Other" ],
+    [ "skill116", "-", "-", "s", "+", "Other" ],
+    [ "skill117", "-", "-", "s", "+", "Other" ],
+    [ "skill118", "-", "-", "s", "+", "Other" ],
+    [ "skill119", "-", "-", "s", "+", "Other" ]
+] %}
+{% set flair = '' %}{% set f = variables.flair|default %}
+{% if f == 'Creative'      %}{% set flair = 'fa-regular fa-mandolin'         %}{% endif %}
+{% if f == 'Druid'         %}{% set flair = 'fa-regular fa-paw-claws'        %}{% endif %}
+{% if f == 'Enquirer'      %}{% set flair = 'fa-regular fa-user-secret'      %}{% endif %}
+{% if f == 'Monk'          %}{% set flair = 'fa-regular fa-hand-fist'        %}{% endif %}
+{% if f == 'Mythic'        %}{% set flair = 'fa-regular fa-wand-sparkles'    %}{% endif %}
+{% if f == 'Noble'         %}{% set flair = 'fa-regular fa-crown'            %}{% endif %}
+{% if f == 'Outlaw'        %}{% set flair = 'fa-regular fa-skull-crossbones' %}{% endif %}
+{% if f == 'Priest'        %}{% set flair = 'fa-regular fa-face-smile-halo'  %}{% endif %}
+{% if f == 'Ranger'        %}{% set flair = 'fa-regular fa-bow-arrow'        %}{% endif %}
+{% if f == 'Spirit Caller' %}{% set flair = 'fa-regular fa-fire-flame'       %}{% endif %}
+{% if f == 'Tinkerer'      %}{% set flair = 'fa-regular fa-gear'             %}{% endif %}
+{% if f == 'Trader'        %}{% set flair = 'fa-regular fa-treasure-chest'   %}{% endif %}
+{% if f == 'Warrior'       %}{% set flair = 'fa-regular fa-helmet-battle]'   %}{% endif %}
+{% if f == 'Wayfarer'      %}{% set flair = 'fa-regular fa-hood-cloak]'      %}{% endif %}
+{% if f == 'Witch'         %}{% set flair = 'fa-regular fa-crystal-ball'     %}{% endif %}
+{% set effort = variables.effort|default %}{% if effort == '' %}{% set effort = variables.str|default * 5 %}{% endif %}
+{% set stamina = variables.stamina|default %}{% if stamina == '' %}{% set stamina = variables.con|default * 5 %}{% endif %}
+{% set idea = variables.idea|default %}{% if idea == '' %}{% set idea = variables.int|default * 5 %}{% endif %}
+{% set luck = variables.luck|default %}{% if luck == '' %}{% set luck = variables.pow|default * 5 %}{% endif %}
+{% set agility = variables.agility|default %}{% if agility == '' %}{% set agility = variables.dex|default * 5 %}{% endif %}
+{% set charm = variables.charm|default %}{% if charm == '' %}{% set charm = variables.cha|default * 5 %}{% endif %}
+{% set dm = '-1d6' %}
+{% set dmb = variables.str|default + variables.siz|default %}
+{% if dmb >= 13 and dmb <= 16 %}{% set dm = '-1d4' %}{% endif %}
+{% if dmb >= 17 and dmb <= 24 %}{% set dm = '-' %}{% endif %}
+{% if dmb >= 25 and dmb <= 32 %}{% set dm = '+1d4' %}{% endif %}
+{% if dmb >= 33 and dmb <= 40 %}{% set dm = '+1d6' %}{% endif %}
+{% if dmb >= 41 and dmb <= 56 %}{% set dm = '+2d6' %}{% endif %}
+{% if dmb >= 57 and dmb <= 72 %}{% set dm = '+3d6' %}{% endif %}
+{% if dmb > 73 %}{% set dm = '+' ~ (3+(dmb-72)//16) ~ 'd6' %}{% endif %}
+{% set damage_modifier = dm %}
+{# -------------------------------------------------------------- #}
+{% macro doSkill(var, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys) %}{% set name = attribute(var, 'skill_name_' ~ id)|default %}
+{% if name != "" and not (name ends with ":") and name != '-' %}
+  {% set tag = "td" %}{% set class = "var var-" %}
+  {% if sk[3]|default == "c" %}{% set tag = "th" %}{% set class = "lbl od lbl-" %}{% endif %}
+  {% set skg = attribute(var, 'skill_group_' ~ id)|default %}
+  {% if skg == "" %}{% set skg = sk[5] %}{% endif %}
+  {% set scb = 0 %}
+  {% set v = attribute(var, 'skill_value_' ~ id)|default + scb %}
+  {% if name == skg and v == "" %}
+    {# skill groups #}
+    {% if name == "Combat" %}{% set v = scb_comb %}{% endif %}
+    {% if name == "Communication" %}{% set v = scb_comm %}{% endif %}
+    {% if name == "Manipulation" %}{% set v = scb_mani %}{% endif %}
+    {% if name == "Mental" %}{% set v = scb_ment %}{% endif %}
+    {% if name == "Perception" %}{% set v = scb_perc %}{% endif %}
+    {% if name == "Physical" %}{% set v = scb_phys %}{% endif %}
+  {% else %}
+    {# skills #}
+    {% if skg == "Combat" %}{% set scb = scb_comb %}{% endif %}
+    {% if skg == "Communication" %}{% set scb = scb_comm %}{% endif %}
+    {% if skg == "Manipulation" %}{% set scb = scb_mani %}{% endif %}
+    {% if skg == "Mental" %}{% set scb = scb_ment %}{% endif %}
+    {% if skg == "Perception" %}{% set scb = scb_perc %}{% endif %}
+    {% if skg == "Physical" %}{% set scb = scb_phys %}{% endif %}
+  {% endif %}
+  {% if v != -1 %}
+    {% set skcol = "" %}{% if v == "" %}
+      {% if sk[0]|default != "" and sk[0]|default != "-" and sk[2]|default != "-" %}{% set skcol = "grey" %}{% set v = sk[2]|default %}
+        {% if v matches '/^\\d+$/' %}
+          {% set v = (v + scb) ~ " %" %}
+        {% else %}
+          {% set v = '' %}
+          {% if name == "Gaming" %}{% set v = (var.int|default + var.pow|default + scb_ment) ~ " %" %}{% endif %}
+          {% if name == "Fly" %}{% set v = (var.dex|default * 4 + scb_phys) ~ " %"  %}{% endif %}
+          {% if name == "Projection" %}{% set v = (var.dex|default * 2 + scb_phys) ~ " %" %}{% endif %}
+          {% if name == "Dodge" %}{% set v = (var.dex|default * 2 + scb_comb) ~ " %" %}{% endif %}
+        {% endif %}
+      {% endif %}
+    {% else %}{% set skcol="green" %}{% if v > 0 %}{% set v = (v + sk[2] + scb) ~ " %" %}{% endif %}{% endif %}
+    <tr>
+      <{{tag}} class='{{class}}skill-name {{skcol}}' title='Skill Name'> {{name}} </{{tag}}>
+      {% set tt = '' %}{% if name != skg %}
+        {% set tt = '½: ' ~ (v // 2) %}
+      {% endif %}
+      <{{tag}} class='{{class}}skill-value {{skcol}} r' title='{{tt}}'>{{v}} &nbsp;</{{tag}}>
+      {% if name == skg %}
+      <{{tag}} class='{{class}}skill-mark c'>&nbsp;</{{tag}}>
+      {% else %}
+      <{{tag}} class='{{class}}skill-mark c' title='Check(ed) for advancement roll'>{% if attribute(var, 'skill_mark_' ~ id)|default|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</{{tag}}>
+      {% endif %}
+    </tr>
+  {% endif %}
+{% endif %}{% endmacro doSkill %}
+{# -------------------------------------------------------------- #}
+{% macro MarkMax(value = 0) %}{% if value > 50 %}<span class='marked'>{% endif %}{{value}}{% if value > 50 %}</span>{% endif %}{% endmacro MarkMax %}
+{# -------------------------------------------------------------- #}
+{% set style = 'light' %}{% if variables.style|default == 1 %}{% set style = 'dark' %}{% endif %}
+<div class="container-fluid sheet-alana-roleplaying-{{style}}"><div class= "containerArchetype"><i class="{{flair}}"></i></div>
+  <div class="row">
+    <div class="col-12"><button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapsePersonal" href="#collapsePersonal" role="button" aria-expanded="true" aria-controls="collapsePersonal"><em class="fas fa-angle-down"></em></button>
+    </div>
+  </div>
+  <div class="row collapse show" id="collapsePersonal">
+    {% set wd = 12 %}{% if variables.portrait|default > 0 %}{% set wd = 8 %}{% endif %}
+    <div class="col-12">
+    <center><h1>Alana Roleplaying</h1></center>
+    </div>
+    <div class="col-12 col-lg-{{wd}}">
+      <div class="card personal" id="card-personal">
+        <div class="card-header personal"><i class="ra ra-player float-left"></i> Personal</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <table class='table'>
+                <tr><th class='lbl od lbl-name' width='200px'> Name </th><td class='var od var-name'> {{variables.name|default}} </td></tr>
+                <tr><th class='lbl ev lbl-gender'> Gender </th><td class='var ev var-gender'> {{variables.gender|default}} </td></tr>
+                <tr><th class='lbl od lbl-ancestry'> Ancestry </th><td class='var od var-ancestry'> {{variables.ancestry|default}} </td></tr>
+                <tr><th class='lbl ev lbl-archetype1'> Archetype (primary) </th><td class='var ev var-archetype1'> {{variables.archetype1|default}} </td></tr>
+                <tr><th class='lbl od lbl-archetype2'> Archetype </th><td class='var od var-archetype2'> {{variables.archetype2|default}} </td></tr>
+                <tr><th class='lbl ev lbl-wealth'> Wealth Level</th><td class='var ev var-wealth'> {{variables.wealth|default}} </td></tr>
+                <tr><th class='lbl od lbl-culture'> Culture </th><td class='var od var-culture'> {{variables.culture|default}} </td></tr>
+                <tr><th class='lbl ev lbl-gods-religion'> Gods / Religion </th><td class='var ev var-gods-religion'> {{variables.gods_religion|default}} </td></tr>
+              </table>
+            </div>
+            <div class="col-12 col-md-6">
+              <table class='table'>
+                <tr><th class='lbl ev lbl-reputation' width='50%'> Reputation </th><td class='var ev var-reputation'> {{variables.reputation|default}} </td></tr>
+                <tr><th class='lbl od lbl-move'> Movement (MOV) </th><td class='var od var-move'>{{variables.move|default}}</td></tr>
+                <tr><th class='lbl ev lbl-handedness'> Handedness </th><td class='var ev var-handedness'> {{variables.handedness|default}} </td></tr>
+                <tr><th class='lbl od lbl-age'> Age </th><td class='var od var-age'>{{variables.age|default}}</td></tr>
+                <tr><th class='lbl ev lbl-height'> Height </th><td class='var ev var-height'> {{variables.height|default}} </td></tr>
+                <tr><th class='lbl od lbl-weight'> Weight </th><td class='var od var-weight'> {{variables.weight|default}} </td></tr>
+                <tr><th class='lbl ev lbl-player'> Player </th><td class='var ev var-player'> {{variables.player|default}} </td></tr>
+              </table>
+            </div>
+          </div>
+          <table class='table'>
+            <tr><th class='lbl od lbl-ptype' width='200px'> Personality Type </th><td class='var od var-ptype'>
+              {% if variables.ptype|default == 'force' %} Solve problems by means of physical force and brawn. {% endif %}
+              {% if variables.ptype|default == 'technique' %} Technique, craft, and expertise are the secrets of success. {% endif %}
+              {% if variables.ptype|default == 'wits' %} Outsmart opponents to gain an advantage. {% endif %}
+              {% if variables.ptype|default == 'talk' %} Persuade others to work while making the decisions. {% endif %}
+            </td></tr>
+            <tr><th class='lbl ev lbl-inducement'> Inducement </th><td class='var ev var-inducement'> {{variables.inducement|default}} </td></tr>
+            <tr><th class='lbl od lbl-longtermgoal'> Longterm Goal </th><td class='var od var-longtermgoal'> {{variables.longtermgoal|default|nl2br}} </td></tr>
+            <tr><th class='lbl ev lbl-distinctive-features'> Distinctive Features </th><td class='var ev var-distinctive-features'> {{variables.distinctive_features|default}} </td></tr>
+            {% if variables.description|default != "" %}
+            <tr><th class='lbl od lbl-description'> Description </th><td class='var od var-description'> {{variables.description|default|nl2br}} </td></tr>
+            {% endif %}          
+          </table>
+        </div>
+      </div>
+    </div>
+    {% if variables.portrait|default > 0 %}
+    <div class="col-4 col-lg-4 hidden-xs hidden-sm hidden-md d-none d-lg-block">
+      <div class="card portrait" id="card-portrait">
+        <div class="card-header portrait"><i class="fa-solid fa-image-user float-left"></i> Portrait</div>
+        <div class="card-body c">
+            [img:{{variables.portrait|default}}]
+        </div>
+      </div>
+    </div>
+    {% endif%}
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-5">
+      <div class="card characteristics" id="card-characteristics">
+        <div class="card-header characteristics"><i class="ra ra-muscle-up float-left"></i> Characteristics</div>
+        <div class="card-body of">
+          <table class='table'>
+            <tr>
+              <th width='100px' class='lbl od lbl-str' title='Strength'> STR </th><td width='60px' class='var od var-str c' title='Strength'>{{variables.str|default}}</td>
+              <th class='lbl od lbl-effort'> Effort Roll </th><td width='70px' class='var od var-effort c' title='50% is {{effort|default // 2 }}'>{{effort|default}} %</td>
+            </tr>
+            <tr>
+              <th class='lbl ev lbl-con' title='Constitution'> CON </th><td class='var ev var-con c' title='Constitution'>{{variables.con|default}}</td>
+              <th class='lbl ev lbl-stamina'> Stamina Roll </th><td class='var ev var-stamina c' title='50% is {{stamina|default // 2 }}'>{{stamina|default}} %</td>
+            </tr>
+            <tr>
+              <th class='lbl od lbl-siz' title='Size'> SIZ </th><td class='var od var-siz c' title='Size'>{{variables.siz|default}}</td>
+              <th class='lbl od lbl-damage-modifier' title='STR + SIZ, result see table page 20'> Damage Modifier </th><td class='var od var-damage-modifier c' title='STR + SIZ, result see table page 20'>{{damage_modifier|default}}</td>
+            </tr>
+            <tr>
+              <th class='lbl ev lbl-int' title='Intelligence'> INT </th><td class='var ev var-int c' title='Intelligence'>{{variables.int|default}}</td>
+              <th class='lbl ev lbl-idea'> Idea Roll </th><td class='var ev var-idea c' title='50% is {{idea|default // 2 }}'>{{idea|default}} %</td>
+            </tr>
+            {% if variables.pow|default != -1 %}
+            <tr>
+              <th class='lbl od lbl-pow' title='Power'> POW <span class='chk od chk-pow-mark float-right' title='checked'>{% if variables.pow_mark|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</span></th><td class='var od var-pow c' title='Power'>{{variables.pow|default}}</td>
+              <th class='lbl od lbl-luck'> Luck </th><td class='var od var-luck c' title='50% is {{luck|default // 2 }}'>{{luck|default}} %</td>
+            </tr>
+            {% endif %}
+            <tr>
+              <th class='lbl ev lbl-dex' title='Dexterity'> DEX </th><td class='var ev var-dex c' title='Dexterity'>{{variables.dex|default}}</td>
+              <th class='lbl ev lbl-agility'> Agility Roll </th><td class='var ev var-agility c' title='50% is '>{{agility|default}} %</td>
+            </tr>
+            <tr>
+              <th class='lbl od lbl-cha' title='Charisma'> CHA </th><td class='var od var-cha c' title='Charisma'>{{variables.cha|default}}</td>
+              <th class='lbl od lbl-charm'> Charm Roll </th><td class='var od var-charm c' title='50% is {{charm|default // 2 }}'>{{charm|default}} %</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-7">
+      <div class="row">
+        {% if variables.hit_points_max|default != -1 %}
+        <div class="col-12 col-md-6">
+          <div class="card hit points" id="card-hit points">
+            <div class="card-header hit points">Hit Points (HP)</div>
+            <div class="card-body of">
+              <table class='table'>
+                {% set hp = variables.hit_points_current|default %}{% if hp == '' %}{% set hp = variables.hit_points_max|default %}{% endif %}
+                <tr><th class='lbl od lbl-hit-points-current' width='50%'> Current / Max</th><td class='var od var-hit-points-current c'>{{hp}} / {{variables.hit_points_max|default}}</td></tr>
+                <tr><th class='lbl ev lbl-major-wound'> Major Wound </th><td class='var ev var-major-wound c'> {{ (variables.hit_points_max|default + 1) // 2 }} </td></tr>
+                {% if variables.hit_points_notes|default != "" %}
+                <tr><th class='lbl od lbl-hit-points-notes'> Notes </th><td class='var od var-hit-points-notes'> {{variables.hit_points_notes|default}} </td></tr>
+                {% endif %}
+              </table>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if variables.sanity_points_max|default != -1 %}
+        <div class="col-12 col-md-6">
+          <div class="card sanity points" id="card-sanity points">
+            <div class="card-header sanity points">Sanity Points (SP)</div>
+            <div class="card-body of">
+              <table class='table'>
+                {% set sp = variables.sanity_points_current|default %}{% if sp == '' %}{% set sp = variables.sanity_points_max|default %}{% endif %}
+                <tr><th class='lbl od lbl-sanity-points-current' width='50%'> Current / Max</th><td class='var od var-sanity-points-current c'>{{sp}} / {{variables.sanity_points_max|default}}</td></tr>
+                <tr><th class='lbl ev lbl-sanity-points-temporary'> Temporary </th><td class='var ev var-sanity-points-temporary c'>{{variables.sanity_points_temporary|default}}</td></tr>
+                {% if variables.sanity_points_notes|default != "" %}
+                <tr><th class='lbl od lbl-sanity-points-notes'> Notes </th><td class='var od var-sanity-points-notes'> {{variables.sanity_points_notes|default}} </td></tr>
+                {% endif %}
+              </table>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if variables.fatigue_points_max|default != -1 %}
+        <div class="col-12 col-md-6">
+          <div class="card fatigue points" id="card-fatigue points">
+            <div class="card-header fatigue points">Fatigue Points (FP)</div>
+            <div class="card-body of">
+              <table class='table'>
+                {% set fp = variables.fatigue_points_current|default %}{% if fp == '' %}{% set fp = variables.fatigue_points_max|default %}{% endif %}
+                <tr><th class='lbl od lbl-fatigue-points-current' width='50%'> Current / Max</th><td class='var od var-fatigue-points-current c'>{{fp}} / {{variables.fatigue_points_max|default}}</td></tr>
+                {% if variables.fatigue_points_notes|default != "" %}
+                <tr><th class='lbl ev lbl-fatigue-points-notes'> Notes </th><td class='var ev var-fatigue-points-notes'> {{variables.fatigue_points_notes|default}} </td></tr>
+                {% endif %}
+              </table>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if variables.power_points_max|default != -1 %}
+        <div class="col-12 col-md-6">
+          <div class="card power points" id="card-power points">
+            <div class="card-header power points">Power Points (PP)</div>
+            <div class="card-body of">
+              <table class='table'>
+                {% set pp = variables.power_points_current|default %}{% if pp == '' %}{% set pp = variables.power_points_max|default %}{% endif %}
+                <tr><th class='lbl od lbl-power-points-current' width='50%'> Current / Max</th><td class='var od var-power-points-current c'>{{pp|default}} / {{variables.power_points_max|default}}</td></tr>
+                <tr><th class='lbl ev lbl-battery'> Battery </th><td class='var ev var-battery c'> {{variables.battery|default}} </td></tr>
+                {% if variables.power_points_notes|default != "" %}
+                <tr><th class='lbl od lbl-power-points-notes'> Notes </th><td class='var od var-power-points-notes'> {{variables.power_points_notes|default}} </td></tr>
+                {% endif %}
+              </table>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% set scb_comb = 0 %}
+  {% set scb_comm = 0 %}
+  {% set scb_mani = 0 %}
+  {% set scb_ment = 0 %}
+  {% set scb_perc = 0 %}
+  {% set scb_phys = 0 %}
+  {% if variables.use_sscb|default > 0 %}
+    {% set scb_comb = (variables.dex|default + 1) // 2 %}
+    {% set scb_comm = (variables.int|default + 1) // 2 %}
+    {% set scb_mani = (variables.dex|default + 1) // 2 %}
+    {% set scb_ment = (variables.int|default + 1) // 2 %}
+    {% set scb_perc = (variables.int|default + 1) // 2 %}
+    {% set scb_phys = (variables.dex|default + 1) // 2 %}
+  {% endif %}
+  {% if variables.use_scb|default > 0 %}
+    {% set scb_comb = (variables.dex|default - 10) + ((variables.int|default - 10) // 2) + ((variables.str|default - 10) // 2) %}
+    {% set scb_comm = (variables.int|default - 10) + ((variables.pow|default - 10) // 2) + ((variables.cha|default - 10) // 2) %}
+    {% set scb_mani = (variables.dex|default - 10) + ((variables.int|default - 10) // 2) + ((variables.str|default - 10) // 2) %}
+    {% set scb_ment = (variables.int|default - 10) + ((variables.pow|default - 10) // 2) %}
+    {% set scb_perc = (variables.int|default - 10) + ((variables.pow|default - 10) // 2) + ((variables.con|default - 10) // 2) %}
+    {% set scb_phys = (variables.dex|default - 10) + ((variables.str|default - 10) // 2) + ((variables.con|default - 10) // 2) - (variables.siz|default - 10) %}
+  {% endif %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card skills" id="card-skills">
+        <div class="card-header skills"><i class="ra ra-honeycomb float-left"></i> Skills <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseSkills" href="#collapseSkills" role="button" aria-expanded="true" aria-controls="collapseSkills"><em class="fas fa-angle-down"></em></button></div>
+        <div class="card-body">
+          <div class="row collapse show" id="collapseSkills">
+            <div class="col-12 col-md-4">
+              <table class='table skills'>
+                <thead>
+                  <tr>
+                    <th class='lbl ev lbl-skill-name'> Name </th>
+                    <th class='lbl ev lbl-skill-value c' width='60px'> % </th>
+                    <th class='lbl ev lbl-skill-mark c' width='40px'> C </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% set count = 1 %}
+                  {% set gr = "Communication" %}
+                  {% for i in 1..skill_count %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set sk = skill_list[id-1] %}
+                    {% set skg = attribute(variables, 'skill_group_' ~ id)|default %}{% if skg == "" %}{% set skg = sk[5]|default %}{% endif %}
+                    {% if skg == gr %}
+                      {{ sheet.doSkill(variables, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys) }}
+                    {% endif %}
+                  {% endfor %}
+                  {% set gr = "Manipulation" %}
+                  {% for i in 1..skill_count %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set sk = skill_list[id-1] %}
+                    {% set skg = attribute(variables, 'skill_group_' ~ id)|default %}{% if skg == "" %}{% set skg = sk[5]|default %}{% endif %}
+                    {% if skg == gr %}
+                      {{ sheet.doSkill(variables, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys) }}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 col-md-4">
+              <table class='table skills'>
+                <thead>
+                  <tr>
+                    <th class='lbl ev lbl-skill-name'> Name </th>
+                    <th class='lbl ev lbl-skill-value c' width='60px'> % </th>
+                    <th class='lbl ev lbl-skill-mark c' width='40px'> C </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% set gr = "Mental" %}
+                  {% for i in 1..skill_count %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set sk = skill_list[id-1] %}
+                    {% set skg = attribute(variables, 'skill_group_' ~ id)|default %}{% if skg == "" %}{% set skg = sk[5]|default %}{% endif %}
+                    {% if skg == gr %}
+                      {{ sheet.doSkill(variables, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys) }}
+                    {% endif %}
+                  {% endfor %}
+                  {% set gr = "Perception" %}
+                  {% for i in 1..skill_count %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set sk = skill_list[id-1] %}
+                    {% set skg = attribute(variables, 'skill_group_' ~ id)|default %}{% if skg == "" %}{% set skg = sk[5]|default %}{% endif %}
+                    {% if skg == gr %}
+                      {{ sheet.doSkill(variables, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys) }}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 col-md-4">
+              <table class='table skills'>
+                <thead>
+                <tr>
+                  <th class='lbl ev lbl-skill-name'> Name </th>
+                  <th class='lbl ev lbl-skill-value c' width='60px'> % </th>
+                  <th class='lbl ev lbl-skill-mark c' width='40px'> C </th>
+                </tr>
+                </thead>
+                <tbody>
+                  {% set gr = "Physical" %}
+                  {% for i in 1..skill_count %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set sk = skill_list[id-1] %}
+                    {% set skg = attribute(variables, 'skill_group_' ~ id)|default %}{% if skg == "" %}{% set skg = sk[5]|default %}{% endif %}
+                    {% if skg == gr %}
+                      {{ sheet.doSkill(variables, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys) }}
+                    {% endif %}
+                  {% endfor %}
+                  {% set gr = "Combat" %}
+                  {% for i in 1..skill_count %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set sk = skill_list[id-1] %}
+                    {% set skg = attribute(variables, 'skill_group_' ~ id)|default %}{% if skg == "" %}{% set skg = sk[5]|default %}{% endif %}
+                    {% if skg == gr %}
+                      {{ sheet.doSkill(variables, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys) }}
+                    {% endif %}
+                  {% endfor %}
+                  {% set gr = "Other" %}
+                  {% for i in 1..skill_count %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set sk = skill_list[id-1] %}
+                    {% set skg = attribute(variables, 'skill_group_' ~ id)|default %}{% if skg == "" %}{% set skg = sk[5]|default %}{% endif %}
+                    {% if skg == gr %}
+                      {{ sheet.doSkill(variables, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys) }}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card weapons" id="card-weapons">
+        <div class="card-header weapons"><i class="ra ra-sword float-left"></i> Weapons <span title='Damage Modifier'>({{damage_modifier|default}})</span></div>
+        <div class="card-body of">
+          <table class='table'>
+            <thead>
+              <tr>
+                <th class='lbl od lbl-weapon-type'> Type </th>
+                <th class='lbl od lbl-weapon-value c' width='50px'> % </th>
+                <th class='lbl od lbl-weapon-damage c' width='35%'> Damage, Special </th>
+                <th class='lbl od lbl-weapon-range c' width='70px'> Range </th>
+                <th class='lbl od lbl-weapon-attacks c' width='70px'> Attacks </th>
+                <th class='lbl od lbl-weapon-length c' width='60px'> Length </th>
+                <th class='lbl od lbl-weapon-hand c' width='50px'> Hand </th>
+                <th class='lbl od lbl-weapon-hp c' width='40px'> HP </th>
+                <th class='lbl od lbl-weapon-mark c' width='40px'> C </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in 1..8 %}
+                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+                {% set name = attribute(variables, 'weapon_type_' ~ id)|default %}
+                {% if name != "" %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr>
+                <td class='var {{eo}} var-weapon-type' title='Weapon Name'> {{name}} </td>
+                <td class='var {{eo}} var-weapon-value c' title='Weapon Skill Value'>{{attribute(variables, 'weapon_base_' ~ id)|default + attribute(variables, 'weapon_value_' ~ id)|default}}</td>
+                <td class='var {{eo}} var-weapon-damage c'> {{attribute(variables, 'weapon_damage_' ~ id)|default}} </td>
+                <td class='var {{eo}} var-weapon-range c'> {{attribute(variables, 'weapon_range_' ~ id)|default}} </td>
+                <td class='var {{eo}} var-weapon-attacks c'>{{attribute(variables, 'weapon_attacks_' ~ id)|default}}</td>
+                <td class='var {{eo}} var-weapon-length c'> {{attribute(variables, 'weapon_length_' ~ id)|default}} </td>
+                <td class='var {{eo}} var-weapon-hand c'> {{attribute(variables, 'weapon_hand_' ~ id)|default}} </td>
+                <td class='var {{eo}} var-weapon-hp c'> {{attribute(variables, 'weapon_hp_' ~ id)|default}} </td>
+                <td class='var {{eo}} var-weapon-mark c' title='checked'>{% if attribute(variables, 'weapon_mark_' ~ id)|default|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td>
+              </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card armor" id="card-armor">
+        <div class="card-header armor"><i class="ra ra-helmet float-left"></i> Armor</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-4 of">
+              <table class='table'>
+                <tbody>
+                  <tr>
+                    <th class='lbl od lbl-armor-type'> Type </th>
+                    <th class='lbl od lbl-armor-value c' width='50px'> AV </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in 1..4 %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set name = attribute(variables, 'armor_type_' ~ id)|default %}
+                    {% if name != ""%}
+                      {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <tr>
+                    <td class='var {{eo}} var-armor-type' title='Armor Name'> {{name}} </td>
+                    <td class='var {{eo}} var-armor-value c' title='Armor Value'>{{attribute(variables, 'armor_value_' ~ id)|default}}</td>
+                  </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 col-md-8 of">
+              <table class='table'>
+                <thead>
+                  <tr>
+                    <th class='lbl od lbl-shield-type'> <i class="ra ra-shield"></i> Shield Type </th>
+                    <th class='lbl od lbl-shiele-value c' width='50px'> % </th>
+                    <th class='lbl od lbl-shield-damage c' width='30%'> Damage </th>
+                    <th class='lbl od lbl-shield-hp c' width='40px'> HP </th>
+                    <th class='lbl od lbl-shield-mark c' width='40px'> C </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class='var {{eo}} var-shield-type'> {{variables.shield_type|default}} </td>
+                    <td class='var {{eo}} var-shiele-value c' title='Shield Value'>{{variables.shiele_value|default}}</td>
+                    <td class='var {{eo}} var-shield-damage c'> {{variables.shield_damage|default}} </td>
+                    <td class='var {{eo}} var-shield-hp c'> {{variables.shield_hp|default}} </td>
+                    <td class='var {{eo}} var-shield-mark c' title='checked'>{% if variables.shield_mark|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class='lbl od lbl-combat-notes'> Notes </div><div class='var od var-combat-notes'> {{variables.combat_notes|default|nl2br}} </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% set done = 0 %}
+            {% set clistmax = 60 %}{% set emptymin = 0 %}{% set listmin = 0 %}{% set ecount = 0 %}{% set count = 0 %}
+            {% for i in 1..clistmax %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'power_name_' ~ id)|default|trim %}
+              {% if name == "" and i > listmin %}{% set ecount = ecount + 1 %}{% endif %}
+              {% if ecount <= emptymin or i < listmin or name != "" %}
+                {% set done = 1 %}
+                {% set count = count + 1 %}
+                {% set eo = 'od' %}{% if count is even %}{% set eo = 'ev' %}{% endif %}
+                {% if count == 1 or count // 6 == count / 6 %}
+  {% if count == 1 %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card powers" id="card-powers">
+        <div class="card-header powers"><i class="ra ra-aware float-left"></i> Powers <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapsePowers" href="#collapsePowers" role="button" aria-expanded="true" aria-controls="collapsePowers"><em class="fas fa-angle-down"></em></button></div>
+        <div class="card-body of collapse show" id="collapsePowers">
+          <table class='table'>
+  {% endif %}
+                  <tr>
+                    <th class='lbl od lbl-power-name'> Power </th>
+                    <th class='lbl od lbl-power-type c' width='100px'> Energy Type </th>
+                    <th class='lbl od lbl-power-levels-act c' width='60px'> Active Levels </th>
+                    <th class='lbl od lbl-power-levels-total c' width='60px'> Total Levels </th>
+                    <th class='lbl od lbl-power-range c'> Range </th>
+                    <th class='lbl od lbl-power-duration c'> Duration </th>
+                    <th class='lbl od lbl-power-cost c' title='Cost To Use' width='50px'> Cost </th>
+                    <th class='lbl od lbl-power-cp c' width='40px'> CP </th>
+                  </tr>
+                {% endif %}
+                <tr>
+                  <td class='var {{eo}} var-power-name'> {{name}} </td>
+                  <td class='var {{eo}} var-power-type c'> {{attribute(variables, 'power_type_' ~ id)|default}} </td>
+                  <td class='var {{eo}} var-power-levels-act c'>{{attribute(variables, 'power_levels_act_' ~ id)|default}}</td>
+                  <td class='var {{eo}} var-power-levels-total c'>{{attribute(variables, 'power_levels_total_' ~ id)|default}}</td>
+                  <td class='var {{eo}} var-power-range c'> {{attribute(variables, 'power_range_' ~ id)|default}} </td>
+                  <td class='var {{eo}} var-power-duration c'> {{attribute(variables, 'power_duration_' ~ id)|default}} </td>
+                  <td class='var {{eo}} var-power-cost c'>{{attribute(variables, 'power_cost_' ~ id)|default}}</td>
+                  <td class='var {{eo}} var-power-cp c' title='Character Points'>{{attribute(variables, 'power_cp_' ~ id)|default}}</td>
+                </tr>
+                {% set notes = attribute(variables, 'power_notes_' ~ id)|default %}{% if notes != "" %}
+                <tr>
+                  <td class='var {{eo}} var-power-dummy'>&nbsp;</td>
+                  <th class='lbl od lbl-power-notes vam c'> Notes </th>
+                  <td class='var {{eo}} var-power-notes' colspan=7> {{notes}} </td>
+                </tr>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+  {% if done == 1 %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% set done = 0 %}
+            {% set clistmax = 40 %}{% set emptymin = 0 %}{% set listmin = 0 %}{% set ecount = 0 %}{% set count = 0 %}
+            {% for i in 1..clistmax %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'apower_name_' ~ id)|default|trim %}
+              {% if name == "" and i > listmin %}{% set ecount = ecount + 1 %}{% endif %}
+              {% if ecount <= emptymin or i < listmin or name != "" %}
+                {% set done = 1 %}
+                {% set count = count + 1 %}
+                {% set eo = 'od' %}{% if count is even %}{% set eo = 'ev' %}{% endif %}
+                {% if count == 1 or count // 6 == count / 6 %}
+  {% if count == 1 %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card attack powers" id="card-attack powers">
+        <div class="card-header attack powers"><i class="ra ra-player-thunder-struck float-left"></i> Attack Powers <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseAttackPowers" href="#collapseAttackPowers" role="button" aria-expanded="true" aria-controls="collapseAttackPowers"><em class="fas fa-angle-down"></em></button></div>
+        <div class="card-body of collapse show" id="collapseAttackPowers">
+          <table class='table'>
+  {% endif %}
+                  <tr>
+                    <th class='lbl od lbl-apower-name'> Name </th>
+                    <th class='lbl od lbl-apower-value c' width='50px'> % </th>
+                    <th class='lbl od lbl-apower-damage c' width='25%'> Damage </th>
+                    <th class='lbl od lbl-apower-range c' width='55px'> Range </th>
+                    <th class='lbl od lbl-apower-type c' width='100px'> Type </th>
+                    <th class='lbl od lbl-apower-cost c' width='40px'> Cost </th>
+                    <th class='lbl od lbl-apower-mark c' width='40px'> C </th>
+                  </tr>
+                {% endif %}
+                <tr>
+                  <td class='var {{eo}} var-apower-name' title='Attack Power'> {{name}} </td>
+                  <td class='var {{eo}} var-apower-value c' title='Attack Power Value'>{{attribute(variables, 'apower_value_' ~ id)|default}}</td>
+                  <td class='var {{eo}} var-apower-damage c'> {{attribute(variables, 'apower_damage_' ~ id)|default}} </td>
+                  <td class='var {{eo}} var-apower-range c'> {{attribute(variables, 'apower_range_' ~ id)|default}} </td>
+                  <td class='var {{eo}} var-apower-type c'> {{attribute(variables, 'apower_type_' ~ id)|default}} </td>
+                  <td class='var {{eo}} var-apower-cost c'>{{attribute(variables, 'apower_cost_' ~ id)|default}}</td>
+                  <td class='var {{eo}} var-apower-mark c' title='checked'>{% if attribute(variables, 'apower_mark_' ~ id)|default|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+{% if done == 1 %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  <div class="row">
+    {% set done = 0 %}
+            {% set clistmax = 40 %}{% set emptymin = 0 %}{% set listmin = 0 %}{% set ecount = 0 %}{% set count = 0 %}
+            {% for i in 1..clistmax %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'dpower_name_' ~ id)|default|trim %}
+              {% if name == "" and i > listmin %}{% set ecount = ecount + 1 %}{% endif %}
+              {% if ecount <= emptymin or i < listmin or name != "" %}
+                {% set done = 1 %}
+                {% set count = count + 1 %}
+                {% set eo = 'od' %}{% if count is even %}{% set eo = 'ev' %}{% endif %}
+                {% if count == 1 or count // 6 == count / 6 %}
+  {% if count == 1 %}
+    <div class="col-12 col-md-6">
+      <div class="card defensive powers" id="card-defensive powers">
+        <div class="card-header defensive powers"><i class="ra ra-aura float-left"></i> Defensive Powers</div>
+        <div class="card-body of">
+          <table class='table'>
+  {% endif %}
+            <tr>
+              <th class='lbl od lbl-dpower-name'> Power </th>
+              <th class='lbl od lbl-dpower-type c' width='100px'> Energy Type </th>
+              <th class='lbl od lbl-dpower-level c' width='60px'> Level </th>
+              <th class='lbl od lbl-dpower-value c' width='40px'> % </th>
+              <th class='lbl od lbl-dpower-cost c' width='70px'> Energy Cost </th>
+              </tr>
+              {% endif %}
+              <tr>
+                <td class='var {{eo}} var-dpower-name' title='Defense Power'> {{name}} </td>
+                <td class='var {{eo}} var-dpower-type c'> {{attribute(variables, 'dpower_type_' ~ id)|default}} </td>
+                <td class='var {{eo}} var-dpower-level c'> {{attribute(variables, 'dpower_level_' ~ id)|default}} </td>
+                <td class='var {{eo}} var-dpower-value c' title='Defense Power Value'>{{attribute(variables, 'dpower_value_' ~ id)|default}}</td>
+                <td class='var {{eo}} var-dpower-cost c'>{{attribute(variables, 'dpower_cost_' ~ id)|default}}</td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+{% if done == 1 %}
+          </table>
+          <table class='table'>
+            <tr>{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <th class='lbl {{eo}} lbl-dpower-defense'> Defense </th>
+              <td class='var {{eo}} var-dpower-defense c' width='40px'>{{variables.dpower_defense|default}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+{% endif %}
+    <div class="col-12 col-md-6">
+      <div class="card character points" id="card-character points">
+        <div class="card-header character points"><i class="ra ra-circle-of-circles"></i> Character Points</div>
+        <div class="card-body of">
+          <table class='table'>
+            <tr>
+              <th class='lbl ev lbl-campaign-power-level'> Campaign Power Level </th>
+              <td class='var ev var-campaign-power-level c' width='80px'>{{variables.campaign_power_level|default}}</td>
+              <th class='lbl ev lbl-character-points'> Character Points </th>
+              <td class='var ev var-character-points c' width='40px'>{{variables.character_points|default}}</td>
+            </tr>
+          </table>
+          <table class='table'>
+            <tr>
+              <th class='lbl od lbl-character-failing-type'><i class="fa-solid fa-circle-minus"></i> Character Failings </th>
+              <th class='lbl od lbl-character-failing-points c' width='50px'> Points </th>
+            </tr>
+            {% for i in 1..6 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'character_failing_type_' ~ id)|default %}
+              {% if name != ""%}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <tr>
+              <td class='var {{eo}} var-character-failing-type'> {{attribute(variables, 'character_failing_type_' ~ id)|default}} </td><td class='var {{eo}} var-character-failing-points c'>{{attribute(variables, 'character_failing_points_' ~ id)|default}}</td>
+            </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    {% if variables.belongings|default != "" %}
+    <div class="col-12 col-md-6">
+      <div class="card belongings" id="card-belongings">
+        <div class="card-header belongings"><i class="fa-solid fa-sack float-left"></i> Belongings</div>
+        <div class="card-body of">   
+          <div class='var ev var-belongings'> {{variables.belongings|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.background|default != "" %}
+    <div class="col-12 col-md-6">
+      <div class="card background" id="card-background">
+        <div class="card-header background"><i class="ra ra-scroll-unfurled float-left"></i> Background</div>
+        <div class="card-body of">
+          <div class='var ev var-background'> {{variables.background|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.passions|default != "" %}
+    <div class="col-12 col-md-6">
+      <div class="card passions" id="card-passions">
+        <div class="card-header passions"><i class="ra ra-hearts float-left"></i> Passions</div>
+        <div class="card-body of">
+          <div class='var ev var-passions'> {{variables.passions|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.allegiances|default != "" %}
+    <div class="col-12 col-md-6">
+      <div class="card allegiances" id="card-allegiances">
+        <div class="card-header allegiances"><i class="ra ra-double-team float-left"></i> Allegiances</div>
+        <div class="card-body of">
+          <div class='var ev var-allegiances'> {{variables.allegiances|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.reputation_history|default != "" %}
+    <div class="col-12 col-md-6">
+      <div class="card reputation-history" id="card-reputation-history">
+        <div class="card-header reputation-history"><i class="fa-regular fa-certificate float-left"></i> Reputation History</div>
+        <div class="card-body of">
+          <div class='var ev var-reputation-history'> {{variables.reputation_history|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.notes|default != "" %}
+    <div class="col-12 col-md-6">
+      <div class="card notes" id="card-notes">
+        <div class="card-header notes"><i class="ra ra-quill-ink float-left"></i> Notes</div>
+        <div class="card-body of">
+          <div class='var ev var-notes'> {{variables.notes|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% if variables.use_ptraits|default == 1 %}
+  <div class="row">
+    <div class="col-12 col-md-12 col-lg-3 hidden-xs hidden-sm hidden-md d-none d-lg-block">
+    </div>
+    <div class="col-12 col-md-12 col-lg-6">
+      <div class="card personality-traits" id="card-personality-traits">
+        <div class="card-header personality-traits">Personality Traits <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseTraits" href="#collapseTraits" role="button" aria-expanded="true" aria-controls="collapseTraits"><em class="fas fa-angle-down"></em></button></div>
+        <div class="card-body of collapse show" id="collapseTraits">
+          <table class='table'>
+            {% set tl = variables.ptrait_aggressive|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-aggressive'>Aggressive</th><td class='var od var-ptrait-aggressive'>       {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Passive</th><td class="var od">     {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_brave|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-brave'>Brave</th><td class='var ev var-ptrait-brave'>                      {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Cowardly</th><td class="var ev">    {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_clever|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-clever'>Clever</th><td class='var od var-ptrait-clever'>                   {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Dull</th><td class="var od">        {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_conservative|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-conservative'>Conservative</th><td class='var ev var-ptrait-conservative'> {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Innovative</th><td class="var ev">  {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_curious|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-curious'>Curious</th><td class='var od var-ptrait-curious'>                {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Incurious</th><td class="var od">   {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_dependable|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-dependable'>Dependable</th><td class='var ev var-ptrait-dependable'>       {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Unreliable</th><td class="var ev">  {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_emotional|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-emotional'>Emotional</th><td class='var od var-ptrait-emotional'>          {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Calm</th><td class="var od">        {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_energetic|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-energetic'>Energetic</th><td class='var ev var-ptrait-energetic'>          {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Lazy</th><td class="var ev">        {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_extrovert|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-extrovert'>Extrovert</th><td class='var od var-ptrait-extrovert'>          {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Introvert</th><td class="var od">   {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_greedy|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-greedy'>Greedy</th><td class='var ev var-ptrait-greedy'>                   {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Generous</th><td class="var ev">    {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_honest|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-honest'>Honest</th><td class='var od var-ptrait-honest'>                   {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Dishonest</th><td class="var od">   {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_honorable|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-honorable'>Honorable</th><td class='var ev var-ptrait-honorable'>          {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Dishonorable</th><td class="var ev">{{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_humorous|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-humorous'>Humorous</th><td class='var od var-ptrait-humorous'>             {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Dour</th><td class="var od">        {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_impulsive|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-impulsive'>Impulsive</th><td class='var ev var-ptrait-impulsive'>          {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Cautious</th><td class="var ev">    {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_leader|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-leader'>Leader</th><td class='var od var-ptrait-leader'>                   {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Follower</th><td class="var od">    {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_optimistic|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-optimistic'>Optimistic</th><td class='var ev var-ptrait-optimistic'>       {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Pessimistic</th><td class="var ev"> {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_patient|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-patient'>Patient</th><td class='var od var-ptrait-patient'>                {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Nervous</th><td class="var od">     {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_physical|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-physical'>Physical</th><td class='var ev var-ptrait-physical'>             {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Mental</th><td class="var ev">      {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_pious|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-pious'>Pious</th><td class='var od var-ptrait-pious'>                      {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Irreligious</th><td class="var od"> {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_stubborn|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl ev lbl-ptrait-stubborn'>Stubborn</th><td class='var ev var-ptrait-stubborn'>             {{ sheet.MarkMax(tl) }} % </td><th class='lbl ev'>Receptive</th><td class="var ev">   {{ sheet.MarkMax(tr) }} % </td></tr>
+            {% set tl = variables.ptrait_trusting|default %}{% set tr = 100 - tl %}
+            <tr><th class='lbl od lbl-ptrait-trusting'>Trusting</th><td class='var od var-ptrait-trusting'>             {{ sheet.MarkMax(tl) }} % </td><th class='lbl od'>Suspicious</th><td class="var od">  {{ sheet.MarkMax(tr) }} % </td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="row"><div class="col-12 text-center"><small><a href="https://www.chaosium.com/alana-roleplaying-system/" target="_new">Alana Roleplaying</a> by Tillerz, based on Basic Roleplaying &copy; by Chaosium, Inc.<br><a href="/w/sheet-creation/board/alana-roleplaying" target="_new">Character Sheet v1.0</a>, made by Tillerz - Updated: 2023-08-31</small></div></div>
+</div>

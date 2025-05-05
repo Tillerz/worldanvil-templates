@@ -175,9 +175,9 @@
                     {% set done = 0 %}
                     <div class='darker'>
                     {% set fieldname = "abcost" %}{% set label = "Cost" %}
-                    {% set v = attribute(variables, fieldname ~ '_' ~ id)|default|trim %}{% if v != "" %}{% if done == 1 %}, {% endif %}<b>{{label}}</b>: {{v}} MP{% set done = 1 %}{% endif %}{#
-                   #}{% for fieldname, label in abfields %}{% set v = attribute(variables, fieldname ~ '_' ~ id)|default|trim %}{% if v != "" %}{% if done == 1 %}, {% endif %}<b>{{label}}</b>: {{v}}{% set done = 1 %}{% endif %}{% endfor %}
-                    </div>{% set done = 0 %}{% for fieldname, label in abfields2 %}{% set v = attribute(variables, fieldname ~ '_' ~ id)|default|trim %}{% if v != "" %}{% if done == 1 %}<br>{% endif %}<b>{{label}}</b>: {{v}}{% set done = 1 %}{% endif %}{% endfor %}
+                    {% set v = attribute(variables, fieldname ~ '_' ~ id)|default|trim %}{% if v != "" %}{% if done == 1 %}, {% endif %}<b class='rcol'>{{label}}</b>: {{v}} MP{% set done = 1 %}{% endif %}{#
+                   #}{% for fieldname, label in abfields %}{% set v = attribute(variables, fieldname ~ '_' ~ id)|default|trim %}{% if v != "" %}{% if done == 1 %}, {% endif %}<b class='rcol'>{{label}}</b>: {{v}}{% set done = 1 %}{% endif %}{% endfor %}
+                    </div>{% set done = 0 %}{% for fieldname, label in abfields2 %}{% set v = attribute(variables, fieldname ~ '_' ~ id)|default|trim %}{% if v != "" %}{% if done == 1 %}<br>{% endif %}<b class='rcol'>{{label}}</b>: {{v}}{% set done = 1 %}{% endif %}{% endfor %}
                     {% set max = attribute(variables, 'ablimitation_max_' ~ id)|default %}
                     {% if max > 0 %}<b>Limitation:</b> {{max}}x per {{attribute(variables, 'ablimitationtype_' ~ id)|default}}{% endif %}
                   </div>

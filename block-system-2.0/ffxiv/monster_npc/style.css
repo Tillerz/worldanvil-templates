@@ -1,0 +1,163 @@
+.ffxiv {
+  --black: #202020;
+  --white: #ffffff;
+  --lightgrey: #f0f0f0;
+  --varod: #00000010;
+  --varev: #00000030;
+  --lblod: #00000020;
+  --lblev: #00000040;
+  --c4: #99bdde;
+  --c5: #85aedc;
+  --c6: #6b9ad7;
+  --c7: #4a7eca;
+  --c8: #295ba2;
+  --darkblue: #404040;
+  --darkbluebg: #18204A;
+  --labeltextdark: #18204A;
+  --labeltextlight: #FFFFFF;
+  --logo: #BE9D52;
+  --border: #BE9D52;
+  --f1: PT Sans Narrow;
+  --f2: PT Sans Narrow;
+  color: var(--darkblue) !important;
+  font-size: 16px !important;
+  font-family: var(--f1) !important;
+  letter-spacing: -0.05em;
+  word-spacing: 0.1em;
+  padding: 20px;
+  background: url(/i/5530250/render)}
+ .card-header,  .trackable-header {
+  font-weight: 800;
+  border: 2px solid var(--border) ;
+  border-radius: 10px 10px; 
+  color: var(--black) !important;
+  text-transform: uppercase;
+  text-align:center;
+  margin: 2px}
+ .card-body,  .card { background-color: transparent; border: none;}
+ .card-body {
+  color: var(--darkblue) !important;
+  text-align:left;
+  font-weight: 400;
+  font-size: 16px;
+  border: 2px solid var(--border) ;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 3px;
+  background-color: #ffffff60;
+  font-family: var(--f1)}
+ table { line-height:1.5}
+ .table td,  .table th,  .table > tbody > tr > td {
+  border: none}
+.att .label-roller {
+    border: none;
+    cursor: pointer;
+    background: #00000000;
+    display: inline-block;
+    padding: 5px 6px;
+    margin: 1px 3px;
+    color: var(--white) ;
+    font-size:18px; padding: 0px 10px; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; letter-spacing: 0.04em
+}
+ table {
+  width: 100%;
+  border-spacing: 2px;
+  margin-bottom: 0}
+ .table td {
+  padding: 2px;}
+ th {
+  letter-spacing: -0.01em;
+  word-spacing: 0.1em;}
+ .form-control,  .form-control:focus {
+  font-size: 16px !important;
+  font-family: var(--f1) !important;
+  color: var(--darkblue) !important;
+  background-color: var(--white)}
+ .card {
+  margin: 5px;
+  color: var(--darkblue) !important;
+  font-family: var(--f2) !important;
+  font-size: 24px;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 0px}
+ .lbl,  .ilbl {
+  font-weight: 800;}
+ th.ilbl,  .lbl,  .ilbl {
+  padding-left: 10px;
+  padding-right: 10px}
+ .ilbl {
+  padding-top: 10px}
+ td.var,  td.ivar {
+  padding-left: 10px}
+ .var,  .ivar {
+  padding: 0px 3px;
+  color: var(--darkblue) !important;}
+ .ivar { padding: 10px}
+ .lbl.ev,  .ilbl.ev,  th.ev {
+  background-color: var(--lblev) !important;
+  color: var(--darkblue) !important;}
+ .lbl.od,  .ilbl.od,  th.od {
+  background-color: var(--lblod) !important;
+  color: var(--darkblue) !important;}
+ .var.ev,  .ivar.ev,  td.ev {
+  background-color: var(--varev) !important;
+  color: var(--darkblue) !important;}
+ .var.od,  .ivar.od,  td.od {
+  background-color: var(--varod) !important;
+  color: var(--darkblue) !important;}
+ .c { text-align: center}
+ .l { text-align: left}
+ .r { text-align: right}
+ .of { overflow: auto}
+ .fa-square {
+  padding: 0px 1px !important;}
+ .artist-credits { text-align: center}
+ .credit-artist-name,  .credit-art-title,  .credit-artist-name a,  .credit-art-title a {
+  font-size: 14px !important}
+ input[required] {
+  border: 2px solid #FF0000 !important}
+ select.form-control {
+  padding: 0px 2px}
+ input::-webkit-outer-spin-button,  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0}
+ .jobline { font-size:36px;}
+ .jobline-badge { font-size:18px;}
+ input.form-control,  select.form-control {
+  background-color: var(--white) !important;
+  border: 1px solid var(--darkblue)}
+ .card-body li { margin-left: 15px}
+ ul { list-style-type: square}
+ .level { font-size:64px}
+ .rcol { color: #804040 }
+ .badge { font-size: 13px; padding: 4px; margin: 11px 5px; background-color: #00000000}
+ .fr { float:right; margin-right:10px}
+ h1 { font-size: 32px; text-align: left; text-transform: uppercase; }
+ h2 { font-size: 24px; text-align: left; border-bottom: 2px solid #706060; text-transform: uppercase; }
+ h4 { border-bottom: 2px solid #706060; text-align: left; background-color: #00000020; padding: 5px; margin: 0px 0px 2px 0px}
+ .darker { background-color: #00000020}
+ .lbl.att { margin-bottom:5px; font-size:18px; padding: 0px 10px; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; letter-spacing: 0.04em}
+ .lbl.pool { font-size:24px; padding: 0px 10px; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; letter-spacing: 0.04em}
+ .lbl-barrier { color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; letter-spacing: 0.04em}
+ .fa-angle-down { color: #00000030 }
+ .invoked { background: #804040; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; padding: 1px 4px }
+ .ivar-trname, .ivar-abname { font-size: 20px !important; font-weight: 800; }
+ .npc { background-color: #404040 }
+ .traits { background-color: #D5B546}
+ .limitbreak {background-color: #D2733B}
+ .instant,  .notes,  .profile,  .items {background-color: #7888AC}
+ .primary { background-color: #CA5278}
+ .secondary {background-color: #68A79F}
+ .healer { background-color: #3F6837}
+ .tank { background-color: #33487D}
+ .dps { background-color: #AE4441}
+ .hp { background-color: #5FA84F}
+ .mp { background-color: #A55389}
+.shadedl { background-color: #ffffff20 }
+.shadedd { background-color: #00000020 }
+.topborder { border-top: 2px solid #808080 }
+ ::-webkit-input-placeholder { opacity: .5; color: var(--darkblue)}
+ input[type=number],  input[type=number]:focus { -moz-appearance: textfield; text-align: center}
+ select.form-control:not([size]):not([multiple]) { height: 3.05rem;}

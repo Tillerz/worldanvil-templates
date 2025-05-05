@@ -235,6 +235,7 @@
  .spell-row h2 { font-size:36px; color: var(--gold)}
  .buttlight,  .buttlight:hover { color: var(--gold)}
  .badge { padding: 3px 6px; font-size:20px; font-weight: 400; font-family: var(--f1)}
+.blocklink { text-decoration: underline; }
  input[type=number],  input[type=number]:focus {
   -moz-appearance: textfield;
   text-align: center}

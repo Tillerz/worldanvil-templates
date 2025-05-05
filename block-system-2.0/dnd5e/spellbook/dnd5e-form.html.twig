@@ -1,0 +1,140 @@
+{% import _self as sheet %}
+{# ---------------------------------------------- #}
+{% macro spell(id, spell_level = '', spell_name = '', spell_id = '', spell_prepared = 0, spell_casting_time = '', spell_range = '', spell_duration = '', spell_damage = '', spell_damage_scm = '', spell_damage_higher = '', spell_components = '', spell_notes = '') %}
+<tr>{% set eo = "od" %}{% if id is even %}{% set eo = "ev" %}{% endif %}{% set spell_ability = spell_ability|lower %}
+    <td class="{{eo}}" title="Spell is prepared">
+        <input value="1" {% if spell_prepared == 1 %} checked="checked"{% endif %} id="spell_prepared_{{id}}" name="spell_prepared_{{id}}" type="checkbox" />
+    </td>
+    <td class="{{eo}}" title="(C)antrip or level of the spell (1-9)">
+        <select class="form-control" id="spell_level_{{id}}" name="spell_level_{{id}}">
+            <option value="C" {% if spell_level == "C" %}selected="selected" {% endif %} >C</option>
+            <option value="1" {% if spell_level == "1" %}selected="selected" {% endif %} >1</option>
+            <option value="2" {% if spell_level == "2" %}selected="selected" {% endif %} >2</option>
+            <option value="3" {% if spell_level == "3" %}selected="selected" {% endif %} >3</option>
+            <option value="4" {% if spell_level == "4" %}selected="selected" {% endif %} >4</option>
+            <option value="5" {% if spell_level == "5" %}selected="selected" {% endif %} >5</option>
+            <option value="6" {% if spell_level == "6" %}selected="selected" {% endif %} >6</option>
+            <option value="7" {% if spell_level == "7" %}selected="selected" {% endif %} >7</option>
+            <option value="8" {% if spell_level == "8" %}selected="selected" {% endif %} >8</option>
+            <option value="9" {% if spell_level == "9" %}selected="selected" {% endif %} >9</option>
+        </select>
+    </td>
+    <td class="{{eo}}" title="Name of the spell">
+        <input value="{{ spell_name }}" class="form-control" id="spell_name_{{id}}" name="spell_name_{{id}}" placeholder="eg Fireball" type="text" />
+    </td>
+    <td class="{{eo}}" title="WA stat block ID of the spell">
+        <input value="{{ spell_id }}" class="form-control c" id="spell_id_{{id}}" name="spell_id_{{id}}" type="text" />
+    </td>
+    <td class="{{eo}}" title="Casting time">
+        <input value="{{ spell_casting_time }}" class="form-control c" id="spell_casting_time_{{id}}" name="spell_casting_time_{{id}}" placeholder="eg 1 round" type="text" />
+    </td>
+    <td class="{{eo}}" title="Range of the spell (touch, 6ft, ...)">
+        <input value="{{ spell_range }}" class="form-control c" id="spell_range_{{id}}" name="spell_range_{{id}}" placeholder="eg 60 ft" type="text" />
+    </td>
+    <td class="{{eo}}" title="Duration of the spell">
+        <input value="{{ spell_duration }}" class="form-control c" id="spell_duration_{{id}}" name="spell_duration_{{id}}" placeholder="eg Concentration" type="text" />
+    </td>
+    <td class="{{eo}}" title="Check to add spellcasting modifier to damage/heal output">
+        <input value="1" {% if spell_damage_scm == 1 %} checked="checked"{% endif %} id="spell_damage_scm_{{id}}" name="spell_damage_scm_{{id}}" type="checkbox" />
+    </td>
+    <td class="{{eo}}" title="Required components: (v)erbal, (s)omatic, (m)aterial">
+        <input value="{{ spell_components }}" class="form-control c" id="spell_components_{{id}}" name="spell_components_{{id}}" placeholder="eg VSM" type="text" />
+    </td>
+</tr>
+<tr>
+    <td class="{{eo}} c" colspan=2>Spell #{{id}}</td>
+    <td class="{{eo}}" colspan=1>&nbsp;</td>
+    <td title="Damage or healing power (rollable)" class="{{eo}} w90 r">DMG</td>
+    <td class="{{eo}}" title="Damage or healing power (rollable)">
+        <input value="{{ spell_damage }}" class="form-control c" id="spell_damage_{{id}}" name="spell_damage_{{id}}" placeholder="eg 2d6" type="text" />
+    </td>
+    <td title="Damage or healing power on higher levels (rollable)" class="{{eo}} w90 r" >DMG/lvl</td>
+    <td class="{{eo}}" title="Damage or healing power on higher levels (rollable), add anything here to make the spell show up for higher levels!">
+        <input value="{{ spell_damage_higher }}" class="form-control c" id="spell_damage_higher_{{id}}" name="spell_damage_higher_{{id}}" placeholder="eg 1d6" type="text" />
+    </td>
+    <td class="{{eo}}" colspan=2>&nbsp;</td>
+</tr>
+<tr><td class="{{eo}}">&nbsp;</td><td class="{{eo}} r">Notes/Description:</th><td colspan=8 class="{{eo}}">
+    <textarea name="spell_notes_{{id}}" id="spell_notes_{{id}}" class="form-control" rows="3">{{ spell_notes|default }}</textarea>
+</td></tr>
+{% endmacro spell %}
+{# --- sheet -- #}
+<div class="dnd5e-sheet">
+    <!-- Header -->
+    <div class="row top-row" id="dnd5e-top-content">
+        <div class="col-12 col-md-12">
+            <div class="form-group">
+                <input value="1" {% if variables.show|default == 1 %} checked="checked"{% endif %} id="show" name="show" type="checkbox" /> Show the book cover
+                <p class="c dnd5e-sheet-description m-t-10 mt-1"><label>If this is checked, the following fields will be shown above the spell list.</label></p>
+                <input type="hidden" value="spellbook" name="name" />
+                <label for="name">Name of the Book</label>
+                <input class="form-control" type="text" value="{{ variables.name|default }}" name="name" required=required />
+                <label for="background">Author</label>
+                <input class="form-control" type="text" value="{{ variables.author|default }}" name="author" />
+                <label for="race">Description</label>
+                <textarea name="desc" class="form-control mention" rows="3">{{ variables.desc|default }}</textarea>
+                <label for="imageid">Cover Image (WA ImageID)</label>
+                <input class="form-control" type="number" value="{{ variables.imageid|default }}" name="imageid" min=1 />
+                <p class="c dnd5e-sheet-description m-t-10 mt-1"><label>The number from &#91;img:xxxxx&#93; goes into this field, find it here: <a href="/world/apollo" target="_new">your image archive</a>.</label></p>
+                <label for="maxlevel">Maximum spell level visible</label>
+                <input class="form-control" type="number" value="{{ variables.maxlevel|default }}" name="maxlevel" min=0 max=9 />
+                <p class="c dnd5e-sheet-description m-t-10 mt-1"><label>Valid: 0 to 9. If you enter 3, spell levels 4-9 will be hidden.</label></p>
+                <input value="1" {% if variables.expand|default == 1 %} checked="checked"{% endif %} id="expand" name="expand" type="checkbox" /> Expand spell list by default.
+                <input type="hidden" value="" name="sam" />
+{#
+                <label for="sam">Your Spell Ability Modifier (including your Proficiency Bonus)</label>
+                <input class="form-control" type="text" value="{{ variables.sam|default }}" name="sam" />
+                <p class="c dnd5e-sheet-description m-t-10 mt-1"><label>If you use this spell list for rolls, add the sum of your Spell Ability Modifier + Proficiency Bonus here. This could be something like +7, or if you use proficiency dice: +7+1d6</label></p>
+#}
+            </div>
+        </div>
+    </div>
+	<div class="contentContainer contentContainer-standard of">
+        <h2>Spellbook</h2>
+        <ul class="dnd5e-sheet-description">
+            <li>The book will only show the spells you have marked as 'prepared'.</li>
+            <li>If you add a spell block id into the ID field, the name of the spell will become a link to the respective stat block.</li>
+            <li>If you have a damage or healing spell that scales up on each higher level, then just put the 'on higher levels' damage/heal output into the 'DMG/lvl' field and the spell will show up for all higher levels, no need to add it manually several times.</li>
+        </ul>
+        <div class="row footer-row" id="dnd5e-footer">
+            <div class="col-12 col-xs-12" id="dnd5e-spells">
+                <!-- Spells -->
+                <div class="dnd-sheet-container">
+                    <div class="form-group of">
+                        <table width="100%" class="attacktable" id="spelltable">
+                            <tr>
+                                <th title="Spell is prepared" class="w30 c">P</th>
+                                <th title="(C)antrip or level of the spell (1-9)" class="w90 c">LEVEL</th>
+                                <th title="Name of the spell" width="15%">NAME</th>
+                                <th title="WA stat block ID of the spell" class="w90 c">ID</th>
+                                <th title="Casting time" class="c">CASTING TIME</th>
+                                <th title="Range of the spell (touch, 6ft, ...)" class="c">RANGE</th>
+                                <th title="Duration of the spell" class="c">DURATION</th>
+                                <th title="Check to add spellcasting modifier to damage/heal output" class="w30 c">+SCM</th>
+                                <th title="Required components: (v)erbal, (s)omatic, (m)aterial" class="w90 c">CMP</th>
+                            </tr>
+                            {% for i in 1..60 %}{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+                            {% if variables is defined and variables != '' %}
+                                {{ sheet.spell( id,
+                                attribute(variables, "spell_level_" ~ id)|default(''),
+                                attribute(variables, "spell_name_" ~ id)|default(''),
+                                attribute(variables, "spell_id_" ~ id)|default(''),
+                                attribute(variables, "spell_prepared_" ~ id)|default(''),
+                                attribute(variables, "spell_casting_time_" ~ id)|default(''),
+                                attribute(variables, "spell_range_" ~ id)|default(''),
+                                attribute(variables, "spell_duration_" ~ id)|default(''),
+                                attribute(variables, "spell_damage_" ~ id)|default(''),
+                                attribute(variables, "spell_damage_scm_" ~ id)|default(''),
+                                attribute(variables, "spell_damage_higher_" ~ id)|default(''),
+                                attribute(variables, "spell_components_" ~ id)|default(''),
+                                attribute(variables, "spell_notes_" ~ id)|default('')
+                            ) }}
+                            {% else %} {{ sheet.spell( id, "", "", "", "", "", "", "", "", "", "", "", "", "", "" ) }} {% endif %}
+                            {% endfor %}
+                        </table>
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

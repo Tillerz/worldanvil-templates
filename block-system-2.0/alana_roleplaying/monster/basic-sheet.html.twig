@@ -1,0 +1,174 @@
+﻿{% import _self as macros %}
+{# -------------------------------------------------------------- #}
+{% macro genTraits(itraits = '', iflair = '') %}{% if itraits != '' %}
+{% set traits = itraits|default('')|upper|replace({'"': '', "'": "", ", ": ",", " ,": ","}) %}
+{% set list = (traits ~ "," ~ iflair)|upper |split(',')|sort %}{% set last = '' %}
+{% for x in list %}{% set tr = x|trim %}{% if tr != '' and tr != "UNDEFINED" and tr != "NONE" and tr != "NORMAL" and tr != last %}
+    {% set pf = '' %}{% set tt = '' %}
+    {% if tr == 'COMMON' %}{% set pf = 'r_common' %}{% set tt = "Rarity" %}
+    {% elseif tr == 'UNCOMMON' %}{% set pf = 'r_uncommon' %}{% set tt = "Rarity" %}
+    {% elseif tr == 'RARE' %}{% set pf = 'r_rare' %}{% set tt = "Rarity" %}
+    {% elseif tr == 'UNIQUE' %}{% set pf = 'r_unique' %}{% set tt = "Rarity" %}
+    {% elseif tr == (iflair|upper) %}{% set pf = 'archetype' %}{% set tt = "Archetype" %}
+    {% elseif tr == 'NORMAL' %}{% set pf = 'powerlevel' %}{% set tt = "Powerlevel" %}
+    {% elseif tr == 'HEROIC' %}{% set pf = 'powerlevel' %}{% set tt = "Powerlevel" %}
+    {% elseif tr == 'EPIC' %}{% set pf = 'powerlevel' %}{% set tt = "Powerlevel" %}
+    {% elseif tr == 'SUPERHUMAN' %}{% set pf = 'powerlevel' %}{% set tt = "Powerlevel" %}{% endif %}
+    <span class="trait {{pf}}" title="{{tt}}">{{tr}}</span>{% set last = tr %}
+  {% endif %}
+{% endfor %}
+{% endif %}{% endmacro genTraits %}
+{# -------------------------------------------------------------- #}
+{% set flair = '' %}{% set f = variables.flair|default %}
+{% if f == 'Creative'      %}{% set flair = 'fa-regular fa-mandolin'         %}{% endif %}
+{% if f == 'Druid'         %}{% set flair = 'fa-regular fa-paw-claws'        %}{% endif %}
+{% if f == 'Enquirer'      %}{% set flair = 'fa-regular fa-user-secret'      %}{% endif %}
+{% if f == 'Monk'          %}{% set flair = 'fa-regular fa-hand-fist'        %}{% endif %}
+{% if f == 'Mythic'        %}{% set flair = 'fa-regular fa-wand-sparkles'    %}{% endif %}
+{% if f == 'Noble'         %}{% set flair = 'fa-regular fa-crown'            %}{% endif %}
+{% if f == 'Outlaw'        %}{% set flair = 'fa-regular fa-skull-crossbones' %}{% endif %}
+{% if f == 'Priest'        %}{% set flair = 'fa-regular fa-face-smile-halo'  %}{% endif %}
+{% if f == 'Ranger'        %}{% set flair = 'fa-regular fa-bow-arrow'        %}{% endif %}
+{% if f == 'Spirit Caller' %}{% set flair = 'fa-regular fa-fire-flame'       %}{% endif %}
+{% if f == 'Tinkerer'      %}{% set flair = 'fa-regular fa-gear'             %}{% endif %}
+{% if f == 'Trader'        %}{% set flair = 'fa-regular fa-treasure-chest'   %}{% endif %}
+{% if f == 'Warrior'       %}{% set flair = 'fa-regular fa-helmet-battle]'   %}{% endif %}
+{% if f == 'Wayfarer'      %}{% set flair = 'fa-regular fa-hood-cloak]'      %}{% endif %}
+{% if f == 'Witch'         %}{% set flair = 'fa-regular fa-crystal-ball'     %}{% endif %}
+{# -------------------------------------------------------------- #}
+{% set style = 'light' %}{% if variables.style|default == 1 %}{% set style = 'dark' %}{% endif %}
+<div class="container-fluid sheet-alana-roleplaying-{{style}}">
+  <div class="row">
+    <div class="col-12">
+      <center><h1>{% if flair != "NONE" %}<i class="{{flair}}" title="{{f}}"></i>{% endif %} {{variables.name|default}}</h1></center>
+      {% if variables.traits|default != '' %}<center>{{ _self.genTraits(variables.traits, f) }}</center>{% endif %}
+    </div>
+    {% set wd = 12 %}{% if variables.portrait|default > 0 %}{% set wd = 8 %}{% endif %}
+    <div class="col-12 col-md-{{wd}}">
+      <div class="card basics" id="card-basics">
+        <div class="card-body of">
+          <div class='var od var-description'>
+            {{variables.description|default|nl2br}}
+          </div>
+        </div>
+      </div>
+      <div class="card attributes" id="card-attributes">
+        <div class="card-header characteristics"><i class="ra ra-muscle-up float-left"></i> Characteristics</div>
+        <div class="card-body of">
+          <table class='table'>
+            <tr>
+              <th class='lbl od lbl-str-dice c'> STR </th>
+              <th class='lbl od lbl-con-dice c'> CON </th>
+              <th class='lbl od lbl-siz-dice c'> SIZ </th>
+              <th class='lbl od lbl-int-dice c'> INT </th>
+              <th class='lbl od lbl-pow-dice c'> POW </th>
+              <th class='lbl od lbl-dex-dice c'> DEX </th>
+              <th class='lbl od lbl-cha-dice c'> CHA </th>
+            </tr>
+            <tr>
+              <td class='var od var-str c'> {{variables.str|default}} </td>
+              <td class='var od var-con c'> {{variables.con|default}} </td>
+              <td class='var od var-siz c'> {{variables.siz|default}} </td>
+              <td class='var od var-int c'> {{variables.int|default}} </td>
+              <td class='var od var-pow c'> {{variables.pow|default}} </td>
+              <td class='var od var-dex c'> {{variables.dex|default}} </td>
+              <td class='var od var-cha c'> {{variables.cha|default}} </td>
+            </tr>
+            <tr>
+              <td class='var ev var-str-dice c' title='Strength'> {{variables.str_dice|default}} </td>
+              <td class='var ev var-con-dice c' title='Constitution'> {{variables.con_dice|default}} </td>
+              <td class='var ev var-siz-dice c' title='Size'> {{variables.siz_dice|default}} </td>
+              <td class='var ev var-int-dice c' title='Intelligence'> {{variables.int_dice|default}} </td>
+              <td class='var ev var-pow-dice c' title='Power'> {{variables.pow_dice|default}} </td>
+              <td class='var ev var-dex-dice c' title='Dexterity'> {{variables.dex_dice|default}} </td>
+              <td class='var ev var-cha-dice c' title='Charisma'> {{variables.cha_dice|default}} </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-6">
+          <div class="card other1" id="card-other1">
+            <div class="card-body of">
+              <table class='table'>
+                <tr>
+                  <th class='lbl od lbl-move c' width='50%'> Move </th>
+                  <th class='lbl od lbl-hit-points c' width='50%'> Hit Points </th>
+                </tr>
+                <tr>
+                  <td class='var {{eo}} var-move c' >{{variables.move|default}}</td>
+                  <td class='var {{eo}} var-hit-points c' >{{variables.hit_points|default}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <div class="card other2" id="card-other2">
+            <div class="card-body of">
+              <table class='table'>
+                <tr>
+                  <th class='lbl od lbl-damage-modifier c' width='50%'> Damage Modifier </th>
+                  <th class='lbl od lbl-armor c' width='50%'> Armor </th>
+                </tr>
+                <tr>
+                  <td class='var {{eo}} var-damage-modifier c'> {{variables.damage_modifier|default}} </td>
+                  <td class='var {{eo}} var-armor c'> {{variables.armor|default}} </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if variables.portrait|default > 0 %}
+    <div class="col-4 col-lg-4 hidden-xs hidden-sm hidden-md d-none d-lg-block">
+      <div class="card portrait" id="card-portrait">
+        <div class="card-body c">
+            [img:{{variables.portrait|default}}]
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.attacks|default != "" %}
+    <div class="col-12">
+      <div class="card attacks" id="card-attacks">
+        <div class="card-header"><i class="ra ra-sword float-left"></i> Combat</div>
+        <div class="card-body of">
+          <div class='var od var-attacks'> {{variables.attacks|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.skills|default != "" %}
+    <div class="col-12">
+      <div class="card skills" id="card-skills">
+        <div class="card-header"><i class="ra ra-honeycomb float-left"></i> Skills</div>
+        <div class="card-body of">
+          <div class='var od var-skills'> {{variables.skills|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.powers|default != "" %}
+    <div class="col-12">
+      <div class="card powers" id="card-powers">
+        <div class="card-header"><i class="ra ra-aware float-left"></i> Powers</div>
+        <div class="card-body of">
+          <div class='var od var-powers'> {{variables.powers|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.belongings|default != "" %}
+    <div class="col-12">
+      <div class="card belongings" id="card-belongings">
+        <div class="card-header"><i class="fa-solid fa-sack float-left"></i> Belongings</div>
+        <div class="card-body of">
+          <div class='var od var-belongings'> {{variables.belongings|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>

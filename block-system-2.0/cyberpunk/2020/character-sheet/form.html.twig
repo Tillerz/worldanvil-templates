@@ -2,34 +2,26 @@
 {% set woundlevel = [ "LIGHT", "SERIOUS", "CRITICAL", "MORTAL", "MORTAL1", "MORTAL2", "MORTAL3", "MORTAL4", "MORTAL5", "MORTAL6" ] %}
 {% set totalhl = 0%}
 {% for i in 1..21 %}{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
-    {% set name = attribute(variables, 'cyberName' ~ id)|default %}{% if name != "" %}{% set hl = attribute(variables, 'cyberHL' ~ id)|default(0) %}{% set totalhl = totalhl + hl %}{% endif %}
+    {% set name = attribute(variables, 'cyberName' ~ id)|default %}{% if name != "" %}{% set hl = attribute(variables, 'cyberHL' ~ id)|default %}{% set totalhl = totalhl + hl %}{% endif %}
 {% endfor %}
 {# ******************************************************************************************************************************** #}
-{% macro genLifeEventsSection(variables) %}<div class="row border border-dark">
-		<div class="col-12 font-weight-bold bg-black">LIFE EVENTS</div>
-	</div>
-	<div class="row border border-dark">
-		<div class="col-3 col-md-1 border border-dark">Year</div>
-		<div class="col-9 col-md-11 border border-dark">Event</div>
-	</div>
+{% macro genLifeEventsSection(variables) %}<div class="row border border-dark"><div class="col-12 font-weight-bold bg-black">LIFE EVENTS</div></div>
+	<div class="row border border-dark"><div class="col-3 col-md-1 border border-dark">Year</div><div class="col-9 col-md-11 border border-dark">Event</div></div>
 	{% set count = 0 %}
 	{% for i in 1..99 %}
 		{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
-		{% set detail = attribute(variables, 'lifeEventDetail' ~ id)|trim %}
-		{% if detail == "" %}{% set count = count + 1 %}{% endif %}
-		{% if count <= 10 %}{{ sheet.genLifeEvent(id, attribute(variables, 'lifeEventYear' ~ id), detail ) }}{% endif %}
+		{% set detail = attribute(variables, 'lifeEventDetail' ~ id)|default|trim %}
+		{% set year = attribute(variables, 'lifeEventYear' ~ id)|default|trim %}
+		{% if year == "" and count < 11 %}{% set count = count + 1 %}{% endif %}
+		{% if year != "" or count < 11 %}{{ sheet.genLifeEvent(id,  year, detail ) }}{% endif %}
 	{% endfor %}
-	<div class="row">
-		<div class="col-12 bg-black c">If you need more lines, save after filling in the existing ones. More lines will appear (max 99).</div>
-	</div>
+	<div class="row"><div class="col-12 bg-black c">If you need more lines, save after filling in the existing ones. More lines will appear (max 99).</div></div>
 {% endmacro genLifeEventsSection %}
 {# ******************************************************************************************************************************** #}
-{% macro genLifeEvent(id, year, event) %}
-<div class="row border-dark">
-	<div class="col-3 col-md-1 border border-dark"><input value="{{ year }}" class="d-inline-block w-100 c" id="lifeEventYear{{id}}" name="lifeEventYear{{id}}" type="number" min="0"/></div>
-	<div class="col-9 col-md-11 border border-dark"><textarea rows="3" cols="40" id="lifeEventDetail{{id}}" name="lifeEventDetail{{id}}" class="d-inline-block w-100 cp2020-lifeevent-details">{{event}}</textarea></div>
-</div>
-{% endmacro genLifeEvent %}
+{% macro genLifeEvent(id = 0, year = "", event = "") %}<div class="row border-dark">
+	<div class="col-3 col-md-1 border border-dark"><input value="{{ year }}" class="d-inline-block w-100 c" id="lifeEventYear{{ id }}" name="lifeEventYear{{ id }}" type="number" min="0"/></div>
+	<div class="col-9 col-md-11 border border-dark"><textarea rows="3" cols="40" id="lifeEventDetail{{ id }}" name="lifeEventDetail{{ id }}" class="d-inline-block w-100 cp2020-lifeevent-details">{{ event }}</textarea></div>
+</div>{% endmacro genLifeEvent %}
 {# ******************************************************************************************************************************** #}
 {% macro genSkillSection(variables, statName, statSkillNames, length, statValue) %}
 	<div class="col-12">
@@ -153,7 +145,7 @@
 {# ******************************************************************************************************************************** #}
 {% macro genGear(id, value) %}
 	<div class="col-6 col-md-4 col-xl-3 border border-dark ">
-		<input value="{{ value }}" class="d-inline-block w-100" id="gearName_{{id}}" name="gearName_{{id}}" type="text" row="1"/>
+		<input value="{{ value }}" class="d-inline-block w-100" id="gearName_{{id}}" name="gearName_{{id}}" type="text"/>
 	</div>
 {% endmacro genGear %}
 {# ******************************************************************************************************************************** #}
@@ -163,7 +155,7 @@
 			<input type="text" id="weaponName_{{id}}" name="weaponName_{{id}}" placeholder="name of weapon" value="{{name}}" class="d-inline-block w-100">
 		</div>
 		<div class="col-1 border border-dark">
-			<select value="{{type}}" class="d-inline-block w-100 c" id="weaponType_{{id}}" name="weaponType_{{id}}" title="Weapon type">
+			<select class="d-inline-block w-100 c" id="weaponType_{{id}}" name="weaponType_{{id}}" title="Weapon type">
 				<option value="P  " {% if type == "P" %} selected="selected" {% endif %}>P</option>
 				<option value="RIF" {% if type == "RIF" %} selected="selected" {% endif %}>RIF</option>
 				<option value="SMG" {% if type == "SMG" %} selected="selected" {% endif %}>SMG</option>
@@ -177,7 +169,7 @@
 			<input type="number" min="-15" max="15" class="d-inline-block w-100 c" placeholder="wa" value="{{acc}}" id="weaponAcc_{{id}}" name="weaponAcc_{{id}}" title="Weapon Accuracy">
 		</div>
 		<div class="col-1 border border-dark">
-			<select value="{{conc}}" class="d-inline-block w-100 c" id="weaponConc_{{id}}" name="weaponConc_{{id}}" title="Weapon concealment">
+			<select class="d-inline-block w-100 c" id="weaponConc_{{id}}" name="weaponConc_{{id}}" title="Weapon concealment">
 				<option value="P" {% if conc == "P" %} selected="selected" {% endif %}>P</option>
 				<option value="J" {% if conc == "J" %} selected="selected" {% endif %}>J</option>
 				<option value="L" {% if conc == "L" %} selected="selected" {% endif %}>L</option>
@@ -193,7 +185,7 @@
 		<div class="col-1 border border-dark">
 			<input type="number" class="d-inline-block w-100 c" placeholder="rof" value="{{rof}}" id="weaponRof_{{id}}" name="weaponRof_{{id}}" title="Weapon RoF"></div>
 		<div class="col-1 border border-dark">
-			<select value="{{rel}}" class="d-inline-block w-100 c" id="weaponRel_{{id}}" name="weaponRel_{{id}}" title="Weapon Reliability">
+			<select class="d-inline-block w-100 c" id="weaponRel_{{id}}" name="weaponRel_{{id}}" title="Weapon Reliability">
 				<option value="ST" {% if rel == "ST" %} selected="selected" {% endif %}>ST</option>
 				<option value="VR" {% if rel == "VR" %} selected="selected" {% endif %}>VR</option>
 				<option value="UR" {% if rel == "UR" %} selected="selected" {% endif %}>UR</option>
@@ -216,8 +208,8 @@
 	<div class="card">
 		<div class="row">
 			<div class="col-7 border border-dark"><input value="{{ value }}" class="d-inline-block w-100" id="cyberName{{id}}" name="cyberName{{id}}" type="text" /></div>
-			<div class="col-3 border border-dark"><input value="{{ cost }}" class="d-inline-block w-100 c" id="cyberCost{{id}}" name="cyberCost{{id}}" type="text" min="0"/></div>
-			<div class="col-2 border border-dark"><input value="{{ hl }}" class="d-inline-block w-100 c" id="cyberHL{{id}}" name="cyberHL{{id}}" type="text" min="0"/></div>
+			<div class="col-3 border border-dark"><input value="{{ cost }}" class="d-inline-block w-100 c" id="cyberCost{{id}}" name="cyberCost{{id}}" type="number" min="0"/></div>
+			<div class="col-2 border border-dark"><input value="{{ hl }}" class="d-inline-block w-100 c" id="cyberHL{{id}}" name="cyberHL{{id}}" type="number" min="0"/></div>
 		</div>
 	</div>
 {% endmacro genCyber %}
@@ -249,7 +241,7 @@
 			<input type="number" value="{{ev}}" title="name of armor" class="w-100 d-inline-block c" id="layer{{id}}_EV" name="layer{{id}}_EV">
 		</div>
 		<div class="col-1 border border-dark">
-			<select value="{{type}}" title="type of armor" class="w-100 d-inline-block" id="layer{{id}}_Type" name="layer{{id}}_Type">
+			<select title="type of armor" class="w-100 d-inline-block" id="layer{{id}}_Type" name="layer{{id}}_Type">
 				<option value="Soft" {% if type == "Soft" %} selected="selected" {% endif %}>Soft</option>
 				<option value="Hard" {% if type == "Hard" %} selected="selected" {% endif %}>Hard</option>
 			</select>
@@ -263,14 +255,14 @@
 			<input value="{{ name }}" class="d-inline-block w-100" id="sibling{{id}}name" name="sibling{{id}}name" type="text"/>
 		</div>
 		<div class="col-3 col-md-2 border border-dark ">
-			<select value="{{gender}}" class="d-inline-block w-100" id="sibling{{id}}gender" name="sibling{{id}}gender">
+			<select class="d-inline-block w-100" id="sibling{{id}}gender" name="sibling{{id}}gender">
 				<option value="Sib"     {% if gender == "Sib" %} selected="selected" {% endif %}>Sib</option>
 				<option value="Brother" {% if gender == "Brother" %} selected="selected" {% endif %}>Brother</option>
 				<option value="Sister"  {% if gender == "Sister" %} selected="selected" {% endif %}>Sister</option>
 			</select>
 		</div>
 		<div class="col-3 col-md-2 border border-dark ">
-			<select value="{{age}}" class="d-inline-block w-100" id="sibling{{id}}age" name="sibling{{id}}age">
+			<select class="d-inline-block w-100" id="sibling{{id}}age" name="sibling{{id}}age">
 				<option value="Older"   {% if age == "Older" %} selected="selected" {% endif %}>Older</option>
 				<option value="Younger" {% if age == "Younger" %} selected="selected" {% endif %}>Younger</option>
 				<option value="Twin"    {% if age == "Twin" %} selected="selected" {% endif %}>Twin</option>
@@ -288,7 +280,9 @@
 	</div>
 {% endmacro genSibling %}
 {# ******************************************************************************************************************************** #}
+<!-- sheetstart -->
 <div class="container-fluid bg-white black">
+    <br>
 	<div class="row">
 		<div class="col-12 col-lg-12">
 			<div class="row">
@@ -364,11 +358,11 @@
 					<br>
 					<div class="row">
 						<div class="col-6 bg-black c">RUN</div>
-						<div class="col-6 border border-dark c"><input value="{{ variables.run|default != "" ? variables.run : variables.maCurr * 3 }}" class="d-inline-block w-100 c" id="run" name="run" type="number" min="0" /></div>
+						<div class="col-6 border border-dark c"><input value="{{ variables.run|default != "" ? variables.run : variables.maCurr * 3 }}" class="d-inline-block w-100 c" id="run" name="run" type="text" /></div>
 						<div class="col-6 bg-black c">LEAP</div>
-						<div class="col-6 border border-dark c"><input value="{{ variables.leap|default != "" ? variables.leap : variables.maCurr * 0.75}}" class="d-inline-block w-100 c" id="leap" name="leap" type="text" min="0" /></div>
+						<div class="col-6 border border-dark c"><input value="{{ variables.leap|default != "" ? variables.leap : variables.maCurr * 0.75}}" class="d-inline-block w-100 c" id="leap" name="leap" type="text" /></div>
 						<div class="col-6 bg-black c">LIFT</div>
-						<div class="col-6 border border-dark c"><input value="{{ variables.lift|default != "" ? variables.lift : variables.bodyCurr * 40 }}" class="d-inline-block w-100 c" id="lift" name="lift" type="number" min="0" /></div>
+						<div class="col-6 border border-dark c"><input value="{{ variables.lift|default != "" ? variables.lift : variables.bodyCurr * 40 }}" class="d-inline-block w-100 c" id="lift" name="lift" type="text" /></div>
 						<div class="col-6 bg-black c" title="from Abilities etc.">INI BONUS</div>
 						<div class="col-6 border border-dark c"><input value="{{ variables.inib|default }}" class="d-inline-block w-100 c" id="inib" name="inib" type="number" /></div>
 						<div class="col-6 bg-black c" title="from Abilities etc.">DMG BONUS</div>
@@ -735,6 +729,17 @@
 			{% endfor %}
 		</div>
 	</div>
-	{{ sheet.genLifeEventsSection(variables) }}
+	{# sheet.genLifeEventsSection(variables) #}
+	<div class="row border border-dark">
+		<div class="col-12">
+			<tr><td class="lbl l">Life Events</td><td class="txt l ev"><textarea class="form-control" id="lifeEvents" name="lifeEvents" rows="3">{{ variables.lifeEvents|default }}</textarea></td></tr>
+		</div>
+	</div>
+	<div class="row border border-dark">
+		<div class="col-12">
+			<tr><td class="lbl l">Notes</td><td class="txt l ev"><textarea class="form-control" id="notes" name="notes" rows="3">{{ variables.notes|default }}</textarea></td></tr>
+		</div>
+	</div>
 	<br/>
 </div>
+<!-- sheetend -->

@@ -1,0 +1,521 @@
+﻿{% import _self as sheet %}
+{% set characteristics = [
+    ["NONE", "NONE"],
+    ["WS", "Weapon Skill"],
+    ["BS", "Ballistic Skill"],
+    ["S", "Strength"],
+    ["T", "Toughness"],
+    ["Ag", "Agility"],
+    ["Int", "Intelligence"],
+    ["Per", "Perception"],
+    ["WP", "Will Power"],
+    ["Fel", "Fellowship"]
+] %}
+{# skills: ID, name, attribute, flag, base traininglevel #}
+{# flags are: B = Broad Skill, W = Wildcard (editable name), S = Skill/Specialisation #}
+{% set skill_list = [
+    [ "001", "Acrobatics", "Ag", "S", "U" ],
+    [ "002", "Awareness", "Per", "S", "U" ],
+    [ "003", "Barter", "Fel", "S", "U" ],
+    [ "004", "Blather", "Fel", "S", "U" ],
+    [ "005", "Carouse", "T", "S", "U" ],
+    [ "006", "Charm", "Fel", "S", "U" ],
+    [ "007", "Chem-Use", "Int", "S", "U" ],
+    [ "008", "Ciphers", "Int", "B", "U" ],
+    [ "009", "Chapter Runes", "Int", "SI", "U" ],
+    [ "010", "*", "Int", "WSI", "U" ],
+    [ "011", "Climb", "S", "S", "U" ],
+    [ "012", "Command", "Fel", "S", "U" ],
+    [ "013", "Common Lore", "Int", "S", "U" ],
+    [ "014", "Adeptus Astartes", "Int", "SI", "U" ],
+    [ "015", "Deathwatch", "Int", "SI", "U" ],
+    [ "016", "Imperium", "Int", "SI", "U" ],
+    [ "017", "War", "Int", "SI", "U" ],
+    [ "018", "*", "Int", "WSI", "U" ],
+    [ "019", "Concealment", "Ag", "S", "U" ],
+    [ "020", "Contortionist", "Ag", "S", "U" ],
+    [ "021", "Deceive", "Fel", "S", "U" ],
+    [ "022", "Demolition", "Int", "S", "U" ],
+    [ "023", "Disguise", "Fel", "S", "U" ],
+    [ "024", "Dodge", "Ag", "S", "U" ],
+    [ "025", "Drive", "Ag", "S", "U" ],
+    [ "026", "Ground Vehicles", "Ag", "SI", "U" ],
+    [ "027", "*", "Ag", "WSI", "U" ],
+    [ "028", "Evaluate", "S", "U" ],
+    [ "029", "Forbidden Lore", "Int", "B", "U" ],
+    [ "030", "Xenos", "Int", "SI", "U" ],
+    [ "031", "*", "Int", "WSI", "U" ],
+    [ "032", "*", "Int", "WSI", "U" ],
+    [ "033", "Gamble", "Int", "S", "U" ],
+    [ "034", "Inquiry", "Fel", "S", "U" ],
+    [ "035", "Interrogation", "WP", "S", "U" ],
+    [ "036", "Intimidate", "S", "S", "U" ],
+    [ "037", "Invocation", "WP", "S", "U" ],
+    [ "038", "Lip Reading", "Per", "S", "U" ],
+    [ "039", "Literacy", "Int", "S", "U" ],
+    [ "040", "Logic", "Int", "S", "U" ],
+    [ "041", "Medicae", "Int", "S", "U" ],
+    [ "042", "Navigation", "Int", "B", "U" ],
+    [ "043", "Surface", "Int", "SI", "U" ],
+    [ "044", "*", "Int", "WSI", "U" ],
+    [ "045", "Performer", "Fel", "B", "U" ],
+    [ "046", "*", "Fel", "WSI", "U" ],
+    [ "047", "Pilot", "Ag", "B", "U" ],
+    [ "048", "*", "Ag", "WSI", "U" ],
+    [ "049", "*", "Ag", "WSI", "U" ],
+    [ "050", "Psyniscience", "Per", "S", "U" ],
+    [ "051", "Scholasic Lore", "Int", "B", "U" ],
+    [ "052", "Codex Astartes", "Int", "SI", "U" ],
+    [ "053", "*", "Int", "WSI", "U" ],
+    [ "054", "*", "Int", "WSI", "U" ],
+    [ "055", "Scrutiny", "Per", "S", "U" ],
+    [ "056", "Search", "Per", "S", "U" ],
+    [ "057", "Secret Tongue", "Int", "B", "U" ],
+    [ "058", "*", "Int", "WSI", "U" ],
+    [ "059", "*", "Int", "WSI", "U" ],
+    [ "060", "Security", "Ag", "S", "U" ],
+    [ "061", "Shadowing", "Ag", "S", "U" ],
+    [ "062", "Silent Move", "Ag", "S", "U" ],
+    [ "063", "Sleight of Hand", "Ag", "S", "U" ],
+    [ "064", "Speak Language", "Int", "B", "U" ],
+    [ "065", "High Gothic", "Int", "SI", "U" ],
+    [ "066", "Low Gothic", "Int", "SI", "U" ],
+    [ "067", "*", "Int", "WSI", "U" ],
+    [ "068", "Survival", "Int", "S", "U" ],
+    [ "069", "Swim", "S", "S", "U" ],
+    [ "070", "Tactics", "Int", "B", "U" ],
+    [ "071", "*", "Int", "WSI", "U" ],
+    [ "072", "Tech-Use", "Int", "S", "U" ],
+    [ "073", "Tracking", "Int", "S", "U" ],
+    [ "074", "Trade", "Int", "B", "U" ],
+    [ "075", "*", "Int", "WSI", "U" ],
+    [ "076", "Wrangling", "Int", "S", "U" ],
+]
+%}
+{%
+set talent_list = [
+    [ "Ambidextrous" ],
+    [ "Astartes Weapon Training" ],
+    [ "Bulging Biceps" ],
+    [ "Heightened Senses (Hearing, Sight)" ],
+    [ "Killing Strike" ],
+    [ "Nerves of Steel" ],
+    [ "Quick Draw" ],
+    [ "Resistance (Psychic Powers)" ],
+    [ "True Grit" ],
+    [ "Unarmed Master" ],
+    [ "Unnatural Strength (x2)" ],
+    [ "Unnatural Toughness (x2)" ]
+]
+%}
+{# ---------------------------------------------- #}
+{% macro chaSelect(characteristics, name = "", cha = "", default = "NONE") %}
+{% if cha == "" %}{% set cha = default %}{% endif %}
+<select class="form-control" id="{{name}}" name="{{name}}">
+    {% for c in characteristics %}
+        {% set ch = c[0]|default %}
+        <option value="{{ch}}" {% if cha|lower == ch|lower %}selected="selected" {% endif %} >{{ch}}</option>
+    {% endfor %}
+</select>
+{% endmacro chaSelect %}
+{# --- showScore -------------------------------- #}
+{% macro showScore(v = 0, trained = 0, restricted = 0) %}{% if trained == 0 and restricted == 1 %}&nbsp;{% else %}
+{% if trained == 0 %}{% set v = v // 2 %}{% endif %}
+{{ v }} / {{ v // 2 }} / {{ v // 4 }}{% endif %}{% endmacro showScore %}
+{# --- skillList -------------------------------- #}
+{% macro skillList(c, v, x1, x2) %}{% set eo = 'od' %}{% set trained = 0 %}<table class='table'>
+  <tr>
+    <th class='hdr od'>Skill</th>
+    <th class='hdr od c' colspan=2>ATT</th>
+    <th class='hdr od c' width='40px' title='Basic'>B</th>
+    <th class='hdr od c' width='40px' title='Trained'>T</th>
+    <th class='hdr od c' width='40px' title='+10%'>+10</th>
+    <th class='hdr od c' width='40px' title='+20%'>+20</th>
+  </tr>
+{% for k in c.skill_list %}
+  {% set att = k[2]|default %}
+  {% set id = k[0]|default %}{% set sk = k[1]|default %}{% set p = k[3]|default %}
+  {% if id >= x1 and id <= x2 %}
+    {# attribute line #}
+    {% set rb = attribute(v, "skill_" ~ id ~ "_b")|default %}
+    {% set rt = attribute(v, "skill_" ~ id ~ "_t")|default %}
+    {% set r1 = attribute(v, "skill_" ~ id ~ "_1")|default %}
+    {% set r2 = attribute(v, "skill_" ~ id ~ "_2")|default %}
+    {# wildcard skill with editable skill name #}
+    {% if "W" in p %}{% set sk = attribute(v, "skill_" ~ id ~ "_name")|default %}{% endif %}
+    {% if sk != "" %}
+        {% set rankval = attribute(v, "skill_" ~ id ~ "_rank")|default %}
+        <tr>
+        {% if "W" in p %}{# wildcard skill #}
+            {% set skillname = attribute(v, "skill_" ~ id ~ "_name")|default %}
+            <td class='lbl {{eo}}'>{% if "I" in p %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}{{ skillname }}</td>
+        {% else %}
+            <td class='lbl {{eo}}'>{% if "I" in p %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}{{sk}}</td>
+        {% endif %}
+            {% set attv = attribute(c, "att_" ~ att|lower ) %}
+            <td class='lbl {{eo}} c' title="{{att}} = {{attv}}" width="70px">{% if "I" not in p %}{{att}}{% endif %}</td>
+            <td class='lbl {{eo}} c' title="{{att}} = {{attv}}" width="50px">{% if "I" not in p %}{{attv}}{% endif %}</td>
+            <td class='var {{eo}} c' title='Basic'>
+                {% if rb > 0 %}<i class="fa-sharp fa-solid fa-square"></i>{% else %}<i class="fa-sharp fa-regular fa-square"></i>{% endif %}
+            </td>
+            <td class='var {{eo}} c' title='Trained'>
+                {% if rt > 0 %}<i class="fa-sharp fa-solid fa-square"></i>{% else %}<i class="fa-sharp fa-regular fa-square"></i>{% endif %}
+            </td>
+            <td class='var {{eo}} c' title='+10%'>
+                {% if r1 > 0 %}<i class="fa-sharp fa-solid fa-square"></i>{% else %}<i class="fa-sharp fa-regular fa-square"></i>{% endif %}
+            </td>
+            <td class='var {{eo}} c' title='+20%'>
+                {% if r2 > 0 %}<i class="fa-sharp fa-solid fa-square"></i>{% else %}<i class="fa-sharp fa-regular fa-square"></i>{% endif %}
+            </td>
+        </tr>
+        {% if eo == 'od' %}{% set eo = 'ev' %}{% else %}{% set eo = 'od' %}{% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}</table>{% endmacro skillList %}
+{% set att_ws = variables.att_ws_ini|default + variables.att_ws_adv|default %}
+{% set att_bs = variables.att_bs_ini|default + variables.att_bs_adv|default %}
+{% set att_s = variables.att_s_ini|default + variables.att_s_adv|default %}
+{% set att_t = variables.att_t_ini|default + variables.att_t_adv|default %}
+{% set att_ag = variables.att_ag_ini|default + variables.att_ag_adv|default %}
+{% set att_int = variables.att_int_ini|default + variables.att_int_adv|default %}
+{% set att_per = variables.att_per_ini|default + variables.att_per_adv|default %}
+{% set att_wp = variables.att_wp_ini|default + variables.att_wp_adv|default %}
+{% set att_fel = variables.att_fel_ini|default + variables.att_fel_adv|default %}
+{# ---------------------------------------------- #}
+<div class="container-fluid sheet-wh40kdw">
+	<button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapsePersonal" href="#collapsePersonal" role="button" aria-expanded="true" aria-controls="collapsePersonal"><em class="fas fa-angle-down"></em></button>
+	<div class="row collapse show" id="collapsePersonal">
+        <div class="col-12">
+            <div class="card personal" id="card-personal">
+                <div class="card-body">
+                    <div class="row">
+                        {% if variables.portrait|default > 0 %}{% set wd = 8 %}{% else %}{% set wd = 12 %}{% endif %}
+                        <div class="col-12 col-md-12 col-lg-{{wd}} cc">[img:5955071][br]
+                            <table class='table'>
+                                <tr><th class='lbl od lbl-name' title='This is the name of your character.' width='40%'><label for='name'>Character Name</label></th><td class='var od var-name'>{{variables.name|default}}</td></tr>
+                                <tr><th class='lbl ev lbl-chapter'><label for='chapter'>Chapter</label></th><td class='var ev var-chapter'>{{variables.chapter|default}}</td></tr>
+                                <tr><th class='lbl od lbl-cdemeanour'><label for='cdemeanour'>Chapter Demeanour</label></th><td class='var od var-cdemeanour'>{{variables.cdemeanour|default}}</td></tr>
+                                <tr><th class='lbl ev lbl-specialty'><label for='specialty'>Specialty</label></th><td class='var ev var-specialty'>{{variables.specialty|default}}</td></tr>
+                                <tr><th class='lbl od lbl-rank'><label for='rank'>Rank</label></th><td class='var od var-rank'>{{variables.rank|default}}</td></tr>
+                                <tr><th class='lbl ev lbl-power-armour-history'><label for='power_armour_history'>Power Armour History</label></th><td class='var ev var-power-armour-history'>{{variables.power_armour_history|default}}</td></tr>
+                                <tr><th class='lbl od lbl-past-event'><label for='past_event'>Past Event</label></th><td class='var od var-past-event'>{{variables.past_event|default}}</td></tr>
+                                <tr><th class='lbl ev lbl-personal-demeanour'><label for='personal_demeanour'>Personal Demeanour</label></th><td class='var ev var-personal-demeanour'>{{variables.personal_demeanour|default}}</td></tr>
+                            </table>
+                        </div>
+                        {% if variables.portrait|default > 0 %}
+                        <div class="col-12 col-md-4 hidden-xs hidden-sm hidden-md d-none d-lg-block">
+                            <table class='table'>
+                                <tr><th class='lbl ev lbl-portrait c'><label for='portrait'>Portrait / Crest</label></th></tr>
+                                <tr><td class='var od var-portrait'>[img:{{variables.portrait|default}}]</td></tr>
+                            </table>
+                        </div>
+                        {% endif %}
+                        {% if variables.description|default != "" %}
+                        <div class="col-12">
+                            <br>
+                            <table class='table'>
+                                <tr><th class='lbl od lbl-description'><label for='description'>Description</label></th><td class='var od var-description'>{{variables.description|default|nl2br}}</td></tr>
+                            </table>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="card characteristics" id="card-characteristics">
+                <div class="card-header characteristics">Characteristics</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <table class='table'>
+                                <tr>
+                                    <th class='lbl od lbl-att-ws-label c' title='Weapon Skill'><label for='att_ws_label'>WS</label></th>
+                                    <th class='lbl ev lbl-att-bs-label c' title='Ballistic Skill'><label for='att_bs_label'>BS</label></th>
+                                    <th class='lbl od lbl-att-s-label c' title='Strength'><label for='att_s_label'>S</label></th>
+                                    <th class='lbl ev lbl-att-t-label c' title='Toughness'><label for='att_t_label'>T</label></th>
+                                    <th class='lbl od lbl-att-ag-label c' title='Agility'><label for='att_ag_label'>AG</label></th>
+                                </tr>
+                                <tr>
+                                    <td class='var od var-att var-att-ws-curr c'>  {{att_ws}} </td>
+                                    <td class='var ev var-att var-att-bs-curr c'>  {{att_bs}} </td>
+                                    <td class='var od var-att var-att-s-curr c'>   {{att_s}} </td>
+                                    <td class='var ev var-att var-att-t-curr c'>   {{att_t}} </td>
+                                    <td class='var od var-att var-att-ag-curr c'>  {{att_ag}} </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <table class='table'>
+                                <tr>
+                                    <th class='lbl ev lbl-att-int-label c' title='Intelligence'><label for='att_int_label'>INT</label></th>
+                                    <th class='lbl od lbl-att-per-label c' title='Perception'><label for='att_per_label'>PER</label></th>
+                                    <th class='lbl ev lbl-att-wp-label c' title='Will Power'><label for='att_wp_label'>WP</label></th>
+                                    <th class='lbl od lbl-att-fel-label c' title='Fellowship'><label for='att_fel_label'>FEL</label></th>
+                                </tr>
+                                <tr>
+                                    <td class='var ev var-att var-att-int-curr c'> {{att_int}} </td>
+                                    <td class='var od var-att var-att-per-curr c'> {{att_per}} </td>
+                                    <td class='var ev var-att var-att-wp-curr c'>  {{att_wp}} </td>
+                                    <td class='var od var-att var-att-fel-curr c'> {{att_fel}} </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="card basic skills" id="card-basic skills">
+                <div class='card-header skills'>Skills <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseSkills" href="#collapseSkills" role="button" aria-expanded="true" aria-controls="collapseSkills"><em class="fas fa-angle-down"></em></button></div>
+                <div class='row card-body of collapse show' id="collapseSkills">
+                    <div class='col-12 col-md-6'>
+                    {{ sheet.skillList(_context, variables, "001", "038") }}
+                    </div>
+                    <div class='col-12 col-md-6'>
+                    {{ sheet.skillList(_context, variables, "039", "076") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12">
+            <div class="card basic abilities" id="card-basic abilities">
+                <div class='card-header abilities'>SPACE MARINE ABILITIES <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseAbi" href="#collapseAbi" role="button" aria-expanded="false" aria-controls="collapseAbi"><em class="fas fa-angle-down"></em></button></div>
+                <div class='row card-body of collapse hide' id="collapseAbi">
+                    <table class='table'>
+                        <tr><th class='lbl od' width='40%'>Secondary Heart / Ossmodula / Biscopea / Haemastamen</th><td class='var od'>You gain the Unnatural Strength and Toughness Traits.</td></tr>
+                        <tr><th class='lbl ev'>Larraman’s Organ</th><td class='var ev'>You do not suffer from Blood Loss.</td></tr>
+                        <tr><th class='lbl od'>Catalepsean Node</th><td class='var od'>You suffer no penalties to Perception based Tests when awake for long periods of time.</td></tr>
+                        <tr><th class='lbl ev'>Preomnor</th><td class='var ev'>You gain +20 to Toughness Tests against ingested poisons.</td></tr>
+                        <tr><th class='lbl od'>Omophagea</th><td class='var od'>You may gain a Skill or Skill Group by devouring a portion of an enemy.</td></tr>
+                        <tr><th class='lbl ev'>Multi-Lung</th><td class='var ev'>You may re-roll any failed Toughness Test for drowning or asphyxiation. In addition, you gain a +30 to Toughness Tests made to resist gases, and may re-roll failed results.</td></tr>
+                        <tr><th class='lbl od'>Occulube and Lyman’s Ear</th><td class='var od'>You gain the Heightened Senses (Sight and Hearing) Talents, +10 to relevant Awareness Tests.</td></tr>
+                        <tr><th class='lbl ev'>Sus-an Membrane</th><td class='var ev'>You may enter suspended animation.</td></tr>
+                        <tr><th class='lbl od'>Oolotic Kidney</th><td class='var od'>You may re-roll any failed Toughness Test to resist poisons and toxins, including attacks with the Toxic Quality.</td></tr>
+                        <tr><th class='lbl ev'>Neuroglottis</th><td class='var ev'>You may detect any poison or toxin by taste with a successful Awareness Test. You gain a +10 to Tracking Tests against a target you have tasted.</td></tr>
+                        <tr><th class='lbl od'>Mucranoid</th><td class='var od'>You may re-roll any failed Toughness Tests caused by temperature extremes.</td></tr>
+                        <tr><th class='lbl ev'>Betcher’s Gland</th><td class='var ev'>You may spit acid as a ranged weapon with the following profile: Range: 3m; Damage: 1d5; Pen 4; Toxic. If you hit your target by 3 or more degrees of success, you have blinded him for 1d5 Rounds.</td></tr>
+                        <tr><th class='lbl od'>Progenoids</th><td class='var od'>These may be retrieved with a successful Medicae Test.</td></tr>
+                        <tr><th class='lbl ev'>Black Carapace</th><td class='var ev'>While wearing Power Armour, enemies do not gain a bonus to hit you due to your size.</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card weapons" id="card-weapons">
+                <div class="card-header weapons">Weapons</div>
+                <div class="card-body of">
+                    <table class='table'>
+                        <tr>
+                            <th class='lbl od lbl-weap-name-label' colspan=2 width=15%><label for='weap-name-label'>Name</label></th>
+                            <th class='lbl od lbl-weap-group-label c' colspan=2 width=15%><label for='weap-group-label'>Class</label></th>
+                            <th class='lbl od lbl-weap-dmg-label c' width='10%'><label for='weap-dmg-label'>Damage</label></th>
+                            <th class='lbl od lbl-weap-type-label c' width='10%'><label for='weap-enc-label'>Type</label></th>
+                            <th class='lbl od lbl-weap-pen-label c' width='10%'><label for='weap-enc-label'>Pen</label></th>
+                            <th class='lbl od lbl-weap-rng-label c' width='10%'><label for='weap-rng-label'>Range</label></th>
+                        </tr>
+                        {% for i in 1..8 %}
+                            {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+                            {% set name = attribute(variables, 'weap_name_' ~ id)|default %}
+                            {% if name != "" %}
+                                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                        <tr>
+                            <td class='var {{eo}} var-weap-name' colspan=2>{{name}}</td>
+                            <td class='var {{eo}} var-weap-group c' colspan=2>{{attribute(variables, 'weap_group_' ~ id)|default}}</td>
+                            <td class='var {{eo}} var-weap-dmg c'>{{attribute(variables, 'weap_dmg_' ~ id)|default}}</td>
+                            <td class='var {{eo}} var-weap-type c'>{{attribute(variables, 'weap_type_' ~ id)|default}}</td>
+                            <td class='var {{eo}} var-weap-pen c'>{{attribute(variables, 'weap_pen_' ~ id)|default}}</td>
+                            <td class='var {{eo}} var-weap-rng c'>{{attribute(variables, 'weap_rng_' ~ id)|default}}</td>
+                        </tr>
+                        <tr>
+                            <td class="lbl {{eo}} r">ROF&nbsp;</td>
+                            <td class='var {{eo}} var-weap-rof c'>{{attribute(variables, 'weap_rof_' ~ id)|default}}</td>
+                            <td class="lbl {{eo}} r">CLIP&nbsp;</td>
+                            <td class='var {{eo}} var-weap-clip c'>{{attribute(variables, 'weap_clip_' ~ id)|default}}</td>
+                            <td class="lbl {{eo}} r">RLD&nbsp;</td>
+                            <td class='var {{eo}} var-weap-rld c'>{{attribute(variables, 'weap_rld_' ~ id)|default}}</td>
+                            <td class="lbl {{eo}} r">Special&nbsp;</td>
+                            <td class='var {{eo}} var-weap-qual' width=25%>{{attribute(variables, 'weap_qual_' ~ id)|default}}</td>
+                        </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card movement" id="card-movement">
+                <div class="card-header movement">Movement</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='lbl od lbl-half' width='40%'><label for='half'>Half / Half / Charge / Run</label></th><td class='var od var-half c'>{{variables.half|default}} / {{variables.full|default}} / {{variables.charge|default}} / {{variables.run|default}}</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6 col-lg-4">
+            <div class="card wounds" id="card-wounds">
+                <div class="card-header wounds">Wounds</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='lbl od lbl-wounds-current' width='40%'><label for='wounds_current'>Current / Total</label></th><td class='var od var-wounds-current c'>{{variables.wounds_wounds|default}} / {{variables.wounds_total|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-wounds-fatigue'><label for='wounds_fatigue'>Fatigue</label></th><td class='var ev var-wounds-fatigue c'>{{variables.wounds_fatigue|default}}</td></tr>
+                        <tr><th class='lbl od lbl-wounds-desc'><label for='wounds_desc'>Critical Damage</label></th><td class='var od var-wounds-desc'><div class='iContent'>{{variables.wounds_desc|default}}</div></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6 col-lg-4">
+            <div class="card insanity" id="card-insanity">
+                <div class="card-header insanity">Insanity</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='lbl od lbl-insanity-current' width='40%'><label for='insanity_current'>Current</label></th><td class='var od var-insanity-current c'>{{variables.insanity_insanity|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-insanity-bf'><label for='insanity_bf'>Battle Fatigue</label></th><td class='var ev var-insanity-bf'><div class='iContent'>{{variables.insanity_bf|default}}</div></td></tr>
+                        <tr><th class='lbl od lbl-insanity-pc'><label for='insanity_pc'>Primarch’s Curse</label></th><td class='var od var-insanity-pc'><div class='iContent'>{{variables.insanity_pc|default}}</div></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6 col-lg-6">
+            <div class="card corruption" id="card-corruption">
+                <div class="card-header corruption">Corruption</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='lbl od lbl-corruption-current' width='40%'><label for='corruption_current'>Current</label></th><td class='var od var-corruption-current c'>{{variables.corruption_corruption|default}}</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-6 col-lg-6">
+            <div class="card fate" id="card-fate">
+                <div class="card-header fate">Fate Points</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='lbl od lbl-fatecurr' width='40%'><label for='fatecurr'>Current</label></th><td class='var od var-fatecurr c'>{{variables.fatecurr|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-fatetotal'><label for='fatetotal'>Total</label></th><td class='var ev var-fatetotal c'>{{variables.fatetotal|default}}</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card talents" id="card-talents">
+                <div class="card-header talents">Talents</div>
+                <div class="card-body">
+                    <table class='table'>
+                        {% set i = 1 %}
+                        {% for k in talent_list %}
+                            {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+                            {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                            <tr>
+                                <td class='var {{eo}} var-talent-name'>{{k[0]}}</td>
+                            </tr>
+                            {% set i = i + 1 %}
+                        {% endfor %}
+                        {% set k = i %}
+                        {% for i in k..k+10 %}
+                            {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+                            {% set name = attribute(variables, 'talent_name_' ~ id)|default %}
+                            {% if name != "" %}
+                            {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                            <tr>
+                                <td class='var {{eo}} var-talent-name'>{{name}}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div class="card gear" id="card-gear">
+                <div class="card-header gear"><label for='gear'>Gear</label></div>
+                <div class="card-body">
+                    <div class='cBox'><div class='var ev var-gear'><div class='iContent'>{{variables.gear|default|nl2br}}</div></div></div>
+                </div>
+            </div>
+            <div class="card renown" id="card-renown">
+                <div class="card-header renown">Renown</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='lbl od lbl-renown' width='40%'><label for='renown'>Renown</label></th><td class='var od var-renown c'>{{variables.renown|default}}</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card experience" id="card-experience">
+                <div class="card-header experience">Experience</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='lbl od lbl-xp-curr' width='40%'><label for='xp-curr'>XP to spend</label></th><td class='var od var-xp-curr c'>{{variables.xp_curr|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-xp-spent'><label for='xp-spent'>Total XP spent</label></th><td class='var ev var-xp-spent c'>{{variables.xp_spent|default}}</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card psychology" id="card-psychology">
+                <div class="card-header psychology"><label for='psychology'>Psychic Powers</label></div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='var od var-psyrating'><label for='psyrating'>Psy Rating</label></th><td class='var ev var-psyrating c'>{{variables.psyrating|default}}</td></tr>
+                    </table>
+                    <div class='cBox'><div class='var od var-psychology'><div class='iContent'>{{variables.psychology|default|nl2br}}</div></div></div>
+                </div>
+            </div>
+            <div class="card armour points" id="card-armour points">
+                <div class="card-header armour points">Armour Points</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='lbl od lbl-arm-head' width='40%'><label for='arm-head'>Head (01-10)</label></th><td class='var od var-arm-head c'>     {{variables.arm_head|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-arm-rarm'><label for='arm-rarm'>Right Arm (11-20)</label></th><td class='var ev var-arm-rarm c'>{{variables.arm_rarm|default}}</td></tr>
+                        <tr><th class='lbl od lbl-arm-larm'><label for='arm-larm'>Left Arm (21-30)</label></th><td class='var od var-arm-larm c'> {{variables.arm_larm|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-arm-body'><label for='arm-body'>Body (31-70)</label></th><td class='var ev var-arm-body c'>     {{variables.arm_body|default}}</td></tr>
+                        <tr><th class='lbl od lbl-arm-rleg'><label for='arm-rleg'>Right Leg (71-95)</label></th><td class='var od var-arm-rleg c'>{{variables.arm_rleg|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-arm-lleg'><label for='arm-lleg'>Left Leg (86-00)</label></th><td class='var ev var-arm-lleg c'> {{variables.arm_lleg|default}}</td></tr>
+                        <tr><th class='lbl od lbl-arm-shield'><label for='arm-shield'>Addition 1</label></th><td class='var od var-arm-shield c'> {{variables.arm_shield1|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-arm-shield'><label for='arm-shield'>Addition 2</label></th><td class='var ev var-arm-shield c'> {{variables.arm_shield2|default}}</td></tr>
+                        <tr><th class='lbl od lbl-arm-shield'><label for='arm-shield'>Addition 3</label></th><td class='var od var-arm-shield c'> {{variables.arm_shield3|default}}</td></tr>
+                    </table>
+                    <table class='table'>
+                        <tr><th class='hdr c' colspan=2>POWER ARMOUR ABILITIES</td></tr>
+                        <tr><th class='lbl od' width='40%'>Servo-Augmented Musculature</th><td class='var od'>+20 Strength</td></tr>
+                        <tr><th class='lbl ev'>Auto-senses</th><td class='var ev'>Dark Sight, immune to Photon Flash and Stun Grenades; Called Shots are Half Actions; +10 to Sight and Hearing Awareness Tests (total of +20 bonus with Heightened Senses)</td></tr>
+                        <tr><th class='lbl od'>Built-in Vox Link</th><td class='var od'></td></tr>
+                        <tr><th class='lbl ev'>Built-in Magboots</th><td class='var ev'></td></tr>
+                        <tr><th class='lbl od'>Nutrient Recycling</th><td class='var od'>Can operate for two weeks without re-supply</td></tr>
+                        <tr><th class='lbl ev'>Recoil Suppression</th><td class='var ev'>May fire Basic weapons 1-handed without penalty</td></tr>
+                        <tr><th class='lbl od'>Size</th><td class='var od'>Hulking (Black Carapace means no bonus for enemies to attack)</td></tr>
+                        <tr><th class='lbl ev'>Poor Manual Dexterity</th><td class='var ev'>Delicate tasks suffer a –10 penalty, unless using equipment designed for Space Marines</td></tr>
+                        <tr><th class='lbl od'>Osmotic Gill Life Sustainer</th><td class='var od'>With the helmet on, the armour is environmentally sealed</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if variables.notes|default != "" %}
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="card notes" id="card-notes">
+                <div class="card-header notes"><label for='notes'>Notes</label></div>
+                <div class="card-body">
+                    <div class='cBox'><div class='var od var-notes'><div class='iContent'>{{variables.notes|default|nl2br}}</div></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row do-not-print">
+        <div class="col-12 text-center small">
+            <br><br>
+            &copy; Games Workshop Ltd 2010. - <a href="/w/sheet-creation/a/sheet-list">Warhammer 40k Deathwatch Character Sheet v1.00</a>, made by Tillerz - <a href="/w/sheet-creation">Updated: 2024-09-25</a><br>
+        </div>
+    </div>
+</div>
