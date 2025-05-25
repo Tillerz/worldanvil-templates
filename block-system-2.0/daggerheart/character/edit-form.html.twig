@@ -95,7 +95,7 @@
           <table class='table'>
             <tr>
               <th class='ilbl od ilbl-evasion' width='25%'><label for='evasion'>Evasion</label></th>
-              <td class='ivar od ivar-evasion' width='25%'><input value='{{variables.evasion|default}}' class='form-control ivar ivar-evasion c' id='evasion' name='evasion' type='number' min='10' /></td>
+              <td class='ivar od ivar-evasion' width='25%'><input value='{{variables.evasion|default}}' class='form-control ivar ivar-evasion c' id='evasion' name='evasion' type='number' /></td>
               <th class='ilbl od ilbl-armor' width='25%'><label for='armor'>Armor</label></th>
               <td class='ivar od ivar-armor'><input value='{{variables.armor|default}}' class='form-control ivar ivar-armor c' id='armor' name='armor' type='number' /></td>
             </tr>
@@ -111,7 +111,7 @@
             </tr>
             <tr>
               <th class='ilbl ev ilbl-hp-max'><label for='hp_max'>HP max</label></th><td class='ivar ev ivar-hp-max'><input value='{{variables.hp_max|default}}' class='form-control ivar ivar-hp-max c' id='hp_max' name='hp_max' type='number' /></td>
-              <th class='ilbl ev ilbl-hp-curr'><label for='hp_curr'>HP marked off</label></th><td class='ivar ev ivar-hp-curr c'>
+              <th class='ilbl ev ilbl-hp-curr'><label for='hp_curr'>HP marked</label></th><td class='ivar ev ivar-hp-curr c'>
               {% for i in 1..12 %}
                 {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
                 {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
@@ -121,7 +121,7 @@
             </tr>
             <tr>
               <th class='ilbl od ilbl-stress-max'><label for='stress_max'>Stress max</label></th><td class='ivar od ivar-stress-max'><input value='{{variables.stress_max|default}}' class='form-control ivar ivar-stress-max c' id='stress_max' name='stress_max' type='number' /></td>
-              <th class='ilbl od ilbl-stress-curr'><label for='stress_curr'>Stress marked off</label></th><td class='ivar od ivar-stress-curr c'>
+              <th class='ilbl od ilbl-stress-curr'><label for='stress_curr'>Stress marked</label></th><td class='ivar od ivar-stress-curr c'>
               {% for i in 1..12 %}
                 {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
                 {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
@@ -372,7 +372,7 @@
           <div class='note'>
             <b>Note:</b> Domain cards need to be defined as separate stat blocks <a href='/heroes/sheet/choose?templateId=18319'>here</a>, existing ones can be found <a href='/community/rpg/system/dheart?template=18319' target='_new'>here</a>.<br>
             What you add here is the name (for reference), and the blockid of the domain card (to make the card show up on your character sheet).<br>
-            The textarea below is for customizing, eg. a description of how your 'Rune Ward' looks like, etc.
+            The textarea in each block is meant for customization, eg. a description of how your 'Rune Ward' looks like, etc.
           </div>
           <div class='row'>
             {% for i in 1..50 %}

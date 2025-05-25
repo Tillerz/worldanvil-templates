@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
                   <th class='lbl ev lbl-armor' width='25%'>Armor</th>
-                  <td class='var ev var-armor c'>{{variables.armor|default}}&nbsp;&nbsp;
+                  <td class='var ev var-armor c'>
                     {% set max = variables.armor|default(6) %}{% if max > 0 %}
                       {% for i in 1..max %}
                         {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
@@ -235,8 +235,8 @@
                 {% set feature = attribute(variables, 'armor_feature_' ~ id)|default|trim %}
                 {% if feature != "" %}
             <tr>
-              <td class='var {{eo}}' colspan=2></td>
-              <th class='lbl od lbl-armor-feature c' colspan=2><b>Feature:</b> {{attribute(variables, 'armor_feature_' ~ id)|default}}</th>
+              <td class='lbl {{eo}}' colspan=2></td>
+              <th class='var {{eo}} lbl-armor-feature c' colspan=2><b>Feature:</b> {{attribute(variables, 'armor_feature_' ~ id)|default}}</th>
             </tr>
                 {% endif %}
               {% endif %}
@@ -286,7 +286,13 @@
                 {% set used = attribute(variables, 'domain_card_used_' ~ id)|default %}
                 {% set tokens = attribute(variables, 'domain_card_tokens_' ~ id)|default %}
                 <div class='col-12 col-md-6 c'>
-                  {% if cid > 0 %}[block:{{cid}}]{% endif %}
+                  {% if cid > 0 %}[block:{{cid}}]{% else %}
+                    <div class="card domain" id="card-domain">
+                      <div class="card-header domain">{{name}}</div>
+                      <div class="card-body of">{{desc}}{% set desc = '' %}
+                      </div>
+                    </div>
+                  {% endif %}
                   <table class='table domaincard'>
                     <tr>
                       <td class='var od var-domain-card-name'>{{name}}</td>
