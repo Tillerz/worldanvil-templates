@@ -125,8 +125,6 @@ Input:
 
 This will create the sheet wrapper around the whole sheet with "sheet-name-of-the-sheet' as css class. The yaml file needs to start with # sheet: ... and end with # /sheet.
 
-NOTE: The command # /sheet must be the last one in the file, after that parsing will be stopped. So all # include commands etc. need to be above this line! Anything you are not finished with yet, you can just put below this line, it will get ignored.
-
 Output:
 ```html
 <div class='container-fluid sheet-name-of-the-sheet'>
@@ -357,7 +355,7 @@ Input:
 
 Input:
 ```yaml
-# iter: <start>: <count>
+# iter: <start>: <end>
 # /iter
 ```
 
