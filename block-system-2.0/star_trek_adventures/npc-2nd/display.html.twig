@@ -1,0 +1,117 @@
+{% macro genEntry(mytype, myname, mydie, min='', max = '') %}<table class="itable"><tr><td><span class="leftpill">{{myname}}</span></td>
+<td><span class="rightpill">{{ mydie }}</span></td></tr></table>{% endmacro genEntry %}
+{% macro genPills(curr, max, tt) %}
+    {% if curr is defined and curr > 0 %}
+        {% for i in 1..curr %}
+            <p class="solidpill">{{tt}}</p> {% set max = max -1 %}
+        {% endfor %}
+    {% endif %}
+    {% if max is defined and max > 0 %}
+        {% for i in 1..max %}
+            <p class="emptypill">{{tt}}</p>
+        {% endfor %}
+    {% endif %}
+{% endmacro genPills %}
+{% macro genTextPill(txt, type) %}
+    {% if txt is defined %}
+        <p class="{{type}}pill">{{txt}}<p/>
+    {% endif %}
+{% endmacro genTextPill %}
+<div class="container-fluid sta-sheet sta-sheet-global-wrapper">
+    <div class="form-wrapper">
+        <div class="row">
+            <div class="hidden-xs hidden-sm col-lg-12 d-none d-md-block text-right">
+                <div class="card-header head-bar title"><span class="wbg" >{{ variables.name|default }}{% if variables.type|default|trim != "" %}, {{ variables.type|default|trim }}{% endif %}</span></div>
+            </div>
+        </div>
+        <div class="row">
+        {% set wd1 = 10 %}{% set img = variables.img|default|trim %}{% if img > 0 %}{% set wd1 = 8 %}{% endif %}
+            <div class="col-12 col-md-{{wd1}}">
+                <div class="row">
+                    {% if variables.desc|default|trim != "" %}
+                    <div class="col-12 col-md-12 my-2 pd">
+                        {{ variables.desc|default }}
+                    </div>
+                    {% endif %}
+                    <div class="col-12 col-md-2 my-2">
+                        <strong>Traits</strong>
+                    </div>
+                    <div class="col-12 col-md-10 my-2">
+                        {{ variables.traits|default }}
+                    </div>
+                    <div class="col-12 col-md-2 my-2">
+                        <strong>Values</strong>
+                    </div>
+                    <div class="col-12 col-md-10 my-2">
+                        {{ variables.values|default }}
+                    </div>
+                    <div class="col-12 col-md-2 my-2">
+                        <strong>Focuses</strong>
+                    </div>
+                    <div class="col-12 col-md-10 my-2">
+                        {{ variables.focuses|default }}
+                    </div>
+                    <div class="col-12 col-md-6 my-2">
+                        {{ _self.genEntry('pthreat', 'Pers. Threat', variables.pthreat|default) }}
+                    </div>
+                    <div class="col-12 col-md-6 my-2">
+                        {{ _self.genEntry('protection', 'Protection', variables.protection|default) }}
+                    </div>
+                </div>
+            </div>
+            {% if img > 0 %}<div class="col-12 col-md-4">[img:{{ img }}]</div>{% endif %}
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card my-2">
+                    <div class="card-header head-bar"><span class="wbg" title="Characters in Star Trek Adventures are defined by six attributes. The attributes range from 7 to 12, with 8 being average.">Attributes</span></div>
+                    <div class="card-body">
+                        <div class="row">
+                            {{ _self.genEntry('control', 'control', variables.control) }}
+                            {{ _self.genEntry('fitness', 'fitness', variables.fitness) }}
+                            {{ _self.genEntry('presence', 'presence', variables.presence) }}
+                        </div>
+                        <div class="row">
+                            {{ _self.genEntry('daring', 'daring', variables.daring) }}
+                            {{ _self.genEntry('insight', 'insight', variables.insight) }}
+                            {{ _self.genEntry('reason', 'reason', variables.reason) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card my-2">
+                    <div class="card-header head-bar"><span class="wbg">Departments</span></div>
+                    <div class="card-body">
+                        <div class="row">
+                            {{ _self.genEntry('command', 'command', variables.command|default) }}
+                            {{ _self.genEntry('engineering', 'engineering', variables.engineering|default) }}
+                            {{ _self.genEntry('medicine', 'medicine', variables.medicine|default) }}
+                        </div>
+                        <div class="row">
+                            {{ _self.genEntry('conn', 'conn', variables.conn|default) }}
+                            {{ _self.genEntry('security', 'security', variables.security|default) }}
+                            {{ _self.genEntry('science', 'science', variables.science|default) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card my-2">
+                    <div class="card-header head-bar"><span class="wbg">Attacks</span></div>
+                    <div class="card-body">
+                        <ul>{% for i in 1..5 %}{% set attack = attribute(variables, 'attack' ~ i)|default|trim %}{% if attack != "" %}<li>{{ attribute(variables, 'attack' ~ i)|default|trim }}</li>{% endif %}{% endfor %}<ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card my-2">
+                    <div class="card-header head-bar"><span class="wbg">Special Rules</span></div>
+                    <div class="card-body">
+                        {{ variables.srules|default|trim|nl2br }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
