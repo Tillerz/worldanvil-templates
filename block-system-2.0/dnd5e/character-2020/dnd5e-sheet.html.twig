@@ -29,6 +29,7 @@
 {# --- INITIATIVE(DEX) --- #}
 {% set con_bonus = ((constitution - 10) // 2) %}
 {% set dex_bonus = ((dexterity - 10) // 2) %}
+{% set wis_bonus = ((wisdom - 10) // 2) %}
 {% set str_bonus = ((strength - 10) // 2) %}
 {% set ini_mod = variables.initiative_mod|default %}
 {% if ini_mod == 0 %}{% set ini_mod = 0 %}{% endif %}{# possible replacement of "" to 0 #}
@@ -104,8 +105,8 @@
 	{% else %}
 		{% set sam = pb + scm %}
 	{% endif %}
-	{% set sam_mod = variables.sam_mod|default(0) %}
-	{% set ssdc_mod = variables.ssdc_mod|default(0) %}
+	{% set sam_mod = variables.sam_mod|default %}
+	{% set ssdc_mod = variables.ssdc_mod|default %}
 	{% set sam = sam + sam_mod %}
 	{% set ssdc = ssdc + ssdc_mod %}
 {% endif %}
@@ -421,6 +422,14 @@ sam:	spell attack modifier (scm + proficiency) + additional mod from items
 				<span class="inputLabel" title="Speed in ft">Speed (walk/run/fly)</span>
 			</div>
 		</div>
+		<div class="col-6 col-xs-6 col-sm-6 col-md-3">
+			<div class="contentContainer contentContainer-attribute of">
+				{% set pp = 10 + wis_bonus|number_format %}
+				{% if variables.perception_prof|default > 0 %}{% set pp = pp + pb %}{% endif %}
+				<span class="strong">{{pp}}</span><br>
+				<span class="inputLabel" title="Passive Perception">Passive Perception</span>
+			</div>
+		</div>
 		{% for i in 1..6 %}
 			{% if i == 1 %}
 				{% set label = variables.class_resource_label|default %}
@@ -514,12 +523,6 @@ sam:	spell attack modifier (scm + proficiency) + additional mod from items
 						{% endif %}
 						</table>
 					</div>
-					{% if variables.passivewisdom is defined %}
-					<div class="contentContainer contentContainer-side">
-						<span class="strong pull-left">{{ sheet.addSign( variables.passivewisdom ) }}</span>
-						<span class="inputLabel">Passive perception</span>
-					</div>
-					{% endif %}
 				</div>
 				<div class="col-12 col-md-6 col-lg-12">
 					<div class="contentContainer contentContainer-standard of">

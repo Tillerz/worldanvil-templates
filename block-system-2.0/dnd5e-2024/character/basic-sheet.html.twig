@@ -44,6 +44,7 @@
 {% set charisma = variables.charisma|default(10) %}
 {% set con_bonus = ((constitution - 10) // 2) %}
 {% set dex_bonus = ((dexterity - 10) // 2) %}
+{% set wis_bonus = ((wisdom - 10) // 2) %}
 {% set str_bonus = ((strength - 10) // 2) %}
 {% set ini_mod = variables.initiative_mod|default %}
 {% if ini_mod == 0 %}{% set ini_mod = 0 %}{% endif %}{# possible replacement of "" to 0 #}
@@ -520,7 +521,13 @@ sam:	spell attack modifier (scm + proficiency)
 			</div>
 			<div class="card c">
 				<div class="card-header" title="Speed in ft">Speed</div>
-				<div class="var od">{{ variables.speed|default(30) }}</div>
+				<div class="var od">{{ variables.speed|default(10) }}</div>
+			</div>
+			<div class="card c">
+				<div class="card-header" title="Passive Perception">Passive Perception</div>
+				{% set pp = 10 + wis_bonus|number_format %}
+				{% if variables.perception_prof|default > 0 %}{% set pp = pp + pb %}{% endif %}
+				<div class="var od">{{pp}}</div>
 			</div>
 			<div class="card c">
 				<div class="card-header">Heroic Inspiration</div>
