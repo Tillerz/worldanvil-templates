@@ -132,7 +132,7 @@
  ul { list-style-type: square}
  .level { font-size:64px}
  .rcol { color: #804040 }
- .badge { font-size: 13px; padding: 4px; margin: 11px 5px; background-color: #00000000}
+ .badge { font-size: 13px; padding: 4px; margin: 0px 5px; background-color: #00000000}
  .fr { float:right; margin-right:10px}
  h1 { font-size: 32px; text-align: left; text-transform: uppercase; }
  h2 { font-size: 24px; text-align: left; border-bottom: 2px solid #706060; text-transform: uppercase; }
