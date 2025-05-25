@@ -1,0 +1,135 @@
+<div class='container-fluid sheet-daggerheart form'>
+  <div class='row'>
+    <div class='col-12 col-md-12'>
+      <div class='card pools' id='card-pools'>
+        <div class='card-header pools'>Pools</div>
+        <div class='card-body of'>
+					<div class='row'>
+						<div class='col-12 col-md-6'>
+							<table class='table'>
+								{% set armor = variables.armor|default %}
+								{% if armor > 0 %}
+									<tr>
+										<th class='ilbl od ilbl-armor-damaged' width='20%'><label for='armor-checked'>Armor</label></th>
+										<td class='ivar ev ivar-armor-damaged'>
+										{% for i in 1..armor %}
+											{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+											<input value='0' id='armor_checked' name='armor_checked_{{id}}' type='hidden' />
+											<input value='1' {% if attribute(variables, 'armor_checked_' ~ id)|default > 0 %} checked='checked'{% endif %} id='armor_checked' name='armor_checked_{{id}}' type='checkbox' />
+										{% endfor %}
+										</td>
+									</tr>
+								{% endif %}
+								<tr>
+									<th class='ilbl ev ilbl-hp-curr'><label for='hp_curr'>HP</label></th>
+									<td class='ivar ev ivar-hp-curr'>{% set hpmax = variables.hp_max|default %}{% if hpmax < 1 %}{% set hpmax = 1 %}{% endif %}
+										{% for i in 1..hpmax %}
+											{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+											{% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+											<input value='0' id='hp_curr' name='hp_curr_{{id}}' type='hidden' /><input value='1' {% if attribute(variables, 'hp_curr_' ~ id)|default > 0 %} checked='checked'{% endif %} id='hp_curr' name='hp_curr_{{id}}' type='checkbox' />
+										{% endfor %}
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class='col-12 col-md-6'>
+							<table class='table'>
+								<tr><th class='ilbl ev ilbl-hope' width='20%'><label for='hope'>Hope</label></th><td class='ivar ev ivar-hope'>
+								{% for i in 1..6 %}
+									{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+									{% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+									<input value='0' id='hope' name='hope_{{id}}' type='hidden' /><input value='1' {% if attribute(variables, 'hope_' ~ id)|default > 0 %} checked='checked'{% endif %} id='hope' name='hope_{{id}}' type='checkbox' />
+								{% endfor %}
+								</td></tr>
+								<tr>
+									<th class='ilbl od ilbl-stress-curr'><label for='stress_curr'>Stress</label></th>{% set stressmax = variables.stress_max|default %}{% if stressmax < 1 %}{% set stressmax = 1 %}{% endif %}
+									<td class='ivar od ivar-stress-curr'>
+									{% for i in 1..stressmax %}
+										{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+										{% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+										<input value='0' id='stress_curr' name='stress_curr_{{id}}' type='hidden' /><input value='1' {% if attribute(variables, 'stress_curr_' ~ id)|default > 0 %} checked='checked'{% endif %} id='stress_curr' name='stress_curr_{{id}}' type='checkbox' />
+									{% endfor %}
+									</td>
+								</tr>
+							</table>
+						</div>
+  				</div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12'>
+      <div class='card gold' id='card-gold'>
+        <div class='card-header gold'>Gold</div>
+        <div class='card-body of'>
+          Handfuls: 
+            {% for i in 1..9 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <input value='0' id='gold_handfuls' name='gold_handfuls_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'gold_handfuls_' ~ id)|default > 0 %} checked='checked'{% endif %} id='gold_handfuls' name='gold_handfuls_{{id}}' type='checkbox' />
+            {% endfor %}&nbsp;&nbsp;
+          Bags:
+            {% for i in 1..9 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <input value='0' id='gold_bags' name='gold_bags_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'gold_bags_' ~ id)|default > 0 %} checked='checked'{% endif %} id='gold_bags' name='gold_bags_{{id}}' type='checkbox' />
+            {% endfor %}&nbsp;&nbsp;
+          Chest:
+            <input value='0' id='gold_chest' name='gold_chest' type='hidden' /><input value='1' class='c' {% if variables.gold_chest|default > 0 %} checked='checked'{% endif %} id='gold_chest' name='gold_chest' type='checkbox' />
+        </div>
+      </div>
+		</div>
+    <div class='col-12 col-md-6'>
+      <div class='card inventory' id='card-inventory'>
+        <div class='card-header inventory'>Inventory</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-inventory'><div class='iContent'><textarea class='form-control ivar ivar-inventory mention' id='inventory' name='inventory' rows='3'  >{{variables.inventory|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes mention' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12'>
+      <div class='card domaincards' id='card-domaincards'>
+        <div class='card-header domaincards'>Domain Cards</div>
+        <div class='card-body of'>
+          <div class='row'>
+            {% for i in 1..50 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+							{% set name = attribute(variables, 'domain_card_name_' ~ id)|default %}
+							{% set active = attribute(variables, 'domain_card_active_' ~ id)|default %}
+							{% set cid = attribute(variables, 'domain_card_id_' ~ id)|default %}
+							{% if name != "" and active > 0 %}
+              <div class='col-12 col-md-6'>
+                <table class='table domaincard'>
+                  <tr>
+                    <td class='ivar od ivar-domain-card-name' colspan=3>
+											{% if cid > 0 %}<a href='/sheet/{{cid}}/view' target='_new'>{{name}}</a>{% else %}{{name}}{% endif %}
+										</td>
+                  </tr>
+                  <tr>
+                    <td class='ivar od' width='50%'>
+                      <input value='0' id='domain_card_used_{{id}}' name='domain_card_used_{{id}}' type='hidden' />
+                      <input value='1' class='checkbox c' {% if attribute(variables, 'domain_card_used_' ~ id)|default > 0 %} checked='checked'{% endif %} id='domain_card_used_{{id}}' name='domain_card_used_{{id}}' type='checkbox' />
+                      Card used
+                    </td>
+                    <td class='ivar od ivar-domain-card-tokens r'>Tokens</td>
+                    <td class='ivar od ivar-domain-card-used' width='50px'>
+                      <input value='{{attribute(variables, 'domain_card_tokens_' ~ id)|default}}' class='form-control ivar ivar-domain-card-tokens c' id='domain_card_tokens' name='domain_card_tokens_{{id}}' type='integer' />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+							{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

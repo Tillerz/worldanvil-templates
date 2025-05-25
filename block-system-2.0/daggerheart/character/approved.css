@@ -1,0 +1,7 @@
+@font-face {
+    font-family: IM Fell English SC; font-style: normal; font-weight: 400; src: url(https://fonts.gstatic.com/s/imfellenglishsc/v9/a8IENpD3CDX-4zrWfr1VY879qFF05pZ7PIIP.woff2)
+}
+@font-face {
+    font-family: Alegreya Regular; font-style: normal; font-weight: 400; src: url(https://worldanvil-static.sfo2.cdn.digitaloceanspaces.com/fonts/Alegreya-Regular.otf)
+}
+.card-header { background-image: linear-gradient( 45deg, #ff8000, #a000a0, #ffcf00 ) }

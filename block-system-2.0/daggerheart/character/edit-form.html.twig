@@ -1,0 +1,421 @@
+﻿{% import _self as sheet %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set attributes = {
+    "Agility": "Sprint,Leap,Maneuver",
+    "Strength": "Lift,Smash,Grapple",
+    "Finesse": "Control,Hide,Tinker",
+    "Instinct": "Perceive,Sense,Navigate",
+    "Presence": "Charm,Perform,Deceive",
+    "Knowledge": "Recall,Analyze,Comprehend"
+  }
+%}
+{% set classes = {
+    "Bard": "Troubadour,Wordsmith",
+    "Druid": "Warden of the Elements,Warden of Renewal",
+    "Guardian": "Stalwart,Vengeance",
+    "Ranger": "Beastbound,Wayfinder",
+    "Rogue": "Nightwalker,Syndicate",
+    "Seraph": "Divine Wielder,Winged Sentinel",
+    "Sorcerer": "Elemental Origin,Primal Origin",
+    "Warrior": "Call of the Brave,Call of the Slayer",
+    "Wizard": "School of Knowledge,School of War"
+  }
+%}
+{% set domains = [ "Arcana", "Blade", "Bone", "Codex", "Grace", "Midnight", "Sage", "Splendor", "Valor" ] %}
+{% set ancestries = [ "Clank", "Drakona", "Dwarf", "Elf", "Faerie", "Faun", "Firbolg", "Fungril", "Galapa", "Giant", "Goblin", "Halfling", "Human", "Infernis", "Katari", "Orc", "Ribbet", "Simiah" ] %}
+{% set communities = { "Highborne" : 1553645, "Loreborne" : 1553647, "Orderborne" : 1553650, "Ridgeborne" : 1553651, "Seaborne" : 1553653, "Slyborne" : 1553654, "Underborne" : 1553655, "Wanderborne" : 1553656, "Wildborne" : 1553657 } %}
+<div class='container-fluid sheet-daggerheart form'>
+  <div class='row'>
+    <div class='col-12 col-md-8'>
+      <div class='card personal' id='card-personal'>
+        <div class='card-header personal'>Personal Info</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-name'><label for='name'>Name</label></th><td class='ivar od ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' type='text' required=required /></td></tr>
+            <tr><th class='ilbl ev ilbl-pronouns'><label for='pronouns'>Pronouns</label></th><td class='ivar ev ivar-pronouns'><input value='{{variables.pronouns|default}}' class='form-control ivar ivar-pronouns' id='pronouns' name='pronouns' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-community'><label for='community'><a href='/community/rpg/system/dheart?template=18331' target='_new'>Community</a></label></th><td class='ivar od ivar-community'>
+              {% set x = variables.community|default %}<input value='{{x}}' list='communities' class='form-control ivar ivar-community' id='community' name='community' />{{ _self.genList(communities|keys, 'communities', x) }}
+            </td></tr>
+            <tr><th class='ilbl ev ilbl-ancestry'><label for='ancestry'><a href='/community/rpg/system/dheart?template=18338' target='_new'>Ancestry</a></label></th><td class='ivar ev ivar-ancestry'>
+              {% set x = variables.ancestry|default %}<input value='{{x}}' list='ancestries' class='form-control ivar ivar-ancestry' id='ancestry' name='ancestry' />{{ _self.genList(ancestries, 'ancestries', x) }}
+            </td></tr>
+            <tr><th class='ilbl od ilbl-class'><label for='class'>Class</label></th><td class='ivar od ivar-class'>
+              {% set x = variables.class|default %}<input value='{{variables.class|default}}' list='classes' class='form-control ivar ivar-class' id='class' name='class' type='text' />{{ _self.genList(classes|keys, 'classes', x) }}
+            </td></tr>
+            {% set subclasses = classes|join(',')|split(',') %}
+            <tr><th class='ilbl ev ilbl-subclass'><label for='subclass'>Subclass</label></th><td class='ivar ev ivar-subclass'>
+              <input value='{{variables.subclass|default}}' list='subclasses' class='form-control ivar ivar-subclass' id='subclass' name='subclass' type='text' />{{ _self.genList(subclasses, 'subclasses', x) }}
+              </td></tr>
+            <tr><th class='ilbl od ilbl-level'><label for='level'>Level</label></th><td class='ivar od ivar-level'><input value='{{variables.level|default(1)}}' class='form-control ivar ivar-level c' id='level' name='level' type='number' /></td></tr>
+            <tr><th class='ilbl ev ilbl-img'><label for='img'>Portrait</label></th><td class='ivar ev ivar-img'><input value='{{variables.img|default}}' class='form-control ivar ivar-img c' id='img' name='img' type='number' placeholder='WA Image-ID'/></td></tr>
+            <tr><th class='ilbl note' colspan=2>Only for level 5 or higher:</th></tr>
+            <tr><th class='ilbl od ilbl-mclass'><label for='mclass'>Second Class (Multiclass)</label></th><td class='ivar od ivar-mclass'>
+              {% set x = variables.mclass|default %}<input value='{{variables.mclass|default}}' list='classes' class='form-control ivar ivar-mclass' id='mclass' name='mclass' type='text' />{{ _self.genList(classes|keys, 'classes', x) }}
+            </td></tr>
+            {% set subclasses = classes|join(',')|split(',') %}
+            <tr><th class='ilbl ev ilbl-msubclass'><label for='msubclass'>Second Subclass (Multiclass)</label></th><td class='ivar ev ivar-msubclass'>
+              <input value='{{variables.msubclass|default}}' list='subclasses' class='form-control ivar ivar-msubclass' id='msubclass' name='msubclass' type='text' />{{ _self.genList(subclasses, 'subclasses', x) }}
+              </td></tr>
+
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-4'>
+      <img src='/i/6662151/render'>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card attributes' id='card-attributes'>
+        <div class='card-header attributes'>Attributes</div>
+        <div class='card-body of'>
+          <div class='row'>
+            {% for att, desc in attributes %}
+              <div class='col-12 col-md-4 col-lg-2 c'>
+                <div class='ilbl od ilbl-attribute-mod'><label for='attribute_mod'>{{att}}</label>
+                  <input value='0' id='attribute_check' name='attribute_check_{{att|lower}}' type='hidden' />
+                  <input value='1' class='checkbox c' title='Spellcast Trait' {% if attribute(variables, 'attribute_check_' ~ att|lower)|default > 0 %} checked='checked'{% endif %} id='attribute_check' name='attribute_check_{{att|lower}}' type='checkbox' />
+                </div><div class='ivar ivar-attribute-mod'>
+                  <input value='{{attribute(variables, 'attribute_mod_' ~ att|lower)|default}}' class='form-control ivar ivar-attribute-mod c' id='attribute_mod' name='attribute_mod_{{att|lower}}' type='number' />
+                  <div class='ivar ev'><small>{{desc|split(',')|join('<br>')|raw}}</small></div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-12'>
+      <div class='card combat' id='card-combat'>
+        <div class='card-header combat'>Damage and Health</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr>
+              <th class='ilbl od ilbl-evasion' width='25%'><label for='evasion'>Evasion</label></th>
+              <td class='ivar od ivar-evasion' width='25%'><input value='{{variables.evasion|default}}' class='form-control ivar ivar-evasion c' id='evasion' name='evasion' type='number' min='10' /></td>
+              <th class='ilbl od ilbl-armor' width='25%'><label for='armor'>Armor</label></th>
+              <td class='ivar od ivar-armor'><input value='{{variables.armor|default}}' class='form-control ivar ivar-armor c' id='armor' name='armor' type='number' /></td>
+            </tr>
+            <tr><th class='ilbl ev ilbl-armor-damaged' colspan=2></th><th class='ilbl ev ilbl-armor-damaged'><label for='armor'>...marked as damaged</label></th><td class='ivar od ivar-armor-checked c'>
+            {% for i in 1..12 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              <input value='0' id='armor_checked' name='armor_checked_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'armor_checked_' ~ id)|default > 0 %} checked='checked'{% endif %} id='armor_checked' name='armor_checked_{{id}}' type='checkbox' />
+            {% endfor %}
+            </td></tr>
+            <tr>
+              <th class='ilbl od ilbl-major-damage'><label for='major_damage'>Major Damage Threshold</label></th><td class='ivar od ivar-major-damage'><input value='{{variables.major_damage|default}}' class='form-control ivar ivar-major-damage c' id='major_damage' name='major_damage' type='number' /></td>
+              <th class='ilbl od ilbl-severe-damage'><label for='severe_damage'>Severe Damage Threshold</label></th><td class='ivar od ivar-severe-damage'><input value='{{variables.severe_damage|default}}' class='form-control ivar ivar-severe-damage c' id='severe_damage' name='severe_damage' type='number' /></td>
+            </tr>
+            <tr>
+              <th class='ilbl ev ilbl-hp-max'><label for='hp_max'>HP max</label></th><td class='ivar ev ivar-hp-max'><input value='{{variables.hp_max|default}}' class='form-control ivar ivar-hp-max c' id='hp_max' name='hp_max' type='number' /></td>
+              <th class='ilbl ev ilbl-hp-curr'><label for='hp_curr'>HP marked off</label></th><td class='ivar ev ivar-hp-curr c'>
+              {% for i in 1..12 %}
+                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                <input value='0' id='hp_curr' name='hp_curr_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'hp_curr_' ~ id)|default > 0 %} checked='checked'{% endif %} id='hp_curr' name='hp_curr_{{id}}' type='checkbox' />
+              {% endfor %}
+              </td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-stress-max'><label for='stress_max'>Stress max</label></th><td class='ivar od ivar-stress-max'><input value='{{variables.stress_max|default}}' class='form-control ivar ivar-stress-max c' id='stress_max' name='stress_max' type='number' /></td>
+              <th class='ilbl od ilbl-stress-curr'><label for='stress_curr'>Stress marked off</label></th><td class='ivar od ivar-stress-curr c'>
+              {% for i in 1..12 %}
+                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                <input value='0' id='stress_curr' name='stress_curr_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'stress_curr_' ~ id)|default > 0 %} checked='checked'{% endif %} id='stress_curr' name='stress_curr_{{id}}' type='checkbox' />
+              {% endfor %}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class='card hope' id='card-hope'>
+        <div class='card-header hope'>Hope</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl ev ilbl-hope' width='20%'><label for='hope'>Hope</label></th><td class='ivar ev ivar-hope c'>
+            {% for i in 1..6 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <input value='0' id='hope' name='hope_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'hope_' ~ id)|default > 0 %} checked='checked'{% endif %} id='hope' name='hope_{{id}}' type='checkbox' />
+            {% endfor %}
+            </td></tr>
+            <tr><th class='ilbl od ilbl-hope-feature'><label for='hope_feature'>Hope Feature</label></th><td class='ivar od ivar-hope-feature' colspan=3><input value='{{variables.hope_feature|default}}' class='form-control ivar ivar-hope-feature' id='hope_feature' name='hope_feature' type='text' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-12'>
+      <div class='card other' id='card-other'>
+        <div class='card-header other'>Experiences</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr>
+              <th class='ilbl od ilbl-experience'><label for='experience'>Experience</label></th>
+              <th class='ilbl od ilbl-experience-value c' width='70px'><label for='experience_value'>Score</label></th>
+            </tr>
+            {% for i in 1..5 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <tr>
+              <td class='ivar {{eo}} ivar-experience'><input value='{{attribute(variables, 'experience_' ~ id)|default}}' class='form-control ivar ivar-experience' id='experience' name='experience_{{id}}' type='text' /></td>
+              <td class='ivar {{eo}} ivar-experience-value'><input value='{{attribute(variables, 'experience_value_' ~ id)|default}}' class='form-control ivar ivar-experience-value c' id='experience_value' name='experience_value_{{id}}' type='number' /></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-12'>
+      <div class='card class feature' id='card-class feature'>
+        <div class='card-header class feature'>Class Feature</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-class-feature'><div class='iContent'><textarea class='form-control ivar ivar-class-feature mention' id='class_feature' name='class_feature' rows='3'  >{{variables.class_feature|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-12'>
+      <div class='card weapons' id='card-weapons'>
+        <div class='card-header weapons'>Weapons</div>
+        <div class='card-body of'>
+          <div class='ilbl {{eo}} ilbl-weapon-proficiency c'><label for='weapon_proficiency'>Proficiency</label></div><div class='ivar {{eo}} ivar-weapon-proficiency c'>
+            {% for i in 1..6 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <input value='0' id='weapon_proficiency' name='weapon_proficiency_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'weapon_proficiency_' ~ id)|default > 0 %} checked='checked'{% endif %} id='weapon_proficiency' name='weapon_proficiency_{{id}}' type='checkbox' />
+            {% endfor %}
+          </div>
+          <table class='table'>
+            <tr>
+              <th class='ihdr od ilbl-weapon-worn c' width='50px'><label for='weapon_worn' title='Worn'><i class="fa-regular fa-hand-back-fist"></i></label></th>
+              <th class='ihdr od ilbl-weapon-name' width='140px'><label for='weapon_name'>Name</label></th>
+              <th class='ihdr od ilbl-weapon-primary c' width='50px' title='Marked: is primary weapon'><label for='weapon_primary'>P</label></th>
+              <th class='ihdr od ilbl-weapon-trait c' width='140px'><label for='weapon_trait'>Trait</label></th>
+              <th class='ihdr od ilbl-weapon-range c' width='140px'><label for='weapon_range'>Range</label></th>
+              <th class='ihdr od ilbl-weapon-damage-dice c' width='120px'><label for='weapon_damage_dice'>Dam. Dice</label></th>
+              <th class='ihdr od ilbl-weapon-damage-type c' width='90px'><label for='weapon_damage_type'>Dam. Type</label></th>
+              <th class='ihdr od ilbl-weapon-size' width='80px'><label for='weapon_size'>Size</label></th>
+            </tr>
+            {% for i in 1..10 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <tr>
+              <td class='ivar {{eo}} ivar-weapon-worn c' title='Worn'><input value='0' id='weapon_worn' name='weapon_worn_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'weapon_worn_' ~ id)|default > 0 %} checked='checked'{% endif %} id='weapon_worn' name='weapon_worn_{{id}}' type='checkbox' /></td>
+              <td class='ivar {{eo}} ivar-weapon-name'><input value='{{attribute(variables, 'weapon_name_' ~ id)|default}}' class='form-control ivar ivar-weapon-name' id='weapon_name' name='weapon_name_{{id}}' type='text' /></td>
+              <td class='ivar {{eo}} ivar-weapon-primary c' title='Marked: is primary weapon'><input value='0' id='weapon_primary' name='weapon_primary_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'weapon_primary_' ~ id)|default > 0 %} checked='checked'{% endif %} id='weapon_primary' name='weapon_primary_{{id}}' type='checkbox' /></td>
+              <td class='ivar {{eo}} ivar-weapon-trait'>
+                {% set x = attribute(variables, 'weapon_trait_' ~ id)|default %}
+                <input value='{{x}}' list='attributes' class='form-control ivar ivar-weapon-trait c' id='weapon_trait' name='weapon_trait_{{id}}' />{{ _self.genList(attributes|keys, 'attributes', x) }}
+              </td>
+              <td class='ivar {{eo}} ivar-weapon-range'>
+                <select class='form-control ivar ivar-weapon-range c' id='weapon_range' name='weapon_range_{{id}}'>
+                  <option value='Melee' {% if attribute(variables, 'weapon_range_' ~ id)|default == 'Melee' %}selected='selected' {% endif %} > Melee </option>
+                  <option value='Very Close' {% if attribute(variables, 'weapon_range_' ~ id)|default == 'Very Close' %}selected='selected' {% endif %} > Very Close </option>
+                  <option value='Close' {% if attribute(variables, 'weapon_range_' ~ id)|default == 'Close' %}selected='selected' {% endif %} > Close </option>
+                  <option value='Far' {% if attribute(variables, 'weapon_range_' ~ id)|default == 'Far' %}selected='selected' {% endif %} > Far </option>
+                  <option value='Very Far' {% if attribute(variables, 'weapon_range_' ~ id)|default == 'Very Far' %}selected='selected' {% endif %} > Very Far </option>
+                </select>
+              </td>
+              <td class='ivar {{eo}} ivar-weapon-damage-dice'><input value='{{attribute(variables, 'weapon_damage_dice_' ~ id)|default}}' class='form-control ivar ivar-weapon-damage-dice c' id='weapon_damage_dice' name='weapon_damage_dice_{{id}}' type='text' /></td>
+              <td class='ivar {{eo}} ivar-weapon-damage-type'>
+                <select class='form-control ivar ivar-weapon-type c' id='weapon_type' name='weapon_damage_type_{{id}}'>
+                  <option value='phy' {% if attribute(variables, 'weapon_damage_type_' ~ id)|default == 'phy' %}selected='selected' {% endif %} > phy </option>
+                  <option value='mag' {% if attribute(variables, 'weapon_damage_type_' ~ id)|default == 'mag' %}selected='selected' {% endif %} > mag </option>
+                </select>
+              </td>
+              <td class='ivar {{eo}} ivar-weapon-size'>
+                <select class='form-control ivar ivar-weapon-size c' id='weapon_size' name='weapon_size_{{id}}'>
+                  <option value='1h' {% if attribute(variables, 'weapon_size_' ~ id)|default == '1h' %}selected='selected' {% endif %} > 1H </option>
+                  <option value='2h' {% if attribute(variables, 'weapon_size_' ~ id)|default == '2h' %}selected='selected' {% endif %} > 2H </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th class='ivar {{eo}} ilbl-weapon-feature r' colspan=2><label for='weapon_feature'>Feature</label></th>
+              <td class='ivar {{eo}} ivar-weapon-feature' colspan=6><input value='{{attribute(variables, 'weapon_feature_' ~ id)|default}}' class='form-control ivar ivar-weapon-feature' id='weapon_feature' name='weapon_feature_{{id}}' type='text' /></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card armor' id='card-armor'>
+        <div class='card-header armor'>Armor</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr>
+              <th class='ihdr od ilbl-armor-worn c' width='50px'><label for='weapon_worn' title='Worn'><i class="fa-regular fa-hand-back-fist"></i></label></th>
+              <th class='ihdr od ilbl-armor-name'><label for='armor_name'>Name</label></th>
+              <th class='ihdr od ilbl-armor-threshold c'><label for='armor_threshold'>Base Thresholds</label></th>
+              <th class='ihdr od ilbl-armor-score c'><label for='armor_score'>Base Score</label></th>
+            </tr>
+            {% for i in 1..5 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <tr>
+              <td class='ivar {{eo}} ivar-armor-worn c' title='Worn'><input value='0' id='armor_worn' name='armor_worn_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'armor_worn_' ~ id)|default > 0 %} checked='checked'{% endif %} id='armor_worn' name='armor_worn_{{id}}' type='checkbox' /></td>
+              <td class='ivar {{eo}} ivar-armor-name'><input value='{{attribute(variables, 'armor_name_' ~ id)|default}}' class='form-control ivar ivar-armor-name' id='armor_name_{{id}}' name='armor_name_{{id}}' type='text' /></td>
+              <td class='ivar {{eo}} ivar-armor-threshold'><input value='{{attribute(variables, 'armor_threshold_' ~ id)|default}}' class='form-control ivar ivar-armor-threshold c' id='armor_threshold_{{id}}' name='armor_threshold_{{id}}' type='text' /></td>
+              <td class='ivar {{eo}} ivar-armor-score'><input value='{{attribute(variables, 'armor_score_' ~ id)|default}}' class='form-control ivar ivar-armor-score c' id='armor_score_{{id}}' name='armor_score_{{id}}' type='number' /></td>
+            </tr>
+            <tr>
+              <th class='ivar {{eo}}'></th><th class='ivar {{eo}} ilbl-armor-feature' colspan=3><label for='armor_feature'>Feature</label></th>
+            </tr>
+            <tr>
+              <td class='ivar {{eo}}'></td><td class='ivar {{eo}} ivar-armor-feature' colspan=3><input value='{{attribute(variables, 'armor_feature_' ~ id)|default}}' class='form-control ivar ivar-armor-feature' id='armor_feature_{{id}}' name='armor_feature_{{id}}' type='text' /></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card gold' id='card-gold'>
+        <div class='card-header gold'>Gold</div>
+        <div class='card-body of'>
+          Handfuls: 
+            {% for i in 1..9 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <input value='0' id='gold_handfuls' name='gold_handfuls_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'gold_handfuls_' ~ id)|default > 0 %} checked='checked'{% endif %} id='gold_handfuls' name='gold_handfuls_{{id}}' type='checkbox' />
+            {% endfor %}&nbsp;&nbsp;
+          Bags:
+            {% for i in 1..9 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <input value='0' id='gold_bags' name='gold_bags_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'gold_bags_' ~ id)|default > 0 %} checked='checked'{% endif %} id='gold_bags' name='gold_bags_{{id}}' type='checkbox' />
+            {% endfor %}&nbsp;&nbsp;
+          Chest:
+            <input value='0' id='gold_chest' name='gold_chest' type='hidden' /><input value='1' class='c' {% if variables.gold_chest|default > 0 %} checked='checked'{% endif %} id='gold_chest' name='gold_chest' type='checkbox' />
+        </div>
+      </div>
+      <div class='card inventory' id='card-inventory'>
+        <div class='card-header inventory'>Inventory</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-inventory'><div class='iContent'><textarea class='form-control ivar ivar-inventory mention' id='inventory' name='inventory' rows='3'  >{{variables.inventory|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card description' id='card-description'>
+        <div class='card-header description'>Description</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-description'><div class='iContent'><textarea class='form-control ivar ivar-description mention' id='description' name='description' rows='3'  >{{variables.description|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card background questions' id='card-background questions'>
+        <div class='card-header background questions'>Background Questions</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-background-questions'><div class='iContent'><textarea class='form-control ivar ivar-background-questions mention' id='background_questions' name='background_questions' rows='3'  >{{variables.background_questions|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card connections' id='card-connections'>
+        <div class='card-header connections'>Connections</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-connections'><div class='iContent'><textarea class='form-control ivar ivar-connections mention' id='connections' name='connections' rows='3'  >{{variables.connections|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes mention' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card domain' id='card-domain'>
+        <div class='card-header domain'>Domains</div>
+        <div class='card-body of'>
+          <div class='row'>
+            <div class='col-12 col-md-4'>
+              <div class='ivar od ivar-domain'>
+              {% set x = attribute(variables, 'domain1')|default %}<input value='{{x}}' list='domains' class='form-control ivar ivar-domain' id='domain' name='domain1' />{{ _self.genList(domains, 'domains', x) }}
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class='ivar od ivar-domain'>
+              {% set x = attribute(variables, 'domain2')|default %}<input value='{{x}}' list='domains' class='form-control ivar ivar-domain' id='domain' name='domain2' />{{ _self.genList(domains, 'domains', x) }}
+              </div>
+            </div>
+            <div class='col-12 col-md-4'>
+              <div class='ivar od ivar-domain'>
+              {% set x = attribute(variables, 'domain3')|default %}<input value='{{x}}' list='domains' class='form-control ivar ivar-domain' id='domain' name='domain3' />{{ _self.genList(domains, 'domains', x) }}
+                <span class='note'>Only for level 5 or higher.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12'>
+      <div class='card domaincards' id='card-domaincards'>
+        <div class='card-header domaincards'>Domain Cards</div>
+        <div class='card-body of'>
+          <div class='note'>
+            <b>Note:</b> Domain cards need to be defined as separate stat blocks <a href='/heroes/sheet/choose?templateId=18319'>here</a>, existing ones can be found <a href='/community/rpg/system/dheart?template=18319' target='_new'>here</a>.<br>
+            What you add here is the name (for reference), and the blockid of the domain card (to make the card show up on your character sheet).<br>
+            The textarea below is for customizing, eg. a description of how your 'Rune Ward' looks like, etc.
+          </div>
+          <div class='row'>
+            {% for i in 1..50 %}
+              <div class='col-12 col-md-6'>
+                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                <table class='table domaincard'>
+                  <tr>
+                    <th class='ilbl od ilbl-domain-card-name'><label for='domain_card_name'><b>Name</b></label></th>
+                    <td class='ivar od ivar-domain-card-name'><input value='{{attribute(variables, 'domain_card_name_' ~ id)|default}}' class='form-control ivar ivar-domain-card-name' id='domain_card_name' name='domain_card_name_{{id}}' type='text' /></td>
+                    <th class='ilbl od ilbl-domain-card-id c' width='60px' title='Block ID of the Domain Card stat block'><label for='domain_card_id'>Block</label></th>
+                    <td class='ivar od ivar-domain-card-id' width='100px'><input value='{{attribute(variables, 'domain_card_id_' ~ id)|default}}' class='form-control ivar ivar-domain-card-id c' id='domain_card_id' name='domain_card_id_{{id}}' type='integer' /></td>
+                  </tr>
+                  <tr>
+                    <td class='ivar od' colspan=2>
+                      <input value='0' id='domain_card_active_{{id}}' name='domain_card_active_{{id}}' type='hidden' />
+                      <input value='1' class='checkbox c' {% if attribute(variables, 'domain_card_active_' ~ id)|default > 0 %} checked='checked'{% endif %} id='domain_card_active_{{id}}' name='domain_card_active_{{id}}' type='checkbox' />
+                      Card is active (not in Vault)<br>
+                      <input value='0' id='domain_card_used_{{id}}' name='domain_card_used_{{id}}' type='hidden' />
+                      <input value='1' class='checkbox c' {% if attribute(variables, 'domain_card_used_' ~ id)|default > 0 %} checked='checked'{% endif %} id='domain_card_used_{{id}}' name='domain_card_used_{{id}}' type='checkbox' />
+                      Card has been used (fatigue, rest needed, etc.)
+                    </td>
+                    <td class='ivar od ivar-domain-card-tokens'>Tokens</td>
+                    <td class='ivar od ivar-domain-card-used'>
+                      <input value='{{attribute(variables, 'domain_card_tokens_' ~ id)|default}}' class='form-control ivar ivar-domain-card-tokens c' id='domain_card_tokens' name='domain_card_tokens_{{id}}' type='integer' />
+{#
+                        {% for x in 1..10 %}
+                          {% set xd = x %}{% if xd < 10 %}{% set xd = '0' ~ xd %}{% endif %}{% if xd < 100 %}{% set xd = '0' ~ xd %}{% endif %}
+                          <input value='0' id='domain_card_token_{{xd}}' name='domain_card_token_{{xd}}' type='hidden' />
+                          <input value='1' class='checkbox c' {% if attribute(variables, 'domain_card_token_' ~ xd)|default > 0 %} checked='checked'{% endif %} id='domain_card_token_{{xd}}' name='domain_card_token_{{xd}}' type='checkbox' />
+                        {% endfor %}
+#}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class='ivar od rot90 c'>Domain Card<br>Customization</td>
+                    <td class='ivar od ivar-domain-card-desc' colspan=3><textarea class='form-control ivar ivar-domain-card-desc' id='domain_card_desc' name='domain_card_desc_{{id}}' rows='3' />{{attribute(variables, 'domain_card_desc_' ~ id)|default}}</textarea></td>
+                  </tr>
+                </table>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
