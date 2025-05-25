@@ -1,0 +1,27 @@
+﻿{% import _self as sheet %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set ancestries = { "Clank": 1, "Drakona": 1, "Dwarf": 1, "Elf": 1, "Faerie": 1, "Faun": 1, "Firbolg": 1, "Fungril": 1, "Galapa": 1, "Giant": 1, "Goblin": 1, "Halfling": 1, "Human": 1, "Infernis": 1, "Katari": 1, "Orc": 1, "Ribbet": 1, "Simiah": 1 } %}
+<div class='container-fluid sheet-daggerheart-ancestrycard form iscard'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card ancestry' id='card-ancestry'>
+        <div class='card-header ancestry'>Ancestry Card</div>
+        <div class='card-body of'>
+          {% set eo = 'od' %}
+          <table class='table ancestrycard'>
+            <tr>
+              <th class='ilbl od ilbl-name'><label for='name'><b>Ancestry</b></label></th>
+              <td class='ivar {{eo}} ivar-name'>{% set x = variables.name|default %}<input value='{{x}}' list='ancestries' class='form-control ivar ivar-name' id='name' name='name' required=required />{{ _self.genList(ancestries|keys, 'ancestries', x) }}</td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-desc' colspan=2><label for='desc'><b>Description</b></label></th>
+            </tr>
+            <tr>
+              <td class='ivar {{eo}} ivar-desc' colspan=2><textarea class='form-control ivar ivar-desc' id='desc' name='desc' rows='3' />{{variables.desc|default}}</textarea></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+﻿{% import _self as sheet %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set communities = { "Highborne" : 1553645, "Loreborne" : 1553647, "Orderborne" : 1553650, "Ridgeborne" : 1553651, "Seaborne" : 1553653, "Slyborne" : 1553654, "Underborne" : 1553655, "Wanderborne" : 1553656, "Wildborne" : 1553657 } %}
+<div class='container-fluid sheet-daggerheart-communitycard form iscard'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card community' id='card-community'>
+        <div class='card-header community'>Community Card</div>
+        <div class='card-body of'>
+          {% set eo = 'od' %}
+          <table class='table communitycard'>
+            <tr>
+              <th class='ilbl od ilbl-name'><label for='name'><b>Community</b></label></th>
+              <td class='ivar {{eo}} ivar-name'>{% set x = variables.name|default %}<input value='{{x}}' list='communities' class='form-control ivar ivar-name' id='name' name='name' required=required />{{ _self.genList(communities|keys, 'communities', x) }}</td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-desc' colspan=2><label for='desc'><b>Description</b></label></th>
+            </tr>
+            <tr>
+              <td class='ivar {{eo}} ivar-desc' colspan=2><textarea class='form-control ivar ivar-desc' id='desc' name='desc' rows='3' />{{variables.desc|default}}</textarea></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

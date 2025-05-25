@@ -1,0 +1,190 @@
+﻿<div class='container-fluid ffxiv'>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card personal1' id='card-personal1'>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl ilbl-name'><label for='name'>Name</label></th><td class='ivar ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' placeholder='Name of the hero' type='text' required=required /></td></tr>
+            <tr><th class='ilbl ilbl-race'><label for='race'>Race</label></th><td class='ivar ivar-race'>
+              <select  class='form-control ivar ivar-race' id='race' name='race'>
+                <option value='hyur' {% if variables.race|default == 'hyur' %}selected='selected' {% endif %} > Hyur </option>
+                <option value='elezen' {% if variables.race|default == 'elezen' %}selected='selected' {% endif %} > Elezen </option>
+                <option value='lalafell' {% if variables.race|default == 'lalafell' %}selected='selected' {% endif %} > Lalafell </option>
+                <option value='miqote' {% if variables.race|default == 'miqote' %}selected='selected' {% endif %} > Miqote </option>
+                <option value='roegadyn' {% if variables.race|default == 'roegadyn' %}selected='selected' {% endif %} > Roegadyn </option>
+                <option value='aura' {% if variables.race|default == 'aura' %}selected='selected' {% endif %} > Au Ra </option>
+                <option value='viera' {% if variables.race|default == 'viera' %}selected='selected' {% endif %} > Viera </option>
+                <option value='hrothgar' {% if variables.race|default == 'hrothgar' %}selected='selected' {% endif %} > Hrothgar </option>
+              </select></td></tr>
+            <tr><th class='ilbl ilbl-job'><label for='job'>Role / Job</label></th><td class='ivar ivar-job'>
+              <select  class='form-control ivar ivar-job' id='job' name='job'>
+                <option value='paladin' {% if variables.job|default == 'paladin' %}selected='selected' {% endif %} > Paladin (Tank) </option>
+                <option value='darkknight' {% if variables.job|default == 'darkknight' %}selected='selected' {% endif %} > Dark Knight (Tank) </option>
+                <option value='warrior' {% if variables.job|default == 'warrior' %}selected='selected' {% endif %} > Warrior (Tank) </option>
+                <option value='whitemage' {% if variables.job|default == 'whitemage' %}selected='selected' {% endif %} > White Mage (Healer) </option>
+                <option value='scholar' {% if variables.job|default == 'scholar' %}selected='selected' {% endif %} > Scholar (Healer) </option>
+                <option value='astrologian' {% if variables.job|default == 'astrologian' %}selected='selected' {% endif %} > Astrologian (Healer) </option>
+                <option value='monk' {% if variables.job|default == 'monk' %}selected='selected' {% endif %} > Monk (Melee DPS) </option>
+                <option value='dragoon' {% if variables.job|default == 'dragoon' %}selected='selected' {% endif %} > Dragoon (Melee DPS) </option>
+                <option value='ninja' {% if variables.job|default == 'ninja' %}selected='selected' {% endif %} > Ninja (Melee DPS) </option>
+                <option value='bard' {% if variables.job|default == 'bard' %}selected='selected' {% endif %} > Bard (Ranged DPS) </option>
+                <option value='machinist' {% if variables.job|default == 'machinist' %}selected='selected' {% endif %} > Machinist (Ranged DPS) </option>
+                <option value='blackmage' {% if variables.job|default == 'blackmage' %}selected='selected' {% endif %} > Black Mage (Caster DPS) </option>
+                <option value='summoner' {% if variables.job|default == 'summoner' %}selected='selected' {% endif %} > Summoner (Caster DPS) </option>
+              </select></td></tr>
+            <tr><th class='ilbl ilbl-level'><label for='level'>Level</label></th><td class='ivar ivar-level c'><input value='{{variables.level|default}}' class='form-control ivar ivar-level c' id='level' name='level' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-portrait'><label for='portrait'>Portrait</label></th><td class='ivar ivar-portrait'><input value='{{variables.portrait|default}}' class='form-control ivar ivar-portrait c' id='portrait' name='portrait' type='number' placeholder='WA image id'/></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <img class='image' src='/i/6606763/render' title='FFXIV TTRPG Logo' width='450px'>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card primary-attributes' id='card-primary-attributes'>
+        <div class='card-header primary attributes'>Primary Attributes</div>
+        <div class='card-body of'>
+          <table>
+            <tr><th class='ilbl ilbl-str' width='30%'><label for='str'>Strength</label></th><td class='ivar ivar-str c'><input value='{{variables.str|default}}' class='form-control ivar ivar-str c' id='str' name='str' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-dex'><label for='dex'>Dexterity</label></th><td class='ivar ivar-dex c'><input value='{{variables.dex|default}}' class='form-control ivar ivar-dex c' id='dex' name='dex' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-vit'><label for='vit'>Vitality</label></th><td class='ivar ivar-vit c'><input value='{{variables.vit|default}}' class='form-control ivar ivar-vit c' id='vit' name='vit' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-int'><label for='int'>Intelligence</label></th><td class='ivar ivar-int c'><input value='{{variables.int|default}}' class='form-control ivar ivar-int c' id='int' name='int' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-mind'><label for='mind'>Mind</label></th><td class='ivar ivar-mind c'><input value='{{variables.mind|default}}' class='form-control ivar ivar-mind c' id='mind' name='mind' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card secondary-attributes' id='card-secondary-attributes'>
+        <div class='card-header secondary attributes'>Secondary Attributes</div>
+        <div class='card-body of'>
+          <table>
+            <tr><th class='ilbl ilbl-def' width='30%'><label for='def'>Defense</label></th><td class='ivar ivar-def c'><input value='{{variables.def|default}}' class='form-control ivar ivar-def c' id='def' name='def' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-magical-defense'><label for='magical_defense'>Magical Defense</label></th><td class='ivar ivar-magical-defense c'><input value='{{variables.magical_defense|default}}' class='form-control ivar ivar-magical-defense c' id='magical_defense' name='magical_defense' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-vigilance'><label for='vigilance'>Vigilance</label></th><td class='ivar ivar-vigilance c'><input value='{{variables.vigilance|default}}' class='form-control ivar ivar-vigilance c' id='vigilance' name='vigilance' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-speed'><label for='speed'>Speed</label></th><td class='ivar ivar-speed c'><input value='{{variables.speed|default}}' class='form-control ivar ivar-speed c' id='speed' name='speed' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-mp'>
+        <div class='card-header mp'>Mana Points</div>
+        <div class='card-body of'>
+          <table>
+          <tr><th class='ilbl ilbl-mp' width='30%'><label for='mp'>Current</label></th><td class='ivar ivar-mp c'><input value='{{variables.mp|default}}' class='form-control ivar ivar-mp c' id='mp' name='mp' placeholder='0' type='number' /></td></tr>
+          <tr><th class='ilbl ilbl-maxmp'><label for='maxmp'>Max</label></th><td class='ivar ivar-maxmp c'><input value='{{variables.maxmp|default}}' class='form-control ivar ivar-maxmp c' id='maxmp' name='maxmp' placeholder='0' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-hp'>
+        <div class='card-header hp'>Health Points</div>
+        <div class='card-body of'>
+          <table>
+          <tr><th class='ilbl ilbl-hp' width='30%'><label for='hp'>Current</label></th><td class='ivar ivar-hp c'><input value='{{variables.hp|default}}' class='form-control ivar ivar-hp c' id='hp' name='hp' placeholder='0' type='number' /></td></tr>
+          <tr><th class='ilbl ilbl-maxhp'><label for='maxhp'>Max</label></th><td class='ivar ivar-maxhp c'><input value='{{variables.maxhp|default}}' class='form-control ivar ivar-maxhp c' id='maxhp' name='maxhp' placeholder='0' type='number' /></td></tr>
+          <tr><th class='ilbl ilbl-barrier'><label for='barrier'>Barrier</label></th><td class='ivar ivar-barrier c'><input value='{{variables.barrier|default}}' class='form-control ivar ivar-barrier c' id='barrier' name='barrier' placeholder='0' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-profile'>
+        <div class='card-header profile'>Profile</div>
+        <div class='card-body of'>
+          <div class='ivar ivar-profile'><div class='iContent'><textarea class='form-control ivar ivar-profile mention' id='profile' name='profile' rows='3'  >{{variables.profile|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-items'>
+        <div class='card-header items'>Items</div>
+        <div class='card-body of'>
+          <div class='ivar ivar-items'><div class='iContent'><textarea class='form-control ivar ivar-items mention' id='items' name='items' rows='3'  >{{variables.items|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='ivar ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes mention' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card traits-and-other-effects' id='card-traits-and-other-effects'>
+        <div class='card-header traits'>Traits And Other Effects</div>
+        <div class='card-body of'>
+          <table class='table'>
+            {% for i in 1..5 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr><th class='ilbl {{eo}} ilbl-trname'><label for='trname'>Trait</label></th><td class='ivar {{eo}} ivar-trname'><input value='{{attribute(variables, 'trname_' ~ id)|default}}' class='form-control ivar ivar-trname' id='trname' name='trname_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-trtags'><label for='trtags'>Tags</label></th><td class='ivar {{eo}} ivar-trtags'><input value='{{attribute(variables, 'trtags_' ~ id)|default}}' class='form-control ivar ivar-trtags' id='trtags' name='trtags_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-trdescription'><label for='trdescription'>Description</label></th><td class='ivar {{eo}} ivar-trdescription'><div class='iContent'><textarea class='form-control ivar ivar-trdescription mention' id='trdescription' name='trdescription_{{id}}' rows='3'  >{{attribute(variables, 'trdescription_' ~ id)|default}}</textarea></div></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-trres'><label for='trres'>Job Resource</label></th><td class='ivar {{eo}} ivar-trres'><input value='{{attribute(variables, 'trres_' ~ id)|default}}' class='form-control ivar ivar-trres c' id='trres' name='trres_{{id}}' placeholder='0' type='number' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-trmaxres'><label for='trmaxres'>Job Resource (Max)</label></th><td class='ivar {{eo}} ivar-trmaxres'><input value='{{attribute(variables, 'trmaxres_' ~ id)|default}}' class='form-control ivar ivar-trmaxres c' id='trmaxres' name='trmaxres_{{id}}' placeholder='0' type='number' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-lvl'><label for='trlvl'>Minimum Level</label></th><td class='ivar {{eo}} ivar-trlvl'><input value='{{attribute(variables, 'trlvl_' ~ id)|default}}' class='form-control ivar ivar-trlvl c' id='trlvl' name='trlvl_{{id}}' placeholder='0' type='number' /></td></tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card abilities' id='card-abilities'>
+        <div class='card-header abilities'>Abilities</div>
+        <div class='card-body of'>
+          <table class='table'>
+            {% for i in 1..50 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr><th class='ilbl {{eo}} ilbl-abname'><label for='abname'>Ability #{{id}} Name</label></th><td class='ivar {{eo}} ivar-abname'><input value='{{attribute(variables, 'abname_' ~ id)|default}}' class='form-control ivar ivar-abname' id='abname' name='abname_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abtype'><label for='abtype'>Type</label></th><td class='ivar {{eo}} ivar-abtype'>
+                <select  class='form-control ivar ivar-abtype' id='abtype' name='abtype_{{id}}'>
+                  <option value='primary' {% if attribute(variables, 'abtype_' ~ id)|default == 'primary' %}selected='selected' {% endif %} > Primary </option>
+                  <option value='secondary' {% if attribute(variables, 'abtype_' ~ id)|default == 'secondary' %}selected='selected' {% endif %} > Secondary </option>
+                  <option value='instant' {% if attribute(variables, 'abtype_' ~ id)|default == 'instant' %}selected='selected' {% endif %} > Instant </option>
+                  <option value='limitbreak' {% if attribute(variables, 'abtype_' ~ id)|default == 'limitbreak' %}selected='selected' {% endif %} > Limit Break </option>
+                </select></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abtags'><label for='abtags'>Tags</label></th><td class='ivar {{eo}} ivar-abtags'><input value='{{attribute(variables, 'abtags_' ~ id)|default}}' class='form-control ivar ivar-abtags' id='abtags' name='abtags_{{id}}' placeholder='eg. Trait, Enhancement, ...' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abcost'><label for='abcost'>Cost (MP)</label></th><td class='ivar {{eo}} ivar-abcost'><input value='{{attribute(variables, 'abcost_' ~ id)|default}}' class='form-control ivar ivar-abcost' id='abcost' name='abcost_{{id}}' type='number' placeholder='eg. 1' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abtarget'><label for='abtarget'>Target</label></th><td class='ivar {{eo}} ivar-abtarget'><input value='{{attribute(variables, 'abtarget_' ~ id)|default}}' class='form-control ivar ivar-abtarget' id='abtarget' name='abtarget_{{id}}' type='text' placeholder='eg. Single' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abrange'><label for='abrange'>Range</label></th><td class='ivar {{eo}} ivar-abrange'><input value='{{attribute(variables, 'abrange_' ~ id)|default}}' class='form-control ivar ivar-abrange' id='abrange' name='abrange_{{id}}' type='text' placeholder='eg. 10 squares' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abcheck'><label for='abcheck'>Check</label></th><td class='ivar {{eo}} ivar-abcheck'><input value='{{attribute(variables, 'abcheck_' ~ id)|default}}' class='form-control ivar ivar-abcheck' id='abcheck' name='abcheck_{{id}}' type='text' placeholder='eg. MND (d20+5)' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abcr'><label for='abcr'>CR</label></th><td class='ivar {{eo}} ivar-abcr'><input value='{{attribute(variables, 'abcr_' ~ id)|default}}' class='form-control ivar ivar-abcr' id='abcr' name='abcr_{{id}}' type='text' placeholder="eg. Target's Magic Defense"/></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abtrigger'><label for='abtrigger'>Trigger</label></th><td class='ivar {{eo}} ivar-abtrigger'><input value='{{attribute(variables, 'abtrigger_' ~ id)|default}}' class='form-control ivar ivar-abtrigger' id='abcr' name='abtrigger_{{id}}' type='text' placeholder='eg. When any character ends their turn' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abcombo'><label for='abcombo'>Combo</label></th><td class='ivar {{eo}} ivar-abcombo'><input value='{{attribute(variables, 'abcombo_' ~ id)|default}}' class='form-control ivar ivar-abcombo' id='abcr' name='abcombo_{{id}}' type='text' placeholder='name(s) of connected combo action(s)' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abbaseeffect'><label for='abbaseeffect'>Base Effect</label></th><td class='ivar {{eo}} ivar-abbaseeffect'><textarea class='form-control ivar ivar-abbaseeffect mention' id='abbaseeffect' name='abbaseeffect_{{id}}' rows='3'  >{{attribute(variables, 'abbaseeffect_' ~ id)|default}}</textarea></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abdirecthit'><label for='abdirecthit'>Direct Hit</label></th><td class='ivar {{eo}} ivar-abdirecthit'><input value='{{attribute(variables, 'abdirecthit_' ~ id)|default}}' class='form-control ivar ivar-abdirecthit' id='abdirecthit' name='abdirecthit_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-ablimitationtype'><label for='ablimitationtype'>Limitation Type</label></th><td class='ivar {{eo}} ivar-ablimitationtype'>
+                <select  class='form-control ivar ivar-ablimitationtype' id='ablimitationtype' name='ablimitationtype_{{id}}'>
+                  <option value='phase' {% if attribute(variables, 'ablimitationtype_' ~ id)|default == 'phase' %}selected='selected' {% endif %} > Phase </option>
+                  <option value='round' {% if attribute(variables, 'ablimitationtype_' ~ id)|default == 'round' %}selected='selected' {% endif %} > Round </option>
+                  <option value='encounter' {% if attribute(variables, 'ablimitationtype_' ~ id)|default == 'encounter' %}selected='selected' {% endif %} > Encounter </option>
+                  <option value='session' {% if attribute(variables, 'ablimitationtype_' ~ id)|default == 'session' %}selected='selected' {% endif %} > Session </option>
+                </select></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-ablimitation-curr'><label for='ablimitation_curr'>Limitation (Used)</label></th><td class='ivar {{eo}} ivar-ablimitation-curr'><input value='{{attribute(variables, 'ablimitation_curr_' ~ id)|default}}' class='form-control ivar ivar-ablimitation-curr c' id='ablimitation_curr' name='ablimitation_curr_{{id}}' type='number' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-ablimitation-max'><label for='ablimitation_max'>Limitation (Max)</label></th><td class='ivar {{eo}} ivar-ablimitation-max'><input value='{{attribute(variables, 'ablimitation_max_' ~ id)|default}}' class='form-control ivar ivar-ablimitation-max c' id='ablimitation_max' name='ablimitation_max_{{id}}' type='number' /></td></tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

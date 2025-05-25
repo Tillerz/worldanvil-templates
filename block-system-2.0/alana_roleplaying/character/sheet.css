@@ -1,0 +1,199 @@
+* {
+  --HeaderFont: SvevaVersal;
+ --default-font: PT Sans Narrow
+}
+.sheet-alana-roleplaying-light {
+  background: url(https://www.worldanvil.com/i/5530015/render) ;
+  background-size: contain;
+ --light-color: #F7F6EF30;
+ --dark-color: #63302C30;
+ --light-color-text: #F7F6EF;
+ --dark-color-text: #63302C;
+ --dark-color-40: #e2dacaa0;
+ --dark-color-30: #d2cabaa0;
+ --dark-color-20: #f2eadaa0;
+ --dark-color-10: #F8F7F5a0;
+ --dark-color-00: #F8F7F5a0;
+ --title-color: #834368;
+ --header-background-color: #834368c0;
+ --dark-color-00 #834368;
+ --header-color: #F8F7F5;
+ --border-color: #834368;
+ --note-background: #E0E0FF;
+ --alert-color: #FF0000;
+ --grey: #a0a0a0;
+}
+.sheet-alana-roleplaying-dark {
+ --light-color: #000000d0; /* #302d2d30; */
+ --dark-color: #F8F7F530;
+ --light-color-text: #302d2d;
+ --dark-color-text: #F8F7F5;
+ --dark-color-20: #383838a0;
+ --dark-color-00: #3f3f3fa0;
+ --dark-color-40: #3f3f3fa0;
+ --dark-color-30: #303030a0;
+ --dark-color-10: #303030a0;
+ --title-color: #834368;
+ --header-background-color: #834368c0;
+ --header-color: #F8F7F5;
+ --border-color: #834368;
+ --note-background: #18185a;
+ --alert-color: #c00404;
+ --grey: #a0a0a0;
+}
+.container-fluid {
+ color: var(--dark-color-text) !important;
+ background-color: var(--light-color) ;
+ font-size: 20px !important;
+ font-family: var(--default-font) !important;
+ padding: 20px
+}
+.table td,  .table th,  .table>tbody>tr>td { border: none; vertical-align:middle}
+.table { width:100%; border-spacing: 2px; margin-bottom: 0}
+.form-control,  .form-control:focus {
+ font-size: 20px !important;
+ font-family: var(--default-font) !important;
+ color: var(--dark-color-text) !important;
+ background-color: var(--light-color) !important
+}
+.card {
+ background-color: var(--light-color) !important;
+ margin: 5px;
+ color: var(--dark-color-text)!important;
+ border: 2px solid var(--border-color) !important;
+ border-radius: 0
+}
+.card-header {
+ color: var(--header-color) !important;
+ background-color: var(--header-background-color) !important;
+ font-size:23px;
+ font-family: var(--HeaderFont) ;
+ font-weight: 800;
+ text-align: center;
+ padding: 8px 2px;
+ margin: 0px;
+ border-bottom: 2px solid var(--border-color) !important
+}
+.card-body {
+ border:none;
+ color: var(--dark-color-text) !important;
+ background-color: var(--light-color) !important;
+ font-family: var(--default-font) ;
+ font-weight: 400;
+ font-size: 20px;
+ padding: 0px;
+ margin: 0px
+}
+.lbl,  .ilbl { font-weight:800; padding: 0px 3px}
+.ilbl-shadow,  .lbl-shadow { margin-top:2px}
+th.ilbl,  .lbl,  .ilbl { color: var(--dark-color-text) ; background-color:var(--light-color) ; padding-left:10px; padding-right:10px}
+td.var { padding-left:10px}
+th.lbl,  th.ilbl,  td.var,  td.ivar,  th.slbl,  td.svar,  th.svar { border-left: 1px dotted var(--border-color) !important}
+th.lbl:first-child,  th.slbl:first-child,  th.ilbl:first-child,  td.var:first-child,  td.svar:first-child,  td.ivar:first-child,  th.svar:first-child { 
+ border-left:0 !important
+}
+.var,  .ivar { padding: 0px 3px; color: var(--dark-color-text) ; background-color:var(--light-color) }
+.lbl.od,  .ilbl.od { background-color: var(--dark-color-40) ;
+ color: var(--dark-color-text)
+}
+.lbl.ev,  .ilbl.ev { background-color: var(--dark-color-30) ;
+color: var(--dark-color-text)
+}
+.var.od,  .ivar.od { background-color: var(--dark-color-00) ;
+ color: var(--dark-color-text)
+}
+.var.ev,  .ivar.ev { background-color: var(--dark-color-20) ;
+ color: var(--dark-color-text)
+}
+.note { background: var(--note-background)}
+.pd2 { padding: 2px !important; margin-bottom: 0; padding-top: 8px !important}
+.c { text-align:center; padding-left:0 !important; padding-right: 0 !important}
+.l { text-align:left; padding-right: 0 !important}
+.r { text-align:right; padding-left: 0 !important}
+.of { overflow-y: auto; width: 100%}
+small,  small a { font-size:10px; color: var(--dark-color-text) }
+.attributes .card-body { text-align:center; padding: 0}
+.characteristics .var { text-align:right; padding-right:20px !important}
+.attributes .var {
+  line-height: .8em;
+  border-radius: 80px;
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--border-color) !important;
+  text-align: center;
+  background-color: var(--light-color) !important;
+  overflow: hidden;
+  margin: 10px auto;
+  color: var(--dark-color-text) !important;
+  padding-top: 20px;
+  font-size: 40px;
+  font-weight: bold
+}
+.data .var { text-align:center}
+.fa-square { padding: 0px 1px!important;}
+.credit-artist-name,  .credit-art-title,  .credit-artist-name a,  .credit-art-title a { font-size:12px}
+input[required] { border: 2px solid var(--alert-color) !important}
+select.form-control { padding: 0px 2px}
+input::-webkit-outer-spin-button,  input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0}
+input[type=number],  input[type=number]:focus { -moz-appearance: textfield; text-align:center}
+input.form-control,  select.form-control {
+ background-color: var(--light-color) !important;
+ border: 1px solid var(--border-color) !important
+}
+textarea.form-control { min-height: 3em!important}
+.btn-link { background:none !important; border: none !important}
+button:disabled,  button:not(
+:disabled
+),  .btn-link:hover { color: var(--dark-color-text) !important}
+input.form-control {
+  background-color: var(--light-color) !important;
+  border: 1px solid var(--border-color) !important;
+  height: 30px;
+  margin: 6px 0px
+}
+input.form-control { min-width:30px; max-width: 90%; margin-left:4px}
+.float-right { float:right; background:none !important}
+.float-left { float:left; background:none !important; padding-left:8px; padding-top:5px }
+.grey { color: var(--grey) !important; font-style:italic}
+.green { background-color: #40800015}
+.var-skill-value.green { border:2px solid var(--border-color) !important;}
+.card.skills .col-12.col-md-4 { padding-right: 2px; padding-left: 0px }
+.card.skills .row,  .card.armor .row { margin:0px}
+.card.armor .col-md-4,  .card.armor .col-12,  .card.skills .col-12.col-md-6 { padding:0px}
+.table.skills th { padding:2px 2px}
+.table.skills td { padding:2px}
+.table.skills .lbl,  .table.skills .var { padding-left:2px; padding-right:2px}
+.card-header:first-child { border-radius: 0 }
+.vam { vertical-align: middle;}
+.marked { font-weight:800; text-decoration: underline}
+.table.skills tbody tr:nth-of-type( odd )
+{
+ background-color: var(--dark-color-10 ) !important
+}
+h5 { margin-top:0px !important; padding-top: 5px}
+ul br { display: inline-flex }
+.personality-traits .form-control { width: 80px; display: inline}
+.tracker .ivar { padding: 2px 10px}
+.tt { font-size:14px; padding-top:4px}
+h1 { font-family: var(--HeaderFont) ; color: var(--title-color) }
+.containerArchetype {
+   font-size: 1024px;
+   margin: 3rem;
+   position: absolute;
+   top: 500px;
+   left: 50px;
+   z-index: 0;
+   /* transform: rotate(300deg); */
+   /* -webkit-transform: rotate(300deg); */
+   color: #c6afaf;
+}
+select.form-control {
+   min-width: 30px;
+   max-width: 90%;
+   margin-left: 4px;
+   margin-top: 8px;}
+::-webkit-input-placeholder { opacity: .5; color: var(--dark-color-text) !important}
+input::-webkit-outer-spin-button,  input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0}
+input[type=number],  input[type=number]:focus { -moz-appearance: textfield; text-align:center}
+tr:nth-of-type(odd ) td { background-color: var(--dark-color-00) !important}
+tr:nth-of-type(even ) td { background-color: var(--dark-color-20) !important}

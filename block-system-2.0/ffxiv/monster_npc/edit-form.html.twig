@@ -1,0 +1,136 @@
+﻿<div class='container-fluid ffxiv'>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card personal' id='card-personal'>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl ilbl-name'><label for='name'>Name</label></th><td class='ivar ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' placeholder='Name of the hero' type='text' required=required /></td></tr>
+            <tr><th class='ilbl ilbl-size'><label for='size'>Size</label></th><td class='ivar ivar-size'><input value='{{variables.size|default}}' class='form-control ivar ivar-size c' id='size' name='size' type='text' /></td></tr>
+            <tr><th class='ilbl ilbl-clas'><label for='clas'>Classification</label></th><td class='ivar ivar-clas'><input value='{{variables.clas|default}}' class='form-control ivar ivar-clas c' id='clas' name='clas' type='text' placeholder='eg. Beastkin' /></td></tr>
+            <tr><th class='ilbl ilbl-portrait'><label for='portrait'>Portrait</label></th><td class='ivar ivar-portrait'><input value='{{variables.portrait|default}}' class='form-control ivar ivar-portrait c' id='portrait' name='portrait' type='number' placeholder='WA image id'/></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card primary-attributes' id='card-primary-attributes'>
+        <h2 class='rcol'>Primary Attributes</h2>
+        <div class='card-body of'>
+          <table>
+            <tr><th class='ilbl ilbl-str' width='30%'><label for='str'>Strength</label></th><td class='ivar ivar-str c'><input value='{{variables.str|default}}' class='form-control ivar ivar-str c' id='str' name='str' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-dex'><label for='dex'>Dexterity</label></th><td class='ivar ivar-dex c'><input value='{{variables.dex|default}}' class='form-control ivar ivar-dex c' id='dex' name='dex' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-vit'><label for='vit'>Vitality</label></th><td class='ivar ivar-vit c'><input value='{{variables.vit|default}}' class='form-control ivar ivar-vit c' id='vit' name='vit' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-int'><label for='int'>Intelligence</label></th><td class='ivar ivar-int c'><input value='{{variables.int|default}}' class='form-control ivar ivar-int c' id='int' name='int' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-mind'><label for='mind'>Mind</label></th><td class='ivar ivar-mind c'><input value='{{variables.mind|default}}' class='form-control ivar ivar-mind c' id='mind' name='mind' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card secondary-attributes' id='card-secondary-attributes'>
+        <h2 class='rcol'>Secondary Attributes</h2>
+        <div class='card-body of'>
+          <table>
+            <tr><th class='ilbl ilbl-def' width='30%'><label for='def'>Defense</label></th><td class='ivar ivar-def c'><input value='{{variables.def|default}}' class='form-control ivar ivar-def c' id='def' name='def' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-magical-defense'><label for='magical_defense'>Magical Defense</label></th><td class='ivar ivar-magical-defense c'><input value='{{variables.magical_defense|default}}' class='form-control ivar ivar-magical-defense c' id='magical_defense' name='magical_defense' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-vigilance'><label for='vigilance'>Vigilance</label></th><td class='ivar ivar-vigilance c'><input value='{{variables.vigilance|default}}' class='form-control ivar ivar-vigilance c' id='vigilance' name='vigilance' type='number' /></td></tr>
+            <tr><th class='ilbl ilbl-speed'><label for='speed'>Speed</label></th><td class='ivar ivar-speed c'><input value='{{variables.speed|default}}' class='form-control ivar ivar-speed c' id='speed' name='speed' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-mp'>
+        <h2 class='rcol'>Mana Points</h2>
+        <div class='card-body of'>
+          <table>
+          <tr><th class='ilbl ilbl-maxmp'><label for='maxmp'>Max</label></th><td class='ivar ivar-maxmp c'><input value='{{variables.maxmp|default}}' class='form-control ivar ivar-maxmp c' id='maxmp' name='maxmp' placeholder='0' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-hp'>
+        <h2 class='rcol'>Health Points</h2>
+        <div class='card-body of'>
+          <table>
+          <tr><th class='ilbl ilbl-maxhp'><label for='maxhp'>Max</label></th><td class='ivar ivar-maxhp c'><input value='{{variables.maxhp|default}}' class='form-control ivar ivar-maxhp c' id='maxhp' name='maxhp' placeholder='0' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card' id='card-notes'>
+        <h2 class='rcol'>Notes</h2>
+        <div class='card-body of'>
+          <div class='ivar ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes mention' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card' id='card-traits'>
+        <h2 class='rcol'>Traits</h2>
+        <div class='card-body of'>
+          <table class='table'>
+            {% for i in 1..5 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr><th class='ilbl {{eo}} ilbl-trname' width='15%'><label for='trname'>Trait</label></th><td class='ivar {{eo}} ivar-trname'><input value='{{attribute(variables, 'trname_' ~ id)|default}}' class='form-control ivar ivar-trname' id='trname' name='trname_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-trtags'><label for='trtags'>Tags</label></th><td class='ivar {{eo}} ivar-trtags'><input value='{{attribute(variables, 'trtags_' ~ id)|default}}' class='form-control ivar ivar-trtags' id='trtags' name='trtags_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-trdescription'><label for='trdescription'>Description</label></th><td class='ivar {{eo}} ivar-trdescription'><div class='iContent'><textarea class='form-control ivar ivar-trdescription mention' id='trdescription' name='trdescription_{{id}}' rows='3'  >{{attribute(variables, 'trdescription_' ~ id)|default}}</textarea></div></td></tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card abilities' id='card-abilities'>
+        <h2 class='rcol'>Abilities</h2>
+        <div class='card-body of'>
+          <table class='table'>
+            {% for i in 1..10 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr><th class='ilbl {{eo}} ilbl-abname' width='15%'><label for='abname'>Ability #{{id}} Name</label></th><td class='ivar {{eo}} ivar-abname'><input value='{{attribute(variables, 'abname_' ~ id)|default}}' class='form-control ivar ivar-abname' id='abname' name='abname_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abtags'><label for='abtags'>Tags</label></th><td class='ivar {{eo}} ivar-abtags'><input value='{{attribute(variables, 'abtags_' ~ id)|default}}' class='form-control ivar ivar-abtags' id='abtags' name='abtags_{{id}}' placeholder='eg. Trait, Enhancement, ...' type='text' /></td></tr>
+              {% set checked = '' %}{% if attribute(variables, 'abinvk_' ~ id)|default > 0 %}{% set checked = 'checked=checked' %}{% endif %}
+              <tr><th class='ilbl {{eo}} ilbl-abinvk'><label for='abinvk'>Invoked</label></th><td class='ivar {{eo}} ivar-abinvk'><input value='1' class='form-control ivar ivar-abinvk' id='abinvk' name='abinvk_{{id}}' type='checkbox' {{checked}} /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abcost'><label for='abcost'>Cost (MP)</label></th><td class='ivar {{eo}} ivar-abcost'><input value='{{attribute(variables, 'abcost_' ~ id)|default}}' class='form-control ivar ivar-abcost' id='abcost' name='abcost_{{id}}' type='number' placeholder='eg. 1' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abmorigin'><label for='abmorigin'>Origin</label></th><td class='ivar {{eo}} ivar-abmorigin'><input value='{{attribute(variables, 'abmorigin_' ~ id)|default}}' class='form-control ivar ivar-abmorigin' id='abmorigin' name='abmorigin_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abtarget'><label for='abtarget'>Target</label></th><td class='ivar {{eo}} ivar-abtarget'><input value='{{attribute(variables, 'abtarget_' ~ id)|default}}' class='form-control ivar ivar-abtarget' id='abtarget' name='abtarget_{{id}}' type='text' placeholder='eg. Single' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abrange'><label for='abrange'>Range</label></th><td class='ivar {{eo}} ivar-abrange'><input value='{{attribute(variables, 'abrange_' ~ id)|default}}' class='form-control ivar ivar-abrange' id='abrange' name='abrange_{{id}}' type='text' placeholder='eg. 10 squares' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abcheck'><label for='abcheck'>Check</label></th><td class='ivar {{eo}} ivar-abcheck'><input value='{{attribute(variables, 'abcheck_' ~ id)|default}}' class='form-control ivar ivar-abcheck' id='abcheck' name='abcheck_{{id}}' type='text' placeholder='eg. MND (d20+5)' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abcr'><label for='abcr'>CR</label></th><td class='ivar {{eo}} ivar-abcr'><input value='{{attribute(variables, 'abcr_' ~ id)|default}}' class='form-control ivar ivar-abcr' id='abcr' name='abcr_{{id}}' type='text' placeholder="eg. Target's Magic Defense"/></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abtrigger'><label for='abtrigger'>Trigger</label></th><td class='ivar {{eo}} ivar-abtrigger'><input value='{{attribute(variables, 'abtrigger_' ~ id)|default}}' class='form-control ivar ivar-abtrigger' id='abcr' name='abtrigger_{{id}}' type='text' placeholder='eg. When any character ends their turn' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abcombo'><label for='abcombo'>Combo</label></th><td class='ivar {{eo}} ivar-abcombo'><input value='{{attribute(variables, 'abcombo_' ~ id)|default}}' class='form-control ivar ivar-abcombo' id='abcr' name='abcombo_{{id}}' type='text' placeholder='name(s) of connected combo action(s)' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abbaseeffect'><label for='abbaseeffect'>Base Effect</label></th><td class='ivar {{eo}} ivar-abbaseeffect'><textarea class='form-control ivar ivar-abbaseeffect mention' id='abbaseeffect' name='abbaseeffect_{{id}}' rows='3'  >{{attribute(variables, 'abbaseeffect_' ~ id)|default}}</textarea></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abdirecthit'><label for='abdirecthit'>Direct Hit</label></th><td class='ivar {{eo}} ivar-abdirecthit'><input value='{{attribute(variables, 'abdirecthit_' ~ id)|default}}' class='form-control ivar ivar-abdirecthit' id='abdirecthit' name='abdirecthit_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abmarea'><label for='abmarea'>Marker Area</label></th><td class='ivar {{eo}} ivar-abmarea'><input value='{{attribute(variables, 'abmarea_' ~ id)|default}}' class='form-control ivar ivar-abmarea' id='abmarea' name='abmarea_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abmtrigger'><label for='abmtrigger'>Marker Trigger</label></th><td class='ivar {{eo}} ivar-abmtrigger'><input value='{{attribute(variables, 'abmtrigger_' ~ id)|default}}' class='form-control ivar ivar-abmtrigger' id='abmtrigger' name='abmtrigger_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-abmeffect'><label for='abmeffect'>Marker Effect</label></th><td class='ivar {{eo}} ivar-abmeffect'><input value='{{attribute(variables, 'abmeffect_' ~ id)|default}}' class='form-control ivar ivar-abmeffect' id='abmeffect' name='abmeffect_{{id}}' type='text' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-ablimitationtype'><label for='ablimitationtype'>Limitation Type</label></th><td class='ivar {{eo}} ivar-ablimitationtype'>
+                <select  class='form-control ivar ivar-ablimitationtype' id='ablimitationtype' name='ablimitationtype_{{id}}'>
+                  <option value='phase' {% if attribute(variables, 'ablimitationtype_' ~ id)|default == 'phase' %}selected='selected' {% endif %} > Phase </option>
+                  <option value='round' {% if attribute(variables, 'ablimitationtype_' ~ id)|default == 'round' %}selected='selected' {% endif %} > Round </option>
+                  <option value='encounter' {% if attribute(variables, 'ablimitationtype_' ~ id)|default == 'encounter' %}selected='selected' {% endif %} > Encounter </option>
+                  <option value='session' {% if attribute(variables, 'ablimitationtype_' ~ id)|default == 'session' %}selected='selected' {% endif %} > Session </option>
+                </select></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-ablimitation-curr'><label for='ablimitation_curr'>Limitation (Used)</label></th><td class='ivar {{eo}} ivar-ablimitation-curr'><input value='{{attribute(variables, 'ablimitation_curr_' ~ id)|default}}' class='form-control ivar ivar-ablimitation-curr c' id='ablimitation_curr' name='ablimitation_curr_{{id}}' type='number' /></td></tr>
+              <tr><th class='ilbl {{eo}} ilbl-ablimitation-max'><label for='ablimitation_max'>Limitation (Max)</label></th><td class='ivar {{eo}} ivar-ablimitation-max'><input value='{{attribute(variables, 'ablimitation_max_' ~ id)|default}}' class='form-control ivar ivar-ablimitation-max c' id='ablimitation_max' name='ablimitation_max_{{id}}' type='number' /></td></tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

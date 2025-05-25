@@ -1,0 +1,26 @@
+{% import _self as sheet %}
+{% set domains = { "Arcana" : 6664763, "Blade" : 6664764, "Bone" : 6664765, "Codex" : 6664766, "Grace" : 6664767, "Midnight" : 6664768, "Sage" : 6664769, "Splendor" : 6664770, "Valor": 6664774 } %}
+<div class='container-fluid sheet-daggerheart-domaincard sheet iscard'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card domain' id='card-domain'>{% set domain = variables.domain|default %}
+        <div class='card-header domain'>{{variables.name|default}} <span class='fr'>{{variables.cost|default}}<i class="fa-solid fa-bolt"></i></span></div>
+        <div class='card-body of'>
+          {% set img = domains[domain]|default %}{% if img > 0 %}
+          <div class='row'>
+            <div class='col-12 col-md-2 hidden-xs hidden-sm d-none d-md-block'>
+              <img src='/i/{{img}}/render' width=150px>
+            </div>
+            <div class='col-12 col-md-10'>
+          {% endif %}
+              <div class='sub'>Level {{variables.level|default}} {{variables.type|default}}, {{domain}}</div>
+              {{variables.desc|default}}
+          {% if img > 0 %}
+             </div>
+          {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

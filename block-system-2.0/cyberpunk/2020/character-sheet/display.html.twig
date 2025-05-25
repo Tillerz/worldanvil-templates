@@ -29,9 +29,9 @@
         {% endfor %}
     </div>{% endmacro genLifeEventsSection %}
 {# ******************************************************************************************************************************** #}
-{% macro genLifeEvent(id, year, event) %}{% if event != "" %}
-    <div class="col-2 col-md-1 border border-dark">{{ year }}</div>
-    <div class="col-10 col-md-11 border border-dark">{{ event }}</div>
+{% macro genLifeEvent(id = 0, year = "", event = "") %}{% if year != "" %}
+    <div class="col-2 col-md-1 border border-dark">{{ year|default }}</div>
+    <div class="col-10 col-md-11 border border-dark">{{ event|default }}</div>
 {% endif %}{% endmacro genLifeEvent %}
 {# ******************************************************************************************************************************** #}
 {% macro genSkillSection(variables, statName, statSkillNames, statBase, statCurr) %}{% for skillName in statSkillNames %}{% set id = loop.index %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% set valVariable = statName ~ '_SkillValue_' ~ id %}{{ sheet.genSkill(id, statName, skillName, attribute(variables, statName ~ '_SkillValue_' ~ id), attribute(variables, statName ~ '_SkillIP_' ~ id), attribute(variables, statName ~ '_SkillChipped_' ~ id), statCurr) }}{% endfor %}{% endmacro genSkillSection %}
@@ -496,13 +496,36 @@
                     </div>
                 </div>
             </div>
-            {{ sheet.genLifeEventsSection(variables) }}
+            {# sheet.genLifeEventsSection(variables) #}          
         </div>
     </div>
+    {% if variables.lifeEvents|default|trim != "" %}
+    <br>
+    <div class="row p-0">
+        <div class="col-12 bg-black border border-dark">Life Events <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-target="#collapseLifeEvents" aria-expanded="true" aria-controls="collapseLifeEvents"><em class="fas fa-angle-down"></em></button></div>
+    </div>
+    <div class="row collapse hide" id="collapseLifeEvents">
+        <div class="col-12 border border-dark px-1">
+            {{ variables.lifeEvents|default }}
+        </div>
+    </div>
+    {% endif %}
+    {% if variables.notes|default|trim != "" %}
+    <br>
+    <div class="row p-0">
+        <div class="col-12 bg-black border border-dark">Notes <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNotes" aria-expanded="true" aria-controls="collapseNotes"><em class="fas fa-angle-down"></em></button></div>
+    </div>
+    <div class="row collapse hide" id="collapseNotes">
+        <div class="col-12 border border-dark px-1">
+            {{ variables.notes|default }}
+        </div>
+    </div>
+    {% endif %}
+    <br>
     <div class="row">
         <div class="col-12 text-center">
             <small>
-                Copyright &copy; 1991 by R. Talsorian Games, Inc.<br><a href="/w/sheet-creation/a/sheet-list">Cyberpunk 2020 Character Sheet v1.0</a>, made by Tillerz - 2023-10-22
+                Copyright &copy; 1991 by R. Talsorian Games, Inc.<br><a href="/w/sheet-creation/a/sheet-list">Cyberpunk 2020 Character Sheet v1.01</a>, made by Tillerz - 2024-04-04
             </small>
         </div>
     </div>

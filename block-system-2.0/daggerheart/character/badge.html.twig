@@ -1,0 +1,20 @@
+<div class='container-fluid sheet-daggerheart sheet badge'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card personal' id='card-personal'>
+        <div class='card-header personal'>{{variables.name|default}}</div>
+        <div class='card-body of'>
+            {% set community = variables.community|default %}{% set comcard = communities[community]|default %}
+            {% set ancestry = variables.ancestry|default %}{% set anccard = ancestries[ancestry]|default %}
+            {{community}} {{ancestry}}<br>
+            Level {{variables.level|default}}<br>
+            {{variables.class|default}}, {{variables.subclass|default}}<br>
+            {% if variables.mclass|default != "" %}{{variables.mclass|default}}, {{variables.msubclass|default}}{% endif %}<br>
+            {% set x = attribute(variables, 'domain1')|default %}{% if x != "" %}{{x}}{% endif %}
+            {% set x = attribute(variables, 'domain2')|default %}{% if x != "" %}, {{x}}{% endif %}
+            {% set x = attribute(variables, 'domain3')|default %}{% if x != "" %}, {{x}}{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

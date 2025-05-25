@@ -1,0 +1,759 @@
+fields:
+# include: include/header.twig
+# include: include/data.twig
+# sheet: Basic Roleplaying
+  # row
+    # col: col-12 col-md-8
+      # card: personal: Personal
+        # card-body
+          # table
+          # width: 30%
+  name:
+    label: "Name"
+    input: string
+    placeholder: "Name of the hero"
+    required: true
+  culture:
+    label: "Culture"
+    input: string
+    placeholder: ""
+  gender:
+    label: "Gender"
+    input: string
+  handedness:
+    label: "Handedness"
+    input: select
+    options:
+      right: right
+      left: left
+      ambidextrous: ambidextrous
+  height:
+    label: "Height"
+    input: string
+  weight:
+    label: "Weight"
+    input: string
+  profession:
+    label: "Profession"
+    input: string
+    placeholder: ""
+  wealth:
+    label: "Wealth"
+    input: string
+    placeholder: ""
+  gods religion:
+    label: "Gods / Religion"
+    input: string
+    placeholder: ""
+  distinctive features:
+    label: "Distinctive Features"
+    input: string
+    placeholder: ""
+  move:
+    label: "Movement (MOV)"
+    input: integer
+  description:
+    label: "Description"
+    input: text
+    rows: 3
+  age:
+    label: "Age"
+    input: integer
+  portrait:
+    label: "Portrait"
+    input: integer
+    render: image
+    placeholder: "WA image ID"
+  player:
+    label: "Player"
+    input: string
+    placeholder: "Your name"
+          # /table
+        # /card-body
+      # /card
+    # /col
+    # col: col-12 col-md-4
+      # card: characteristics: Characteristics
+        # card-body
+          # table
+  str:
+    label: "STR"
+    input: integer
+    placeholder: "3d6"
+    description: "Strength"
+    required: true
+  effort:
+    label: "Effort Roll"
+    input: integer
+    placeholder: "STR x 05"
+  con:
+    label: "CON"
+    input: integer
+    placeholder: "3d6"
+    description: "Constitution"
+    required: true
+  stamina:
+    label: "Stamina Roll"
+    input: integer
+    placeholder: "CON x 05"
+  siz:
+    label: "SIZ"
+    input: integer
+    placeholder: "2d6+6"
+    description: "Size"
+    required: true
+  damage modifier:
+    label: "Damage Modifier"
+    input: integer
+    description: "STR + SIZ, result see table page 20"
+  int:
+    label: "INT"
+    input: integer
+    placeholder: "2d6+6"
+    description: "Intelligence"
+    required: true
+  idea:
+    label: "Idea Roll"
+    input: integer
+    placeholder: "INT x 05"
+  pow:
+    label: "POW"
+    input: integer
+    placeholder: "3d6"
+    description: "Power"
+    required: true
+  luck:
+    label: "Luck"
+    input: integer
+    placeholder: "POW x 05"
+  dex:
+    label: "DEX"
+    input: integer
+    placeholder: "3d6"
+    description: "Dexterity"
+    required: true
+  agility:
+    label: "Agility Roll"
+    input: integer
+    placeholder: "DEX x 05"
+  cha:
+    label: "CHA"
+    input: integer
+    placeholder: "3d6"
+    description: "Charisma"
+    required: true
+  charm:
+    label: "Charm Roll"
+    input: integer
+    placeholder: "CHA x 05"
+  edu:
+    label: "EDU"
+    input: integer
+    placeholder: "2d6+6"
+    description: "Education"
+    required: true
+  knowledge:
+    label: "Knowledge Roll"
+    input: integer
+    placeholder: "EDU x 05"
+              # width: 40px
+  pow mark:
+    input: checkbox
+    label: "C"
+    description: "checked"
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12 col-md-6
+      # card: hit points: Hit Points
+        # card-body
+          # table:
+  major wound:
+    label: "Major Wound"
+    input: string
+  dead:
+    label: "Dead"
+    input: string
+  hit points current:
+    label: "HP Current"
+    input: integer
+  hit points max:
+    label: "HP Max"
+    input: integer
+          # width: 50%
+  hit points notes:
+    label: "Notes"
+    input: string
+          # /table
+        # /card-body
+      # /card
+    # /col
+    # col: col-12 col-md-6
+      # card: sanity points: Sanity Points
+        # card-body
+          # table:
+  sanity points current:
+    label: "Current"
+    input: integer
+    placeholder: ""
+  sanity points max:
+    label: "Max"
+    input: integer
+    placeholder: ""
+  sanity points temporary:
+    label: "Temporary"
+    input: integer
+    placeholder: ""
+            # width: 25%
+  sanity points notes:
+    label: "Notes"
+    input: string
+    placeholder: ""
+          # /table
+        # /card-body
+      # /card
+    # /col
+    # col: col-12 col-md-6
+      # card: power points: Power Points
+        # card-body
+          # table:
+  power points current:
+    label: "Current"
+    input: integer
+    placeholder: ""
+  power points max:
+    label: "Max"
+    input: integer
+    placeholder: ""
+  battery:
+    label: "Battery"
+    input: string
+    placeholder: ""
+  power points notes:
+    label: "Notes"
+    input: string
+    placeholder: ""
+          # /table
+        # /card-body
+      # /card
+    # /col
+    # col: col-12 col-md-6
+      # card: fatigue points: Fatigue Points
+        # card-body
+          # table:
+  fatigue points current:
+    label: "Current"
+    input: integer
+    placeholder: ""
+  fatigue points max:
+    label: "Max"
+    input: integer
+    placeholder: ""
+            # width: 25%
+  fatigue points notes:
+    label: "Notes"
+    input: string
+    placeholder: ""
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: skills: Skills
+        # card-body
+          # row
+            # col: col-12 col-md-4
+              # table: horiz
+                # iter: 1: 32
+  skill name:
+    label: "Name"
+    input: string
+    description: "Skill Name"
+    placeholder: ""
+              # width: 60px
+  skill value:
+    label: "%"
+    input: integer
+    description: "Skill Value"
+    placeholder: ""
+              # width: 40px
+  skill mark:
+    input: checkbox
+    label: "C"
+    description: "checked"
+                # /iter
+              # /table
+            # /col
+            # col: col-12 col-md-4
+              # table: horiz
+                # iter: 33: 64
+  skill name:
+    label: "Name"
+    input: string
+    description: "Skill Name"
+    placeholder: ""
+              # width: 60px
+  skill value:
+    label: "%"
+    input: integer
+    description: "Skill Value"
+    placeholder: ""
+              # width: 40px
+  skill mark:
+    input: checkbox
+    label: "C"
+    description: "checked"
+                # /iter
+              # /table
+            # /col
+            # col: col-12 col-md-4
+              # table: horiz
+                # iter: 65: 96
+  skill name:
+    label: "Name"
+    input: string
+    description: "Skill Name"
+    placeholder: ""
+              # width: 60px
+  skill value:
+    label: "%"
+    input: integer
+    description: "Skill Value"
+    placeholder: ""
+              # width: 40px
+  skill mark:
+    input: checkbox
+    label: "C"
+    description: "checked"
+                # /iter
+              # /table
+            # /col
+         # /row
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: weapons: Weapons
+        # card-body
+          # table: horiz
+            # iter: 8
+              # width: 25%
+  weapon type:
+    label: "Type"
+    input: string
+    description: "Weapon Name"
+    placeholder: ""
+              # width: 60px
+  weapon value:
+    label: "%"
+    input: integer
+    description: "Weapon Skill Value"
+    placeholder: ""
+              # width: 25%
+  weapon damage:
+    label: "Damage"
+    input: string
+    placeholder: ""
+  weapon range:
+    label: "Range"
+    input: string
+    placeholder: ""
+              # width: 60px
+  weapon attacks:
+    label: "Attacks"
+    input: integer
+    placeholder: ""
+              # width: 80px
+  weapon length:
+    label: "Length"
+    input: string
+    placeholder: ""
+              # width: 40px
+  weapon hand:
+    label: "Hand"
+    input: string
+    placeholder: ""
+              # width: 60px
+  weapon hp:
+    label: "HP"
+    input: string
+    placeholder: ""
+              # width: 40px
+  weapon mark:
+    input: checkbox
+    label: "C"
+    description: "checked"
+            # /iter
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: armor: Armor
+        # card-body
+          # row
+            # col: col-12 col-md-4
+              # table: horiz
+                # iter: 4
+  armor type:
+    label: "Type"
+    input: string
+    description: "Armor Name"
+    placeholder: ""
+                  # width: 60px
+  armor value:
+    label: "%"
+    input: integer
+    description: "Armor Value"
+    placeholder: ""
+                # /iter
+              # /table
+            # /col
+            # col: col-12 col-md-8
+              # table: horiz
+                # width: 25%
+  shield type:
+    label: "Shield Type"
+    input: string
+    placeholder: ""
+                # width: 60px
+  shiele value:
+    label: "%"
+    input: integer
+    description: "Shield Value"
+    placeholder: ""
+              # width: 25%
+  shield damage:
+    label: "Damage"
+    input: string
+    placeholder: ""
+              # width: 60px
+  shield hp:
+    label: "HP"
+    input: string
+    placeholder: ""
+                # width: 40px
+  shield mark:
+    input: checkbox
+    label: "C"
+    description: "checked"
+              # /table
+            # /col
+          # /row
+          # row
+            # col: col-12
+  combat notes:
+    label: "Notes"
+    input: text
+    rows: 3
+    placeholder: ""
+            # /col
+          # /row
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: powers: Powers
+        # card-body
+          # table: horiz
+            # iter: 8
+            # width: 25%
+  power name:
+    label: "Power"
+    input: string
+    placeholder: ""
+            # width: 100px
+  power type:
+    label: "Energy Type"
+    input: string
+    placeholder: ""
+            # width: 60px
+  power levels act:
+    label: "Active Levels"
+    input: integer
+    placeholder: ""
+            # width: 60px
+  power levels total:
+    label: "Total Levels"
+    input: integer
+    placeholder: ""
+  power range:
+    label: "Range"
+    input: string
+    placeholder: ""
+            # width: 60px
+  power cost:
+    label: "Cost To Use"
+    input: integer
+    placeholder: ""
+  power duration:
+    label: "Duration"
+    input: string
+    placeholder: ""
+  power notes:
+    label: "Notes"
+    input: text
+    rows: 3
+    placeholder: ""
+            # width: 60px
+  power cp:
+    label: "CP"
+    input: integer
+    description: "Character Points"
+    placeholder: ""
+            # /iter
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: attack powers: Attack Powers
+        # card-body
+          # table: horiz
+            # iter: 6
+            # width: 25%
+  apower name:
+    label: "Name"
+    input: string
+    description: "Attack Power"
+    placeholder: ""
+              # width: 60px
+  apower value:
+    label: "%"
+    input: integer
+    description: "Attack Power Value"
+    placeholder: ""
+              # width: 25%
+  apower damage:
+    label: "Damage"
+    input: string
+    placeholder: ""
+  apower range:
+    label: "Range"
+    input: string
+    placeholder: ""
+  apower type:
+    label: "Type"
+    input: string
+    placeholder: ""
+            # width: 60px
+  apower cost:
+    label: "Cost"
+    input: integer
+    placeholder: ""
+              # width: 40px
+  apower mark:
+    input: checkbox
+    label: "C"
+    description: "checked"
+            # /iter
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: defensive powers: Defensive Powers
+        # card-body
+          # table: horiz
+            # iter: 6
+              # width: 25%
+  dpower name:
+    label: "Power"
+    input: string
+    description: "Defense Power"
+    placeholder: ""
+  dpower type:
+    label: "Energy Type"
+    input: string
+    placeholder: ""
+              # width: 60px
+  dpower level:
+    label: "Level"
+    input: string
+    placeholder: ""
+              # width: 60px
+  dpower value:
+    label: "%"
+    input: integer
+    description: "Defense Power Value"
+    placeholder: ""
+              # width: 60px
+  dpower cost:
+    label: "Energy Cost"
+    input: integer
+    placeholder: ""
+            # /iter
+          # /table
+          # table: horiz: nosplit
+  dpower defense:
+    label: "Defense"
+    input: integer
+    placeholder: ""
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: character points: Character Points
+        # card-body
+          # table: horiz: nosplit
+  campaign power level:
+    label: "Campaign Power Level"
+    input: string
+    placeholder: "Normal, Heroic, Epic, Superhuman"
+  character points:
+    label: "Experience Points"
+    input: integer
+    placeholder: ""
+          # /table
+          # table: horiz
+            # iter: 6
+  character failing type:
+    label: "Character Failings"
+    input: string
+    placeholder: ""
+              # width: 60px
+  character failing points:
+    label: "Points"
+    input: integer
+    placeholder: ""
+            # /iter
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: background: Background
+        # card-body
+  background:
+    label: "Background"
+    input: text
+    rows: 3
+    placeholder: ""
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: belongings: Belongings
+        # card-body
+  belongings:
+    label: "Belongings"
+    input: text
+    rows: 3
+    placeholder: ""
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: notes: Notes
+        # card-body
+  notes:
+    label: "Notes"
+    input: text
+    rows: 3
+    placeholder: ""
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12 col-md-8
+      # card: personal: Personality Traits
+        # card-body
+  use ptraits:
+    label: "use ptraits"
+    input: checkbox
+          # table
+  ptrait aggressive:
+    label: "ptrait Aggressive"
+    input: integer
+  ptrait impulsive:
+    label: "ptrait Impulsive"
+    input: integer
+  ptrait extrovert:
+    label: "ptrait Extrovert"
+    input: integer
+  ptrait optimistic:
+    label: "ptrait Optimistic"
+    input: integer
+  ptrait stubborn:
+    label: "ptrait Stubborn"
+    input: integer
+  ptrait physical:
+    label: "ptrait Physical"
+    input: integer
+  ptrait patient:
+    label: "ptrait Patient"
+    input: integer
+  ptrait emotional:
+    label: "ptrait Emotional"
+    input: integer
+  ptrait trusting:
+    label: "ptrait Trusting"
+    input: integer
+  ptrait leader:
+    label: "ptrait Leader"
+    input: integer
+  ptrait greedy:
+    label: "ptrait Greedy"
+    input: integer
+  ptrait energetic:
+    label: "ptrait Energetic"
+    input: integer
+  ptrait honorable:
+    label: "ptrait Honorable"
+    input: integer
+  ptrait brave:
+    label: "ptrait Brave"
+    input: integer
+  ptrait curious:
+    label: "ptrait Curious"
+    input: integer
+  ptrait dependable:
+    label: "ptrait Dependable"
+    input: integer
+  ptrait pious:
+    label: "ptrait Pious"
+    input: integer
+  ptrait honest:
+    label: "ptrait Honest"
+    input: integer
+  ptrait clever:
+    label: "ptrait Clever"
+    input: integer
+  ptrait humorous:
+    label: "ptrait Humorous"
+    input: integer
+  ptrait conservative:
+    label: "ptrait Conservative"
+    input: integer
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+# include: include/footer.twig
+# /sheet

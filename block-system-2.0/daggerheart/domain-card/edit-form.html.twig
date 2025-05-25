@@ -1,0 +1,36 @@
+﻿{% import _self as sheet %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set domains = [ "Arcana", "Blade", "Bone", "Codex", "Grace", "Midnight", "Sage", "Splendor", "Valor" ] %}
+{% set types = [ "Ability", "Grimoire", "Spell" ] %}
+<div class='container-fluid sheet-daggerheart-domaincard form iscard'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card domain' id='card-domain'>
+        <div class='card-body of od'>
+          {% set eo = 'od' %}
+          <table class='table domaincard'>
+            <tr>
+              <th class='ilbl od ilbl-name'><label for='name'><b>Name</b></label></th>
+              <td class='ivar {{eo}} ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' type='text' /></td>
+              <th class='ilbl od ilbl-level c' width='70px'><label for='level'>Level</label></th>
+              <td class='ivar {{eo}} ivar-level' width='70px'><input value='{{variables.level|default}}' class='form-control ivar ivar-level c' id='level' name='level' type='text' /></td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-domain'><label for='domain'>Domain</label></th>
+              <td class='ivar od ivar-domain' colspan=3>{% set x = variables.domain|default %}<input value='{{x}}' list='domains' class='form-control ivar ivar-domain' id='domain' name='domain' />{{ _self.genList(domains, 'domains', x) }}</td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-type' width='70px'><label for='type'>Type</label></th>
+              <td class='ivar {{eo}} ivar-type'>{% set x = variables.type|default %}<input value='{{x}}' list='types' class='form-control ivar ivar-type' id='type' name='type' />{{ _self.genList(types, 'types', x) }}</td>
+              <th class='ilbl od ilbl-cost c' width='70px'><label for='cost'>Cost</label></th>
+              <td class='ivar {{eo}} ivar-cost'><input value='{{variables.cost|default}}' class='form-control ivar ivar-cost c' id='cost' name='cost' type='text' /></td>
+            </tr>
+            <tr>
+              <td class='ivar {{eo}} ivar-desc' colspan=4><textarea class='form-control ivar ivar-desc' id='desc' name='desc' rows='3' />{{variables.desc|default}}</textarea></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

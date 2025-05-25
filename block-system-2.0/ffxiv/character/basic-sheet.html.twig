@@ -1,0 +1,225 @@
+﻿{% import _self as sheet %}
+{# --- genDots -------------------------------- #}
+{% macro genDots(curr = 0, max = 1, group = 0) %}{% for i in 1..max %}
+  {% if i <= curr %}<i class='fa-solid fa-square'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}
+  {% if group > 0 %}{% if i is divisible by(group) %}&nbsp;{% endif %}{% endif %}
+{% endfor %}
+{% endmacro genDots %}
+{# --- Roll ----------------------------------- #}
+{% macro Roll(bonus = 0) %}[roll:1d20+{{bonus}}|+{{bonus}}]{% endmacro Roll %}
+{# -------------------------------------------- #}
+{% set jobs = {
+  paladin: [ "Paladin", "tank", 6606775 ],
+  darkknight: [ "Dark", "tank", 6606769 ],
+  warrior: [ "Warrior", "tank", 6606778 ],
+  whitemage: [ "White Mage", "healer", 6606779 ],
+  scholar: [ "Scholar", "healer", 6606776 ],
+  astrologian: [ "Astrologian", "healer", 6606766 ],
+  monk: [ "Monk", "dps", 6606773 ],
+  dragoon: [ "Dragoon", "dps", 6606770 ],
+  ninja: [ "Ninja", "dps", 6606774 ],
+  bard: [ "Bard", "dps", 6606767 ],
+  machinist: [ "Machinist", "dps", 6606772 ],
+  blackmage: [ "Black Mage", "dps", 6606768 ],
+  summoner: [ "Summoner", "dps", 6606777 ]
+  }
+%}
+  {% set races = {
+    hyur: "Hyur",
+    elezen: "Elezen",
+    lalafell: "Lalafell",
+    miqote: "Miqo'te",
+    roegadyn: "Roegadyn",
+    aura: "Au Ra",
+    hrothgar: "Hrothgar",
+    viera: "Viera"
+  }
+%}
+{% set abtypes = {
+  "instant": "Instant Abilities",
+  "primary": "Primary Abilities",
+  "secondary": "Secondary Abilites",
+  "limitbreak": "Limit Break"
+  }
+%}
+{% set abfields = {                  
+  "abtarget" : "Target",
+  "abrange" : "Range",
+  "abcheck" : "Check",
+  "abcr" : "CR",
+  "abtrigger" : "Trigger",
+  "abcombo" : "Combo"
+}
+%}
+{% set abfields2 = {
+  "abbaseeffect" : "Base Effect",
+  "abdirecthit" : "Direct Hit" 
+  }
+%}
+{% set img = variables.portrait|default %}
+{% set level = variables.level|default(1) %}
+{% set job = variables.job|default %}
+{% set jobtitle = jobs[job][0]|default %}
+{% set race = variables.race|default %}
+{% set racetitle = races[race]|default %}
+{% set role = jobs[job][1]|default %}
+{% set jobimg = jobs[job][2]|default %}
+<div class='container-fluid ffxiv'>
+  <div class='row'>
+    <div class='col-12 col-lg-8'>
+      {% if img < 1 %}
+      <div class='row hidden-xs hidden-sm hidden-md d-none d-lg-block'>
+        <div class='col-12'><img class='image' src='/i/6606763/render' title='FFXIV TTRPG Logo' width='450px'></div>
+      </div>
+      {% endif %}
+      <div class='row'>
+        <div class='col-12'>
+          <div class='card'>
+            <div class='card-header {{role}} lbl jobline'>
+                <span class='jobicon' title='{{jobtitle}}'>[img:{{jobimg}}|left|120|nolink]</span>
+                {{variables.name|default}}, {{racetitle}}<br>
+                LV{{level}} {{role|capitalize}}/{{jobtitle|capitalize}}
+            </div>
+          </div>
+        </div>
+        <div class='col-12 col-md-6'>
+          <div class='card card-primary-attributes' id='card-primary-attributes'>
+            <div class='card-header {{role}}'>Primary Attributes</div>
+            <div class='card-body {{role}} of'>
+              <div class='lbl att lbl-str'  title='Strength'>     STR <span class='fr att var-str'   >{{ _self.Roll( variables.str|default ) }}</span></div>
+              <div class='lbl att lbl-dex'  title='Dexterity'>    DEX <span class='fr att var-dex c' >{{ _self.Roll( variables.dex|default ) }}</span></div>
+              <div class='lbl att lbl-vit'  title='Vitality'>     VIT <span class='fr att var-vit c' >{{ _self.Roll( variables.vit|default ) }}</span></div>
+              <div class='lbl att lbl-int'  title='Intelligence'> INT <span class='fr att var-int c' >{{ _self.Roll( variables.int|default ) }}</span></div>
+              <div class='lbl att lbl-mind' title='Mind'>         MND <span class='fr att var-mind c'>{{ _self.Roll( variables.mind|default ) }}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class='col-12 col-md-6'>
+          <div class='card card-secondary-attributes' id='card-secondary-attributes'>
+            <div class='card-header {{role}}'>Secondary Attributes</div>
+            <div class='card-body {{role}} of'>
+              <div class='lbl att lbl-def'> Defense <span class='fr att var-def c'>{{variables.def|default}}</span></div>
+              <div class='lbl att lbl-magical-defense'> Magical Defense <span class='fr att var-magical-defense c'>{{variables.magical_defense|default}}</span></div>
+              <div class='lbl att lbl-vigilance'> Vigilance <span class='fr att var-vigilance c'>{{variables.vigilance|default}}</span></div>
+              <div class='lbl att lbl-speed'> Speed <span class='fr att var-speed c'>{{variables.speed|default}} squares</span></div>
+            </div>
+          </div>
+        </div>
+        <div class='col-12 col-md-6'>
+          <div class='card' id='card-mp'>
+            <div class='card-body mp of'>
+              <div class='lbl pool lbl-mp'> Mana Points <span class='fr pool var-mp'>{{variables.mp|default}}/{{variables.maxmp|default}}</span></div>
+            </div>
+          </div>
+        </div>
+        <div class='col-12 col-md-6'>
+          <div class='card' id='card-hp'>
+            <div class='card-body hp of'>
+              <div class='lbl pool lbl-hp'> Health Points <span class='fr pool var-hp'>{{variables.hp|default}}/{{variables.maxhp|default}}</span></div>
+              <div class='lbl lbl-barrier'> Barrier <span class='fr var-barrier'>{{variables.barrier|default}}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-4 hidden-xs hidden-sm hidden-md d-none d-lg-block'>
+      {% if img > 0 %}
+        [img:{{variables.portrait|default}}]
+      {% else %}
+        <img class='image' src='/i/6606763/render' title='FFXIV TTRPG Logo' width='450px'>
+      {% endif %}
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card' id='card-traits and other effects'>
+        <div class='card-header traits'>Traits And Other Effects{% set section="traits" %}<button title="Minimize" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapse{{section}}" href="#collapse{{section}}" role="button" aria-expanded="false" aria-controls="collapse{{section}}"><em class="fas fa-angle-down"></em></button></div>
+          <div class='row collapse hide' id='collapse{{section}}'>
+            {% for i in 1..5 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'trname_' ~ id)|default %}
+              {% set lvl = attribute(variables, 'trlvl_' ~ id)|default %}
+              {% if name != "" %}
+                <div class='col-12 col-md-6'>
+                  {% set curr = attribute(variables, 'trres_' ~ id)|default %}
+                  {% set max = attribute(variables, 'trmaxres_' ~ id)|default(max) %}
+                  <div class='card-body of'>
+                    {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                    <span class="fr"><span class="badge">{{attribute(variables, 'trtags_' ~ id)|default}}{% if lvl > 0 %}, Lv.{{lvl}}+{% endif %}</span>{% if max > 0 %}{{ _self.genDots(curr, max) }}{% endif %}</span><h4>{{name}}</h4>
+                    {{attribute(variables, 'trdescription_' ~ id)|default|nl2br}}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card abilities' id='card-abilities'>
+        {% for showtype, label in abtypes %}
+          <div class='card-header {{showtype}}'>{{label}}  {% set section = showtype %}<button title="Minimize" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapse{{section}}" href="#collapse{{section}}" role="button" aria-expanded="false" aria-controls="collapse{{section}}"><em class="fas fa-angle-down"></em></button></div>
+          <div class='row collapse hide' id='collapse{{section}}'>
+            {% for i in 1..50 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'abname_' ~ id)|default %}
+              {% set abtype = attribute(variables, 'abtype_' ~ id)|default %}
+              {% if name != "" and abtype == showtype %}
+                <div class='col-12 col-md-6'>
+                  {% set max = attribute(variables, 'ablimitation_max_' ~ id)|default %}
+                  {% set curr = attribute(variables, 'ablimitation_curr_' ~ id)|default(max) %}
+                  <div class='card-body of'>
+                    {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                    <span class="fr"><span class="badge">{{attribute(variables, 'abtags_' ~ id)|default}}</span>{% if max > 0 %}{{ _self.genDots(curr, max) }}{% endif %}</span><h4>{{name}}</h4>
+                    {% set done = 0 %}
+                    <div class='darker'>
+                    {% set fieldname = "abcost" %}{% set label = "Cost" %}
+                    {% set v = attribute(variables, fieldname ~ '_' ~ id)|default|trim %}{% if v != "" %}{% if done == 1 %}, {% endif %}<b class='rcol'>{{label}}</b>: {{v}} MP{% set done = 1 %}{% endif %}{#
+                   #}{% for fieldname, label in abfields %}{% set v = attribute(variables, fieldname ~ '_' ~ id)|default|trim %}{% if v != "" %}{% if done == 1 %}, {% endif %}<b class='rcol'>{{label}}</b>: {{v}}{% set done = 1 %}{% endif %}{% endfor %}
+                    </div>{% set done = 0 %}{% for fieldname, label in abfields2 %}{% set v = attribute(variables, fieldname ~ '_' ~ id)|default|trim %}{% if v != "" %}{% if done == 1 %}<br>{% endif %}<b class='rcol'>{{label}}</b>: {{v}}{% set done = 1 %}{% endif %}{% endfor %}
+                    {% set max = attribute(variables, 'ablimitation_max_' ~ id)|default %}
+                    {% if max > 0 %}<b>Limitation:</b> {{max}}x per {{attribute(variables, 'ablimitationtype_' ~ id)|default}}{% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    {% if variables.profile|default != "" %}
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-profile'>
+        <div class='card-header profile'>Profile {% set section="profile" %}<button title="Minimize" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapse{{section}}" href="#collapse{{section}}" role="button" aria-expanded="false" aria-controls="collapse{{section}}"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapse{{section}}'>
+          <div class='var od var-profile'> {{variables.profile|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.items|default != "" %}
+    <div class='col-12 col-md-6'>
+      <div class='card' id='card-items'>
+        <div class='card-header items'>Items {% set section="items" %}<button title="Minimize" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapse{{section}}" href="#collapse{{section}}" role="button" aria-expanded="false" aria-controls="collapse{{section}}"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapse{{section}}'>
+          <div class='var od var-items'> {{variables.items|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.notes|default != "" %}
+    <div class='col-12'>
+      <div class='card' id='card-notes'>
+        <div class='card-header notes'>Notes {% set section="notes" %}<button title="Minimize" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapse{{section}}" href="#collapse{{section}}" role="button" aria-expanded="false" aria-controls="collapse{{section}}"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapse{{section}}'>
+          <div class='var od var-notes'> {{variables.notes|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <div class='col-12 c'>&copy; 2025 by Square Enix - Sheet Version 1.00 made 2025-05-02 by <a href='/w/sheet-creation'>Tillerz</a></div>
+  </div>
+</div>

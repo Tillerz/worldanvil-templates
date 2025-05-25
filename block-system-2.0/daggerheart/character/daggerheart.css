@@ -1,0 +1,110 @@
+ .container-fluid {
+   font-family: Alegreya;
+   font-size: 18px !important;
+   letter-spacing: -0.03em;
+   color: var(--dark) ;
+   padding: 20px;
+   background: url(/i/6668143/render)}
+ .sheet,  .form {
+   border: 32px solid transparent;
+   -moz-border-image: url(/i/6673093/render) 64 64;
+   -webkit-border-image: url(/i/6673093/render) 64 64;
+   -o-border-image: url(/i/6673093/render) 64 64;
+   border-image: url(/i/6673093/render) 64 64;}
+ .CodeMirror-buttonsPanel { font-size: 14px;}
+ .table { margin-bottom: 0px; width: 100%}
+ .table>tbody>tr>th,  .table>tbody>tr>td { border-top: none; padding: 0px 6px; line-height: 1.8em; align-content: center}
+ .ilbl,  .lbl { padding: 2px 5px}
+ .ihdr.ev,  .hdr.ev { background-color: #00000030}
+ .ihdr.od,  .hdr.od { background-color: #00000038}
+ .ilbl.ev,  .lbl.ev { background-color: #00000020}
+ .ilbl.od,  .lbl.od { background-color: #00000028}
+ .ivar.ev,  .var.ev { background-color: #00000010}
+ .ivar.od,  .var.od { background-color: #00000020}
+ .copyright,  copyright a,  .artist-credits,  .artist-credits a { font-size: 12px; text-align: center; padding: 3px; color: #ffcf00; background-color: #800080; width: inherit}
+ .card { border: none; margin-bottom:8px}
+ .card-body {     border: 2px solid #800080; padding: 0px}
+ .minimize.btn-link,  .fa-angle-down { color: #800080; background: none; border: none}
+ .card-header {
+    font-size: 22px;
+    font-family: IM Fell English SC;
+    color: #ffffff;
+    text-align: center;
+    text-transform: none;
+    text-shadow: 1px 1px 1px #404040;
+    padding-top: 6px;
+    padding-left: 6px;
+    padding-bottom: 0px;
+    margin: 0px;
+    border: 2px solid #800080;}
+ th { font-weight: 400}
+ th.lbl { vertical-align: middle}
+ .c { text-align: center}
+ .l { text-align: left}
+ .r { text-align: right}
+ p { margin-bottom: 0px}
+ ol { padding-left: 20px}
+ .var-notes,  .var-equipment,  .var-virtues,  .var-flaws,  .pd { padding: 10px}
+ .form-control:focus,  .single-line:focus,  .form-control,  .single-line {
+   background-color: #ffffff80;
+   border: 1px solid black;
+   border-radius: 15px;
+   margin: 5px 5px 5px 0px;}
+ .comment { padding: 0px 5px; font-style: italic; font-size: 14px}
+ .score { font-weight: 800}
+ .spells .ilbl { font-size:14px; background-color: #00000020; line-height: 1em}
+ .var-spell-name { min-width: 200px}
+ .card .row { width: 100%; margin-left: 0px}
+ .ilbl-attribute-mod label { font-size: 24px}
+ .var-attribute-mod { font-size: 48px}
+ small { line-height: 1em}
+ .lg { font-size: 24px}
+ .domain1 .card-body,  .domain2 .card-body { border: none}
+ .domaincards .m-b-20 { margin-bottom:0px !important}
+ .table.domaincard {
+    margin-top: 5px; margin-bottom: 10px;
+    margin-left: auto; margin-right: auto;
+    border: 1px dashed #800080;
+    width: 93%}
+ .card-body .of,  .card-body.of { overflow-x: auto}
+ .card-body .row { width: 100%; margin-left: 0px}
+ .note { padding: 10px; color: red}
+ .card.domain { border: 0px !important}
+ .sheet-daggerheart.form a {
+    color: red;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 0px 5px}
+ ul,  ol { padding-left:10px !important}
+ .label-roller { padding: 5px 8px; font-family: Alegreya; font-size: 16px; font-weight: 400; background: #800080 !important; color: gold}
+ .card.combat .col12,  .card.combat .col-md-6 { padding-right: 0px; padding-left: 0px}
+ .fa-circle-xmark { color: #800000}
+ .iscard {
+   padding:0px !important;
+   margin-top:10px;
+   border: 16px solid transparent;
+   -moz-border-image: url(/i/6673093/render) 64 64;
+   -webkit-border-image: url(/i/6673093/render) 64 64;
+   -o-border-image: url(/i/6673093/render) 64 64;
+   border-image: url(/i/6673093/render) 64 64;}
+ .badge {
+   padding:0px !important;
+   margin-top:10px;
+   border: 0px !important;}
+ .badge .card-body {
+   padding:5px !important;}
+ .iscard .card.domain { margin: 0px !important; padding: 0px !important}
+ .iscard .card { padding: 0px !important; margin: 0px !important}
+ .iscard .card-body { padding: 10px !important}
+ .iscard .card-header { border-radius: 0px !important}
+ .iscard .col-12 { padding: 0px !important; margin: 0px !important}
+ .iscard .card .col-12 { padding: 5px !important}
+ .rot90 {
+  -webkit-transform: rotate(-90deg) ;
+  -moz-transform: rotate(-90deg) ;
+  -ms-transform: rotate(-90deg) ;
+  -o-transform: rotate(-90deg) ;
+  background: none !important;}
+ .badge .card-body { overflow: auto}
+ select { height: 2.8rem !important}
+ 

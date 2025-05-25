@@ -1,0 +1,156 @@
+﻿{% set sys = variables.system|default %}{% if sys == "" %}{% set sys = "og" %}{% endif %}
+{% import _self as sheet %}
+{# -------------------------------------------- #}
+{% macro genDots(var, max = 0, lbl = '', group = 0, marked = '', unmarked = '') %}
+    {% for i in 1..max %}
+        {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+        <input value='0' id='{{lbl}}' name='{{lbl}}_{{id}}' type='hidden' />
+        <input value='1' class='ivar ivar-{{lbl}}' {% if attribute(var, lbl ~ '_' ~ id)|default == 1 %} checked='checked'{% endif %} id='{{lbl}}' name='{{lbl}}_{{id}}' type='checkbox' />
+        {% if (group > 0) and (i / 6 == i // group ) %}&nbsp;&nbsp;{% endif %}
+    {% endfor %}
+{% endmacro genDots %}
+{# -------------------------------------------- #}
+<div class='container-fluid sheet-{{sys}}'>
+    <div class='row'>
+        <div class='col-12'>
+            <div class='card personal' id='card-personal'>
+                <div class='card-header personal'>Heroes</div>
+                <div class='card-body of'>
+                    <table class='table'>
+                        <tr>
+                            <th class='ilbl od ilbl-name' width='30%'><label for='name'>Mission</label></th>
+                            <td class='ivar od ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' required=required id='name' name='name' type='text' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl ev ilbl-system'><label for='system'>System</label></th>
+                            <td class='ivar ev ivar-system'>
+                                <select  class='form-control ivar ivar-system' id='system' name='system'>
+                                    <option value='og' {% if variables.system|default == 'og' %}selected='selected' {% endif %} > Outgunned </option>
+                                    <option value='oga' {% if variables.system|default == 'oga' %}selected='selected' {% endif %} > OG Adventure </option>
+                                    <option value='rd' {% if variables.system|default == 'rd' %}selected='selected' {% endif %} > Rising Dragon </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl od ilbl-team'><label for='team'>Team Name</label></th>
+                            <td class='ivar od ivar-team'><input value='{{variables.team|default}}' class='form-control ivar ivar-team' id='team' name='team' type='team' placeholder='' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl ev ilbl-heat'><label for='heat'>Heat Meter</label></th>
+                            <td class='ivar ev ivar-heat'><input value='{{variables.heat|default}}' class='form-control ivar ivar-heat c' id='heat' name='heat' type='number' min='0' max='12' placeholder='0 to 12' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl od ilbl-hero'><label for='hero'>Hero 1</label></th>
+                            <td class='ivar od ivar-hero'><input value='{{variables.hero1|default}}' class='form-control ivar ivar-hero' id='hero' name='hero1' type='text' placeholder='Name or blockid for a link to a sheet' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl ev ilbl-hero'><label for='hero'>Hero 2</label></th>
+                            <td class='ivar ev ivar-hero'><input value='{{variables.hero2|default}}' class='form-control ivar ivar-hero' id='hero' name='hero2' type='text' placeholder='Name or blockid for a link to a sheet' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl od ilbl-hero'><label for='hero'>Hero 3</label></th>
+                            <td class='ivar od ivar-hero'><input value='{{variables.hero3|default}}' class='form-control ivar ivar-hero' id='hero' name='hero3' type='text' placeholder='Name or blockid for a link to a sheet' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl ev ilbl-hero'><label for='hero'>Hero 4</label></th>
+                            <td class='ivar ev ivar-hero'><input value='{{variables.hero4|default}}' class='form-control ivar ivar-hero' id='hero' name='hero4' type='text' placeholder='Name or blockid for a link to a sheet' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl od ilbl-hero'><label for='hero'>Hero 5</label></th>
+                            <td class='ivar od ivar-hero'><input value='{{variables.hero5|default}}' class='form-control ivar ivar-hero' id='hero' name='hero5' type='text' placeholder='Name or blockid for a link to a sheet' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl ev ilbl-hero'><label for='hero'>Hero 6</label></th>
+                            <td class='ivar e ivar-hero'><input value='{{variables.hero6|default}}' class='form-control ivar ivar-hero' id='hero' name='hero6' type='text' placeholder='Name or blockid for a link to a sheet' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl od ilbl-imageid'><label for='imageid'>Group Logo (WA-Image ID)</label></th>
+                            <td class='ivar od ivar-imageid'><input value='{{variables.imageid|default}}' class='form-control ivar ivar-imageid c' id='imageid' name='imageid' type='number' min='0' placeholder='eg 625343'/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class='card villain' id='card-villain'>
+                <div class='card-header villain'>Villain</div>
+                <div class='card-body of'>
+                    <table class='table'>
+                        <tr>
+                            <th class='ilbl ev ilbl-villain' width='30%'><label for='villain'>Villain</label></th>
+                            <td class='ivar ev ivar-villain'><input value='{{variables.villain|default}}' class='form-control ivar ivar-villain' id='villain' name='villain' type='text' placeholder='Name or blockid for a link to a sheet' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl od ilbl-strongspots'><label for='strongspots'>Strong Spots</label></th>
+                            <td class='ivar od ivar-strongspots'><input value='{{variables.strongspots|default}}' class='form-control ivar ivar-strongspots' id='strongspots' name='strongspots' type='text' /></td>
+                        </tr>
+                        <tr>
+                            <th class='ilbl ev ilbl-weakspots'><label for='weakspots'>Weak Spots</label></th>
+                            <td class='ivar ev ivar-weakspots'><input value='{{variables.weakspots|default}}' class='form-control ivar ivar-weakspots' id='weakspots' name='weakspots' type='text' /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class='col-12'>
+            <div class='card chases' id='card-chases'>
+                <div class='card-header chases'>Chases</div>
+                <div class='row'>
+                    <div class='col-12 col-md-12'>
+                        <div class='card-body of'>
+                            <table class='table'>
+                                {% for i in 1..5 %}
+                                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+                                <tr>
+                                    <th class='ilbl od ilbl-chasenotes' cols=2 width='30%'><label for='chasenotes'>Notes Chase #{{id}}</label></th>
+                                    <td class='ivar od ivar-chasenotes'><input value='{{ attribute(variables, 'chasenotes_' ~ id)|default }}' class='form-control ivar ivar-chasenotes' id='chasenotes' name='chasenotes_{{id}}' type='text' placeholder='' /></td>
+                                </tr>
+                                <tr>
+                                    <th class='ilbl ev ilbl-spactions' width='30%'><label for='spactions'>Special Actions</label></th>
+                                    <td class='ivar ev ivar-spactions'><input value='{{ attribute(variables, 'spactions_' ~ id)|default }}' class='form-control ivar ivar-spactions' id='spactions' name='spactions_{{id}}' type='text' placeholder='' /></td>
+                                    <td class='ivar ev ivar-spactionpoints'>
+                                    {% set lbl = "Adrenaline" %}{% set icnf = "fa-solid fa-battery-bolt" %}{% set icne = "fa-regular fa-battery-empty" %}
+                                    {% if sys == "oga" %}{% set lbl = "Luck" %}{% set icnf = "fa-solid fa-clover" %}{% set icne = "fa-regular fa-clover" %}{% endif %}
+                                    {% if sys == "rd" %}{% set lbl = "Qi" %}{% set icnf = "fa-solid fa-yin-yang" %}{% set icne = "fa-regular fa-yin-yang" %}{% endif %}
+                                    <td class='ivar ev ivar-spactionpoints'>{{ sheet.genDots(variables, 3, 'spactionpoints_' ~ id, 0) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='col-12'>
+            <div class='card ride' id='card-ride'>
+                <div class='card-header ride'>Heroes' Ride</div>
+                <div class='card-body of'>
+                    <table class='table'>
+                    <tr>
+                        <th class='ilbl od ilbl-ride'><label for='ride'>Name/Type</label></th>
+                        <td class='ivar od ivar-ride'><input value='{{variables.ride|default}}' class='form-control ivar ivar-ride' id='ride' name='ride' type='text' /></td>
+                    </tr>
+                    <tr>
+                        <th class='ilbl ev ilbl-ride-front-armor'><label for='ride_front_armor'>Front Armor</label></th>
+                        <td class='ivar ev ivar-ride-front-armor'><input value='{{variables.ride_front_armor|default}}' class='form-control ivar ivar-ride-front-armor c' id='ride_front_armor' name='ride_front_armor' type='number' min='0' max='3' placeholder='eg 3' /></td>
+                    </tr>
+                    <tr>
+                        <th class='ilbl od ilbl-ride-back-armor'><label for='ride_back_armor'>Back Armor</label></th>
+                        <td class='ivar od ivar-ride-back-armor'><input value='{{variables.ride_back_armor|default}}' class='form-control ivar ivar-ride-back-armor c' id='ride_back_armor' name='ride_back_armor' type='number' min='0' max='3' placeholder='eg 3' /></td>
+                    </tr>
+                    <tr>
+                        <th class='ilbl ev ilbl-ride-hp'><label for='ride_hp'>HP</label></th>
+                        <td class='ivar ev ivar-ride-hp'><input value='{{variables.ride_hp|default}}' class='form-control ivar ivar-ride-hp c' id='ride_hp' name='ride_hp' type='number' placeholder='eg 8' /></td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class='col-12'>
+            <div class='card notes' id='card-notes'>
+                <div class='card-header notes'><label for='notes'>Notes</label></div>
+                <div class='card-body of'>
+                    <div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes mention' id='notes' name='notes'>{{variables.notes|default}}</textarea></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

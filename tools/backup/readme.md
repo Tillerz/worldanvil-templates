@@ -8,7 +8,7 @@ IMPORTANT NOTE: This will only find articles that are published and not hidden b
 The script will create a folder <worldname> and put all the articles in there, naming them <slug>.json, where <slug> is the article SLUG used by WA. Optionally (default) you can have the `last modified` appended to the SLUG.
 
 
-## Requirements
+# Requirements
 
 1. You need a python 3 installation and the xml libraries:
 
@@ -44,7 +44,7 @@ backup.py
 settings.cfg
 ```
 
-## Configuration
+# Configuration
 
 You need to adjust the values in `settings.cfg`:
 
@@ -71,13 +71,13 @@ overwrite_threshold = 75
 append_last_modif = True
 ```
 
-## Execution
+# Backup Script
 
-### Windows
+## Windows
 
 On Windows, just open the folder in Explorer and double-click backup.cmd
 
-### Linux
+## Linux
 
 On MacOS and Linux, open a bash window, change to the folder with the script and execute `python backup.py`
 
@@ -86,3 +86,55 @@ You can also add it to the crontab. Example (runs every 15 minutes, only from 9a
 `*/15 9-20 * * * cd /opt/wa-backup ; python ./backup.py > /opt/wa-backup/backup.log 2>&1`
 
 Note: do not force spam requests to WA. That causes unneeded traffic on the systems and also might trigger a block by Cloudflare.
+
+# Extract Script
+
+Open a command prompt / bash and change to the folder with the scripts. The folder with your worldname should be visible in there, containing your backups.
+
+## Windows
+
+Execute the script `.\extract.cmd` with the parameters you need.
+
+## Linux
+
+Execute the script `./extract.py` with the parameters you need.
+
+## Parameters
+
+```bash
+usage: extract.[py|cmd] [-h] [-f FIELDS] [-l] [-a] [-t] filename
+positional arguments:
+  filename              article json file name, it will be looked for in the world folder
+
+options:
+  -h, --help            show this help message and exit
+  -f FIELDS, --fields FIELDS
+                        fields to extract, separated by commas, default:
+                        content,sidepanelcontenttop,sidepanelcontent,sidebarcontentbottom,footnotes,fullfooter,displayCss
+  -l, --list            list fields found in the json file, default: only strings
+  -a, --all             -l will now list ALL fields found in the json file
+  -t, --types           -l will now display the type of each field found
+```
+
+Example: you want to extract the main content fields of an article:
+
+`extract.py yourworldname\articlebackup.json`
+
+This will extract the main fields (content, sidepanelcontenttop, sidepanelcontent, sidebarcontentbottom, footnotes, fullfooter, displayCss) into a sub folder `extract/` with the `article-slug` being the filename, followed by `_<fieldname>` and ending with `.txt`. The content of each file is plain text and ready for a copy/paste back into your WA article.
+
+Example: you want to extract just the css or whichever two fields:
+
+`extract.py yourworldname\articlebackup.json --fields displayCss`
+`extract.py yourworldname\articlebackup.json --fields fieldname1,fieldname2`
+
+List all the fieldnames of your article backup (just the text ones, no booleans etc):
+
+`extract.py yourworldname\articlebackup.json -l`
+
+If you want to get ALL fields, you use:
+
+`extract.py yourworldname\articlebackup.json -l -a`
+
+And if you also want to see the type of each field:
+
+`extract.py yourworldname\articlebackup.json -l -a -t`

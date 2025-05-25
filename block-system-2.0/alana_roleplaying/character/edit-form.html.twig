@@ -1,0 +1,862 @@
+﻿{% import _self as sheet %}
+{% set skill_list = [
+    [ "skill001", "Communication", "-", "c", "-", "Communication" ],
+    [ "skill002", "Animal Handling", "05", "s", "+", "Communication"],
+    [ "skill003", "Bargain", "05", "s", "+", "Communication"],
+    [ "skill004", "Command/Charm", "05", "s", "+", "Communication"],
+    [ "skill005", "Disguise", "01", "s", "+", "Communication"],
+    [ "skill006", "Etiquette", "05", "s", "+", "Communication"],
+    [ "skill007", "Fast Talk", "05", "s", "+", "Communication"],
+    [ "skill008", "Intrigue", "05", "s", "+", "Communication"],
+    [ "skill009", "Language:", "00", "s", "+", "Communication"],
+    [ "skill010", "Language:", "00", "s", "+", "Communication"],
+    [ "skill011", "Language:", "00", "s", "+", "Communication"],
+    [ "skill012", "Language:", "00", "s", "+", "Communication"],
+    [ "skill013", "Language:", "00", "s", "+", "Communication"],
+    [ "skill014", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill015", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill016", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill017", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill018", "Perform:", "05", "s", "+", "Communication"],
+    [ "skill019", "Persuade", "15", "s", "+", "Communication"],
+    [ "skill020", "Status", "15", "s", "+", "Communication"],
+    [ "skill021", "Manipulation", "-", "c", "-", "Manipulation" ],
+    [ "skill022", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill023", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill024", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill025", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill026", "Art:", "05", "s", "+", "Manipulation" ],
+    [ "skill027", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill028", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill029", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill030", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill031", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill032", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill033", "Craft:", "05", "s", "+", "Manipulation" ],
+    [ "skill034", "Demolition", "01", "s", "+", "Manipulation" ],
+    [ "skill035", "Fine Manipulation", "05", "s", "+", "Manipulation" ],
+    [ "skill036", "Sleight of Hand", "05", "s", "+", "Manipulation" ],
+    [ "skill037", "Mental", "-", "c", "-", "Mental" ],
+    [ "skill038", "Appraise", "15", "s", "+", "Mental" ],
+    [ "skill039", "First Aid", "30", "s", "+", "Mental" ],
+    [ "skill040", "Gaming", "INT + POW", "s", "+", "Mental" ],
+    [ "skill041", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill042", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill043", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill044", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill045", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill046", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill047", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill048", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill049", "Knowledge:", "00", "s", "+", "Mental" ],
+    [ "skill050", "Medicine", "05", "s", "+", "Mental" ],
+    [ "skill051", "Read/Write:", "01", "s", "+", "Mental" ],
+    [ "skill052", "Read/Write:", "01", "s", "+", "Mental" ],
+    [ "skill053", "Read/Write:", "01", "s", "+", "Mental" ],
+    [ "skill054", "Perception", "-", "c", "-", "Perception" ],
+    [ "skill055", "Insight", "05", "s", "+", "Perception" ],
+    [ "skill056", "Listen", "25", "s", "+", "Perception" ],
+    [ "skill057", "Navigate", "10", "s", "+", "Perception" ],
+    [ "skill058", "Library Use/Research", "25", "s", "+", "Perception" ],
+    [ "skill059", "Sense", "10", "s", "+", "Perception" ],
+    [ "skill060", "Spot", "25", "s", "+", "Perception" ],
+    [ "skill061", "Track", "10", "s", "+", "Perception" ],
+    [ "skill062", "Physical", "-", "c", "-", "Physical" ],
+    [ "skill063", "Climb", "40", "s", "+", "Physical" ],
+    [ "skill064", "Drive:", "20", "s", "+", "Physical" ],
+    [ "skill065", "Drive:", "20", "s", "+", "Physical" ],
+    [ "skill066", "Drive:", "20", "s", "+", "Physical" ],
+    [ "skill067", "Fly", "00", "s", "+", "Physical" ],
+    [ "skill068", "Hide", "10", "s", "+", "Physical" ],
+    [ "skill069", "Jump", "25", "s", "+", "Physical" ],
+    [ "skill070", "Pilot:", "01", "s", "+", "Physical" ],
+    [ "skill071", "Pilot:", "01", "s", "+", "Physical" ],
+    [ "skill072", "Pilot:", "01", "s", "+", "Physical" ],
+    [ "skill073", "Projection", "DEX x 02", "s", "+", "Physical" ],
+    [ "skill074", "Ride:", "05", "s", "+", "Physical" ],
+    [ "skill075", "Ride:", "05", "s", "+", "Physical" ],
+    [ "skill076", "Ride:", "05", "s", "+", "Physical" ],
+    [ "skill077", "Stealth", "10", "s", "+", "Physical" ],
+    [ "skill078", "Swim", "25", "s", "+", "Physical" ],
+    [ "skill079", "Throw", "25", "s", "+", "Physical" ],
+    [ "skill080", "Combat", "-", "c", "-", "Combat" ],
+    [ "skill081", "Artillery:", "-", "s", "+", "Combat" ],
+    [ "skill082", "Dodge", "DEX x 02", "s", "+", "Combat" ],
+    [ "skill083", "Martial Arts", "01", "s", "+", "Combat" ],
+    [ "skill084", "Shield:", "-", "s", "+", "Combat" ],
+    [ "skill085", "Shield:", "-", "s", "+", "Combat" ],
+    [ "skill086", "Firearm:", "-", "s", "+", "Combat" ],
+    [ "skill087", "Firearm:", "-", "s", "+", "Combat" ],
+    [ "skill088", "Missile Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill089", "Missile Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill090", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill091", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill092", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill093", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill094", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill095", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill096", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill097", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill098", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill099", "Weapon:", "-", "s", "+", "Combat" ],
+    [ "skill100", "-", "-", "s", "+", "Other" ],
+    [ "skill101", "-", "-", "s", "+", "Other" ],
+    [ "skill102", "-", "-", "s", "+", "Other" ],
+    [ "skill103", "-", "-", "s", "+", "Other" ],
+    [ "skill104", "-", "-", "s", "+", "Other" ],
+    [ "skill105", "-", "-", "s", "+", "Other" ],
+    [ "skill106", "-", "-", "s", "+", "Other" ],
+    [ "skill107", "-", "-", "s", "+", "Other" ],
+    [ "skill108", "-", "-", "s", "+", "Other" ],
+    [ "skill109", "-", "-", "s", "+", "Other" ],
+    [ "skill110", "-", "-", "s", "+", "Other" ],
+    [ "skill111", "-", "-", "s", "+", "Other" ],
+    [ "skill112", "-", "-", "s", "+", "Other" ],
+    [ "skill113", "-", "-", "s", "+", "Other" ],
+    [ "skill114", "-", "-", "s", "+", "Other" ],
+    [ "skill115", "-", "-", "s", "+", "Other" ],
+    [ "skill116", "-", "-", "s", "+", "Other" ],
+    [ "skill117", "-", "-", "s", "+", "Other" ],
+    [ "skill118", "-", "-", "s", "+", "Other" ],
+    [ "skill119", "-", "-", "s", "+", "Other" ]
+] %}
+{% set effort = variables.effort|default %}{% if effort == '' %}{% set effort = variables.str|default * 5 %}{% endif %}
+{% set stamina = variables.stamina|default %}{% if stamina == '' %}{% set stamina = variables.con|default * 5 %}{% endif %}
+{% set idea = variables.idea|default %}{% if idea == '' %}{% set idea = variables.int|default * 5 %}{% endif %}
+{% set luck = variables.luck|default %}{% if luck == '' %}{% set luck = variables.pow|default * 5 %}{% endif %}
+{% set agility = variables.agility|default %}{% if agility == '' %}{% set agility = variables.dex|default * 5 %}{% endif %}
+{% set charm = variables.charm|default %}{% if charm == '' %}{% set charm = variables.cha|default * 5 %}{% endif %}
+{% set dm = '-1d6' %}
+{% set dmb = variables.str|default + variables.siz|default %}
+{% if dmb >= 13 and dmb <= 16 %}{% set dm = '-1d4' %}{% endif %}
+{% if dmb >= 17 and dmb <= 24 %}{% set dm = '' %}{% endif %}
+{% if dmb >= 25 and dmb <= 32 %}{% set dm = '+1d4' %}{% endif %}
+{% if dmb >= 33 and dmb <= 40 %}{% set dm = '+1d6' %}{% endif %}
+{% if dmb >= 41 and dmb <= 56 %}{% set dm = '+2d6' %}{% endif %}
+{% if dmb >= 57 and dmb <= 72 %}{% set dm = '+3d6' %}{% endif %}
+{% if dmb >= 73 %}{% set dm = '+' ~ (3+(dmb-72)//16) ~ 'd6' %}{% endif %}
+{% set damage_modifier = dm %}
+{# -------------------------------------------------------------- #}
+{% macro doSign(x = 0) %}{% if x != 0 %}{% if x > 0 %}+{% endif %}{{x}}{% endif %}{% endmacro doSign %}
+{% macro doSkill(var, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys, use_scb, use_sscb) %}{% set name = attribute(var, 'skill_name_' ~ id)|default %}{% set lbl = 'var' %}
+{% if name == "" %}{% set name = sk[1]|default %}{% endif %}{% set tag = "td" %}{% if sk[3]|default == "c" %}{% set tag = "th" %}{% set lbl = 'lbl' %}{% endif %}
+{% set v = attribute(var, 'skill_value_' ~ id)|default %}{% set pl = sk[2]|default %}{% set tt = '' %}
+{% if name == "Gaming" %}{% set pl = (var.int|default + var.pow|default + scb_ment) ~ " %" %}{% endif %}
+{% if name == "Fly" %}{% set pl = (var.dex|default * 4 + scb_phys) ~ " %"  %}{% endif %}
+{% if name == "Projection" %}{% set pl = (var.dex|default * 2 + scb_phys) ~ " %" %}{% endif %}
+{% if name == "Dodge" %}{% set pl = (var.dex|default * 2 + scb_comb) ~ " %" %}{% endif %}
+<tr>{% set eo = "od" %}{% if id is even %}{% set eo = "ev" %}{% endif %}
+  <{{tag}} class='i{{lbl}} {{eo}} i{{lbl}}-skill-name' title='Skill Name'>
+    {% set skg = attribute(var, 'skill_group_' ~ id)|default %}
+    {% if skg == "" %}{% set skg = sk[5] %}{% endif %}
+    {% set scb = 0 %}
+    {% if name == "Combat" or skg == "Combat" %}
+      {% set scb = scb_comb %}
+      {% if use_scb > 0 %}{% set tt = 'DEX,INT,STR' %}{% endif %}
+      {% if use_sscb > 0 %}{% set tt = 'DEX' %}{% endif %}
+    {% endif %}
+    {% if name == "Communication" or skg == "Communication" %}
+      {% set scb = scb_comm %}
+      {% if use_scb > 0 %}{% set tt = 'INT,POW,CHA' %}{% endif %}
+      {% if use_sscb > 0 %}{% set tt = 'CHA' %}{% endif %}
+    {% endif %}
+    {% if name == "Manipulation" or skg == "Manipulation" %}
+      {% set scb = scb_mani %}
+      {% if use_scb > 0 %}{% set tt = 'DEX,INT,STR' %}{% endif %}
+      {% if use_sscb > 0 %}{% set tt = 'DEX' %}{% endif %}
+    {% endif %}
+    {% if name == "Mental" or skg == "Mental" %}
+      {% set scb = scb_ment %}
+      {% if use_scb > 0 %}{% set tt = 'INT,POW' %}{% endif %}
+      {% if use_sscb > 0 %}{% set tt = 'INT' %}{% endif %}
+    {% endif %}
+    {% if name == "Perception" or skg == "Perception" %}
+      {% set scb = scb_perc %}
+      {% if use_scb > 0 %}{% set tt = 'INT,POW,CON' %}{% endif %}
+      {% if use_sscb > 0 %}{% set tt = 'POW' %}{% endif %}
+    {% endif %}
+    {% if name == "Physical" or skg == "Physical" %}
+      {% set scb = scb_phys %}
+      {% if use_scb > 0 %}{% set tt = 'DEX,STR,CON,-SIZ' %}{% endif %}
+      {% if use_sscb > 0 %}{% set tt = 'STR' %}{% endif %}
+    {% endif %}
+    {% if name == skg %}
+    <input value='{{name}}' id='skill_name' name='skill_name_{{id}}' type='hidden' />{{name}} {% if tt != '' %}<span class='float-right tt'>( {{tt}} )</span>{% endif %}
+    {% else %}
+      <input value='{{name}}' class='form-control ivar ivar-skill-name' id='skill_name' name='skill_name_{{id}}' type='text' />
+      {% set scb2 = scb %}{% set scb = 0 %}
+    {% endif %}
+  </{{tag}}><{{tag}} class='i{{lbl}} {{eo}} ivar-skill-value c' title='Skill Value'>
+    <input title='Default: {{pl + scb2}} + value' value='{{v}}' class='form-control ivar ivar-skill-value c' id='skill_value' name='skill_value_{{id}}' type='number' placeholder='{{scb}}' />
+  </{{tag}}><{{tag}} class='i{{lbl}} {{eo}} ivar-skill-bonus c' title='Skill Bonus'>
+    {{ sheet.doSign(pl + scb2) }}
+  </{{tag}}><{{tag}} class='i{{lbl}} {{eo}} ivar-skill-group'>
+    {% if name == skg %}
+    <input value='{{skg}}' id='skill_group' name='skill_group_{{id}}' type='hidden' />&nbsp;
+    {% else %}
+    <select class='form-control ivar ivar-skill-group' id='skill_group' name='skill_group_{{id}}'>
+      <option value='Communication' {% if skg == 'Communication' %}selected='selected' {% endif %} > Communication </option>
+      <option value='Manipulation' {% if skg == 'Manipulation' %}selected='selected' {% endif %} > Manipulation </option>
+      <option value='Mental' {% if skg == 'Mental' %}selected='selected' {% endif %} > Mental </option>
+      <option value='Perception' {% if skg == 'Perception' %}selected='selected' {% endif %} > Perception </option>
+      <option value='Physical' {% if skg == 'Physical' %}selected='selected' {% endif %} > Physical </option>
+      <option value='Combat' {% if skg == 'Combat' %}selected='selected' {% endif %} > Combat </option>
+    </select>
+    {% endif %}
+  </{{tag}}>  
+  {% if name == skg %}
+  <{{tag}} class='i{{lbl}} {{eo}} ivar-skill-mark c'>
+    &nbsp;
+  </{{tag}}>
+  {% else %}
+  <{{tag}} class='i{{lbl}} {{eo}} ivar-skill-mark c' title='Check(ed) for advancement roll'>
+    <input value='0' id='skill_mark' name='skill_mark_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(var, 'skill_mark_' ~ id)|default > 0 %} checked='checked'{% endif %} id='skill_mark' name='skill_mark_{{id}}' type='checkbox' />
+  </{{tag}}>
+  {% endif %}
+</tr>{% endmacro doSkill %}
+{# -------------------------------------------------------------- #}
+{% set style = 'light' %}{% if variables.style|default == 1 %}{% set style = 'dark' %}{% endif %}
+<div class="container-fluid sheet-alana-roleplaying-{{style}}">
+  <div class="row">
+    <div class="col-12">
+    <center><h1>Alana Roleplaying</h1></center>
+    </div>
+    <div class="col-12">
+      <div class="card personal" id="card-personal">
+        <div class="card-header personal"> Personal
+          <span class='float-right'><input value='0' id='style' name='style' type='hidden' /><input value='1' class='c' {% if variables.style|default > 0 %} checked='checked'{% endif %} id='style' name='style' type='checkbox' /> Dark Mode</span>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-md-7">
+              <table class='table'>
+                <tr><th class='ilbl od ilbl-name' width='40%'><label for='name'>Name</label></th><td class='ivar od ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' placeholder='Name of the hero' type='text' required=required /></td></tr>
+                <tr><th class='ilbl ev ilbl-gender'><label for='gender'>Gender</label></th><td class='ivar ev ivar-gender'><input value='{{variables.gender|default}}' class='form-control ivar ivar-gender' id='gender' name='gender' type='text' placeholder='put gender or pronouns here'/></td></tr>
+                <tr><th class='ilbl od ilbl-ancestry'><label for='ancestry'>Ancestry</label></th><td class='ivar od ivar-ancestry'><input value='{{variables.ancestry|default}}' class='form-control ivar ivar-ancestry' id='ancestry' name='ancestry' type='text' placeholder='eg Human'/></td></tr>
+                <tr><th class='ilbl od ilbl-archetype1'><label for='archetype1'>Archetype (primary)</label></th><td class='ivar od ivar-archetype1'><input value='{{variables.archetype1|default}}' class='form-control ivar ivar-archetype1' id='archetype1' name='archetype1' type='text' placeholder='eg Noble, Soldier' /></td></tr>
+                <tr><th class='ilbl od ilbl-archetype2'><label for='archetype2'>Archetype</label></th><td class='ivar od ivar-archetype2'><input value='{{variables.archetype2|default}}' class='form-control ivar ivar-archetype2' id='archetype2' name='archetype2' type='text' placeholder='eg Noble, Soldier' /></td></tr>
+                <tr><th class='ilbl ev ilbl-wealth'><label for='wealth'>Wealth Level</label></th><td class='ivar ev ivar-wealth' >
+                  <select  class='form-control ivar ivar-wealth' id='wealth' name='wealth'>
+                    <option value='Destitute' {% if variables.wealth|default == 'Destitute' %}selected='selected' {% endif %} > Destitute </option>
+                    <option value='Poor' {% if variables.wealth|default == 'Poor' %}selected='selected' {% endif %} > Poor </option>
+                    <option value='Average' {% if variables.wealth|default == 'Average' %}selected='selected' {% endif %} > Average </option>
+                    <option value='Affluent' {% if variables.wealth|default == 'Affluent' %}selected='selected' {% endif %} > Affluent </option>
+                    <option value='Wealthy' {% if variables.wealth|default == 'Wealthy' %}selected='selected' {% endif %} > Wealthy </option>
+                  </select></td></tr>
+                <tr><th class='ilbl ev ilbl-culture'><label for='culture'>Culture</label></th><td class='ivar ev ivar-culture'><input value='{{variables.culture|default}}' class='form-control ivar ivar-culture' id='culture' name='culture' type='text' /></td></tr>
+                <tr><th class='ilbl od ilbl-gods-religion'><label for='gods_religion'>Gods / Religion</label></th><td class='ivar od ivar-gods-religion'><input value='{{variables.gods_religion|default}}' class='form-control ivar ivar-gods-religion' id='gods_religion' name='gods_religion' type='text' /></td></tr>
+              </table>
+            </div>
+            <div class="col-12 col-md-5">
+              <table class='table'>
+                <tr><th class='ilbl ev ilbl-reputation'><label for='reputation'>Reputation</label></th><td class='ivar ev ivar-reputation'><input value='{{variables.reputation|default}}' class='form-control ivar ivar-reputation' id='reputation' name='reputation' type='number' placeholder='0'/></td></tr>
+                <tr><th class='ilbl od ilbl-move'><label for='move'>Movement (MOV)</label></th><td class='ivar od ivar-move'><input value='{{variables.move|default}}' class='form-control ivar ivar-move' id='move' name='move' type='number' placeholder='10'/></td></tr>
+                <tr><th class='ilbl ev ilbl-handedness'><label for='handedness'>Handedness</label></th><td class='ivar ev ivar-handedness ' >
+                  <select class='form-control ivar ivar-handedness' id='handedness' name='handedness'>
+                    <option value='right' {% if variables.handedness|default == 'right' %}selected='selected' {% endif %} > right </option>
+                    <option value='left' {% if variables.handedness|default == 'left' %}selected='selected' {% endif %} > left </option>
+                    <option value='ambidextrous' {% if variables.handedness|default == 'ambidextrous' %}selected='selected' {% endif %} > ambidextrous </option>
+                  </select></td></tr>
+                <tr><th class='ilbl od ilbl-age'><label for='age'>Age</label></th><td class='ivar od ivar-age'><input value='{{variables.age|default}}' class='form-control ivar ivar-age' id='age' name='age' type='number' placeholder='17+1d6'/></td></tr>
+                <tr><th class='ilbl ev ilbl-height'><label for='height'>Height</label></th><td class='ivar ev ivar-height'><input value='{{variables.height|default}}' class='form-control ivar ivar-height' id='height' name='height' type='text' /></td></tr>
+                <tr><th class='ilbl od ilbl-weight'><label for='weight'>Weight</label></th><td class='ivar od ivar-weight'><input value='{{variables.weight|default}}' class='form-control ivar ivar-weight' id='weight' name='weight' type='text' /></td></tr>
+                <tr><th class='ilbl ev ilbl-portrait'><label for='portrait'>Portrait</label></th><td class='ivar ev ivar-portrait'><input value='{{variables.portrait|default}}' class='form-control ivar ivar-portrait' id='portrait' name='portrait' placeholder='WA image ID' type='number' /></td></tr>
+                <tr><th class='ilbl od ilbl-player'><label for='player'>Player</label></th><td class='ivar od ivar-player'><input value='{{variables.player|default}}' class='form-control ivar ivar-player' id='player' name='player' placeholder='Your name' type='text' /></td></tr>
+                <tr><th class='ilbl ev ilbl-flair'><label for='flair'>Flair</label></th>
+                  <td class='ivar ev ivar-flair'>
+                    <select class='form-control ivar ivar-flair' id='flair' name='flair'>
+                      <option value='NONE'          {% if variables.flair|default == 'NONE'          %}selected='selected' {% endif %}> NONE          </option>
+                      <option value='Creative'      {% if variables.flair|default == 'Creative'      %}selected='selected' {% endif %}> Creative      </option>
+                      <option value='Druid'         {% if variables.flair|default == 'Druid'         %}selected='selected' {% endif %}> Druid         </option>
+                      <option value='Enquirer'      {% if variables.flair|default == 'Enquirer'      %}selected='selected' {% endif %}> Enquirer      </option>
+                      <option value='Monk'          {% if variables.flair|default == 'Monk'          %}selected='selected' {% endif %}> Monk          </option>
+                      <option value='Mythic'        {% if variables.flair|default == 'Mythic'        %}selected='selected' {% endif %}> Mythic        </option>
+                      <option value='Noble'         {% if variables.flair|default == 'Noble'         %}selected='selected' {% endif %}> Noble         </option>
+                      <option value='Outlaw'        {% if variables.flair|default == 'Outlaw'        %}selected='selected' {% endif %}> Outlaw        </option>
+                      <option value='Priest'        {% if variables.flair|default == 'Priest'        %}selected='selected' {% endif %}> Priest        </option>
+                      <option value='Ranger'        {% if variables.flair|default == 'Ranger'        %}selected='selected' {% endif %}> Ranger        </option>
+                      <option value='Spirit Caller' {% if variables.flair|default == 'Spirit Caller' %}selected='selected' {% endif %}> Spirit Caller </option>
+                      <option value='Tinkerer'      {% if variables.flair|default == 'Tinkerer'      %}selected='selected' {% endif %}> Tinkerer      </option>
+                      <option value='Trader'        {% if variables.flair|default == 'Trader'        %}selected='selected' {% endif %}> Trader        </option>
+                      <option value='Warrior'       {% if variables.flair|default == 'Warrior'       %}selected='selected' {% endif %}> Warrior       </option>
+                      <option value='Wayfarer'      {% if variables.flair|default == 'Wayfarer'      %}selected='selected' {% endif %}> Wayfarer      </option>
+                      <option value='Witch'         {% if variables.flair|default == 'Witch'         %}selected='selected' {% endif %}> Witch         </option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-ptype' width='30%'><label for='ptype'>Personality Type</label></th><td class='ivar od ivar-ptype' >
+              <select  class='form-control ivar ivar-ptype' id='ptype' name='ptype'>
+                <option value='force' {% if variables.ptype|default == 'force' %}selected='selected' {% endif %} > Solve problems by means of physical force and brawn. </option>
+                <option value='technique' {% if variables.ptype|default == 'technique' %}selected='selected' {% endif %} > Technique, craft, and expertise are the secrets of success. </option>
+                <option value='wits' {% if variables.ptype|default == 'wits' %}selected='selected' {% endif %} > Outsmart opponents to gain an advantage. </option>
+                <option value='talk' {% if variables.ptype|default == 'talk' %}selected='selected' {% endif %} > Persuade others to work while making the decisions. </option>
+              </select></td>
+            </tr>
+            <tr><th class='ilbl ev ilbl-inducement'><label for='inducement'>Inducement</label></th><td class='ivar ev ivar-inducement'><input value='{{variables.inducement|default}}' class='form-control ivar ivar-inducement' id='inducement' name='inducement' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-longtermgoal'><label for='longtermgoal'>Longterm Goal</label></th><td class='ivar od ivar-longtermgoal'><div class='iContent'><textarea class='form-control ivar ivar-longtermgoal' id='longtermgoal' name='longtermgoal' rows='3' >{{variables.longtermgoal|default}}</textarea></div></td></tr>
+            <tr><th class='ilbl ev ilbl-distinctive-features'><label for='distinctive_features'>Distinctive Features</label></th><td class='ivar ev ivar-distinctive-features'><input value='{{variables.distinctive_features|default}}' class='form-control ivar ivar-distinctive-features' id='distinctive_features' name='distinctive_features' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-description'><label for='description'>Description</label></th><td class='ivar od ivar-description'><div class='iContent'><textarea class='form-control ivar ivar-description' id='description' name='description' rows='3' >{{variables.description|default}}</textarea></div></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-5">
+      <div class="card characteristics" id="card-characteristics">
+        <div class="card-header characteristics">Characteristics</div>
+        <div class="card-body of">
+          <table class='table'>
+            <tr>
+              <th width='90px' class='ilbl od ilbl-str' title='Strength (Cost: 1, or 3d6)'><label for='str'>STR</label></th>
+              <td class='ivar od ivar-str' title='Strength'><input value='{{variables.str|default}}' class='form-control ivar ivar-str c' id='str' name='str' placeholder='3d6' type='number' required=required /></td>
+              <th class='ilbl ev ilbl-effort'><label for='effort'>Effort Roll</label></th>
+              <td width='90px' class='ivar ev ivar-effort'><input value='{{variables.effort|default}}' class='form-control ivar ivar-effort c' id='effort' name='effort' placeholder='STR x 05' type='number' /></td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-con' title='Constitution (Cost: 1, or 3d6)'><label for='con'>CON</label></th>
+              <td class='ivar od ivar-con' title='Constitution'><input value='{{variables.con|default}}' class='form-control ivar ivar-con c' id='con' name='con' placeholder='3d6' type='number' required=required /></td>
+              <th class='ilbl ev ilbl-stamina'><label for='stamina'>Stamina Roll</label></th>
+              <td class='ivar ev ivar-stamina'><input value='{{variables.stamina|default}}' class='form-control ivar ivar-stamina c' id='stamina' name='stamina' placeholder='CON x 05' type='number' /></td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-siz' title='Size (Cost: 1, or 2d6+6)'><label for='siz'>SIZ</label></th>
+              <td class='ivar od ivar-siz' title='Size'><input value='{{variables.siz|default}}' class='form-control ivar ivar-siz c' id='siz' name='siz' placeholder='2d6+6' type='number' required=required /></td>
+              <th class='ilbl ev ilbl-damage-modifier' title='STR + SIZ, result see table page 20'><label for='damage_modifier'>Damage Modifier</label></th>
+              <td class='ivar ev ivar-damage-modifier c' title='STR + SIZ, result see table page 20'>&nbsp;{{damage_modifier}}&nbsp;</td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-int' title='Intelligence (Cost: 3, or 2d6+6)'><label for='int'>INT</label></th>
+              <td class='ivar od ivar-int' title='Intelligence'><input value='{{variables.int|default}}' class='form-control ivar ivar-int c' id='int' name='int' placeholder='2d6+6' type='number' required=required /></td>
+              <th class='ilbl ev ilbl-idea'><label for='idea'>Idea Roll</label></th>
+              <td class='ivar ev ivar-idea'><input value='{{variables.idea|default}}' class='form-control ivar ivar-idea c' id='idea' name='idea' placeholder='INT x 05' type='number' /></td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-pow' title='Power (Cost: 3, or 3d6)'><label for='pow'>POW</label><div class='ivar od ivar-pow-mark float-right' title='checked'><input value='0' id='pow_mark' name='pow_mark' type='hidden' /><input value='1' class='c' {% if variables.pow_mark|default > 0 %} checked='checked'{% endif %} id='pow_mark' name='pow_mark' type='checkbox' /></div></th><td class='ivar od ivar-pow' title='Power'><input value='{{variables.pow|default}}' class='form-control ivar ivar-pow c' id='pow' name='pow' placeholder='3d6' type='number' required=required /></td>
+              <th class='ilbl ev ilbl-luck'><label for='luck'>Luck</label></th>
+              <td class='ivar ev ivar-luck'><input value='{{variables.luck|default}}' class='form-control ivar ivar-luck c' id='luck' name='luck' placeholder='POW x 05' type='number' /></td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-dex' title='Dexterity (Cost: 3, or 3d6)'><label for='dex'>DEX</label></th>
+              <td class='ivar od ivar-dex' title='Dexterity'><input value='{{variables.dex|default}}' class='form-control ivar ivar-dex c' id='dex' name='dex' placeholder='3d6' type='number' required=required /></td>
+              <th class='ilbl ev ilbl-agility'><label for='agility'>Agility Roll</label></th>
+              <td class='ivar ev ivar-agility'><input value='{{variables.agility|default}}' class='form-control ivar ivar-agility c' id='agility' name='agility' placeholder='DEX x 05' type='number' /></td>
+            </tr>
+            <tr>
+              <th class='ilbl od ilbl-cha' title='Charisma (Cost: 1, or 3d6)'><label for='cha'>CHA</label></th>
+              <td class='ivar od ivar-cha' title='Charisma'><input value='{{variables.cha|default}}' class='form-control ivar ivar-cha c' id='cha' name='cha' placeholder='3d6' type='number' required=required /></td>
+              <th class='ilbl ev ilbl-charm'><label for='charm'>Charm Roll</label></th>
+              <td class='ivar ev ivar-charm'><input value='{{variables.charm|default}}' class='form-control ivar ivar-charm c' id='charm' name='charm' placeholder='CHA x 05' type='number' /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <span class="note">Roll dice or spend 24 points. Note: When the characteristics are filled in, save the sheet. Skills will then show the proper default values.</span>
+    </div>
+    <div class="col-12 col-md-6 col-lg-7">
+      <span class="note">Note: If you do not want to use any of HP, SAN, FP, or PP, set the max to -1 and they will not be shown on the sheet.</span>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="card hit points" id="card-hit points">
+            <div class="card-header hit points">Hit Points (HP)</div>
+            <div class="card-body of">
+              <table class='table'>
+                <tr><th class='ilbl od ilbl-major-wound' width='40%'><label for='major_wound'>Major Wound</label></th><td class='ivar od ivar-major-wound c'> HP / 2</td></tr>
+                <tr><th class='ilbl ev ilbl-hit-points-current'><label for='hit_points_current'>HP Current</label></th><td class='ivar ev ivar-hit-points-current'><input value='{{variables.hit_points_current|default}}' class='form-control ivar ivar-hit-points-current c' id='hit_points_current' name='hit_points_current' type='number' placeholder='= max' /></td></tr>
+                <tr><th class='ilbl od ilbl-hit-points-max'><label for='hit_points_max'>HP Max</label></th><td class='ivar od ivar-hit-points-max'><input value='{{variables.hit_points_max|default}}' class='form-control ivar ivar-hit-points-max c' id='hit_points_max' name='hit_points_max' type='number' placeholder="(CON+SIZ)/2" /></td></tr>
+                <tr><th class='ilbl ev ilbl-hit-points-notes'><label for='hit_points_notes'>Notes</label></th><td class='ivar ev ivar-hit-points-notes'><input value='{{variables.hit_points_notes|default}}' class='form-control ivar ivar-hit-points-notes' id='hit_points_notes' name='hit_points_notes' type='text' /></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card sanity points" id="card-sanity points">
+              <div class="card-header sanity points">Sanity Points (SAN)</div>
+              <div class="card-body of">
+                <table class='table'>
+                  <tr><th class='ilbl od ilbl-sanity-points-current' width='40%'><label for='sanity_points_current'>Current</label></th><td class='ivar od ivar-sanity-points-current'><input value='{{variables.sanity_points_current|default}}' class='form-control ivar ivar-sanity-points-current c' id='sanity_points_current' name='sanity_points_current' type='number' placeholder='= max' /></td></tr>
+                  <tr><th class='ilbl ev ilbl-sanity-points-max'><label for='sanity_points_max'>Max</label></th><td class='ivar ev ivar-sanity-points-max'><input value='{{variables.sanity_points_max|default}}' class='form-control ivar ivar-sanity-points-max c' id='sanity_points_max' name='sanity_points_max' type='number' placeholder='POW x 05'/></td></tr>
+                  <tr><th class='ilbl od ilbl-sanity-points-temporary'><label for='sanity_points_temporary'>Temporary</label></th><td class='ivar od ivar-sanity-points-temporary'><input value='{{variables.sanity_points_temporary|default}}' class='form-control ivar ivar-sanity-points-temporary c' id='sanity_points_temporary' name='sanity_points_temporary' type='number' /></td></tr>
+                  <tr><th class='ilbl ev ilbl-sanity-points-notes'><label for='sanity_points_notes'>Notes</label></th><td class='ivar ev ivar-sanity-points-notes'><input value='{{variables.sanity_points_notes|default}}' class='form-control ivar ivar-sanity-points-notes' id='sanity_points_notes' name='sanity_points_notes' type='text' /></td></tr>
+                </table>
+              </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card fatigue points" id="card-fatigue points">
+            <div class="card-header fatigue points">Fatigue Points (FP)</div>
+            <div class="card-body of">
+              <table class='table'>
+                <tr><th class='ilbl od ilbl-fatigue-points-current' width='40%'><label for='fatigue_points_current'>Current</label></th><td class='ivar od ivar-fatigue-points-current'><input value='{{variables.fatigue_points_current|default}}' class='form-control ivar ivar-fatigue-points-current c' id='fatigue_points_current' name='fatigue_points_current' type='number' placeholder='= max' /></td></tr>
+                <tr><th class='ilbl ev ilbl-fatigue-points-max'><label for='fatigue_points_max'>Max</label></th><td class='ivar ev ivar-fatigue-points-max'><input value='{{variables.fatigue_points_max|default}}' class='form-control ivar ivar-fatigue-points-max c' id='fatigue_points_max' name='fatigue_points_max' type='number' placeholder='STR+CON'/></td></tr>
+                <tr><th class='ilbl od ilbl-fatigue-points-notes'><label for='fatigue_points_notes'>Notes</label></th><td class='ivar od ivar-fatigue-points-notes'><input value='{{variables.fatigue_points_notes|default}}' class='form-control ivar ivar-fatigue-points-notes' id='fatigue_points_notes' name='fatigue_points_notes' type='text' /></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card power points" id="card-power points">
+            <div class="card-header power points">Power Points (PP)</div>
+            <div class="card-body of">
+              <table class='table'>
+                <tr><th class='ilbl od ilbl-power-points-current' width='40%'><label for='power_points_current'>Current</label></th><td class='ivar od ivar-power-points-current'><input value='{{variables.power_points_current|default}}' class='form-control ivar ivar-power-points-current c' id='power_points_current' name='power_points_current' type='number' placeholder='= max' /></td></tr>
+                <tr><th class='ilbl ev ilbl-power-points-max'><label for='power_points_max'>Max</label></th><td class='ivar ev ivar-power-points-max'><input value='{{variables.power_points_max|default}}' class='form-control ivar ivar-power-points-max c' id='power_points_max' name='power_points_max' type='number' placeholder="POW"/></td></tr>
+                <tr><th class='ilbl od ilbl-battery'><label for='battery'>Battery</label></th><td class='ivar od ivar-battery'><input value='{{variables.battery|default}}' class='form-control ivar ivar-battery c' id='battery' name='battery' type='text' /></td></tr>
+                <tr><th class='ilbl ev ilbl-power-points-notes'><label for='power_points_notes'>Notes</label></th><td class='ivar od ivar-power-points-notes'><input value='{{variables.power_points_notes|default}}' class='form-control ivar ivar-power-points-notes' id='power_points_notes' name='power_points_notes' type='text' /></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card skills" id="card-skills">
+        <div class="card-header skills">Skills</div>
+        <div class="card-body of">
+          <span class="note">Note: set a skill to -1 to hide it from the sheet.</span>
+          {% set use_scb = variables.use_scb|default %}
+          {% set use_sscb = variables.use_sscb|default %}
+          {% if use_scb == '' and use_sscb == '' %}{% set use_scb = 0 %}{% set use_sscb = 1%}{% endif %}
+          <div class='ilbl ev ilbl-use-scb'><input value='0' id='use_scb' name='use_scb' type='hidden' /><input value='1' class='c' {% if use_scb > 0 %} checked='checked'{% endif %} id='use_scb' name='use_scb' type='checkbox' /><label for='use_scb'>&nbsp;&nbsp;Use Skill Category Bonuses</label></div>
+          <div class='ilbl od ilbl-use-sscb'><input value='0' id='use_sscb' name='use_sscb' type='hidden' /><input value='1' class='c' {% if use_sscb|default > 0 %} checked='checked'{% endif %} id='use_sscb' name='use_sscb' type='checkbox' /><label for='use_sscb'>&nbsp;&nbsp;Use Simple Skill Category Bonuses</label></div>
+          <span class="note">Note: 250 points for Primary Archetype, 100 points for Secondary Archetype, 100 points anywhere else.</span>
+          {% set scb_comb = 0 %}
+          {% set scb_comm = 0 %}
+          {% set scb_mani = 0 %}
+          {% set scb_ment = 0 %}
+          {% set scb_perc = 0 %}
+          {% set scb_phys = 0 %}
+          {% if variables.use_sscb|default > 0 %}
+            {% set scb_comb = (variables.dex|default + 1) // 2 %}
+            {% set scb_comm = (variables.int|default + 1) // 2 %}
+            {% set scb_mani = (variables.dex|default + 1) // 2 %}
+            {% set scb_ment = (variables.int|default + 1) // 2 %}
+            {% set scb_perc = (variables.int|default + 1) // 2 %}
+            {% set scb_phys = (variables.dex|default + 1) // 2 %}
+          {% endif %}
+          {% if variables.use_scb|default > 0 %}
+            {% set scb_comb = 2 * (variables.dex|default - 10) + ((variables.int|default - 10) // 2) + ((variables.str|default - 10) // 2) %}
+            {% set scb_comm = 2 * (variables.int|default - 10) + ((variables.pow|default - 10) // 2) + ((variables.cha|default - 10) // 2) %}
+            {% set scb_mani = 2 * (variables.dex|default - 10) + ((variables.int|default - 10) // 2) + ((variables.str|default - 10) // 2) %}
+            {% set scb_ment = 2 * (variables.int|default - 10) + ((variables.pow|default - 10) // 2) %}
+            {% set scb_perc = 2 * (variables.int|default - 10) + ((variables.pow|default - 10) // 2) + ((variables.con|default - 10) // 2) %}
+            {% set scb_phys = 2 * (variables.dex|default - 10) + ((variables.str|default - 10) // 2) + ((variables.con|default - 10) // 2) - (variables.siz|default - 10) %}
+          {% endif %}
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <table class='table'>
+                <tr>
+                  <th class='ilbl ev ilbl-skill-name'><label for='skill_name'>Name</label></th>
+                  <th class='ilbl ev ilbl-skill-value c' width='60px'><label for='skill_value'>%</label></th>
+                  <th class='ilbl ev ilbl-skill-bonus c' width='30px'><label for='skill_bonus'>+</label></th>
+                  <th class='ilbl ev ilbl-skill-group' width="100px"><label for='skill_group'>Group</label></th>
+                  <th class='ilbl ev ilbl-skill-mark c' width='30px'><label for='skill_mark'>C</label></th>
+                </tr>
+                {% for i in 1..49 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set sk = skill_list[id-1] %}
+                  {{ sheet.doSkill(variables, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys, use_scb, use_sscb) }}
+                {% endfor %}
+              </table>
+            </div>
+            <div class="col-12 col-md-6">
+              <table class='table'>
+                <tr>
+                  <th class='ilbl ev ilbl-skill-name'><label for='skill_name'>Name</label></th>
+                  <th class='ilbl ev ilbl-skill-value c' width='60px'><label for='skill_value'>%</label></th>
+                  <th class='ilbl ev ilbl-skill-bonus c' width='30px'><label for='skill_bonus'>+</label></th>
+                  <th class='ilbl ev ilbl-skill-group' width="100px"><label for='skill_group'>Group</label></th>
+                  <th class='ilbl ev ilbl-skill-mark c' width='30px'><label for='skill_mark'>C</label></th>
+                  </tr>
+                {% for i in 50..98 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set sk = skill_list[id-1] %}
+                  {{ sheet.doSkill(variables, id, sk, scb_comb, scb_comm, scb_mani, scb_ment, scb_perc, scb_phys, use_scb, use_sscb) }}
+                {% endfor %}
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+        <span class="note">Note: the following lists will show more empty lines when the visible ones fill up.</span>
+    </div>
+    <div class="col-12">
+      <div class="card weapons" id="card-weapons">
+        <div class="card-header weapons">Weapons</div>
+        <div class="card-body of">
+          <table class='table'>
+            {% set clistmax = 30 %}{% set emptymin = 1 %}{% set listmin = 2 %}{% set ecount = 0 %}{% set count = 0 %}
+            {% for i in 1..clistmax %}
+                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+                {% set name = attribute(variables, 'weapon_name_' ~ id)|default|trim %}
+                {% if name == "" and i > listmin %}{% set ecount = ecount + 1 %}{% endif %}
+                {% if ecount <= emptymin or i < listmin or name != "" %}
+                  {% set count = count + 1 %}
+                  {% set eo = 'od' %}{% if count is even %}{% set eo = 'ev' %}{% endif %}
+                  {% if count == 1 or count // 11 == count / 11 %}
+                  <tr>
+                    <th class='ilbl od ilbl-weapon-type'><label for='weapon_type'>Type</label></th>
+                    <th class='ilbl od ilbl-weapon-base c' width='60px' title='Base attack value of the weapon'><label for='weapon_base'>Base</label></th>
+                    <th class='ilbl od ilbl-weapon-value c' width='60px'><label for='weapon_value'>%</label></th>
+                    <th class='ilbl od ilbl-weapon-damage' width='27%'><label for='weapon_damage'>Damage, Special</label></th>
+                    <th class='ilbl od ilbl-weapon-range c' width='80px'><label for='weapon_range'>Range</label></th>
+                    <th class='ilbl od ilbl-weapon-attacks' width='60px'><label for='weapon_attacks'>Attacks</label></th>
+                    <th class='ilbl od ilbl-weapon-length c' width='80px'><label for='weapon_length'>Length</label></th>
+                    <th class='ilbl od ilbl-weapon-hand c' width='40px' title='1H or 2H'><label for='weapon_hand'>Hand</label></th>
+                    <th class='ilbl od ilbl-weapon-hp c' width='60px'><label for='weapon_hp'>HP</label></th>
+                    <th class='ilbl od ilbl-weapon-mark c' width='40px'><label for='weapon_mark'>C</label></th>
+                  </tr>
+                {% endif %}
+                <tr>
+                  <td class='ivar {{eo}} ivar-weapon-type' title='Weapon Name'><input value='{{attribute(variables, 'weapon_type_' ~ id)|default}}' class='form-control ivar ivar-weapon-type' id='weapon_type' name='weapon_type_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-weapon-base' title='Base attack value of the weapon'><input value='{{attribute(variables, 'weapon_base_' ~ id)|default}}' class='form-control ivar ivar-weapon-base c' id='weapon_base' name='weapon_base_{{id}}' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-weapon-value' title='Weapon Skill Value'><input value='{{attribute(variables, 'weapon_value_' ~ id)|default}}' class='form-control ivar ivar-weapon-value c' id='weapon_value' name='weapon_value_{{id}}' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-weapon-damage'><input value='{{attribute(variables, 'weapon_damage_' ~ id)|default}}' class='form-control ivar ivar-weapon-damage' id='weapon_damage' name='weapon_damage_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-weapon-range'><input value='{{attribute(variables, 'weapon_range_' ~ id)|default}}' class='form-control ivar ivar-weapon-range c' id='weapon_range' name='weapon_range_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-weapon-attacks'><input value='{{attribute(variables, 'weapon_attacks_' ~ id)|default}}' class='form-control ivar ivar-weapon-attacks c' id='weapon_attacks' name='weapon_attacks_{{id}}' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-weapon-length'><input value='{{attribute(variables, 'weapon_length_' ~ id)|default}}' class='form-control ivar ivar-weapon-length c' id='weapon_length' name='weapon_length_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-weapon-hand' title='1H or 2H'><input value='{{attribute(variables, 'weapon_hand_' ~ id)|default}}' class='form-control ivar ivar-weapon-hand c' id='weapon_hand' name='weapon_hand_{{id}}' type='text' placeholder='1H'/></td>
+                  <td class='ivar {{eo}} ivar-weapon-hp'><input value='{{attribute(variables, 'weapon_hp_' ~ id)|default}}' class='form-control ivar ivar-weapon-hp c' id='weapon_hp' name='weapon_hp_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-weapon-mark c' title='checked'><input value='0' id='weapon_mark' name='weapon_mark_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'weapon_mark_' ~ id)|default > 0 %} checked='checked'{% endif %} id='weapon_mark' name='weapon_mark_{{id}}' type='checkbox' /></td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card armor" id="card-armor">
+        <div class="card-header armor">Armor</div>
+        <div class="card-body of">
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <table class='table'>
+                {% set clistmax = 10 %}{% set emptymin = 1 %}{% set listmin = 1 %}{% set ecount = 0 %}{% set count = 0 %}
+                {% for i in 1..clistmax %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set name = attribute(variables, 'armor_type_' ~ id)|default|trim %}
+                  {% if name == "" and i > listmin %}{% set ecount = ecount + 1 %}{% endif %}
+                  {% if ecount <= emptymin or i < listmin or name != "" %}
+                    {% set count = count + 1 %}
+                    {% set eo = 'od' %}{% if count is even %}{% set eo = 'ev' %}{% endif %}
+                    {% if count == 1 or count // 11 == count / 11 %}
+                      <tr>
+                        <th class='ilbl od ilbl-armor-type'><label for='armor_type'>Type</label></th>
+                        <th class='ilbl od ilbl-armor-value c' width='60px'><label for='armor_value'>AV</label></th>
+                      </tr>
+                    {% endif %}
+                    <tr>
+                      <td class='ivar {{eo}} ivar-armor-type' title='Armor Name'><input value='{{attribute(variables, 'armor_type_' ~ id)|default}}' class='form-control ivar ivar-armor-type' id='armor_type' name='armor_type_{{id}}' type='text' /></td>
+                      <td class='ivar {{eo}} ivar-armor-value' title='Armor Value'><input value='{{attribute(variables, 'armor_value_' ~ id)|default}}' class='form-control ivar ivar-armor-value c' id='armor_value' name='armor_value_{{id}}' type='number' /></td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+              </table>
+            </div>
+            <div class="col-12 col-md-8">
+              <table class='table'>
+                <tr>
+                  <th class='ilbl od ilbl-shield-type' width='25%'><label for='shield_type'>Shield Type</label></th>
+                  <th class='ilbl od ilbl-shiele-value c' width='60px'><label for='shiele_value'>%</label></th>
+                  <th class='ilbl od ilbl-shield-damage' width='25%'><label for='shield_damage'>Damage</label></th>
+                  <th class='ilbl od ilbl-shield-hp c' width='60px'><label for='shield_hp'>HP</label></th>
+                  <th class='ilbl od ilbl-shield-mark c' width='40px'><label for='shield_mark'>C</label></th>
+                </tr>
+                <tr>
+                  <td class='ivar {{eo}} ivar-shield-type'><input value='{{variables.shield_type|default}}' class='form-control ivar ivar-shield-type' id='shield_type' name='shield_type' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-shiele-value' title='Shield Value'><input value='{{variables.shiele_value|default}}' class='form-control ivar ivar-shiele-value c' id='shiele_value' name='shiele_value' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-shield-damage'><input value='{{variables.shield_damage|default}}' class='form-control ivar ivar-shield-damage' id='shield_damage' name='shield_damage' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-shield-hp'><input value='{{variables.shield_hp|default}}' class='form-control ivar ivar-shield-hp c' id='shield_hp' name='shield_hp' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-shield-mark c'  title='checked'><input value='0' id='shield_mark' name='shield_mark' type='hidden' /><input value='1' class='c' {% if variables.shield_mark|default > 0 %} checked='checked'{% endif %} id='shield_mark' name='shield_mark' type='checkbox' /></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class='ilbl od ilbl-combat-notes'><label for='combat_notes'>Notes</label></div><div class='ivar od ivar-combat-notes'><div class='iContent'><textarea class='form-control ivar ivar-combat-notes' id='combat_notes' name='combat_notes' rows='3' >{{variables.combat_notes|default}}</textarea></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card powers" id="card-powers">
+        <div class="card-header powers">Powers</div>
+        <div class="card-body of">
+          <table class='table'>
+            {% set clistmax = 60 %}{% set emptymin = 3 %}{% set listmin = 5 %}{% set ecount = 0 %}{% set count = 0 %}
+            {% for i in 1..clistmax %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'power_name_' ~ id)|default|trim %}
+              {% if name == "" and i > listmin %}{% set ecount = ecount + 1 %}{% endif %}
+              {% if ecount <= emptymin or i < listmin or name != "" %}
+                {% set count = count + 1 %}
+                {% set eo = 'od' %}{% if count is even %}{% set eo = 'ev' %}{% endif %}
+                {% if count == 1 or count // 11 == count / 11 %}
+                  <tr>
+                    <th class='ilbl od ilbl-power-name' width='25%'><label for='power_name'>Power</label></th>
+                    <th class='ilbl od ilbl-power-type c'><label for='power_type'>Energy Type</label></th>
+                    <th class='ilbl od ilbl-power-levels-act'><label for='power_levels_act'>Active Levels</label></th>
+                    <th class='ilbl od ilbl-power-levels-total'><label for='power_levels_total'>Total Levels</label></th>
+                    <th class='ilbl od ilbl-power-range c'><label for='power_range'>Range</label></th>
+                    <th class='ilbl od ilbl-power-cost c' title='Cost To Use'><label for='power_cost'>Cost</label></th>
+                    <th class='ilbl od ilbl-power-duration c'><label for='power_duration'>Duration</label></th>
+                    <th class='ilbl od ilbl-power-cp c' width='60px'><label for='power_cp'>CP</label></th>
+                  </tr>
+                {% endif %}
+                <tr>
+                  <td class='ivar {{eo}} ivar-power-name'><input value='{{attribute(variables, 'power_name_' ~ id)|default}}' class='form-control ivar ivar-power-name' id='power_name' name='power_name_{{id}}' type='text' placeholder='power name'/></td>
+                  <td class='ivar {{eo}} ivar-power-type'><input value='{{attribute(variables, 'power_type_' ~ id)|default}}' class='form-control ivar ivar-power-type c' id='power_type' name='power_type_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-power-levels-act'><input value='{{attribute(variables, 'power_levels_act_' ~ id)|default}}' class='form-control ivar ivar-power-levels-act c' id='power_levels_act' name='power_levels_act_{{id}}' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-power-levels-total'><input value='{{attribute(variables, 'power_levels_total_' ~ id)|default}}' class='form-control ivar ivar-power-levels-total c' id='power_levels_total' name='power_levels_total_{{id}}' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-power-range'><input value='{{attribute(variables, 'power_range_' ~ id)|default}}' class='form-control ivar ivar-power-range c' id='power_range' name='power_range_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-power-cost'><input value='{{attribute(variables, 'power_cost_' ~ id)|default}}' class='form-control ivar ivar-power-cost c' id='power_cost' name='power_cost_{{id}}' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-power-duration'><input value='{{attribute(variables, 'power_duration_' ~ id)|default}}' class='form-control ivar ivar-power-duration c' id='power_duration' name='power_duration_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-power-cp' title='Character Points'><input value='{{attribute(variables, 'power_cp_' ~ id)|default}}' class='form-control ivar ivar-power-cp c' id='power_cp' name='power_cp_{{id}}' type='number' /></td>
+                </tr>
+                <tr>
+                  <th class='ivar {{eo}} ivar-power-dummy'>&nbsp;</th>
+                  <th class='ilbl {{eo}} ilbl-power-notes vam c'><label for='power_notes'>Notes</label></th>
+                  <td class='ivar {{eo}} ivar-power-notes pd2' colspan=7><textarea class='form-control ivar ivar-power-notes pd2' id='power_notes' name='power_notes_{{id}}' rows='3' >{{attribute(variables, 'power_notes_' ~ id)|default}}</textarea></td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card attack powers" id="card-attack powers">
+        <div class="card-header attack powers">Attack Powers</div>
+        <div class="card-body of">
+          <table class='table'>
+            {% set clistmax = 40 %}{% set emptymin = 2 %}{% set listmin = 4 %}{% set ecount = 0 %}{% set count = 0 %}
+            {% for i in 1..clistmax %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'apower_name_' ~ id)|default|trim %}
+              {% if name == "" and i > listmin %}{% set ecount = ecount + 1 %}{% endif %}
+              {% if ecount <= emptymin or i < listmin or name != "" %}
+                {% set count = count + 1 %}
+                {% set eo = 'od' %}{% if count is even %}{% set eo = 'ev' %}{% endif %}
+                {% if count == 1 or count // 11 == count / 11 %}
+                  <tr>
+                    <th class='ilbl od ilbl-apower-name' width='25%'><label for='apower_name'>Name</label></th>
+                    <th class='ilbl od ilbl-apower-value c' width='60px'><label for='apower_value'>%</label></th>
+                    <th class='ilbl od ilbl-apower-damage' width='20%'><label for='apower_damage'>Damage</label></th>
+                    <th class='ilbl od ilbl-apower-range c'><label for='apower_range'>Range</label></th>
+                    <th class='ilbl od ilbl-apower-type c'><label for='apower_type'>Type</label></th>
+                    <th class='ilbl od ilbl-apower-cost c' width='60px'><label for='apower_cost'>Cost</label></th>
+                    <th class='ilbl od ilbl-apower-mark c' width='40px'><label for='apower_mark'>C</label></th>
+                  </tr>
+                {% endif %}
+                <tr>
+                  <td class='ivar {{eo}} ivar-apower-name' title='Attack Power'><input value='{{attribute(variables, 'apower_name_' ~ id)|default}}' class='form-control ivar ivar-apower-name' id='apower_name' name='apower_name_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-apower-value' title='Attack Power Value'><input value='{{attribute(variables, 'apower_value_' ~ id)|default}}' class='form-control ivar ivar-apower-value c' id='apower_value' name='apower_value_{{id}}' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-apower-damage'><input value='{{attribute(variables, 'apower_damage_' ~ id)|default}}' class='form-control ivar ivar-apower-damage' id='apower_damage' name='apower_damage_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-apower-range'><input value='{{attribute(variables, 'apower_range_' ~ id)|default}}' class='form-control ivar ivar-apower-range c' id='apower_range' name='apower_range_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-apower-type'><input value='{{attribute(variables, 'apower_type_' ~ id)|default}}' class='form-control ivar ivar-apower-type c' id='apower_type' name='apower_type_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-apower-cost'><input value='{{attribute(variables, 'apower_cost_' ~ id)|default}}' class='form-control ivar ivar-apower-cost c' id='apower_cost' name='apower_cost_{{id}}' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-apower-mark c' title='checked'><input value='0' id='apower_mark' name='apower_mark_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'apower_mark_' ~ id)|default > 0 %} checked='checked'{% endif %} id='apower_mark' name='apower_mark_{{id}}' type='checkbox' /></td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card defensive powers" id="card-defensive powers">
+        <div class="card-header defensive powers">Defensive Powers</div>
+        <div class="card-body of">
+          <table class='table'>
+            {% set clistmax = 40 %}{% set emptymin = 2 %}{% set listmin = 4 %}{% set ecount = 0 %}{% set count = 0 %}
+            {% for i in 1..clistmax %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'dpower_name_' ~ id)|default|trim %}
+              {% if name == "" and i > listmin %}{% set ecount = ecount + 1 %}{% endif %}
+              {% if ecount <= emptymin or i < listmin or name != "" %}
+                {% set count = count + 1 %}
+                {% set eo = 'od' %}{% if count is even %}{% set eo = 'ev' %}{% endif %}
+                {% if count == 1 or count // 11 == count / 11 %}
+                  <tr>
+                    <th class='ilbl od ilbl-dpower-name' width='25%'><label for='dpower_name'>Power</label></th>
+                    <th class='ilbl od ilbl-dpower-type c'><label for='dpower_type'>Energy Type</label></th>
+                    <th class='ilbl od ilbl-dpower-level c' width='60px'><label for='dpower_level'>Level</label></th>
+                    <th class='ilbl od ilbl-dpower-value c' width='60px'><label for='dpower_value'>%</label></th>
+                    <th class='ilbl od ilbl-dpower-cost c' width='70px'><label for='dpower_cost'>Energy Cost</label></th>
+                  </tr>
+                {% endif %}
+                <tr>
+                  <td class='ivar {{eo}} ivar-dpower-name' title='Defense Power'><input value='{{attribute(variables, 'dpower_name_' ~ id)|default}}' class='form-control ivar ivar-dpower-name' id='dpower_name' name='dpower_name_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-dpower-type'><input value='{{attribute(variables, 'dpower_type_' ~ id)|default}}' class='form-control ivar ivar-dpower-type c' id='dpower_type' name='dpower_type_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-dpower-level'><input value='{{attribute(variables, 'dpower_level_' ~ id)|default}}' class='form-control ivar ivar-dpower-level c' id='dpower_level' name='dpower_level_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-dpower-value' title='Defense Power Value'><input value='{{attribute(variables, 'dpower_value_' ~ id)|default}}' class='form-control ivar ivar-dpower-value c' id='dpower_value' name='dpower_value_{{id}}' type='number' /></td>
+                  <td class='ivar {{eo}} ivar-dpower-cost'><input value='{{attribute(variables, 'dpower_cost_' ~ id)|default}}' class='form-control ivar ivar-dpower-cost c' id='dpower_cost' name='dpower_cost_{{id}}' type='number' /></td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+          <br>
+          <table class='table'>
+            <tr>{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <th class='ilbl {{eo}} ilbl-dpower-defense'><label for='dpower_defense'>Defense</label></th><td class='ivar {{eo}} ivar-dpower-defense'><input value='{{variables.dpower_defense|default}}' class='form-control ivar ivar-dpower-defense c' id='dpower_defense' name='dpower_defense' type='number' /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card character points" id="card-character points">
+        <div class="card-header character points">Character Points</div>
+        <div class="card-body of">
+          <table class='table'>
+            <tr>
+              <th class='ilbl {{eo}} ilbl-campaign-power-level'><label for='campaign_power_level'>Campaign Power Level</label></th><td class='ivar {{eo}} ivar-campaign-power-level'><input value='{{variables.campaign_power_level|default}}' class='form-control ivar ivar-campaign-power-level c' id='campaign_power_level' name='campaign_power_level' type='string' placeholder='Normal, Heroic, Epic, Superhuman'/></td>
+              <th class='ilbl {{eo}} ilbl-character-points'><label for='character_points'>Character Points</label></th><td class='ivar {{eo}} ivar-character-points'><input value='{{variables.character_points|default}}' class='form-control ivar ivar-character-points c' id='character_points' name='character_points' type='number' /></td>
+            </tr>
+          </table>
+          <table class='table'>
+            {% set clistmax = 40 %}{% set emptymin = 2 %}{% set listmin = 4 %}{% set ecount = 0 %}{% set count = 0 %}
+            {% for i in 1..clistmax %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'character_failing_type_' ~ id)|default|trim %}
+              {% if name == "" and i > listmin %}{% set ecount = ecount + 1 %}{% endif %}
+              {% if ecount <= emptymin or i < listmin or name != "" %}
+                {% set count = count + 1 %}
+                {% set eo = 'od' %}{% if count is even %}{% set eo = 'ev' %}{% endif %}
+                {% if count == 1 or count // 11 == count / 11 %}
+                  <tr>
+                    <th class='ilbl od ilbl-character-failing-type'><label for='character_failing_type'>Character Failings</label></th>
+                    <th class='ilbl od ilbl-character-failing-points' width='60px'><label for='character_failing_points'>Points</label></th>
+                  </tr>
+                {% endif %}
+                <tr>
+                  <td class='ivar {{eo}} ivar-character-failing-type'><input value='{{attribute(variables, 'character_failing_type_' ~ id)|default}}' class='form-control ivar ivar-character-failing-type' id='character_failing_type' name='character_failing_type_{{id}}' type='text' /></td>
+                  <td class='ivar {{eo}} ivar-character-failing-points'><input value='{{attribute(variables, 'character_failing_points_' ~ id)|default}}' class='form-control ivar ivar-character-failing-points c' id='character_failing_points' name='character_failing_points_{{id}}' type='number' /></td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+        <span class="note">Note: the following boxes will not show on the sheet when left empty.</span>
+    </div>
+    <div class="col-12">
+      <div class="card belongings" id="card-belongings">
+        <div class="card-header belongings"><label for="belongings">Belongings</label></div>
+        <div class="card-body of">
+          <div class='ivar od ivar-belongings'><div class='iContent'><textarea class='form-control ivar ivar-belongings' id='belongings' name='belongings' rows='3' >{{variables.belongings|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card background" id="card-background">
+        <div class="card-header background"><label for="background">Background</label></div>
+        <div class="card-body of">
+          <div class='ivar od ivar-background'><div class='iContent'><textarea class='form-control ivar ivar-background' id='background' name='background' rows='3' >{{variables.background|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card passions" id="card-passions">
+        <div class="card-header passions"><label for="passions">Passions</label></div>
+        <div class="card-body of">
+          <div class='ivar od ivar-passions'><div class='iContent'><textarea class='form-control ivar ivar-passions' id='passions' name='passions' rows='3' >{{variables.passions|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card allegiances" id="card-allegiances">
+        <div class="card-header allegiances"><label for="allegiances">Allegiances</label></div>
+        <div class="card-body of">
+          <div class='ivar od ivar-allegiances'><div class='iContent'><textarea class='form-control ivar ivar-allegiances' id='allegiances' name='allegiances' rows='3' >{{variables.allegiances|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card reputation-history" id="card-reputation-history">
+        <div class="card-header reputation-history"><label for="reputation_history">Reputation History</label></div>
+        <div class="card-body of">
+          <div class='ivar od ivar-reputation-history'><div class='iContent'><textarea class='form-control ivar ivar-reputation-history' id='reputation_history' name='reputation_history' rows='3' placeholder='Events you gained reputation for.'>{{variables.reputation_history|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card notes" id="card-notes">
+        <div class="card-header notes"><label for="notes">Notes</label></div>
+        <div class="card-body of">
+          <div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes' id='notes' name='notes' rows='3' >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <div class="card personality-traits" id="card-personality-traits">
+        <div class="card-header personality-traits">Personality Traits</div>
+        <div class="card-body of">
+          <div class='ilbl ev ilbl-use-ptraits'><input value='0' id='use_ptraits' name='use_ptraits' type='hidden' /><input value='1' class='c' {% if variables.use_ptraits|default > 0 %} checked='checked'{% endif %} id='use_ptraits' name='use_ptraits' type='checkbox' /><label for='use_ptraits'>&nbsp;&nbsp;Use Personality Traits (unchecking this hides the section.)</label></div>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-ptrait-aggressive'><label for='ptrait_aggressive'>Aggressive</label></th><td width='180px' class='ivar od ivar-ptrait-aggressive'><input value='{{variables.ptrait_aggressive|default}}' class='form-control ivar ivar-ptrait-aggressive c' id='ptrait_aggressive' name='ptrait_aggressive' type='number' /> % </td><th class='ilbl od'>Passive</th><td width='180px' class="ivar od">100% - Aggressive</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-brave'><label for='ptrait_brave'>Brave</label></th><td class='ivar ev ivar-ptrait-brave'><input value='{{variables.ptrait_brave|default}}' class='form-control ivar ivar-ptrait-brave c' id='ptrait_brave' name='ptrait_brave' type='number' /> % </td><th class='ilbl ev'>Cowardly</th><td class="ivar ev">100% - Brave</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-clever'><label for='ptrait_clever'>Clever</label></th><td class='ivar od ivar-ptrait-clever'><input value='{{variables.ptrait_clever|default}}' class='form-control ivar ivar-ptrait-clever c' id='ptrait_clever' name='ptrait_clever' type='number' /> % </td><th class='ilbl od'>Dull</th><td class="ivar od">100% - Clever</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-conservative'><label for='ptrait_conservative'>Conservative</label></th><td class='ivar ev ivar-ptrait-conservative'><input value='{{variables.ptrait_conservative|default}}' class='form-control ivar ivar-ptrait-conservative c' id='ptrait_conservative' name='ptrait_conservative' type='number' /> % </td><th class='ilbl ev'>Innovative</th><td class="ivar ev">100% - Conservative</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-curious'><label for='ptrait_curious'>Curious</label></th><td class='ivar od ivar-ptrait-curious'><input value='{{variables.ptrait_curious|default}}' class='form-control ivar ivar-ptrait-curious c' id='ptrait_curious' name='ptrait_curious' type='number' /> % </td><th class='ilbl od'>Incurious</th><td class="ivar od">100% - Curious</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-dependable'><label for='ptrait_dependable'>Dependable</label></th><td class='ivar ev ivar-ptrait-dependable'><input value='{{variables.ptrait_dependable|default}}' class='form-control ivar ivar-ptrait-dependable c' id='ptrait_dependable' name='ptrait_dependable' type='number' /> % </td><th class='ilbl ev'>Unreliable</th><td class="ivar ev">100% - Dependable</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-emotional'><label for='ptrait_emotional'>Emotional</label></th><td class='ivar od ivar-ptrait-emotional'><input value='{{variables.ptrait_emotional|default}}' class='form-control ivar ivar-ptrait-emotional c' id='ptrait_emotional' name='ptrait_emotional' type='number' /> % </td><th class='ilbl od'>Calm</th><td class="ivar od">100% - Emotional</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-energetic'><label for='ptrait_energetic'>Energetic</label></th><td class='ivar ev ivar-ptrait-energetic'><input value='{{variables.ptrait_energetic|default}}' class='form-control ivar ivar-ptrait-energetic c' id='ptrait_energetic' name='ptrait_energetic' type='number' /> % </td><th class='ilbl ev'>Lazy</th><td class="ivar ev">100% - Energetic</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-extrovert'><label for='ptrait_extrovert'>Extrovert</label></th><td class='ivar od ivar-ptrait-extrovert'><input value='{{variables.ptrait_extrovert|default}}' class='form-control ivar ivar-ptrait-extrovert c' id='ptrait_extrovert' name='ptrait_extrovert' type='number' /> % </td><th class='ilbl od'>Introvert</th><td class="ivar od">100% - Extrovert</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-greedy'><label for='ptrait_greedy'>Greedy</label></th><td class='ivar ev ivar-ptrait-greedy'><input value='{{variables.ptrait_greedy|default}}' class='form-control ivar ivar-ptrait-greedy c' id='ptrait_greedy' name='ptrait_greedy' type='number' /> % </td><th class='ilbl ev'>Generous</th><td class="ivar ev">100% - Greedy</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-honest'><label for='ptrait_honest'>Honest</label></th><td class='ivar od ivar-ptrait-honest'><input value='{{variables.ptrait_honest|default}}' class='form-control ivar ivar-ptrait-honest c' id='ptrait_honest' name='ptrait_honest' type='number' /> % </td><th class='ilbl od'>Dishonest</th><td class="ivar od">100% - Honest</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-honorable'><label for='ptrait_honorable'>Honorable</label></th><td class='ivar ev ivar-ptrait-honorable'><input value='{{variables.ptrait_honorable|default}}' class='form-control ivar ivar-ptrait-honorable c' id='ptrait_honorable' name='ptrait_honorable' type='number' /> % </td><th class='ilbl ev'>Dishonorable</th><td class="ivar ev">100% - Honorable</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-humorous'><label for='ptrait_humorous'>Humorous</label></th><td class='ivar od ivar-ptrait-humorous'><input value='{{variables.ptrait_humorous|default}}' class='form-control ivar ivar-ptrait-humorous c' id='ptrait_humorous' name='ptrait_humorous' type='number' /> % </td><th class='ilbl od'>Dour</th><td class="ivar od">100% - Humorous</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-impulsive'><label for='ptrait_impulsive'>Impulsive</label></th><td class='ivar ev ivar-ptrait-impulsive'><input value='{{variables.ptrait_impulsive|default}}' class='form-control ivar ivar-ptrait-impulsive c' id='ptrait_impulsive' name='ptrait_impulsive' type='number' /> % </td><th class='ilbl ev'>Cautious</th><td class="ivar ev">100% - Impulsive</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-leader'><label for='ptrait_leader'>Leader</label></th><td class='ivar od ivar-ptrait-leader'><input value='{{variables.ptrait_leader|default}}' class='form-control ivar ivar-ptrait-leader c' id='ptrait_leader' name='ptrait_leader' type='number' /> % </td><th class='ilbl od'>Follower</th><td class="ivar od">100% - Leader</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-optimistic'><label for='ptrait_optimistic'>Optimistic</label></th><td class='ivar ev ivar-ptrait-optimistic'><input value='{{variables.ptrait_optimistic|default}}' class='form-control ivar ivar-ptrait-optimistic c' id='ptrait_optimistic' name='ptrait_optimistic' type='number' /> % </td><th class='ilbl ev'>Pessimistic</th><td class="ivar ev">100% - Optimistic</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-patient'><label for='ptrait_patient'>Patient</label></th><td class='ivar od ivar-ptrait-patient'><input value='{{variables.ptrait_patient|default}}' class='form-control ivar ivar-ptrait-patient c' id='ptrait_patient' name='ptrait_patient' type='number' /> % </td><th class='ilbl od'>Nervous</th><td class="ivar od">100% - Patient</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-physical'><label for='ptrait_physical'>Physical</label></th><td class='ivar ev ivar-ptrait-physical'><input value='{{variables.ptrait_physical|default}}' class='form-control ivar ivar-ptrait-physical c' id='ptrait_physical' name='ptrait_physical' type='number' /> % </td><th class='ilbl ev'>Mental</th><td class="ivar ev">100% - Physical</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-pious'><label for='ptrait_pious'>Pious</label></th><td class='ivar od ivar-ptrait-pious'><input value='{{variables.ptrait_pious|default}}' class='form-control ivar ivar-ptrait-pious c' id='ptrait_pious' name='ptrait_pious' type='number' /> % </td><th class='ilbl od'>Irreligious</th><td class="ivar od">100% - Pious</td></tr>
+            <tr><th class='ilbl ev ilbl-ptrait-stubborn'><label for='ptrait_stubborn'>Stubborn</label></th><td class='ivar ev ivar-ptrait-stubborn'><input value='{{variables.ptrait_stubborn|default}}' class='form-control ivar ivar-ptrait-stubborn c' id='ptrait_stubborn' name='ptrait_stubborn' type='number' /> % </td><th class='ilbl ev'>Receptive</th><td class="ivar ev">100% - Stubborn</td></tr>
+            <tr><th class='ilbl od ilbl-ptrait-trusting'><label for='ptrait_trusting'>Trusting</label></th><td class='ivar od ivar-ptrait-trusting'><input value='{{variables.ptrait_trusting|default}}' class='form-control ivar ivar-ptrait-trusting c' id='ptrait_trusting' name='ptrait_trusting' type='number' /> % </td><th class='ilbl od'>Suspicious</th><td class="ivar od">100% - Trusting</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

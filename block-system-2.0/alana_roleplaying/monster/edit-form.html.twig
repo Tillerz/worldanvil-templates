@@ -1,0 +1,137 @@
+﻿{% set style = 'light' %}{% if variables.style|default == 1 %}{% set style = 'dark' %}{% endif %}
+<div class="container-fluid sheet-alana-roleplaying-{{style}}">
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <div class="card basics" id="card-basics">
+        <div class="card-body of">
+          <div class='ilbl od ilbl-name'><label for='name'>Name</label><span class='float-right'><input value='0' id='style' name='style' type='hidden' /><input value='1' class='c' {% if variables.style|default > 0 %} checked='checked'{% endif %} id='style' name='style' type='checkbox' /> Dark Mode</span></div><div class='ivar od ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' placeholder='Name of the npc or monster' type='text' required=required />
+          </div>
+          <div class='ilbl ev ilbl-traits'><label for='traits'>Traits</label></div><div class='ivar ev ivar-traits'><input value='{{variables.traits|default}}' class='form-control ivar ivar-traits' id='traits' name='traits' placeholder='eg humanoid,rare,monster,npc' type='text' /></div>
+          <div class='ilbl od ilbl-portrait'><label for='portrait'>Portrait</label></div><div class='ivar od ivar-portrait c'><input value='{{variables.portrait|default}}' class='form-control ivar ivar-portrait c' id='portrait' name='portrait' placeholder='WA image ID' type='number' /></div>
+          <div class='ilbl ev ilbl-description'><label for='description'>Description</label></div><div class='ivar ev ivar-description'><div class='iContent'><textarea class='form-control ivar ivar-description ' id='description' name='description' rows='3' >{{variables.description|default}}</textarea></div></div>
+          <div class='ilbl od ilbl-flair'><label for='flair'>Flair</label></div>
+          <div class='ivar od ivar-description'>
+            <div class='iContent'>
+              <select class='form-control ivar ivar-flair' id='flair' name='flair'>
+                <option value='NONE'          {% if variables.flair|default == 'NONE'          %}selected='selected' {% endif %}> NONE          </option>
+                <option value='Creative'      {% if variables.flair|default == 'Creative'      %}selected='selected' {% endif %}> Creative      </option>
+                <option value='Druid'         {% if variables.flair|default == 'Druid'         %}selected='selected' {% endif %}> Druid         </option>
+                <option value='Enquirer'      {% if variables.flair|default == 'Enquirer'      %}selected='selected' {% endif %}> Enquirer      </option>
+                <option value='Monk'          {% if variables.flair|default == 'Monk'          %}selected='selected' {% endif %}> Monk          </option>
+                <option value='Mythic'        {% if variables.flair|default == 'Mythic'        %}selected='selected' {% endif %}> Mythic        </option>
+                <option value='Noble'         {% if variables.flair|default == 'Noble'         %}selected='selected' {% endif %}> Noble         </option>
+                <option value='Outlaw'        {% if variables.flair|default == 'Outlaw'        %}selected='selected' {% endif %}> Outlaw        </option>
+                <option value='Priest'        {% if variables.flair|default == 'Priest'        %}selected='selected' {% endif %}> Priest        </option>
+                <option value='Ranger'        {% if variables.flair|default == 'Ranger'        %}selected='selected' {% endif %}> Ranger        </option>
+                <option value='Spirit Caller' {% if variables.flair|default == 'Spirit Caller' %}selected='selected' {% endif %}> Spirit Caller </option>
+                <option value='Tinkerer'      {% if variables.flair|default == 'Tinkerer'      %}selected='selected' {% endif %}> Tinkerer      </option>
+                <option value='Trader'        {% if variables.flair|default == 'Trader'        %}selected='selected' {% endif %}> Trader        </option>
+                <option value='Warrior'       {% if variables.flair|default == 'Warrior'       %}selected='selected' {% endif %}> Warrior       </option>
+                <option value='Wayfarer'      {% if variables.flair|default == 'Wayfarer'      %}selected='selected' {% endif %}> Wayfarer      </option>
+                <option value='Witch'         {% if variables.flair|default == 'Witch'         %}selected='selected' {% endif %}> Witch         </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card attributes" id="card-attributes">
+        <div class="card-body of">
+        <div class="card-header characteristics"><i class="ra ra-muscle-up float-left"></i> Characteristics</div>
+          <table class='table'>
+            <tr>
+              <th class='ilbl od ilbl-str-dice'><label for='str_dice'>STR</label></th>
+              <th class='ilbl od ilbl-con-dice'><label for='con_dice'>CON</label></th>
+              <th class='ilbl od ilbl-siz-dice'><label for='siz_dice'>SIZ</label></th>
+              <th class='ilbl od ilbl-int-dice'><label for='int_dice'>INT</label></th>
+              <th class='ilbl od ilbl-pow-dice'><label for='pow_dice'>POW</label></th>
+              <th class='ilbl od ilbl-dex-dice'><label for='dex_dice'>DEX</label></th>
+              <th class='ilbl od ilbl-cha-dice'><label for='cha_dice'>CHA</label></th>
+            </tr>
+            <tr>          
+              <td class='ivar {{eo}} ivar-str'><input value='{{variables.str|default}}' class='form-control ivar ivar-str' id='str' name='str' type='text' /></td>
+              <td class='ivar {{eo}} ivar-con'><input value='{{variables.con|default}}' class='form-control ivar ivar-con' id='con' name='con' type='text' /></td>
+              <td class='ivar {{eo}} ivar-siz'><input value='{{variables.siz|default}}' class='form-control ivar ivar-siz' id='siz' name='siz' type='text' /></td>
+              <td class='ivar {{eo}} ivar-int'><input value='{{variables.int|default}}' class='form-control ivar ivar-int' id='int' name='int' type='text' /></td>
+              <td class='ivar {{eo}} ivar-pow'><input value='{{variables.pow|default}}' class='form-control ivar ivar-pow' id='pow' name='pow' type='text' /></td>
+              <td class='ivar {{eo}} ivar-dex'><input value='{{variables.dex|default}}' class='form-control ivar ivar-dex' id='dex' name='dex' type='text' /></td>
+              <td class='ivar {{eo}} ivar-cha'><input value='{{variables.cha|default}}' class='form-control ivar ivar-cha' id='cha' name='cha' type='text' /></td>
+            </tr>
+            <tr>
+              <td class='ivar {{eo}} ivar-str-dice' title='Strength'><input value='{{variables.str_dice|default}}' class='form-control ivar ivar-str-dice' id='str_dice' name='str_dice' placeholder='3d6' type='text' /></td>
+              <td class='ivar {{eo}} ivar-con-dice' title='Constitution'><input value='{{variables.con_dice|default}}' class='form-control ivar ivar-con-dice' id='con_dice' name='con_dice' placeholder='3d6' type='text' /></td>
+              <td class='ivar {{eo}} ivar-siz-dice' title='Size'><input value='{{variables.siz_dice|default}}' class='form-control ivar ivar-siz-dice' id='siz_dice' name='siz_dice' placeholder='2d6+6' type='text' /></td>
+              <td class='ivar {{eo}} ivar-int-dice' title='Intelligence'><input value='{{variables.int_dice|default}}' class='form-control ivar ivar-int-dice' id='int_dice' name='int_dice' placeholder='2d6+6' type='text' /></td>
+              <td class='ivar {{eo}} ivar-pow-dice' title='Power'><input value='{{variables.pow_dice|default}}' class='form-control ivar ivar-pow-dice' id='pow_dice' name='pow_dice' placeholder='3d6' type='text' /></td>
+              <td class='ivar {{eo}} ivar-dex-dice' title='Dexterity'><input value='{{variables.dex_dice|default}}' class='form-control ivar ivar-dex-dice' id='dex_dice' name='dex_dice' placeholder='3d6' type='text' /></td>
+              <td class='ivar {{eo}} ivar-cha-dice' title='Charisma'><input value='{{variables.cha_dice|default}}' class='form-control ivar ivar-cha-dice' id='cha_dice' name='cha_dice' placeholder='3d6' type='text' /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card misc1" id="card-misc1">
+        <div class="card-body of">
+          <table class='table'>
+            <tr>
+              <th class='ilbl od ilbl-move'><label for='move'>Move</label></th>
+              <th class='ilbl od ilbl-hit-points'><label for='hit_points'>Hit Points</label></th>
+            </tr>
+            <tr>
+              <td class='ivar {{eo}} ivar-move c'><input value='{{variables.move|default}}' class='form-control ivar ivar-move c' id='move' name='move' type='number' /></td>
+              <td class='ivar {{eo}} ivar-hit-points c'><input value='{{variables.hit_points|default}}' class='form-control ivar ivar-hit-points c' id='hit_points' name='hit_points' type='number' /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card misc2" id="card-misc2">
+        <div class="card-body of">
+          <table class='table'>
+            <tr>
+              <th class='ilbl od ilbl-damage-modifier'><label for='damage_modifier'>Damage Modifier</label></th>
+              <th class='ilbl od ilbl-armor'><label for='armor'>Armor</label></th>
+            </tr>
+            <tr>
+              <td class='ivar {{eo}} ivar-damage-modifier'><input value='{{variables.damage_modifier|default}}' class='form-control ivar ivar-damage-modifier' id='damage_modifier' name='damage_modifier' type='text' /></td>
+              <td class='ivar {{eo}} ivar-armor'><input value='{{variables.armor|default}}' class='form-control ivar ivar-armor' id='armor' name='armor' type='text' /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card attacks" id="card-attacks">
+        <div class="card-header"><i class="ra ra-sword float-left"></i> Combat</div>
+        <div class="card-body of">
+          <div class='ivar od ivar-attacks'><div class='iContent'><textarea class='form-control ivar ivar-attacks ' id='attacks' name='attacks' rows='3' >{{variables.attacks|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card skills" id="card-skills">
+        <div class="card-header"><i class="ra ra-honeycomb float-left"></i> Skills</div>
+        <div class="card-body of">
+          <div class='ivar od ivar-skills'><div class='iContent'><textarea class='form-control ivar ivar-skills ' id='skills' name='skills' placeholder='eg Appraise 35%, Bargain 35%, Craft (farming) 75%, ...' rows='3' >{{variables.skills|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card powers" id="card-powers">
+        <div class="card-header"><i class="ra ra-aware float-left"></i> Powers</div>
+        <div class="card-body of">
+          <div class='ivar od ivar-powers'><div class='iContent'><textarea class='form-control ivar ivar-powers ' id='powers' name='powers' rows='3' >{{variables.powers|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card powers" id="card-powers">
+        <div class="card-header"><i class="fa-solid fa-sack float-left"></i> Belongings</div>
+        <div class="card-body of">
+          <div class='ivar od ivar-belongings'><div class='iContent'><textarea class='form-control ivar ivar-belongings ' id='belongings' name='belongings' rows='3' >{{variables.belongings|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

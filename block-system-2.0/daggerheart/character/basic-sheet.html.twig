@@ -1,0 +1,406 @@
+﻿{% import _self as sheet %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set attributes = { "Agility": "Sprint,Leap,Maneuver", "Strength": "Lift,Smash,Grapple", "Finesse": "Control,Hide,Tinker", "Instinct": "Perceive,Sense,Navigate", "Presence": "Charm,Perform,Deceive", "Knowledge": "Recall,Analyze,Comprehend" } %}
+{% set classes = { "Bard": "Troubadour,Wordsmith", "Druid": "Warden of the Elements,Warden of Renewal", "Guardian": "Stalwart,Vengeance", "Ranger": "Beastbound,Wayfinder", "Rogue": "Nightwalker,Syndicate", "Seraph": "Divine Wielder,Winged Sentinel", "Sorcerer": "Elemental Origin,Primal Origin", "Warrior": "Call of the Brave,Call of the Slayer", "Wizard": "School of Knowledge,School of War" } %}
+{% set domains = [ "Arcana", "Blade", "Bone", "Codex", "Grace", "Midnight", "Sage", "Splendor", "Valor" ] %}
+{% set ancestries = { "Clank": 1553696, "Drakona": 1553697, "Dwarf": 1553698, "Elf": 1553700, "Faerie": 1553703, "Faun": 1553704, "Firbolg": 1553706, "Fungril": 1553708, "Galapa": 1553710, "Giant": 1553711, "Goblin": 1553713, "Halfling": 1553714, "Human": 1553716, "Infernis": 1553717, "Katari": 1553722, "Orc": 1553724, "Ribbet": 1553727, "Simiah": 1 } %}
+{% set communities = { "Highborne" : 1553645, "Loreborne" : 1553647, "Orderborne" : 1553650, "Ridgeborne" : 1553651, "Seaborne" : 1553653, "Slyborne" : 1553654, "Underborne" : 1553655, "Wanderborne" : 1553656, "Wildborne" : 1553657 } %}
+<div class='container-fluid sheet-daggerheart sheet'>
+  <div class='row'>
+    <div class='col-12 col-lg-8'>
+      <div class='card personal' id='card-personal'>
+        <div class='card-header personal'>{{variables.name|default}}</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='lbl ev lbl-pronouns' width='30%'> Pronouns </th><td class='var ev var-pronouns'> {{variables.pronouns|default}} </td></tr>
+            {% set comcard = 0 %}{% set anccard = 0 %}
+            {% set community = variables.community|default %}{% set comcard = communities[community]|default %}
+            {% set ancestry = variables.ancestry|default %}{% set anccard = ancestries[ancestry]|default %}
+            <tr><th class='lbl od lbl-community'> Heritage </th><td class='var od var-community'> {{community}} {{ancestry}}
+              {% if comcard > 0 or anccard > 0 %}
+              <button title="Toggle Community Card" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseCC" href="#collapseCC" role="button" aria-expanded="false" aria-controls="collapseCC"><em class="fas fa-angle-down"></em></button>
+              <div class="collapse hide" id="collapseCC">{% if comcard > 0 %}[block:{{comcard}}]{% endif %}{% if anccard > 0 %}[block:{{anccard}}]{% endif %}</div>
+              {% endif %}
+            </td></tr>
+            <tr><th class='lbl ev lbl-level'> Level </th><td class='var ev var-level'> {{variables.level|default}}</td></tr>
+            <tr><th class='lbl od lbl-class'> Class </th><td class='var od var-class'> {{variables.class|default}}, {{variables.subclass|default}}</td></tr>
+            <tr><th class='lbl ev lbl-domains'> Domains </th><td class='var ev var-domains'> 
+              {% set x = attribute(variables, 'domain1')|default %}{% if x != "" %}{{x}}{% endif %}
+              {% set x = attribute(variables, 'domain2')|default %}{% if x != "" %}, {{x}}{% endif %}
+              {% set x = attribute(variables, 'domain3')|default %}{% if x != "" %}, {{x}}{% endif %}
+            </td></tr>
+            {% if variables.mclass|default != "" %}
+            <tr><th class='lbl od lbl-mclass'> Second Class </th><td class='var od var-mclass'> {{variables.mclass|default}}, {{variables.msubclass|default}}</td></tr>
+            {% endif %}
+          </table>
+        </div>
+      </div>
+      <div class='card attributes' id='card-attributes'>
+        <div class='card-header attributes'>Attributes</div>
+        <div class='card-body of'>
+          <div class='row'>
+            {% for att, desc in attributes %}
+              <div class='col-4 col-md-2 c'>{% set a = attribute(variables, 'attribute_mod_' ~ att|lower)|default %}{% if a > 0 %}{% set a = '+' ~ a %}{% endif %}
+                <div class='hdr od lbl-attribute-mod' title='{{att}}'> {{att[:3]|upper}} {% if attribute(variables, 'attribute_check_' ~ att|lower)|default == 1 %} &nbsp;&nbsp;<i class="fa-solid fa-wand-sparkles" title="Spellcast Trait"></i> {% endif %}</div><div class='var ev var-attribute-mod'>{{a}}</div>
+                <small>{{desc|split(',')|join('<br>')|raw}}</small>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class='card combat' id='card-combat'>
+        <div class='card-header combat'>Damage and Health</div>
+        <div class='card-body of'>
+          <div class='row'>
+            <div class='col-12 col-md-6'>
+              <table class='table'>
+                <tr>
+                  <th class='lbl od lbl-evasion' width='25%'>Evasion</th>
+                  <td class='var od var-evasion c' width='25%'>{{variables.evasion|default}}</td>
+                </tr>
+                <tr>
+                  <th class='lbl ev lbl-armor' width='25%'>Armor</th>
+                  <td class='var ev var-armor c'>
+                    {% set max = variables.armor|default(6) %}{% if max > 0 %}
+                      {% for i in 1..max %}
+                        {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                        {% if attribute(variables, 'armor_checked_' ~ id)|default > 0 %} <i class="fa-solid fa-circle-xmark"></i> {% else %} <i class="fa-light fa-circle"></i> {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                  </td>
+                </tr>
+                <tr>
+                  <th class='lbl od lbl-stress-curr'>Stress</th><td class='var od var-stress-curr c'>
+                  {% set max = variables.stress_max|default(6) %}{% if max < 6 %}{% set max = 6 %}{% endif %}
+                  {% for i in 1..max %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% if attribute(variables, 'stress_curr_' ~ id)|default > 0 %} <i class="fa-solid fa-circle-xmark"></i> {% else %} <i class="fa-light fa-circle"></i> {% endif %}
+                  {% endfor %}
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class='col-12 col-md-6'>
+              <table class='table'>
+                <tr>
+                  <th class='lbl od lbl-damage c' title='Mark 1 damage'>Minor<br>Damage</th>
+                  <td class='var od var-major-damage c lg'>{{variables.major_damage|default}}</td>
+                  <th class='lbl od lbl-damage c' title='Mark 2 damage'>Major<br>Damage</th>
+                  <td class='var od var-severe-damage c lg'>{{variables.severe_damage|default}}</td>
+                  <th class='lbl od lbl-damage c' title='Mark 3 damage'>Severe<br>Damage</th>
+                </tr>
+                <tr>
+                  <td class='var ev var-hp-curr c' colspan=5>
+                  {% set max = variables.hp_max|default(6) %}{% if max < 6 %}{% set max = 6 %}{% endif %}
+                  HP: {% for i in 1..max %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% if attribute(variables, 'hp_curr_' ~ id)|default > 0 %} <i class="fa-solid fa-circle-xmark"></i> {% else %} <i class="fa-light fa-circle"></i> {% endif %}
+                  {% endfor %}
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-lg-4 hidden-md hidden-xs hidden-sm d-none d-lg-block'>
+        {% set img = variables.img|default %}{% if img > 0 %} [img:{{img}}] {% else %} [img:6662151] {% endif %}
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card hope' id='card-hope'>
+        <div class='card-header hope'>{{variables.class|default}} Hope</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='lbl ev lbl-hope' width='20%'>Hope</th><td class='var ev var-hope c'>
+            {% for i in 1..6 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% if attribute(variables, 'hope_' ~ id)|default > 0 %} <i class="fa-solid fa-circle"></i> {% else %} <i class="fa-regular fa-circle"></i> {% endif %}
+            {% endfor %}
+            </td></tr>
+            <tr><th class='lbl od lbl-hope-feature'>Hope Feature</th><td class='var od var-hope-feature' colspan=3>{{variables.hope_feature|default}}</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card other' id='card-other'>
+        <div class='card-header other'>Experience</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr>
+              <th class='hdr od lbl-experience'>Experience</th>
+              <th class='hdr od lbl-experience-value c' width='70px'>Score</th>
+            </tr>
+            {% for i in 1..5 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <tr>
+              <td class='var {{eo}} var-experience'>{{attribute(variables, 'experience_' ~ id)|default}}</td>
+              <td class='var {{eo}} var-experience-value c'>{{attribute(variables, 'experience_value_' ~ id)|default}}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-12'>
+      <div class='card class feature' id='card-class feature'>
+        <div class='card-header class feature'>Class Feature</div>
+        <div class='card-body of'>
+          <div class='var var-class-feature pd'>{{variables.class_feature|default}}</div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-7'>
+      <div class='card weapons' id='card-weapons'>
+        <div class='card-header weapons'>Weapons</div>
+        <div class='card-body of'>
+          <div class='hdr od lbl-weapon-proficiency c'>Proficiency</div><div class='var od var-weapon-proficiency c'>
+            {% for i in 1..6 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% if attribute(variables, 'weapon_proficiency_' ~ id)|default > 0 %} <i class="fa-solid fa-circle"></i> {% else %} <i class="fa-regular fa-circle"></i> {% endif %}
+            {% endfor %}
+          </div>
+          <table class='table'>
+            <tr>
+              <th class='hdr od lbl-weapon-worn c' title='Worn'> &nbsp; </th>
+              <th class='hdr od lbl-weapon-name' width='140px'>Name</th>
+              <th class='hdr od lbl-weapon-primary c' width='30px' title='Marked: is primary weapon'>P</th>
+              <th class='hdr od lbl-weapon-trait c' width='140px'>Trait</th>
+              <th class='hdr od lbl-weapon-range c' width='140px'>Range</th>
+              <th class='hdr od lbl-weapon-damage-dice c' width='120px'>Dam. Dice</th>
+              <th class='hdr od lbl-weapon-damage-type c' width='90px'>Type</th>
+              <th class='hdr od lbl-weapon-size c' width='80px'>Size</th>
+            </tr>
+            {% for i in 1..10 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'weapon_name_' ~ id)|default %}
+              {% if name != "" %}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                <tr>
+                  <td class='lbl {{eo}} var-weapon-worn c' title='Worn' width='30px'>{% if attribute(variables, 'weapon_worn_' ~ id)|default > 0 %} <i class="fa-regular fa-hand-back-fist"></i> {% else %} <i class="fa-solid fa-backpack"></i> {% endif %}</td>
+                  <td class='lbl {{eo}} var-weapon-name'><b>{{name}}</b></td>
+                  <td class='var {{eo}} var-weapon-primary c' title='Primary or Secondary weapon'>{% if attribute(variables, 'weapon_primary_' ~ id)|default > 0 %} <span title='Primary'>P</span> {% else %} <span title='Secondary'>S</span> {% endif %}</td>
+                  <td class='var {{eo}} var-weapon-trait c'>{{attribute(variables, 'weapon_trait_' ~ id)|default}}
+                  </td>
+                  <td class='var {{eo}} var-weapon-range c'>{{attribute(variables, 'weapon_range_' ~ id)|default}}
+                  </td>{% set dice = attribute(variables, 'weapon_damage_dice_' ~ id)|default %}
+                  <td class='var {{eo}} var-weapon-damage-dice c'>[roll:{{dice}}]</td>
+                  <td class='var {{eo}} var-weapon-damage-type c'>{{attribute(variables, 'weapon_damage_type_' ~ id)|default}}
+                  </td>
+                  <td class='var {{eo}} var-weapon-size c'>{{attribute(variables, 'weapon_size_' ~ id)|default}}</td>
+                  </td>
+                </tr>
+                {% set feature = attribute(variables, 'weapon_feature_' ~ id)|default|trim %}
+                {% if feature != "" %}
+                  <tr>
+                    <th class='lbl {{eo}}' colspan=2></th>
+                    <th class='var {{eo}} lbl-weapon-feature r' colspan=2><b>Feature:</b></th>
+                    <td class='var {{eo}} var-weapon-feature' colspan=4>{{feature}}</td>
+                  </tr>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-5'>
+      <div class='card armor' id='card-armor'>
+        <div class='card-header armor'>Armor</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr>
+              <th class='hdr od lbl-armor-worn c' title='Worn'> &nbsp; </th>
+              <th class='hdr od lbl-armor-name'>Name</th>
+              <th class='hdr od lbl-armor-threshold c'>Base Thresholds</th>
+              <th class='hdr od lbl-armor-score c'>Base Score</th>
+            </tr>
+            {% for i in 1..5 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'armor_name_' ~ id)|default %}
+              {% if name != "" %}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <tr>
+              <td class='lbl {{eo}} var-armor-worn c' title='Worn' width='30px'>{% if attribute(variables, 'armor_worn_' ~ id)|default > 0 %} <i class="fa-regular fa-hand-back-fist"></i> {% else %} <i class="fa-solid fa-backpack"></i> {% endif %}</td>
+              <td class='lbl {{eo}} var-armor-name'><b>{{name}}</b></td>
+              <td class='var {{eo}} var-armor-threshold c'>{{attribute(variables, 'armor_threshold_' ~ id)|default}}</td>
+              <td class='var {{eo}} var-armor-score c'>{{attribute(variables, 'armor_score_' ~ id)|default}}</td>
+            </tr>
+                {% set feature = attribute(variables, 'armor_feature_' ~ id)|default|trim %}
+                {% if feature != "" %}
+            <tr>
+              <td class='lbl {{eo}}' colspan=2></td>
+              <th class='var {{eo}} lbl-armor-feature c' colspan=2><b>Feature:</b> {{attribute(variables, 'armor_feature_' ~ id)|default}}</th>
+            </tr>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+      <div class='card gold' id='card-gold'>
+        <div class='card-header gold'>Gold</div>
+          <div class='card-body of'><div class='var var-inventory pd'>
+            Handfuls:{% set x = 0 %}
+              {% for i in 1..9 %}
+                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}{% if attribute(variables, 'gold_handfuls_' ~ id)|default > 0 %} <i class="fa-solid fa-coins"></i> {% set x = 1 %}{% endif %}
+              {% endfor %}{% if x < 1 %} <i class="fa-solid fa-empty-set"></i> {% endif %}&nbsp;&nbsp;&nbsp;
+            Bags:{% set x = 0 %}
+              {% for i in 1..9 %}
+                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}{% if attribute(variables, 'gold_bags_' ~ id)|default > 0 %} <i class="fa-solid fa-sack"></i> {% set x = 1 %}{% endif %}
+              {% endfor %}{% if x < 1 %} <i class="fa-solid fa-empty-set"></i> {% endif %}&nbsp;&nbsp;&nbsp;
+            Chest:
+              {% if variables.gold_chest|default > 0 %} <i class="fa-solid fa-treasure-chest"></i> {% else %} <i class="fa-solid fa-empty-set"></i> {% endif %}
+          </div>
+        </div>
+      </div>
+      {% if variables.inventory|default|trim != ""%}
+      <div class='card inventory' id='card-inventory'>
+        <div class='card-header inventory'>Inventory <button title="Toggle Inventory" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseINV" href="#collapseINV" role="button" aria-expanded="false" aria-controls="collapseINV"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapseINV'>
+          <div class='var var-inventory pd'> {{variables.inventory|default|nl2br}} </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card domaincards' id='card-domaincards'>
+        <div class='card-header domaincards'>Domain Cards <button title="Toggle Domain Cards" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseDC" href="#collapseDC" role="button" aria-expanded="false" aria-controls="collapseDC"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapseDC'>
+          <div class='row'>
+            {% for i in 1..50 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'domain_card_name_' ~ id)|default|trim %}
+              {% set active = attribute(variables, 'domain_card_active_' ~ id)|default %}
+              {% if name != "" and active > 0 %}
+                {% set cid = attribute(variables, 'domain_card_id_' ~ id)|default %}
+                {% set desc = attribute(variables, 'domain_card_desc_' ~ id)|default|trim %}
+                {% set used = attribute(variables, 'domain_card_used_' ~ id)|default %}
+                {% set tokens = attribute(variables, 'domain_card_tokens_' ~ id)|default %}
+                <div class='col-12 col-md-6 c'>
+                  {% if cid > 0 %}[block:{{cid}}]{% else %}
+                    <div class="card domain" id="card-domain">
+                      <div class="card-header domain">{{name}}</div>
+                      <div class="card-body of">{{desc}}{% set desc = '' %}
+                      </div>
+                    </div>
+                  {% endif %}
+                  <table class='table domaincard'>
+                    <tr>
+                      <td class='var od var-domain-card-name'>{{name}}</td>
+                      <td class='var od var-domain-card-used' width='50px'>
+                        {% if used > 0 %} <i class="fa-solid fa-circle-xmark" title="Card has been used."></i> {% else %} <i class="fa-light fa-circle" title="Card is usable."></i> {% endif %}
+                      </td>
+                    </tr>
+                    {% if desc != "" %}
+                    <tr>
+                      <td class='var od var-domain-card-desc' colspan=2>{{desc}}</td>
+                    </tr>
+                    {% endif %}
+                    {% if tokens > 0 %}
+                    <tr>
+                      <td class='var od var-domain-card-tokens' colspan=2>Tokens: {% for x in 1..tokens %} <i class="fa-solid fa-circle"></i>{% endfor %}</td>
+                    </tr>
+                    {% endif %}
+                  </table>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card domaincards' id='card-domaincards'>
+        <div class='card-header domaincards'>Vault <button title="Toggle Vault" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseVAULT" href="#collapseVAULT" role="button" aria-expanded="false" aria-controls="collapseVAULT"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapseVAULT'>
+          <div class='row'>
+            {% for i in 1..50 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'domain_card_name_' ~ id)|default|trim %}
+              {% set active = attribute(variables, 'domain_card_active_' ~ id)|default %}
+              {% if name != "" and active < 1 %}
+                {% set cid = attribute(variables, 'domain_card_id_' ~ id)|default %}
+                {% set desc = attribute(variables, 'domain_card_desc_' ~ id)|default|trim %}
+                {% set used = attribute(variables, 'domain_card_used_' ~ id)|default %}
+                <div class='col-12 col-md-6 c'>
+                  {% if cid > 0 %}[block:{{cid}}]{% endif %}
+                  <table class='table domaincard'>
+                    <tr>
+                      <td class='var od var-domain-card-name'>{{name}}</td>
+                      <td class='var od var-domain-card-used' width='50px'>
+                        {% if used > 0 %} <i class="fa-solid fa-circle-xmark" title="Card has been used."></i> {% else %} <i class="fa-solid fa-circle-xmark" title="Card is inactive."></i> {% endif %}
+                      </td>
+                    </tr>
+                    {% if desc != "" %}
+                    <tr>
+                      <td class='var od var-domain-card-desc' colspan=2>{{desc}}</td>
+                    </tr>
+                    {% endif %}
+                  </table>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    {% if variables.description|default|trim != ""%}
+    <div class='col-12 col-md-6'>
+      <div class='card description' id='card-description'>
+        <div class='card-header description'>Description <button title="Toggle Domain Cards" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseDESC" href="#collapseDESC" role="button" aria-expanded="false" aria-controls="collapseDESC"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapseDESC'>
+          <div class='var var-description pd'> {{variables.description|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.background_questions|default|trim != ""%}
+    <div class='col-12 col-md-6'>
+      <div class='card background questions' id='card-background questions'>
+        <div class='card-header background questions'>Background Questions <button title="Toggle Domain Cards" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseBQ" href="#collapseBQ" role="button" aria-expanded="false" aria-controls="collapseBQ"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapseBQ'>
+          <div class='var var-background-questions pd'> {{variables.background_questions|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.connections|default|trim != ""%}
+    <div class='col-12 col-md-6'>
+      <div class='card connections' id='card-connections'>
+        <div class='card-header connections'>Connections <button title="Toggle Domain Cards" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseCONN" href="#collapseCONN" role="button" aria-expanded="false" aria-controls="collapseCONN"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapseCONN'>
+          <div class='var var-connections pd'> {{variables.connections|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if variables.notes|default|trim != ""%}
+    <div class='col-12 col-md-6'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>Notes <button title="Toggle Domain Cards" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapseNOTES" href="#collapseNOTES" role="button" aria-expanded="false" aria-controls="collapseNOTES"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-body of collapse hide' id='collapseNOTES'>
+          <div class='var var-notes pd'> {{variables.notes|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class='row do-not-print'>
+    <div class='col-12 c'>
+      <span class='copyright small'>Daggerheart &copy; 2025 by Darrington Press - Sheet v1.00 made by Tillerz - Updated: 2025-05-25</span>
+    </div>
+  </div>
+</div>

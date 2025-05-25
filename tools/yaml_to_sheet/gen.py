@@ -238,7 +238,7 @@ def doLayout(line, context):
         context["counters"]["sheet"] -= 1
         context["sheet_output"].append('</div>')
         context["level"] -= 1
-        context["quit"] = 1
+        context["quit"] = 0
 
     # table (html)
     elif cmd[0] == 'table':
@@ -334,13 +334,13 @@ def doField(field, params, context):
     """
 
     # limit yaml field names to a-zA-Z0-9-_ and convert to lower case
-    fieldname_for_yaml = re.sub('[^a-zA-Z0-9\-\_ ]', '', field).replace("_", " ").replace("-", " ").lower()
+    fieldname_for_yaml = re.sub('[^a-zA-Z0-9\-\_ ]', '', field).replace("_", " ").replace("-", " ")
 
     # limit form field names to a-z0-9, convert to lower case and concatenate words with -
-    fieldname_for_class = fieldname_for_yaml.replace(" ", "-")
+    fieldname_for_class = fieldname_for_yaml.replace(" ", "-").lower()
 
     # limit form field names to a-z0-9, convert to lower case and concatenate words with _
-    fieldname_for_form = fieldname_for_yaml.replace(" ", "_")
+    fieldname_for_form = fieldname_for_yaml.replace(" ", "_").lower()
 
     # parameters
     desc = ""
@@ -926,6 +926,6 @@ for field in ["col", "row", "card", "card-body", "iter", "sheet", "table"]:
         print(f"ERROR: superfluous # /{field} elements: {abs(value)}")
 
 print(f"- Finished, {context['lc']} lines, {context['fc']} fields, and {context['tc']} formatting tags processed")
-print(f"\n- Upload these files to WA: {fn_yaml}, {fn_sheet}, {fn_form}")
+print(f"- Upload these files to WA: {fn_yaml}, {fn_sheet}, {fn_form}")
 
 # eof

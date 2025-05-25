@@ -1,0 +1,137 @@
+{% import _self as sheet %}
+{# ---------------------------------------------- #}
+{% macro spell(id, counter = 0, spell_level = '', spell_name = '', spell_id = '', sam = '', spell_prepared = 0, spell_casting_time = '', spell_range = '', spell_duration = '', spell_damage = '', spell_damage_scm = "", spell_damage_higher = '', spell_damage_scaled = '', spell_components = '', spell_notes = '') %}{% if spell_prepared == 1 %}
+<tr>{% set eo = "od" %}{% if counter is even %}{% set eo = "ev" %}{% endif %}{% set spell_ability = spell_ability|upper %}
+	{% set txt = "" %}
+	{% if spell_damage_scaled == "" %}
+		{% set rolldamage = spell_damage %}
+	{% else %}
+		{% set rolldamage = spell_damage ~ spell_damage_scaled %}
+		{% set txt = "*" %}
+	{% endif %}
+    <td class="{{eo}} lg">
+	<span title="Name of the spell">{% if spell_id > 0 %} [blocklink:{{spell_id}}] {% else %}{{spell_name}}{% endif %}</span>
+	{% if txt !="" %}<font title="Scaled up"><i class="fas fa-arrow-alt-circle-up"></i></font>{% endif %}
+	</td>
+    {% if sam != "" %}
+    <td class="{{eo}} c" title="Spell Attack"><span title="Roll: 1d20 {{sam}}">[roll:1d20{{sam}}|{{sam}}]</span></td>
+	{% else %}
+	<td class="{{eo}} c">&nbsp;</td>
+    {% endif %}
+    <td class="{{eo}} c" title="Casting time">{{ spell_casting_time }}</td>
+    <td class="{{eo}} c" title="Range">{{ spell_range }}</td>
+    <td class="{{eo}} c" title="Duration">{{ spell_duration }}</td>
+	<td class="{{eo}} c" title="Damage or healing power: {{rolldamage}}">{% if spell_damage != "" and spell_damage != "-" %}[roll:{{rolldamage}}|{{spell_damage}}] {% if txt !="" %}+ <font title="Scaled up: {{spell_damage_scaled}}"><i class="fas fa-arrow-alt-circle-up"></i></font>{% endif %} {% endif %}</td>
+    <td class="{{eo}} c" title="Required components (verbal, somatic, material)">{{ spell_components }}</td>
+</tr>{% if spell_notes != "" %}<tr><td colspan=1 class="{{eo}}">&nbsp;</td><td colspan=1 class="{{eo}} r">Notes:</th><td colspan=9 class="{{eo}} notes">{{ spell_notes }}</td></tr>{% endif %}
+{% endif %}{% endmacro spell %}
+{# ---------------------------------------------- #}
+<div class="dnd5e-sheet">
+	{% if variables.show|default == 1 %}
+	<div class="row">
+		{% set wd = 12 %}{% if variables.imageid|default > 0 %}{% set wd = 8 %}{% endif %}
+		<div class="col-12 col-md-6 col-lg-{{wd}} c">
+			{% if variables.name|default != "" %}<h1 class="dnd5e-sheet-header">{{ variables.name|default }}</h1>{% endif %}
+			{% if variables.author|default != "" %}<div class="bookauthor">by {{ variables.author|default }}</div>{% endif %}
+			{% if variables.desc|default != "" %} <div class="bookdesc l">{{ variables.desc|default|nl2br }}</div>{% endif %}
+		</div>
+		{% if variables.imageid|default > 0 %}
+		<div class="col-lg-4 hidden-xs hidden-sm hidden-md d-none d-lg-block">
+			[img:{{variables.imageid|default}}]
+		</div>
+		{% endif %}
+	</div>
+	<hr class="hr-dark">
+	{% endif %}
+	<div class="contentContainer contentContainer-standard pd0">
+		{% set lbl = "Spell Book" %}{% if variables.name|default != "" %}{% set lbl = variables.name|default %}{% endif %}{% set rndid = random() %}
+		<span class="headerContent"><h1 class="pdl10">{{lbl}}{% set state = "hide" %}{% if variables.expand|default == 1 %}{% set state = "show" %}{% endif %}
+		<button title="Click me!" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{rndid}}" data-bs-toggle="collapse" data-bs-target="#collapse{{rndid}}" aria-expanded="true" aria-controls="collapse{{rndid}}"><em class="fas fa-book"></em></button></h1></span>
+		<div class="row spell-row collapse {{state}}" id="collapse{{rndid}}" aria-labelledby="collapse{{rndid}}">
+			<div class="col-12 col-xs-12" id="dnd5e-spells">
+				<!-- Spells -->
+				<div class="dnd5e-sheet-container pd0 of">
+					<div class="form-group of">
+						<table width="100%" class="attacktable" id="spelltable">
+							{% set maxlevel = 9 %}
+							{% if variables.maxlevel|default != "" %}{% set maxlevel = variables.maxlevel|default('0') %}{% endif %}
+							{% for i in 0..9 %}
+								{% if i == 0 %}
+									{# always show cantrips #}
+									{% set sl = "C" %}
+									{% set show = 99 %}
+									{% set title = "Cantrips" %}
+								{% else %}
+									{% set sl = i %} {# we are looking for spells matching slot sl #}
+									{% if maxlevel < i %}{% set show = 0 %}{% endif %}
+									{% set title = "Level " ~ i ~ " Spells" %}
+								{% endif %}
+								{# only show spells that are cantrips or the user has a total of spell slot entries for them #}
+								{% set counter = 1 %} {# start counting at 1 for each spell level #}
+								{% if show > 0 %}
+									{# walk through all spell entries #}
+									{% for k in 1..60 %}
+										{% set id = k %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
+										{% set name = attribute(variables, "spell_name_" ~ id)|default %}
+										{# do not show spells without a name #}
+										{% if name != "" %} 
+											{% set t = attribute(variables, "spell_level_" ~ id)|default|upper %} {# level of the spell #}
+											{% set scales = attribute(variables, "spell_damage_higher_" ~ id)|default %} {# this spell scales? #}
+											{# level matches OR level is lower (and not a cantrip) and also is a scalable spell #}
+											{% if t == sl or ( scales != "" and sl != "C" and t < sl ) %}
+												{# add header to each spell level and then every 10 spells #}
+												{% if counter == 1 %}{% set done = 0 %}{% endif %}
+												{% if done == 0 %}
+													{% set done = 1%}
+													<tr><th colspan=9 class="c"><h2>{{title}}{% if slots !="" %} <span class="badge">{{slots}}</span></h2>{% endif %}
+													</th></tr>
+													<tr>
+														<th title="Name of the spell" width="15%" class="pdl10">NAME</th>
+    													{% if variables.sam|default != "" %}
+														<th title="Spell Attack Bonus" class="w90 c">AB</th>
+														{% else %}
+														<th class="w90 c">&nbsp;</th>
+														{% endif %}
+														<th title="Casting time" class="c">CAST</th>
+														<th title="Range" class="c">RNG</th>
+														<th title="Duration" class="c">DUR</th>
+														<th title="Damage or healing power (rollable)" class="w120 c">DMG</th>
+														<th title="Required components (verbal, somatic, material)" class="w90 c">CMP</th>
+													</tr>
+												{% endif %}
+												{# set damage depending on matching level or scaled up spell #}
+												{% set scale_dmg = "" %}
+												{% if t < sl %}
+												 	{# spell is scaled up #}
+													{% set scale_dmg = '' %}{# attribute(variables, "spell_damage_" ~ id) #}
+													{% for l in 1..(sl - t) %}{% set scale_dmg = scale_dmg ~ '+' ~ scales %}{% endfor %}
+												{% endif %}
+												{{ sheet.spell( id, counter,
+													sl,
+													attribute(variables, "spell_name_" ~ id)|default,
+													attribute(variables, "spell_id_" ~ id)|default,
+													variables.sam|default,
+													attribute(variables, "spell_prepared_" ~ id)|default,
+													attribute(variables, "spell_casting_time_" ~ id)|default,
+													attribute(variables, "spell_range_" ~ id)|default,
+													attribute(variables, "spell_duration_" ~ id)|default,
+													attribute(variables, "spell_damage_" ~ id)|default,
+													attribute(variables, "spell_damage_scm_" ~ id)|default,
+													attribute(variables, "spell_damage_higher" ~ id)|default,
+													scale_dmg,
+													attribute(variables, "spell_components_" ~ id)|default,
+													attribute(variables, "spell_notes_" ~ id|default)
+												) }}
+												{% set counter = counter + 1 %}
+											{% endif %}
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+							{% endfor %}
+						</table>
+					</div>                  
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

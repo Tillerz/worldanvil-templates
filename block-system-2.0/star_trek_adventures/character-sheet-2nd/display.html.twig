@@ -1,0 +1,377 @@
+{% macro genEntry(mytype, myname, mydie) %}
+{% if mytype is defined and myname is defined and mydie is defined and myname != '' %}<table class="itable"><tr><td><span class="leftpill">{{myname}}</span></td><td><span class="rightpill">{{mydie}}</span></td></tr></table>{% endif %}
+{% endmacro genEntry %}
+{% macro genWeapon(id, name, type, skill, injury, severity, size, qual, cost) %}{% if name != "" %}
+<tr>
+    <td title="Weapon Name {{id}}: {{name}}" width="90px"><span class="leftpillpink">NAME</span></td><td colspan=3><div class="rightpilllong">
+    {{ name }}
+    <td title="Weapon Type {{id}}: {{type}}" width="90px"><span class="leftpillpink">TYPE</span></td><td colspan=3><div class="rightpilllong">
+    {{ type }}
+    <td title="Weapon Skill {{id}}: {{skill}}" width="90px"><span class="leftpillpink">SKILL</span></td><td colspan=3><span class="rightpillpink">
+    {{ skill }}
+</tr>
+<tr>
+    <td title="Weapon Injury {{id}}: {{injury}}" width="90px"><span class="leftpillpink">INJURY</span></td><td colspan=3><div class="rightpilllong">
+    {{ injury }}
+    <td title="Weapon Severity {{id}}: {{severity}}" width="90px"><span class="leftpillpink">SEVERITY</span></td><td><div class="rightpillpink">
+    {{ severity }}
+    <td title="Weapon Size {{id}}: {{size}}" width="90px"><span class="leftpillpink">SIZE</span></td><td><span class="rightpillpink">
+    {{ size }}
+</tr>
+<tr>
+    <td class="tdbottom" title="Weapon Qualities {{id}}: {{qual}}"><span class="leftpillpink">QUALITIES</span></td><td colspan=5 class="tdbottom"><span class="rightpilllong">
+    {{ qual }}
+    <td class="tdbottom" title="Weapon Cost {{id}}: {{cost}}"><span class="leftpillpink">COST</span></td><td colspan=5 class="tdbottom"><span class="rightpilllong">
+    {{ cost }}
+</tr>{% endif %}{% endmacro genWeapon %}
+{% macro genPills(curr, max, tt) %}
+    {% if curr is defined and curr > 0 %}
+        {% for i in 1..curr %}
+            <p class="solidpill">{{tt}}&nbsp;</p> {% set max = max -1 %}
+        {% endfor %}
+    {% endif %}
+    {% if max is defined and max > 0 %}
+        {% for i in 1..max %}
+            <p class="emptypill">{{tt}}&nbsp;</p>
+        {% endfor %}
+    {% endif %}
+{% endmacro genPills %}
+{% macro genTextPill(txt, type) %}
+    {% if txt is defined %}
+        <p class="{{type}}pill">{{txt}}&nbsp;<p/>
+    {% endif %}
+{% endmacro genTextPill %}
+<div class="container-fluid sta-sheet">
+    <div class="row"> <!-- row 1: basic info | attributes -->
+        <div class="hidden-xs hidden-sm col-lg-12 d-none d-md-block text-right">
+            <div class="card-header head-bar title"><span class="wbg" >{{variables.rank|default}} {{variables.name|default}}{% if variables.assignment is defined %}, {{ variables.assignment }}{% endif %}</span></div>
+        </div>
+        <div class="col-12 col-md-12 col-lg-9">
+            <div class="row">
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Name</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.name|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Pronouns</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.pronouns|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Rank</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.rank|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Assignment</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.assignment|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Character Role</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.role|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Reputation</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.reputation|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Species</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.species|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Environment</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.environment|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Special Ability</strong>
+                </div>
+                <div class="col-12 col-md-10 my-3">
+                    <span class="greybub">{{ variables.sability|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Upbringing</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.upbringing|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Experience</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.experience|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Traits</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.traits|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Career Path</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.cpath|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Career Event 1</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.cevent1|default }}</span>
+                </div>
+                <div class="col-12 col-md-2 my-3">
+                    <strong>Career Event 2</strong>
+                </div>
+                <div class="col-12 col-md-4 my-3">
+                    <span class="greybub">{{ variables.cevent2|default }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3 col-lg-3 hidden-md hidden-xs hidden-sm d-none d-lg-block c"> 
+            {% if variables.img|default > 0 %}
+                [img:{{variables.img}}]
+            {% else %}
+                <div class="row logo" title="Star Trek Adventures Logo"> <!-- STA Logo --> </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="hidden-md hidden-xs hidden-sm col-lg-7 d-none d-lg-block">
+            <div class="corner2-yellow"></div>
+            <div class="corner1-lightpurple"></div>
+        </div>
+        <div class="hidden-md hidden-xs hidden-sm col-lg-5 d-none d-lg-block">
+            <div class="hbar4-lightyellow"></div>
+            <div class="hbar2-purple"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="hidden-md hidden-xs hidden-sm col-md-1 col-lg-1 d-none d-lg-block mysidebar">
+            <div class="vbar1-lightpurple"></div>
+            <div class="vbar2-purple"></div>
+            <div class="vbar3-lightpurple"></div>
+            <div class="vbar4-pink"></div>
+        </div>
+        <div class="col-12 col-md-11">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-8"> <!-- attributes, departments -->
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Attributes</span></div>
+                        <div class="card-body">
+                            <div class="row">
+                                {{ _self.genEntry('Attribute', 'Control', variables.control) }}
+                                {{ _self.genEntry('Attribute', 'Fitness', variables.fitness) }}
+                                {{ _self.genEntry('Attribute', 'Presence', variables.presence) }}
+                            </div>
+                            <div class="row">
+                                {{ _self.genEntry('Attribute', 'Daring', variables.daring) }}
+                                {{ _self.genEntry('Attribute', 'Insight', variables.insight) }}
+                                {{ _self.genEntry('Attribute', 'Reason', variables.reason) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Departments</span></div>
+                        <div class="card-body">
+                            <div class="row">
+                                {{ _self.genEntry('Department', 'Command', variables.command) }}
+                                {{ _self.genEntry('Department', 'Security', variables.security) }}
+                                {{ _self.genEntry('Department', 'Science', variables.science) }}
+                            </div>
+                            <div class="row">
+                                {{ _self.genEntry('Department', 'Conn', variables.conn) }}
+                                {{ _self.genEntry('Department', 'Engineering', variables.engineering) }}
+                                {{ _self.genEntry('Department', 'Medicine', variables.medicine) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Pools</span></div>
+                        <div class="card-body">
+                            <strong>Determination</strong>
+                            {% if variables.determination is defined %}
+                                {{ _self.genPills(variables.determination, 3, ' ') }}
+                            {% else %}
+                                {{ _self.genPills(0, 3, ' ') }}
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <strong title="Momentum Pool of your group">Momentum</strong>
+                            {% if variables.momentum is defined %}
+                                {{ _self.genPills(variables.momentum, 6, ' ') }}
+                            {% else %}
+                                {{ _self.genPills(0, 6, ' ') }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 col-lg-4"> <!-- focuses, values -->
+                    {% if variables.focuses is defined %}
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Focuses</span></div>
+                        <div class="card-body">
+                            <ul class="list-group d-flex justify-content-between">
+                                <li class="list-group-item list-wide">
+                                {{ variables.focuses|nl2br }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Stress</span></div>
+                        <div class="card-body">
+                            {{ _self.genPills(variables.stress_current, variables.stress_max, ' ') }}
+                        </div>
+                        <div class="card-body">
+                            {{ _self.genEntry('resistance', 'resistance', variables.resistance) }}
+                        </div>
+                    </div>
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Injuries</span></div>
+                        <div class="card-body">
+                            <ul class="list-group d-flex justify-content-between">
+                                <li class="list-group-item list-wide">
+                                {% if variables.injuries is defined %}
+                                {{ variables.injuries|nl2br }}
+                                {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    {% if variables.talents is defined %}
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Talents</span></div>
+                        <div class="card-body">
+                            <ul class="list-group d-flex justify-content-between">
+                                <li class="list-group-item list-wide">
+                                {{ variables.talents|nl2br }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Attacks</span></div>
+                        <div class="card-body">
+                            <table>
+                                <tbody>
+                                {% for i in 1..10 %}
+                                    {{ _self.genWeapon(i,
+                                        attribute(variables, 'weapon_name_' ~ i),
+                                        attribute(variables, 'weapon_type_' ~ i),
+                                        attribute(variables, 'weapon_skill_' ~ i),
+                                        attribute(variables, 'weapon_injury_' ~ i),
+                                        attribute(variables, 'weapon_severity_' ~ i),
+                                        attribute(variables, 'weapon_size_' ~ i),
+                                        attribute(variables, 'weapon_qualities_' ~ i),
+                                        attribute(variables, 'weapon_cost_' ~ i)
+                                    ) }}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% if variables.values|default|trim != "" %}
+                <div class="col-12 col-md-6">
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Values</span></div>
+                        <div class="card-body">
+                            <ul class="list-group d-flex justify-content-between">
+                                <li class="list-group-item list-wide">
+                                    {{ variables.values|nl2br }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if variables.other_equipment|default|trim != "" %}
+                <div class="col-12 col-md-6">
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Equipment</span></div>
+                        <div class="card-body">
+                            <ul class="list-group d-flex justify-content-between">
+                                <li class="list-group-item list-wide">
+                                    {{ variables.other_equipment|nl2br }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if variables.pastimes|default|trim != "" %}
+                <div class="col-12 col-md-6">
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Pastimes</span></div>
+                        <div class="card-body">
+                            <ul class="list-group d-flex justify-content-between">
+                                <li class="list-group-item list-wide">
+                                    {{ variables.pastimes|nl2br }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if variables.col_ships|default|trim != "" %}
+                <div class="col-12 col-md-6">
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Ships</span></div>
+                        <div class="card-body">
+                            <ul class="list-group d-flex justify-content-between">
+                                {% set ships = variables.col_ships|default|trim|split(",") %}
+                                {% for ship in ships %}
+                                <li class="list-group-item list-wide">
+                                    [blocklink:{{ ship }}]
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if variables.notes|default|trim != "" %}
+                <div class="col-12 col-md-6">
+                    <div class="card my-2">
+                        <div class="card-header head-bar"><span class="wbg">Session Notes</span></div>
+                        <div class="card-body">
+                            <ul class="list-group d-flex justify-content-between">
+                                <li class="list-group-item list-wide">
+                                    {{ variables.notes|nl2br }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <small>
+                &trade; &amp; &copy; 2024 CBS Studios Inc. STAR TREK and related marks and logos are trademarks of CBS Studios Inc. All Rights Reserved.<br>
+                Star Trek Adventures 2nd Edition Character Sheet v1.00, made by Tillerz - 2025-05-11
+            </small>
+        </div>
+    </div>
+</div> <!-- close container-sheet -->

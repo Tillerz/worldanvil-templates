@@ -1,0 +1,30 @@
+.container-fluid {
+   font-family: IM Fell English SC;
+   font-size: 20px !important;
+   color: var(--dark) ;
+   padding: 20px}
+.CodeMirror-buttonsPanel {
+     font-size: 14px;}
+.artist-credits, .artist-credits a { font-size: 14px; text-align: center; padding-top: 3px }
+.card { border: none; margin-bottom:8px }
+.card-body { border: 3px solid var(--dark) ; padding: 0px}
+.card-header {
+   text-transform: uppercase;
+   font-weight: 800;
+   padding-top: 6px;
+   padding-left: 6px;
+   padding-bottom: 0px;
+   margin: 0px;
+   border-radius: 0; text-align: center; font-size:22px; color: var(--light) ; background-color: var(--dark) }
+.sm { font-size:16px }
+small { font-size:14px }
+.ivar, .var { font-size: 16px }
+.ivar-portrait { text-align: center }
+.c { text-align: center }
+.l { text-align: left }
+ol,ul { padding-left: 10px }
+li { margin-bottom: 5px }
+.pd { padding: 10px }
+.inline { display: inline-block; width:100px; }
+input[required] { border: 2px solid #ff8080 !important }
+select.form-control { height: 2.3em !important }

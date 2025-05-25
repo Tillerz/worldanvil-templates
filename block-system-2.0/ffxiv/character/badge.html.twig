@@ -1,0 +1,48 @@
+{% import _self as sheet %}
+{% set jobs = {
+  paladin: [ "Paladin", "tank", 6606775 ],
+  darkknight: [ "Dark", "tank", 6606769 ],
+  warrior: [ "Warrior", "tank", 6606778 ],
+  whitemage: [ "White Mage", "healer", 6606779 ],
+  scholar: [ "Scholar", "healer", 6606776 ],
+  astrologian: [ "Astrologian", "healer", 6606766 ],
+  monk: [ "Monk", "dps", 6606773 ],
+  dragoon: [ "Dragoon", "dps", 6606770 ],
+  ninja: [ "Ninja", "dps", 6606774 ],
+  bard: [ "Bard", "dps", 6606767 ],
+  machinist: [ "Machinist", "dps", 6606772 ],
+  blackmage: [ "Black Mage", "dps", 6606768 ],
+  summoner: [ "Summoner", "dps", 6606777 ]
+  }
+%}
+  {% set races = {
+    hyur: "Hyur",
+    elezen: "Elezen",
+    lalafell: "Lalafell",
+    miqote: "Miqo'te",
+    roegadyn: "Roegadyn",
+    aura: "Au Ra",
+    hrothgar: "Hrothgar",
+    viera: "Viera"
+  }
+%}
+{% set level = variables.level|default(1) %}
+{% set job = variables.job|default %}
+{% set jobtitle = jobs[job][0]|default %}
+{% set race = variables.race|default %}
+{% set racetitle = races[race]|default %}
+{% set role = jobs[job][1]|default %}
+{% set jobimg = jobs[job][2]|default %}
+<div class='container-fluid ffxiv'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card'>
+        <div class='card-header {{role}} lbl jobline-badge'>
+          <span class='jobicon' title='{{jobtitle}}'>[img:{{jobimg}}|left|60|nolink]</span>
+          {{variables.name|default}}, {{racetitle}}<br>
+          LV{{level}} {{role|capitalize}}/{{jobtitle|capitalize}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

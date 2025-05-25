@@ -1,0 +1,82 @@
+{% import _self as sheet %}
+{% set att_ws = variables.att_ws_ini|default + variables.att_ws_adv|default %}
+{% set att_bs = variables.att_bs_ini|default + variables.att_bs_adv|default %}
+{% set att_s = variables.att_s_ini|default + variables.att_s_adv|default %}
+{% set att_t = variables.att_t_ini|default + variables.att_t_adv|default %}
+{% set att_ag = variables.att_ag_ini|default + variables.att_ag_adv|default %}
+{% set att_int = variables.att_int_ini|default + variables.att_int_adv|default %}
+{% set att_per = variables.att_per_ini|default + variables.att_per_adv|default %}
+{% set att_wp = variables.att_wp_ini|default + variables.att_wp_adv|default %}
+{% set att_fel = variables.att_fel_ini|default + variables.att_fel_adv|default %}
+{# ---------------------------------------------- #}
+<div class="container-fluid sheet-wh40kdw tracker">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card fate" id="card-fate">
+                <div class="card-header fate">Fate Points</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='ilbl od ilbl-fatecurr' width='35%'><label for='fatecurr'>Current</label></th><td class='ivar od ivar-fatecurr'><input value='{{variables.fatecurr|default}}' class='form-control ivar ivar-fatecurr c' id='fatecurr' name='fatecurr' type='text' /></td></tr>
+                        <tr><th class='ilbl ev ilbl-fatetotal'><label for='fatetotal'>Total</label></th><td class='ivar od ivar-fatetotal'><input value='{{variables.fatetotal|default}}' class='form-control ivar ivar-fatetotal c' id='fatetotal' name='fatetotal' type='text' /></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card corruption" id="card-corruption">
+                <div class="card-header corruption">Corruption</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='ilbl od ilbl-corruption-current' width='35%'><label for='corruption_current'>Current</label></th><td class='ivar od ivar-corruption-current'><input value='{{variables.corruption_corruption|default}}' class='form-control ivar ivar-corruption-current c' id='corruption_corruption' name='corruption_corruption' type='text' /></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card wounds" id="card-wounds">
+                <div class="card-header wounds">Wounds</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='ilbl od ilbl-wounds-current' width='35%'><label for='wounds_current'>Current</label></th><td class='ivar od ivar-wounds-current'><input value='{{variables.wounds_wounds|default}}' class='form-control ivar ivar-wounds-current c' id='wounds_wounds' name='wounds_wounds' type='text' /></td></tr>
+                        <tr><th class='ilbl ev ilbl-wounds-total'><label for='wounds_total'>Total</label></th><td class='ivar ev ivar-wounds-total'><input value='{{variables.wounds_total|default}}' class='form-control ivar ivar-wounds-total c' id='wounds_total' name='wounds_total' type='text' /></td></tr>
+                        <tr><th class='ilbl od ilbl-wounds-fatigue'><label for='wounds_fatigue'>Fatigue</label></th><td class='ivar od ivar-wounds-fatigue'><input value='{{variables.wounds_fatigue|default}}' class='form-control ivar ivar-wounds-fatigue c' id='wounds_fatigue' name='wounds_fatigue' type='text' /></td></tr>
+                        <tr><th class='ilbl ev ilbl-wounds-desc'><label for='wounds_desc'>Critical Damage</label></th><td class='ivar ev ivar-wounds-desc'><div class='iContent'><textarea class='form-control ivar ivar-wounds-desc' id='wounds_desc' name='wounds_desc' rows='3' >{{variables.wounds_desc|default}}</textarea></div></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card experience" id="card-experience">
+                <div class="card-header experience">Experience</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='ilbl od ilbl-xp-curr' width='50%'><label for='xp-curr'>XP to spend</label></th><td class='ivar od ivar-xp-curr'><input value='{{variables.xp_curr|default}}' class='form-control ivar ivar-xp-curr c' id='xp_curr' name='xp_curr' type='text' /></td></tr>
+                        <tr><th class='ilbl ev ilbl-xp-spent'><label for='xp-spent'>Total XP spent</label></th><td class='ivar ev ivar-xp-spent'><input value='{{variables.xp_spent|default}}' class='form-control ivar ivar-xp-spent c' id='xp_spent' name='xp_spent' type='text' /></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card renown" id="card-renown">
+                <div class="card-header renown">Renown</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='ilbl od ilbl-renown' width='50%'><label for='renown'>Renown</label></th><td class='ivar od ivar-renown'><input value='{{variables.renown|default}}' class='form-control ivar ivar-renown c' id='renown' name='renown' type='text' /></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card insanity" id="card-insanity">
+                <div class="card-header insanity">Insanity</div>
+                <div class="card-body">
+                    <table class='table'>
+                        <tr><th class='ilbl od ilbl-insanity-current' width='35%'><label for='insanity_current'>Current</label></th><td class='ivar od ivar-insanity-current'><input value='{{variables.insanity_insanity|default}}' class='form-control ivar ivar-insanity-current c' id='insanity_insanity' name='insanity_insanity' type='text' /></td></tr>
+                        <tr><th class='ilbl ev ilbl-insanity-bf'><label for='insanity_bf'>Battle Fatigue</label></th><td class='ivar ev ivar-insanity-bf'><div class='iContent'><textarea class='form-control ivar ivar-insanity-bf' id='insanity_bf' name='insanity_bf' rows='3' >{{variables.insanity_bf|default}}</textarea></div></td></tr>
+                        <tr><th class='ilbl od ilbl-insanity-pc'><label for='insanity_pc'>Primarch’s Curse</label></th><td class='ivar od ivar-insanity-pc'><div class='iContent'><textarea class='form-control ivar ivar-insanity-pc' id='insanity_pc' name='insanity_pc' rows='3' >{{variables.insanity_pc|default}}</textarea></div></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12">
+            <div class="card notes" id="card-notes">
+                <div class="card-header notes"><label for='notes'>Notes</label></div>
+                <div class="card-body">
+                    <div class='cBox'><div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes' id='notes' name='notes' rows='3' >{{variables.notes|default}}</textarea></div></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

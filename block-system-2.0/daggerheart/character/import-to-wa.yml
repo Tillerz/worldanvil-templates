@@ -1,0 +1,1831 @@
+﻿fields:
+  Name:
+    label: "Name"
+    input: string
+    description: "Name"
+    required: true
+  Pronouns:
+    label: "Pronouns"
+    input: string
+    description: "Pronouns"
+  Ancestry:
+    label: "Ancestry"
+    input: string
+    description: "Ancestry"
+  Community:
+    label: "Community"
+    input: string
+    description: "Community"
+  Class:
+    label: "Class"
+    input: string
+    description: "Class"
+  Subclass:
+    label: "Subclass"
+    input: string
+    description: "Subclass"
+  MClass:
+    label: "MClass"
+    input: string
+    description: "Second Class"
+  MSubclass:
+    label: "MSubclass"
+    input: string
+    description: "Second Subclass"
+  Level:
+    label: "Level"
+    input: integer
+    description: "Level"
+  Img:
+    label: "Img"
+    input: integer
+    description: "Img"
+    render: image
+  attribute mod 001:
+    label: "attribute mod 001"
+    input: integer
+    description: "Modifier"
+  attribute mod 002:
+    label: "attribute mod 002"
+    input: integer
+    description: "Modifier"
+  attribute mod 003:
+    label: "attribute mod 003"
+    input: integer
+    description: "Modifier"
+  attribute mod 004:
+    label: "attribute mod 004"
+    input: integer
+    description: "Modifier"
+  attribute mod 005:
+    label: "attribute mod 005"
+    input: integer
+    description: "Modifier"
+  attribute mod 006:
+    label: "attribute mod 006"
+    input: integer
+    description: "Modifier"
+  attribute check 001:
+    label: "attribute check 001"
+    input: checkbox
+    description: "Check"
+  attribute check 002:
+    label: "attribute check 002"
+    input: checkbox
+    description: "Check"
+  attribute check 003:
+    label: "attribute check 003"
+    input: checkbox
+    description: "Check"
+  attribute check 004:
+    label: "attribute check 004"
+    input: checkbox
+    description: "Check"
+  attribute check 005:
+    label: "attribute check 005"
+    input: checkbox
+    description: "Check"
+  attribute check 006:
+    label: "attribute check 006"
+    input: checkbox
+    description: "Check"
+  Evasion:
+    label: "Evasion"
+    input: integer
+    description: "Evasion"
+    min: 10
+  Armor:
+    label: "Armor"
+    input: integer
+    description: "Armor"
+  Armor Checked 001:
+    label: "Armor Checked 001"
+    input: checkbox
+  Armor Checked 002:
+    label: "Armor Checked 002"
+    input: checkbox
+  Armor Checked 003:
+    label: "Armor Checked 003"
+    input: checkbox
+  Armor Checked 004:
+    label: "Armor Checked 004"
+    input: checkbox
+  Armor Checked 005:
+    label: "Armor Checked 005"
+    input: checkbox
+  Armor Checked 006:
+    label: "Armor Checked 006"
+    input: checkbox
+  Armor Checked 007:
+    label: "Armor Checked 007"
+    input: checkbox
+  Armor Checked 008:
+    label: "Armor Checked 008"
+    input: checkbox
+  Armor Checked 009:
+    label: "Armor Checked 009"
+    input: checkbox
+  Armor Checked 010:
+    label: "Armor Checked 010"
+    input: checkbox
+  Armor Checked 011:
+    label: "Armor Checked 011"
+    input: checkbox
+  Armor Checked 012:
+    label: "Armor Checked 012"
+    input: checkbox
+  Major Damage:
+    label: "Major Damage"
+    input: integer
+    description: "Major Damage"
+  Severe Damage:
+    label: "Severe Damage"
+    input: integer
+    description: "Severe Damage"
+  HP max:
+    label: "HP max"
+    input: integer
+    description: "HP max"
+  HP curr 001:
+    label: "HP curr 001"
+    input: checkbox
+  HP curr 002:
+    label: "HP curr 002"
+    input: checkbox
+  HP curr 003:
+    label: "HP curr 003"
+    input: checkbox
+  HP curr 004:
+    label: "HP curr 004"
+    input: checkbox
+  HP curr 005:
+    label: "HP curr 005"
+    input: checkbox
+  HP curr 006:
+    label: "HP curr 006"
+    input: checkbox
+  HP curr 007:
+    label: "HP curr 007"
+    input: checkbox
+  HP curr 008:
+    label: "HP curr 008"
+    input: checkbox
+  HP curr 009:
+    label: "HP curr 009"
+    input: checkbox
+  HP curr 010:
+    label: "HP curr 010"
+    input: checkbox
+  HP curr 011:
+    label: "HP curr 011"
+    input: checkbox
+  HP curr 012:
+    label: "HP curr 012"
+    input: checkbox
+  Stress max:
+    label: "Stress max"
+    input: integer
+    description: "Stress max"
+  Stress curr 001:
+    label: "Stress curr 001"
+    input: checkbox
+  Stress curr 002:
+    label: "Stress curr 002"
+    input: checkbox
+  Stress curr 003:
+    label: "Stress curr 003"
+    input: checkbox
+  Stress curr 004:
+    label: "Stress curr 004"
+    input: checkbox
+  Stress curr 005:
+    label: "Stress curr 005"
+    input: checkbox
+  Stress curr 006:
+    label: "Stress curr 006"
+    input: checkbox
+  Stress curr 007:
+    label: "Stress curr 007"
+    input: checkbox
+  Stress curr 008:
+    label: "Stress curr 008"
+    input: checkbox
+  Stress curr 009:
+    label: "Stress curr 009"
+    input: checkbox
+  Stress curr 010:
+    label: "Stress curr 010"
+    input: checkbox
+  Stress curr 011:
+    label: "Stress curr 011"
+    input: checkbox
+  Stress curr 012:
+    label: "Stress curr 012"
+    input: checkbox
+  Hope 001:
+    label: "Hope 001"
+    input: checkbox
+    description: "Hope"
+  Hope 002:
+    label: "Hope 002"
+    input: checkbox
+    description: "Hope"
+  Hope 003:
+    label: "Hope 003"
+    input: checkbox
+    description: "Hope"
+  Hope 004:
+    label: "Hope 004"
+    input: checkbox
+    description: "Hope"
+  Hope 005:
+    label: "Hope 005"
+    input: checkbox
+    description: "Hope"
+  Hope 006:
+    label: "Hope 006"
+    input: checkbox
+    description: "Hope"
+  Hope Feature:
+    label: "Hope Feature"
+    input: string
+    description: "Hope Feature"
+  Experience 001:
+    label: "Experience 001"
+    input: string
+    description: "Experience"
+  Experience 002:
+    label: "Experience 002"
+    input: string
+    description: "Experience"
+  Experience 003:
+    label: "Experience 003"
+    input: string
+    description: "Experience"
+  Experience 004:
+    label: "Experience 004"
+    input: string
+    description: "Experience"
+  Experience 005:
+    label: "Experience 005"
+    input: string
+    description: "Experience"
+  experience value 001:
+    label: "experience value 001"
+    input: integer
+    description: "Score"
+  experience value 002:
+    label: "experience value 002"
+    input: integer
+    description: "Score"
+  experience value 003:
+    label: "experience value 003"
+    input: integer
+    description: "Score"
+  experience value 004:
+    label: "experience value 004"
+    input: integer
+    description: "Score"
+  experience value 005:
+    label: "experience value 005"
+    input: integer
+    description: "Score"
+  Gold Handfuls 001:
+    label: "Gold Handfuls 001"
+    input: checkbox
+  Gold Handfuls 002:
+    label: "Gold Handfuls 002"
+    input: checkbox
+  Gold Handfuls 003:
+    label: "Gold Handfuls 003"
+    input: checkbox
+  Gold Handfuls 004:
+    label: "Gold Handfuls 004"
+    input: checkbox
+  Gold Handfuls 005:
+    label: "Gold Handfuls 005"
+    input: checkbox
+  Gold Handfuls 006:
+    label: "Gold Handfuls 006"
+    input: checkbox
+  Gold Handfuls 007:
+    label: "Gold Handfuls 007"
+    input: checkbox
+  Gold Handfuls 008:
+    label: "Gold Handfuls 008"
+    input: checkbox
+  Gold Handfuls 009:
+    label: "Gold Handfuls 009"
+    input: checkbox
+  Gold Bags 001:
+    label: "Gold Bags 001"
+    input: checkbox
+  Gold Bags 002:
+    label: "Gold Bags 002"
+    input: checkbox
+  Gold Bags 003:
+    label: "Gold Bags 003"
+    input: checkbox
+  Gold Bags 004:
+    label: "Gold Bags 004"
+    input: checkbox
+  Gold Bags 005:
+    label: "Gold Bags 005"
+    input: checkbox
+  Gold Bags 006:
+    label: "Gold Bags 006"
+    input: checkbox
+  Gold Bags 007:
+    label: "Gold Bags 007"
+    input: checkbox
+  Gold Bags 008:
+    label: "Gold Bags 008"
+    input: checkbox
+  Gold Bags 009:
+    label: "Gold Bags 009"
+    input: checkbox
+  Gold Chest:
+    label: "Gold Chest"
+    input: string
+  Class Feature:
+    label: "Class Feature"
+    input: text
+    rows: 3
+  weapon proficiency 001:
+    label: "weapon proficiency 001"
+    input: checkbox
+    description: "Proficiency"
+  weapon proficiency 002:
+    label: "weapon proficiency 002"
+    input: checkbox
+    description: "Proficiency"
+  weapon proficiency 003:
+    label: "weapon proficiency 003"
+    input: checkbox
+    description: "Proficiency"
+  weapon proficiency 004:
+    label: "weapon proficiency 004"
+    input: checkbox
+    description: "Proficiency"
+  weapon proficiency 005:
+    label: "weapon proficiency 005"
+    input: checkbox
+    description: "Proficiency"
+  weapon proficiency 006:
+    label: "weapon proficiency 006"
+    input: checkbox
+    description: "Proficiency"
+  weapon worn 001:
+    label: "weapon worn 001"
+    input: checkbox
+    description: "Worn"
+  weapon worn 002:
+    label: "weapon worn 002"
+    input: checkbox
+    description: "Worn"
+  weapon worn 003:
+    label: "weapon worn 003"
+    input: checkbox
+    description: "Worn"
+  weapon worn 004:
+    label: "weapon worn 004"
+    input: checkbox
+    description: "Worn"
+  weapon name 001:
+    label: "weapon name 001"
+    input: string
+    description: "Name"
+  weapon name 002:
+    label: "weapon name 002"
+    input: string
+    description: "Name"
+  weapon name 003:
+    label: "weapon name 003"
+    input: string
+    description: "Name"
+  weapon name 004:
+    label: "weapon name 004"
+    input: string
+    description: "Name"
+  weapon primary 001:
+    label: "weapon primary 001"
+    input: checkbox
+    description: "Primary"
+  weapon primary 002:
+    label: "weapon primary 002"
+    input: checkbox
+    description: "Primary"
+  weapon primary 003:
+    label: "weapon primary 003"
+    input: checkbox
+    description: "Primary"
+  weapon primary 004:
+    label: "weapon primary 004"
+    input: checkbox
+    description: "Primary"
+  weapon trait 001:
+    label: "weapon trait 001"
+    input: string
+    description: "Trait"
+  weapon trait 002:
+    label: "weapon trait 002"
+    input: string
+    description: "Trait"
+  weapon trait 003:
+    label: "weapon trait 003"
+    input: string
+    description: "Trait"
+  weapon trait 004:
+    label: "weapon trait 004"
+    input: string
+    description: "Trait"
+  weapon range 001:
+    label: "weapon range 001"
+    input: string
+    description: "Range"
+  weapon range 002:
+    label: "weapon range 002"
+    input: string
+    description: "Range"
+  weapon range 003:
+    label: "weapon range 003"
+    input: string
+    description: "Range"
+  weapon range 004:
+    label: "weapon range 004"
+    input: string
+    description: "Range"
+  weapon damage dice 001:
+    label: "weapon damage dice 001"
+    input: string
+    description: "Damage dice"
+  weapon damage dice 002:
+    label: "weapon damage dice 002"
+    input: string
+    description: "Damage dice"
+  weapon damage dice 003:
+    label: "weapon damage dice 003"
+    input: string
+    description: "Damage dice"
+  weapon damage dice 004:
+    label: "weapon damage dice 004"
+    input: string
+    description: "Damage dice"
+  weapon damage type 001:
+    label: "weapon damage type 001"
+    input: string
+    description: "Damage type"
+  weapon damage type 002:
+    label: "weapon damage type 002"
+    input: string
+    description: "Damage type"
+  weapon damage type 003:
+    label: "weapon damage type 003"
+    input: string
+    description: "Damage type"
+  weapon damage type 004:
+    label: "weapon damage type 004"
+    input: string
+    description: "Damage type"
+  weapon size 001:
+    label: "weapon size 001"
+    input: select
+    description: "Size"
+    options:
+      1H: 1H
+      2H: 2H
+  weapon size 002:
+    label: "weapon size 002"
+    input: select
+    description: "Size"
+    options:
+      1H: 1H
+      2H: 2H
+  weapon size 003:
+    label: "weapon size 003"
+    input: select
+    description: "Size"
+    options:
+      1H: 1H
+      2H: 2H
+  weapon size 004:
+    label: "weapon size 004"
+    input: select
+    description: "Size"
+    options:
+      1H: 1H
+      2H: 2H
+  weapon feature 001:
+    label: "weapon feature 001"
+    input: string
+    description: "Feature"
+  weapon feature 002:
+    label: "weapon feature 002"
+    input: string
+    description: "Feature"
+  weapon feature 003:
+    label: "weapon feature 003"
+    input: string
+    description: "Feature"
+  weapon feature 004:
+    label: "weapon feature 004"
+    input: string
+    description: "Feature"
+  armor name:
+    label: "armor name"
+    input: string
+    description: "Name"
+  armor threshold:
+    label: "armor threshold"
+    input: string
+    description: "Base Thresholds"
+  armor score:
+    label: "armor score"
+    input: integer
+    description: "Base Score"
+  armor feature:
+    label: "armor feature"
+    input: string
+    description: "Feature"
+  Domain1:
+    label: "Domain1"
+    input: string
+    description: "Domain 1"
+  Domain2:
+    label: "Domain2"
+    input: string
+    description: "Domain 2"
+  Domain3:
+    label: "Domain3"
+    input: string
+    description: "Domain 3"
+  Domain Card Name 001:
+    label: "Domain Card Name 001"
+    input: string
+    description: "Name"
+  Domain Card Name 002:
+    label: "Domain Card Name 002"
+    input: string
+    description: "Name"
+  Domain Card Name 003:
+    label: "Domain Card Name 003"
+    input: string
+    description: "Name"
+  Domain Card Name 004:
+    label: "Domain Card Name 004"
+    input: string
+    description: "Name"
+  Domain Card Name 005:
+    label: "Domain Card Name 005"
+    input: string
+    description: "Name"
+  Domain Card Name 006:
+    label: "Domain Card Name 006"
+    input: string
+    description: "Name"
+  Domain Card Name 007:
+    label: "Domain Card Name 007"
+    input: string
+    description: "Name"
+  Domain Card Name 008:
+    label: "Domain Card Name 008"
+    input: string
+    description: "Name"
+  Domain Card Name 009:
+    label: "Domain Card Name 009"
+    input: string
+    description: "Name"
+  Domain Card Name 010:
+    label: "Domain Card Name 010"
+    input: string
+    description: "Name"
+  Domain Card Name 011:
+    label: "Domain Card Name 011"
+    input: string
+    description: "Name"
+  Domain Card Name 012:
+    label: "Domain Card Name 012"
+    input: string
+    description: "Name"
+  Domain Card Name 013:
+    label: "Domain Card Name 013"
+    input: string
+    description: "Name"
+  Domain Card Name 014:
+    label: "Domain Card Name 014"
+    input: string
+    description: "Name"
+  Domain Card Name 015:
+    label: "Domain Card Name 015"
+    input: string
+    description: "Name"
+  Domain Card Name 016:
+    label: "Domain Card Name 016"
+    input: string
+    description: "Name"
+  Domain Card Name 017:
+    label: "Domain Card Name 017"
+    input: string
+    description: "Name"
+  Domain Card Name 018:
+    label: "Domain Card Name 018"
+    input: string
+    description: "Name"
+  Domain Card Name 019:
+    label: "Domain Card Name 019"
+    input: string
+    description: "Name"
+  Domain Card Name 020:
+    label: "Domain Card Name 020"
+    input: string
+    description: "Name"
+  Domain Card Name 021:
+    label: "Domain Card Name 021"
+    input: string
+    description: "Name"
+  Domain Card Name 022:
+    label: "Domain Card Name 022"
+    input: string
+    description: "Name"
+  Domain Card Name 023:
+    label: "Domain Card Name 023"
+    input: string
+    description: "Name"
+  Domain Card Name 024:
+    label: "Domain Card Name 024"
+    input: string
+    description: "Name"
+  Domain Card Name 025:
+    label: "Domain Card Name 025"
+    input: string
+    description: "Name"
+  Domain Card Name 026:
+    label: "Domain Card Name 026"
+    input: string
+    description: "Name"
+  Domain Card Name 027:
+    label: "Domain Card Name 027"
+    input: string
+    description: "Name"
+  Domain Card Name 028:
+    label: "Domain Card Name 028"
+    input: string
+    description: "Name"
+  Domain Card Name 029:
+    label: "Domain Card Name 029"
+    input: string
+    description: "Name"
+  Domain Card Name 030:
+    label: "Domain Card Name 030"
+    input: string
+    description: "Name"
+  Domain Card Name 031:
+    label: "Domain Card Name 031"
+    input: string
+    description: "Name"
+  Domain Card Name 032:
+    label: "Domain Card Name 032"
+    input: string
+    description: "Name"
+  Domain Card Name 033:
+    label: "Domain Card Name 033"
+    input: string
+    description: "Name"
+  Domain Card Name 034:
+    label: "Domain Card Name 034"
+    input: string
+    description: "Name"
+  Domain Card Name 035:
+    label: "Domain Card Name 035"
+    input: string
+    description: "Name"
+  Domain Card Name 036:
+    label: "Domain Card Name 036"
+    input: string
+    description: "Name"
+  Domain Card Name 037:
+    label: "Domain Card Name 037"
+    input: string
+    description: "Name"
+  Domain Card Name 038:
+    label: "Domain Card Name 038"
+    input: string
+    description: "Name"
+  Domain Card Name 039:
+    label: "Domain Card Name 039"
+    input: string
+    description: "Name"
+  Domain Card Name 040:
+    label: "Domain Card Name 040"
+    input: string
+    description: "Name"
+  Domain Card Name 041:
+    label: "Domain Card Name 041"
+    input: string
+    description: "Name"
+  Domain Card Name 042:
+    label: "Domain Card Name 042"
+    input: string
+    description: "Name"
+  Domain Card Name 043:
+    label: "Domain Card Name 043"
+    input: string
+    description: "Name"
+  Domain Card Name 044:
+    label: "Domain Card Name 044"
+    input: string
+    description: "Name"
+  Domain Card Name 045:
+    label: "Domain Card Name 045"
+    input: string
+    description: "Name"
+  Domain Card Name 046:
+    label: "Domain Card Name 046"
+    input: string
+    description: "Name"
+  Domain Card Name 047:
+    label: "Domain Card Name 047"
+    input: string
+    description: "Name"
+  Domain Card Name 048:
+    label: "Domain Card Name 048"
+    input: string
+    description: "Name"
+  Domain Card Name 049:
+    label: "Domain Card Name 049"
+    input: string
+    description: "Name"
+  Domain Card Name 050:
+    label: "Domain Card Name 050"
+    input: string
+    description: "Name"
+  Domain Card ID 001:
+    label: "Domain Card ID 001"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 002:
+    label: "Domain Card ID 002"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 003:
+    label: "Domain Card ID 003"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 004:
+    label: "Domain Card ID 004"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 005:
+    label: "Domain Card ID 005"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 006:
+    label: "Domain Card ID 006"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 007:
+    label: "Domain Card ID 007"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 008:
+    label: "Domain Card ID 008"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 009:
+    label: "Domain Card ID 009"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 010:
+    label: "Domain Card ID 010"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 011:
+    label: "Domain Card ID 011"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 012:
+    label: "Domain Card ID 012"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 013:
+    label: "Domain Card ID 013"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 014:
+    label: "Domain Card ID 014"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 015:
+    label: "Domain Card ID 015"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 016:
+    label: "Domain Card ID 016"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 017:
+    label: "Domain Card ID 017"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 018:
+    label: "Domain Card ID 018"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 019:
+    label: "Domain Card ID 019"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 020:
+    label: "Domain Card ID 020"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 021:
+    label: "Domain Card ID 021"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 022:
+    label: "Domain Card ID 022"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 023:
+    label: "Domain Card ID 023"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 024:
+    label: "Domain Card ID 024"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 025:
+    label: "Domain Card ID 025"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 026:
+    label: "Domain Card ID 026"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 027:
+    label: "Domain Card ID 027"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 028:
+    label: "Domain Card ID 028"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 029:
+    label: "Domain Card ID 029"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 030:
+    label: "Domain Card ID 030"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 031:
+    label: "Domain Card ID 031"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 032:
+    label: "Domain Card ID 032"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 033:
+    label: "Domain Card ID 033"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 034:
+    label: "Domain Card ID 034"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 035:
+    label: "Domain Card ID 035"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 036:
+    label: "Domain Card ID 036"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 037:
+    label: "Domain Card ID 037"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 038:
+    label: "Domain Card ID 038"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 039:
+    label: "Domain Card ID 039"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 040:
+    label: "Domain Card ID 040"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 041:
+    label: "Domain Card ID 041"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 042:
+    label: "Domain Card ID 042"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 043:
+    label: "Domain Card ID 043"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 044:
+    label: "Domain Card ID 044"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 045:
+    label: "Domain Card ID 045"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 046:
+    label: "Domain Card ID 046"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 047:
+    label: "Domain Card ID 047"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 048:
+    label: "Domain Card ID 048"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 049:
+    label: "Domain Card ID 049"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card ID 050:
+    label: "Domain Card ID 050"
+    input: integer
+    description: "Comain Card ID"
+  Domain Card Active 001:
+    label: "Domain Card Active 001"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 002:
+    label: "Domain Card Active 002"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 003:
+    label: "Domain Card Active 003"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 004:
+    label: "Domain Card Active 004"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 005:
+    label: "Domain Card Active 005"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 006:
+    label: "Domain Card Active 006"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 007:
+    label: "Domain Card Active 007"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 008:
+    label: "Domain Card Active 008"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 009:
+    label: "Domain Card Active 009"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 010:
+    label: "Domain Card Active 010"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 011:
+    label: "Domain Card Active 011"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 012:
+    label: "Domain Card Active 012"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 013:
+    label: "Domain Card Active 013"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 014:
+    label: "Domain Card Active 014"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 015:
+    label: "Domain Card Active 015"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 016:
+    label: "Domain Card Active 016"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 017:
+    label: "Domain Card Active 017"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 018:
+    label: "Domain Card Active 018"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 019:
+    label: "Domain Card Active 019"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 020:
+    label: "Domain Card Active 020"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 021:
+    label: "Domain Card Active 021"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 022:
+    label: "Domain Card Active 022"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 023:
+    label: "Domain Card Active 023"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 024:
+    label: "Domain Card Active 024"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 025:
+    label: "Domain Card Active 025"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 026:
+    label: "Domain Card Active 026"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 027:
+    label: "Domain Card Active 027"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 028:
+    label: "Domain Card Active 028"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 029:
+    label: "Domain Card Active 029"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 030:
+    label: "Domain Card Active 030"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 031:
+    label: "Domain Card Active 031"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 032:
+    label: "Domain Card Active 032"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 033:
+    label: "Domain Card Active 033"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 034:
+    label: "Domain Card Active 034"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 035:
+    label: "Domain Card Active 035"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 036:
+    label: "Domain Card Active 036"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 037:
+    label: "Domain Card Active 037"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 038:
+    label: "Domain Card Active 038"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 039:
+    label: "Domain Card Active 039"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 040:
+    label: "Domain Card Active 040"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 041:
+    label: "Domain Card Active 041"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 042:
+    label: "Domain Card Active 042"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 043:
+    label: "Domain Card Active 043"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 044:
+    label: "Domain Card Active 044"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 045:
+    label: "Domain Card Active 045"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 046:
+    label: "Domain Card Active 046"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 047:
+    label: "Domain Card Active 047"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 048:
+    label: "Domain Card Active 048"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 049:
+    label: "Domain Card Active 049"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Active 050:
+    label: "Domain Card Active 050"
+    input: checkbox
+    description: "Domain Card Active"
+  Domain Card Used 001:
+    label: "Domain Card Used 001"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 002:
+    label: "Domain Card Used 002"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 003:
+    label: "Domain Card Used 003"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 004:
+    label: "Domain Card Used 004"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 005:
+    label: "Domain Card Used 005"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 006:
+    label: "Domain Card Used 006"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 007:
+    label: "Domain Card Used 007"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 008:
+    label: "Domain Card Used 008"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 009:
+    label: "Domain Card Used 009"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 010:
+    label: "Domain Card Used 010"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 011:
+    label: "Domain Card Used 011"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 012:
+    label: "Domain Card Used 012"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 013:
+    label: "Domain Card Used 013"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 014:
+    label: "Domain Card Used 014"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 015:
+    label: "Domain Card Used 015"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 016:
+    label: "Domain Card Used 016"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 017:
+    label: "Domain Card Used 017"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 018:
+    label: "Domain Card Used 018"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 019:
+    label: "Domain Card Used 019"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 020:
+    label: "Domain Card Used 020"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 021:
+    label: "Domain Card Used 021"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 022:
+    label: "Domain Card Used 022"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 023:
+    label: "Domain Card Used 023"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 024:
+    label: "Domain Card Used 024"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 025:
+    label: "Domain Card Used 025"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 026:
+    label: "Domain Card Used 026"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 027:
+    label: "Domain Card Used 027"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 028:
+    label: "Domain Card Used 028"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 029:
+    label: "Domain Card Used 029"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 030:
+    label: "Domain Card Used 030"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 031:
+    label: "Domain Card Used 031"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 032:
+    label: "Domain Card Used 032"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 033:
+    label: "Domain Card Used 033"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 034:
+    label: "Domain Card Used 034"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 035:
+    label: "Domain Card Used 035"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 036:
+    label: "Domain Card Used 036"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 037:
+    label: "Domain Card Used 037"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 038:
+    label: "Domain Card Used 038"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 039:
+    label: "Domain Card Used 039"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 040:
+    label: "Domain Card Used 040"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 041:
+    label: "Domain Card Used 041"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 042:
+    label: "Domain Card Used 042"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 043:
+    label: "Domain Card Used 043"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 044:
+    label: "Domain Card Used 044"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 045:
+    label: "Domain Card Used 045"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 046:
+    label: "Domain Card Used 046"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 047:
+    label: "Domain Card Used 047"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 048:
+    label: "Domain Card Used 048"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 049:
+    label: "Domain Card Used 049"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Used 050:
+    label: "Domain Card Used 050"
+    input: checkbox
+    description: "Domain Card Used"
+  Domain Card Desc 001:
+    label: "Domain Card Desc 001"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 002:
+    label: "Domain Card Desc 002"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 003:
+    label: "Domain Card Desc 003"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 004:
+    label: "Domain Card Desc 004"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 005:
+    label: "Domain Card Desc 005"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 006:
+    label: "Domain Card Desc 006"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 007:
+    label: "Domain Card Desc 007"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 008:
+    label: "Domain Card Desc 008"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 009:
+    label: "Domain Card Desc 009"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 010:
+    label: "Domain Card Desc 010"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 011:
+    label: "Domain Card Desc 011"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 012:
+    label: "Domain Card Desc 012"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 013:
+    label: "Domain Card Desc 013"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 014:
+    label: "Domain Card Desc 014"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 015:
+    label: "Domain Card Desc 015"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 016:
+    label: "Domain Card Desc 016"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 017:
+    label: "Domain Card Desc 017"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 018:
+    label: "Domain Card Desc 018"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 019:
+    label: "Domain Card Desc 019"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 020:
+    label: "Domain Card Desc 020"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 021:
+    label: "Domain Card Desc 021"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 022:
+    label: "Domain Card Desc 022"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 023:
+    label: "Domain Card Desc 023"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 024:
+    label: "Domain Card Desc 024"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 025:
+    label: "Domain Card Desc 025"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 026:
+    label: "Domain Card Desc 026"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 027:
+    label: "Domain Card Desc 027"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 028:
+    label: "Domain Card Desc 028"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 029:
+    label: "Domain Card Desc 029"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 030:
+    label: "Domain Card Desc 030"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 031:
+    label: "Domain Card Desc 031"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 032:
+    label: "Domain Card Desc 032"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 033:
+    label: "Domain Card Desc 033"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 034:
+    label: "Domain Card Desc 034"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 035:
+    label: "Domain Card Desc 035"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 036:
+    label: "Domain Card Desc 036"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 037:
+    label: "Domain Card Desc 037"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 038:
+    label: "Domain Card Desc 038"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 039:
+    label: "Domain Card Desc 039"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 040:
+    label: "Domain Card Desc 040"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 041:
+    label: "Domain Card Desc 041"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 042:
+    label: "Domain Card Desc 042"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 043:
+    label: "Domain Card Desc 043"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 044:
+    label: "Domain Card Desc 044"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 045:
+    label: "Domain Card Desc 045"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 046:
+    label: "Domain Card Desc 046"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 047:
+    label: "Domain Card Desc 047"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 048:
+    label: "Domain Card Desc 048"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 049:
+    label: "Domain Card Desc 049"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Desc 050:
+    label: "Domain Card Desc 050"
+    input: text
+    description: "Domain Card Description"
+    rows: 3
+  Domain Card Tokens 001:
+    label: "Domain Card Tokens 001"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 002:
+    label: "Domain Card Tokens 002"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 003:
+    label: "Domain Card Tokens 003"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 004:
+    label: "Domain Card Tokens 004"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 005:
+    label: "Domain Card Tokens 005"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 006:
+    label: "Domain Card Tokens 006"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 007:
+    label: "Domain Card Tokens 007"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 008:
+    label: "Domain Card Tokens 008"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 009:
+    label: "Domain Card Tokens 009"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 010:
+    label: "Domain Card Tokens 010"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 011:
+    label: "Domain Card Tokens 011"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 012:
+    label: "Domain Card Tokens 012"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 013:
+    label: "Domain Card Tokens 013"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 014:
+    label: "Domain Card Tokens 014"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 015:
+    label: "Domain Card Tokens 015"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 016:
+    label: "Domain Card Tokens 016"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 017:
+    label: "Domain Card Tokens 017"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 018:
+    label: "Domain Card Tokens 018"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 019:
+    label: "Domain Card Tokens 019"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 020:
+    label: "Domain Card Tokens 020"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 021:
+    label: "Domain Card Tokens 021"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 022:
+    label: "Domain Card Tokens 022"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 023:
+    label: "Domain Card Tokens 023"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 024:
+    label: "Domain Card Tokens 024"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 025:
+    label: "Domain Card Tokens 025"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 026:
+    label: "Domain Card Tokens 026"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 027:
+    label: "Domain Card Tokens 027"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 028:
+    label: "Domain Card Tokens 028"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 029:
+    label: "Domain Card Tokens 029"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 030:
+    label: "Domain Card Tokens 030"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 031:
+    label: "Domain Card Tokens 031"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 032:
+    label: "Domain Card Tokens 032"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 033:
+    label: "Domain Card Tokens 033"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 034:
+    label: "Domain Card Tokens 034"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 035:
+    label: "Domain Card Tokens 035"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 036:
+    label: "Domain Card Tokens 036"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 037:
+    label: "Domain Card Tokens 037"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 038:
+    label: "Domain Card Tokens 038"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 039:
+    label: "Domain Card Tokens 039"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 040:
+    label: "Domain Card Tokens 040"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 041:
+    label: "Domain Card Tokens 041"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 042:
+    label: "Domain Card Tokens 042"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 043:
+    label: "Domain Card Tokens 043"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 044:
+    label: "Domain Card Tokens 044"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 045:
+    label: "Domain Card Tokens 045"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 046:
+    label: "Domain Card Tokens 046"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 047:
+    label: "Domain Card Tokens 047"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 048:
+    label: "Domain Card Tokens 048"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 049:
+    label: "Domain Card Tokens 049"
+    input: integer
+    description: "Domain Card Tokens"
+  Domain Card Tokens 050:
+    label: "Domain Card Tokens 050"
+    input: integer
+    description: "Domain Card Tokens"
+  Inventory:
+    label: "Inventory"
+    input: text
+    rows: 3
+  Description:
+    label: "Description"
+    input: text
+    rows: 3
+  Background Questions:
+    label: "Background Questions"
+    input: text
+    rows: 3
+  Connections:
+    label: "Connections"
+    input: text
+    rows: 3
+  Notes:
+    label: "Notes"
+    input: text
+    rows: 3

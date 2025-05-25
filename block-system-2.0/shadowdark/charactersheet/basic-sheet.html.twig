@@ -1,0 +1,185 @@
+﻿{% set lang = variables.lang|default('en') %}
+{% set tr = {
+  'en': {
+    'name': 'Name',
+    'personal': 'Personal Data',
+    'class': 'Class',
+    'ancestry': 'Ancestry',
+    'level': 'Level',
+    'xp': 'XP',
+    'xp_avail': 'XP Available',
+    'xp_level_up': 'XP Level Up',
+    'title': 'Title',
+    'alignment': 'Alignment',
+    'background': 'Background',
+    'deity': 'Deity',
+    'hp_curr': 'Current HP',
+    'hp_max': 'Max HP',
+    'hp': 'HP',
+    'ac': 'Armor Class',
+    'attacks': 'Attacks',
+    'talents': 'Talents / Spells',
+    'gear': 'Gear',
+    'str': 'Strength',
+    'dex': 'Dexterity',
+    'con': 'Constitution',
+    'int': 'Intelligence',
+    'wis': 'Wisdom',
+    'cha': 'Charisma',
+    'mod': 'Mod.',
+    'free_to_carry': 'Free to Carry',
+    'notes': 'Notes',
+    'gp': 'gp',
+    'sp': 'sp',
+    'cp': 'cp',
+    'attributes': 'Attributes',
+    'portrait': 'Portrait'
+  },
+    'hu': {
+    'name': 'Név',
+    'personal': 'Személyes adatok',
+    'class': 'Osztály',
+    'ancestry': 'Származás',
+    'level': 'Szint',
+    'xp': 'TP',
+    'xp_avail': 'Elérhető TP',
+    'xp_level_up': 'Szintlépéshez szükséges TP',
+    'title': 'Cím',
+    'alignment': 'Jellem',
+    'background': 'Háttér',
+    'deity': 'Isten',
+    'hp_curr': 'Aktuális ÉP',
+    'hp_max': 'Maximális ÉP',
+    'hp': 'ÉP',
+    'ac': 'VF',
+    'attacks': 'Támadások',
+    'talents': 'Adottságok / Varázslatok',
+    'gear': 'Felszerelés',
+    'str': 'Erő',
+    'dex': 'Ügyesség',
+    'con': 'Állóképesség',
+    'int': 'Intelligencia',
+    'wis': 'Bölcsesség',
+    'cha': 'Karizma',
+    'mod': 'Mód.',
+    'free_to_carry': 'Szabadon hordozható',
+    'notes': 'Megjegyzések',
+    'gp': 'arany',
+    'sp': 'ezüst',
+    'cp': 'réz',
+    'attributes': 'Tulajdonságok',
+    'portrait': 'Portré'
+  }
+} %}
+<div class='container-fluid sheet-shadowdark'>
+  <div class='row'>
+    <div class='col-12 col-md-6 col-lg-5'>
+      <div class='card personal c' id='card-personal'>
+<div class='col-12 hidden-md hidden-xs hidden-sm d-none d-lg-block'>[img:5908847|center|300|nolink]</div>
+        <div class='card-header personal'>{{variables.name|default}}</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='lbl ev lbl-class l'> {{ tr[lang]['class'] }} </th><td class='var ev var-class l'> {{variables.class|default}} Lvl {{variables.level|default}}</td></tr>
+            <tr><th class='lbl od lbl-ancestry l'> {{ tr[lang]['ancestry'] }} </th><td class='var od var-ancestry l'> {{variables.ancestry|default}} </td></tr>
+            <tr><th class='lbl ev lbl-xp-avail l'> {{ tr[lang]['xp'] }} </th><td class='var ev var-xp-avail l'>{{variables.xp_avail|default}} / {{variables.xp_level_up|default}} </td></tr>
+            <tr><th class='lbl od lbl-title l'> {{ tr[lang]['title'] }} </th><td class='var od var-title l'> {{variables.title|default}} </td></tr>
+            <tr><th class='lbl ev lbl-alignment l'> {{ tr[lang]['alignment'] }} </th><td class='var ev var-alignment l'> {{variables.alignment|default}} </td></tr>
+            <tr><th class='lbl od lbl-background l'> {{ tr[lang]['background'] }} </th><td class='var od var-background l'> {{variables.background|default}} </td></tr>
+            <tr><th class='lbl ev lbl-deity l'> {{ tr[lang]['deity'] }} </th><td class='var ev var-deity l'> {{variables.deity|default}} </td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6 col-lg-3'>
+      <div class='card attributes' id='card-attributes'>
+        <div class='card-header attributes'>{{ tr[lang]['attributes'] }}</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='lbl od lbl-str'> {{ tr[lang]['str'] }} </th><td class='var od var-str'>{{variables.str|default}} / {{ variables.str_mod|default }} </td></tr>
+            <tr><th class='lbl ev lbl-dex'> {{ tr[lang]['dex'] }} </th><td class='var ev var-dex'>{{variables.dex|default}} / {{ variables.dex_mod|default }} </td></tr>
+            <tr><th class='lbl od lbl-con'> {{ tr[lang]['con'] }} </th><td class='var od var-con'>{{variables.con|default}} / {{ variables.con_mod|default }} </td></tr>
+            <tr><th class='lbl ev lbl-int'> {{ tr[lang]['int'] }} </th><td class='var ev var-int'>{{variables.int|default}} / {{ variables.int_mod|default }} </td></tr>
+            <tr><th class='lbl od lbl-wis'> {{ tr[lang]['wis'] }} </th><td class='var od var-wis'>{{variables.wis|default}} / {{ variables.wis_mod|default }} </td></tr>
+            <tr><th class='lbl ev lbl-cha'> {{ tr[lang]['cha'] }} </th><td class='var ev var-cha'>{{variables.cha|default}} / {{ variables.cha_mod|default }} </td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-lg-4 hidden-md hidden-xs hidden-sm d-none d-lg-block'>
+      <div class='card portrait' id='card-portrait'>
+        <div class='card-header portrait'>{{ tr[lang]['portrait'] }}</div>
+        <div class='card-body of'>
+          <div class='var od var-portrait'>[img:{{variables.portrait|default}}]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='row'>
+        <div class='col-12 col-md-6'>
+          <div class='card hp' id='card-hp'>
+            <div class='card-body of'>
+              <table class='table'>
+                <tr><th class='lbl od lbl-hp c' width='50%'> {{ tr[lang]['hp'] }} </th><td class='var od var-hp'>{{variables.hp_curr|default}} / {{variables.hp|default}}</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class='col-12 col-md-6'>
+          <div class='card ac' id='card-ac'>
+            <div class='card-body of'>
+              <table class='table'>
+                <tr><th class='lbl od lbl-ac c' width='50%'> {{ tr[lang]['ac'] }} </th><td class='var od var-ac'>{{variables.ac|default}}</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='card attacks' id='card-attacks'>
+        <div class='card-header attacks'>{{ tr[lang]['attacks'] }}</div>
+        <div class='card-body of'>
+          <div class='var od var-attacks'> {{variables.attacks|default|nl2br}} </div>
+        </div>
+      </div>
+      <div class='card talents' id='card-talents'>
+        <div class='card-header talents'>{{ tr[lang]['talents'] }}</div>
+        <div class='card-body of'>
+          <div class='var od var-talents'> {{variables.talents|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card gear' id='card-gear'>
+        <div class='card-header gear'>{{ tr[lang]['gear'] }}</div>
+        <div class='card-body of'>
+          <div class='var od var-gear'>
+            <ol>{% for l in variables.gear|default|split('\n') %}<li>{{l}}</li>{% endfor %}</ol>
+          </div>
+          <table class='table'>
+          <tr>
+          <th class='lbl od lbl-gp c'> {{ tr[lang]['gp'] }} </th>
+          <th class='lbl od lbl-sp c'> {{ tr[lang]['sp'] }} </th>
+          <th class='lbl od lbl-cp c'> {{ tr[lang]['cp'] }} </th>
+          </tr>
+          <tr><td class='var var-gp c'>{{variables.gp|default}}</td><td class='var var-sp c'>{{variables.sp|default}}</td><td class='var var-cp c'>{{variables.cp|default}}</td>
+          </tr>
+          </table>
+          <div class='lbl od lbl-free-to-carry c'> {{ tr[lang]['free_to_carry'] }} </div><div class='var od var-free-to-carry'> {{variables.free_to_carry|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-12'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>{{ tr[lang]['notes'] }}</div>
+        <div class='card-body of'>
+          <div class='var od var-notes'> {{variables.notes|default|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row do-not-print'>
+    <div class='col-12 c small'>Shadowdark &copy; 2023 The Arcane Library, LLC. - Shadowdark v1.1 Sheet made by Tillerz - Updated: 2025-04-08</a><br>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+ .container-fluid {
+   font-family: Alegreya;
+   font-size: 18px !important;
+   letter-spacing: -0.03em;
+   color: var(--dark) ;
+   padding: 20px;
+   border: 16px solid transparent;
+   -moz-border-image: url(/i/6673093/render) 64 64;
+   -webkit-border-image: url(/i/6673093/render) 64 64;
+   -o-border-image: url(/i/6673093/render) 64 64;
+   border-image: url(/i/6673093/render) 64 64;}
+ .CodeMirror-buttonsPanel { font-size: 14px;}
+ .table { margin-bottom: 0px; width: 100%; color: var(--dark)}
+ .table>tbody>tr>th,  .table>tbody>tr>td { border-top: none; padding: 0px 6px; line-height: 1.8em; align-content: center}
+ .ilbl,  .lbl { padding: 2px 5px}
+ .lbl { border-bottom: 1px dashed var(--dark)}
+ .artist-credits,  .artist-credits a { font-size: 12px; text-align: center; padding-top: 3px}
+ .card { padding:0px; border: none; margin-bottom:8px}
+ .card-header {
+     font-size: 32px;
+     border-radius: 20px;
+     background-color: #4e4e4e;
+     color: var(--light) ;
+     text-align: center;
+     padding-top: 6px;
+     padding-left: 6px;
+     padding-bottom: 0px;
+     margin: 0px}
+.label-roller { padding: 5px 8px; font-family: Alegreya; font-size: 16px; font-weight: 400; background: #800080 !important; color: gold }
+ th { font-weight: 400}
+ th.lbl { vertical-align: middle}
+ .c { text-align: center}
+ .l { text-align: left}
+ .r { text-align: right}
+ p { margin-bottom: 0px}
+ ol { padding-left: 20px}
+ .form-control:focus,  .single-line:focus,  .form-control,  .single-line {
+   background-color: var(--off-white) ;
+   color: var(--dark) ;
+   border: 1px solid black;
+   border-radius: 15px;
+   margin: 5px 5px 5px 0px;}
+ .of { overflow-x: auto}
+ small { line-height: 1em}
+ .fa-bolt { font-size: 20px;}
+ .fr { float:right}
+ .sub { text-align:center; font-size: 28px}
+ select { height: 2.8rem !important}

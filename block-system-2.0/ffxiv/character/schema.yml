@@ -1,0 +1,271 @@
+fields:
+# sheet: ffxiv
+  # row
+    # col: col-12 col-md-6
+      # card: personal: Personal Data
+        # card-body
+          # table
+  name:
+    label: "Name"
+    input: string
+    required: true
+    placeholder: "Name of the hero"
+  race:
+    label: "Race"
+    input: select
+    options:
+      hyur: "Hyur"
+      elezen: "Elezen"
+      lalafell: "Lalafell"
+      miqote: "Miqo'te"
+      roegadyn: "Roegadyn"
+      aura: "Au Ra"
+      viera: "Viera"
+      hrothgar: "Hrothgar"
+  portrait:
+    label: "Portrait"
+    input: integer
+    render: image
+          # /table
+        # /card-body
+      # /card
+    # /col
+    # col: col-12 col-md-6
+  image:
+    label: "FFXIV TTRPG Logo"
+    url: /i/6606763/render
+    width: 450px
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: personal: Personal Data
+        # card-body
+          # table
+  job:
+    label: "Role / Job"
+    input: select
+    options:
+      paladin: "Paladin (Tank)"
+      darkknight: "Dark Knight (Tank)"
+      warrior: "Warrior (Tank)"
+      whitemage: "White Mage (Healer)"
+      scholar: "Scholar (Healer)"
+      astrologian: "Astrologian (Healer)"
+      monk: "Monk (Melee DPS)"
+      dragoon: "Dragoon (Melee DPS)"
+      ninja: "Ninja (Melee DPS)"
+      bard: "Bard (Ranged DPS)"
+      machinist: "Machinist (Ranged DPS)"
+      blackmage: "Black Mage (Caster DPS)"
+      summoner: "Summoner (Caster DPS)"
+  level:
+    label: "Level"
+    input: number
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12 col-md-6
+      # card: primary attributes: Primary Attributes
+        # card-body
+  str:
+    label: "Strength"
+    input: number
+  dex:
+    label: "Dexterity"
+    input: number
+  vit:
+    label: "Vitality" 
+    input: number
+  int:
+    label: "Intelligence"
+    input: number
+  mind:
+    label: "Mind"
+    input: number
+        # /card-body
+      # /card
+    # /col
+    # col: col-12 col-md-6
+      # card: secondary attributes: Secondary Attributes
+        # card-body
+  def:
+    label: "Defense"
+    input: number
+  magical defense:
+    label: "Magical Defense"
+    input: number
+  vigilance: 
+    label: "Vigilance"
+    input: number
+  speed:
+    label: "Speed"
+    input: number
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12 col-md-6
+      # card: mp: Mana Points
+        # card-body
+  mp:
+    label: "MP (Curr)"
+    input: number
+    placeholder: "0"
+  maxmp:
+    label: "MP (Max)"
+    input: number
+    placeholder: "0"
+        # /card-body
+      # /card
+    # /col
+    # col: col-12 col-md-6
+      # card: hp: Health Points
+        # card-body
+  hp:
+    label: "HP (Curr)"
+    input: number
+    placeholder: "0"
+  maxhp:
+    label: "HP (Max)"
+    input: number
+    placeholder: "0"
+  barrier:
+    label: "Barrier"
+    input: number
+    placeholder: "0"
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: Traits and other Effects: Traits and other Effects
+        # card-body
+          # table
+            # iter: 5
+  trname:
+    input: string
+    label: "Trait"
+  trtags:
+    input: string
+    label: "Tags"
+  trdescription:
+    input: text
+    label: "Description"
+    rows: 3
+  trres: 
+    input: integer
+    label: "Job Resource"
+    placeholder: "0"
+  trmaxres:
+    input: integer
+    label: "Max Job Resource"
+    placeholder: "0"
+            # /iter
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: abilities: Abilities
+        # card-body
+          # table
+            # iter: 50
+  abtype:
+    label: "Type"
+    input: select
+    options:
+      primary: "Primary"
+      secondary: "Secondary"
+      instant: "Instant"
+      limitbreak: "Limit Break"
+  abname:
+    input: string
+    label: "Ability Name"
+  abtags:
+    input: string
+    label: "Tags"
+    placeholder: "eg. Trait, Enhancement, ..."
+  abcost:
+    input: string
+    label: "Cost"
+  abtarget:
+    input: string
+    label: "Target"
+  abrange:
+    input: string
+    label: "Range"
+  abcheck:
+    input: string
+    label: "Check"
+  abcr:
+    input: string
+    label: "CR"
+  abtrigger:
+    input: string
+    label: "Trigger"
+  abbaseeffect:
+    input: string
+    label: "Base Effect"
+  abdirecthit:
+    input: string
+    label: "Direct Hit"
+  ablimitation curr:
+    input: integer
+    label: "Limitation Current"
+  ablimitation max:
+    input: integer
+    label: "Limitation Max"
+  ablimitationtype:
+    label: "Limitation Type"
+    input: select
+    options:
+      phase: "Phase"
+      round: "Round"
+      encounter: "Encounter"
+      session: "Session"
+            # /iter
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12 col-md-6
+      # card: profile: Profile
+        # card-body
+  profile:
+    input: text
+    rows: 3
+        # /card-body
+      # /card
+    # /col
+    # col: col-12 col-md-6
+      # card: items: Items
+        # card-body
+  items:
+    input: text
+    rows: 3
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: notes: Notes
+        # card-body
+  notes:
+    input: text
+    rows: 3
+        # /card-body
+      # /card
+    # /col
+  # /row
+# /sheet

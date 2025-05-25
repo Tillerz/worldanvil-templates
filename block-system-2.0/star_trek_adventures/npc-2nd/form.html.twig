@@ -1,0 +1,146 @@
+{% macro genEntry(mytype, myname, mydie, min='', max = '') %}<table class="itable"><tr><td><span class="leftpill">{{myname}}</span></td>
+<td><span class="rightpill"><input value="{{ mydie }}" class="form-control" id="{{ mytype }}" name="{{ mytype }}" type="text"{% if min != "" %} min="{{min}}"{% endif %}{% if max != "" %} max="{{max}}"{% endif %}/></span></td></tr></table>{% endmacro genEntry %}
+{% macro genPills(curr, max, tt) %}
+    {% if curr is defined and curr > 0 %}
+        {% for i in 1..curr %}
+            <p class="solidpill">{{tt}}</p> {% set max = max -1 %}
+        {% endfor %}
+    {% endif %}
+    {% if max is defined and max > 0 %}
+        {% for i in 1..max %}
+            <p class="emptypill">{{tt}}</p>
+        {% endfor %}
+    {% endif %}
+{% endmacro genPills %}
+{% macro genTextPill(txt, type) %}
+    {% if txt is defined %}
+        <p class="{{type}}pill">{{txt}}<p/>
+    {% endif %}
+{% endmacro genTextPill %}
+<div class="container-fluid sta-sheet sta-sheet-global-wrapper">
+    <div class="form-wrapper">
+        <div class="row">
+            <div class="hidden-xs hidden-sm col-lg-12 d-none d-md-block text-right">
+                <div class="card-header head-bar title"><span class="wbg" >NPC</span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-2 my-3">
+                <strong>Name</strong>
+            </div>
+            <div class="col-12 col-md-4 my-3">
+                <input value="{{ variables.name|default }}" required="required" class="form-control" id="name" name="name" placeholder="Name of the character" size="50" type="text" />
+            </div>
+            <div class="col-12 col-md-2 my-3">
+                <strong>Type</strong>
+            </div>
+            <div class="col-12 col-md-4 my-3">
+<input class="form-control" value="{{ variables.type|default }}" list="typelist" id="typeid" name="type" placeholder="Type to search...">
+{% set typelist = [ "Major NPC", "Notable NPC", "Minor NPC", "Generic NPC" ] %}
+<datalist id="typelist">
+{% for ra in typelist %}<option value="{{ra}}" {% if variables.type|default == ra %}selected=selected{% endif %} > {% endfor %}
+</datalist>
+            </div>
+            <div class="col-12 col-md-12 my-2">
+                <strong>Description</strong>
+            </div>
+            <div class="col-12 col-md-12 my-2">
+                <textarea class="form-control" id="desc" name="desc" cols="40" rows="20">{{ variables.desc|default }}</textarea>
+            </div>
+            <div class="col-12 col-md-2 my-2">
+                <strong>Traits</strong>
+            </div>
+            <div class="col-12 col-md-10 my-2">
+                <input value="{{ variables.traits|default }}" class="form-control" id="traits" name="traits" placeholder="" size="100" type="text" />
+            </div>
+            <div class="col-12 col-md-2 my-2">
+                <strong>Values</strong>
+            </div>
+            <div class="col-12 col-md-10 my-2">
+                <input value="{{ variables.values|default }}" class="form-control" id="values" name="values" placeholder="" size="100" type="text" />
+            </div>
+            <div class="col-12 col-md-2 my-2">
+                <strong>Focuses</strong>
+            </div>
+            <div class="col-12 col-md-10 my-2">
+                <input value="{{ variables.focuses|default }}" class="form-control" id="focuses" name="focuses" placeholder="" size="100" type="text" />
+            </div>
+            <div class="col-12 col-md-2 my-2">
+                <strong>Portrait</strong>
+            </div>
+            <div class="col-12 col-md-10 my-2">
+                <input value="{{ variables.img|default }}" class="form-control numwide" id="img" name="img" placeholder="WA image id" size="50" type="number" />
+            </div>
+            <div class="col-2 col-md-2 my-2">
+            </div>
+            <div class="col-12 col-md-4 my-2">
+                {{ _self.genEntry('pthreat', 'Pers. Threat', variables.pthreat|default) }}
+            </div>
+            <div class="col-12 col-md-4 my-2">
+                {{ _self.genEntry('protection', 'Protection', variables.protection|default) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="card my-2">
+                    <div class="card-header head-bar"><span class="wbg" title="Characters in Star Trek Adventures are defined by six attributes. The attributes range from 7 to 12, with 8 being average.">Attributes</span></div>
+                    <div class="card-body">
+                        <div class="row">
+                            {{ _self.genEntry('control', 'control', variables.control) }}
+                            {{ _self.genEntry('fitness', 'fitness', variables.fitness) }}
+                            {{ _self.genEntry('presence', 'presence', variables.presence) }}
+                        </div>
+                        <div class="row">
+                            {{ _self.genEntry('daring', 'daring', variables.daring) }}
+                            {{ _self.genEntry('insight', 'insight', variables.insight) }}
+                            {{ _self.genEntry('reason', 'reason', variables.reason) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card my-2">
+                    <div class="card-header head-bar"><span class="wbg">Departments</span></div>
+                    <div class="card-body">
+                        <div class="row">
+                            {{ _self.genEntry('command', 'command', variables.command|default) }}
+                            {{ _self.genEntry('engineering', 'engineering', variables.engineering|default) }}
+                            {{ _self.genEntry('medicine', 'medicine', variables.medicine|default) }}
+                        </div>
+                        <div class="row">
+                            {{ _self.genEntry('conn', 'conn', variables.conn|default) }}
+                            {{ _self.genEntry('security', 'security', variables.security|default) }}
+                            {{ _self.genEntry('science', 'science', variables.science|default) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="card my-2">
+                    <div class="card-header head-bar"><span class="wbg">Attacks</span></div>
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-between">
+                            <div class="col-12">
+                                {% for i in 1..5 %}
+                                    <input value="{{ attribute(variables, 'attack' ~ i)|default }}" class="form-control" id="attack{{i}}" name="attack{{i}}" placeholder="" size="100" type="text" />
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="card my-2">
+                    <div class="card-header head-bar"><span class="wbg">Special Rules</span></div>
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-between">
+                            <span class="myinputfield">
+                                <textarea class="form-control" id="srules" name="srules" cols="40" rows="20">{{ variables.srules|default }}</textarea>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

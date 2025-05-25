@@ -1,0 +1,47 @@
+fields:
+  fatecurr:
+    label: "fatecurr"
+    input: text
+  fatetotal:
+    label: "fatetotal"
+    input: text
+  corruption corruption:
+    label: "corruption corruption"
+    input: text
+  wounds wounds:
+    label: "wounds wounds"
+    input: text
+  wounds total:
+    label: "wounds total"
+    input: text
+  wounds fatigue:
+    label: "wounds fatigue"
+    input: text
+  xp curr:
+    label: "xp curr"
+    input: text
+  xp spent:
+    label: "xp spent"
+    input: text
+  renown:
+    label: "renown"
+    input: text
+  insanity insanity:
+    label: "insanity insanity"
+    input: text
+  wounds desc:
+    label: "wounds desc"
+    input: text
+    rows: 3
+  insanity bf:
+    label: "insanity bf"
+    input: text
+    rows: 3
+  insanity pc:
+    label: "insanity pc"
+    input: text
+    rows: 3
+  notes:
+    label: "notes"
+    input: text
+    rows: 3
