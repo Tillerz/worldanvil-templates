@@ -169,8 +169,8 @@
           <table class='table'>
             <tr>
               <th class='hdr od lbl-weapon-worn c' title='Worn'> &nbsp; </th>
-              <th class='hdr od lbl-weapon-name' width='140px'>Name</th>
-              <th class='hdr od lbl-weapon-primary c' width='30px' title='Marked: is primary weapon'>P</th>
+              <th class='hdr od lbl-weapon-name' width='140px'>Wepaon</th>
+              <th class='hdr od lbl-weapon-primary c' width='30px' title='Primary or Secondary weapon'>P/S</th>
               <th class='hdr od lbl-weapon-trait c' width='140px'>Trait</th>
               <th class='hdr od lbl-weapon-range c' width='140px'>Range</th>
               <th class='hdr od lbl-weapon-damage-dice c' width='120px'>Dam. Dice</th>
@@ -183,9 +183,13 @@
               {% if name != "" %}
                 {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
                 <tr>
-                  <td class='lbl {{eo}} var-weapon-worn c' title='Worn' width='30px'>{% if attribute(variables, 'weapon_worn_' ~ id)|default > 0 %} <i class="fa-regular fa-hand-back-fist"></i> {% else %} <i class="fa-solid fa-backpack"></i> {% endif %}</td>
+                  {% if attribute(variables, 'weapon_worn_' ~ id)|default > 0 %} 
+                    <td class='lbl {{eo}} var-weapon-worn c' title='Worn' width='30px'><i class="fa-regular fa-hand-back-fist"></i>
+                  {% else %}
+                    <td class='lbl {{eo}} var-weapon-worn c' title='Stashed' width='30px'><i class="fa-solid fa-backpack"></i>
+                  {% endif %}</td>
                   <td class='lbl {{eo}} var-weapon-name'><b>{{name}}</b></td>
-                  <td class='var {{eo}} var-weapon-primary c' title='Primary or Secondary weapon'>{% if attribute(variables, 'weapon_primary_' ~ id)|default > 0 %} <span title='Primary'>P</span> {% else %} <span title='Secondary'>S</span> {% endif %}</td>
+                  <td class='var {{eo}} var-weapon-primary c' title='Primary or Secondary weapon'>{% if attribute(variables, 'weapon_primary_' ~ id)|default > 0 %} <span title='Primary weapon'>P</span> {% else %} <span title='Secondary weapon'>S</span> {% endif %}</td>
                   <td class='var {{eo}} var-weapon-trait c'>{{attribute(variables, 'weapon_trait_' ~ id)|default}}
                   </td>
                   <td class='var {{eo}} var-weapon-range c'>{{attribute(variables, 'weapon_range_' ~ id)|default}}
@@ -200,8 +204,7 @@
                 {% if feature != "" %}
                   <tr>
                     <th class='lbl {{eo}}' colspan=2></th>
-                    <th class='var {{eo}} lbl-weapon-feature r' colspan=2><b>Feature:</b></th>
-                    <td class='var {{eo}} var-weapon-feature' colspan=4>{{feature}}</td>
+                    <td class='var {{eo}} var-weapon-feature' colspan=6><b>Feature:</b> {{feature}}</td>
                   </tr>
                 {% endif %}
               {% endif %}
@@ -217,7 +220,7 @@
           <table class='table'>
             <tr>
               <th class='hdr od lbl-armor-worn c' title='Worn'> &nbsp; </th>
-              <th class='hdr od lbl-armor-name'>Name</th>
+              <th class='hdr od lbl-armor-name'>Armor</th>
               <th class='hdr od lbl-armor-threshold c'>Base Thresholds</th>
               <th class='hdr od lbl-armor-score c'>Base Score</th>
             </tr>
@@ -227,7 +230,11 @@
               {% if name != "" %}
                 {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
             <tr>
-              <td class='lbl {{eo}} var-armor-worn c' title='Worn' width='30px'>{% if attribute(variables, 'armor_worn_' ~ id)|default > 0 %} <i class="fa-regular fa-hand-back-fist"></i> {% else %} <i class="fa-solid fa-backpack"></i> {% endif %}</td>
+              {% if attribute(variables, 'armor_worn_' ~ id)|default > 0 %}
+              <td class='lbl {{eo}} var-armor-worn c' title='Worn' width='30px'><i class="fa-regular fa-hand-back-fist"></i>
+              {% else %}
+              <td class='lbl {{eo}} var-armor-worn c' title='Stashed' width='30px'><i class="fa-solid fa-backpack"></i>
+              {% endif %}</td>
               <td class='lbl {{eo}} var-armor-name'><b>{{name}}</b></td>
               <td class='var {{eo}} var-armor-threshold c'>{{attribute(variables, 'armor_threshold_' ~ id)|default}}</td>
               <td class='var {{eo}} var-armor-score c'>{{attribute(variables, 'armor_score_' ~ id)|default}}</td>
@@ -236,7 +243,7 @@
                 {% if feature != "" %}
             <tr>
               <td class='lbl {{eo}}' colspan=2></td>
-              <th class='var {{eo}} lbl-armor-feature c' colspan=2><b>Feature:</b> {{attribute(variables, 'armor_feature_' ~ id)|default}}</th>
+              <th class='var {{eo}} lbl-armor-feature' colspan=2><b>Feature:</b> {{attribute(variables, 'armor_feature_' ~ id)|default}}</th>
             </tr>
                 {% endif %}
               {% endif %}
@@ -247,15 +254,15 @@
       <div class='card gold' id='card-gold'>
         <div class='card-header gold'>Gold</div>
           <div class='card-body of'><div class='var var-inventory pd'>
-            Handfuls:{% set x = 0 %}
+            Handfuls:&nbsp;&nbsp;{% set x = 0 %}
               {% for i in 1..9 %}
                 {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}{% if attribute(variables, 'gold_handfuls_' ~ id)|default > 0 %} <i class="fa-solid fa-coins"></i> {% set x = 1 %}{% endif %}
               {% endfor %}{% if x < 1 %} <i class="fa-solid fa-empty-set"></i> {% endif %}&nbsp;&nbsp;&nbsp;
-            Bags:{% set x = 0 %}
+            Bags:&nbsp;&nbsp;{% set x = 0 %}
               {% for i in 1..9 %}
                 {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}{% if attribute(variables, 'gold_bags_' ~ id)|default > 0 %} <i class="fa-solid fa-sack"></i> {% set x = 1 %}{% endif %}
               {% endfor %}{% if x < 1 %} <i class="fa-solid fa-empty-set"></i> {% endif %}&nbsp;&nbsp;&nbsp;
-            Chest:
+            Chest:&nbsp;&nbsp;
               {% if variables.gold_chest|default > 0 %} <i class="fa-solid fa-treasure-chest"></i> {% else %} <i class="fa-solid fa-empty-set"></i> {% endif %}
           </div>
         </div>
