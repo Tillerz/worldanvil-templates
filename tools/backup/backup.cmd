@@ -1,5 +1,5 @@
 @echo off
+REM this is for Windows
 
-REM this is for windows
-
+rem using the python script:
 python backup.py

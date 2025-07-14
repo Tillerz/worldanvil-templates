@@ -69,6 +69,11 @@ overwrite_threshold = 75
 # True or False, default: True. If set to True, saved files will be named <slug>-<last_modif>.json, eg. martine-character-2024-06-05_143000.json
 # That way you have a fresh copy with each edit.
 append_last_modif = True
+
+# use a cloudflare worker as a proxy inbetween
+# Setup instructions see here: https://developers.cloudflare.com/learning-paths/workers/get-started/first-worker/
+# proxy = https://YOURWORKER.NAME.workers.dev
+proxy =
 ```
 
 # Backup Script

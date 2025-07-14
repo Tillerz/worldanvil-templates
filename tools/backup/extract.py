@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-version = 'Tillerz Article Extract v0.01'
+version = 'Tillerz Article Extract (v1.0)'
 
 from sys import platform
 from bs4 import BeautifulSoup

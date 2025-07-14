@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-version = 'Tillerz Article Backup v0.04'
+version = 'Tillerz Article Backup (v1.0)'
 
 from sys import platform
 from bs4 import BeautifulSoup
@@ -37,6 +37,7 @@ except IOError:
     exit(1)
 world_name = cfg['world_name']
 world_id = cfg['world_id']
+proxy_url = cfg['proxy']
 
 # if the new file is down to this percentage of the previous version, then do NOT overwrite but print an error.
 # example: 75 = if the file is only 75% or smaller of its previous size, do not overwrite
@@ -47,25 +48,21 @@ overwrite_threshold = int(cfg['overwrite_threshold'])
 append_last_modif = cfg['append_last_modif'].lower() in ('true', '1', 't')
 
 # headers for the rss request
-headers =  {
+request_headers =  {
     "Content-Type" : "application/json",
     "x-auth-token" : cfg['x_auth_token'],
     "x-application-key" : cfg['x_application_key'],
-    "User-Agent" : version,
-    "Referer" : 'https://www.worldanvil.com/w/'+world_name
-}
-
-# headers for the api requests
-api_headers =  {
-    "Content-Type" : "application/json",
-    "x-auth-token" : cfg['x_auth_token'],
-    "x-application-key" : cfg['x_application_key'],
-    "User-Agent" : version,
+    "User-Agent" : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '+version,
     "Referer" : 'https://www.worldanvil.com/w/'+world_name
 }
 
 # api and rss urls:
-api_url = "https://www.worldanvil.com/api/external/boromir/"
+base_url = "https://www.worldanvil.com"
+if proxy_url != "":
+    base_url = proxy_url
+
+api_url = base_url + '/api/external/boromir/'
+rss_url = base_url + '/w/'+world_name+'/opendata/rss'
 
 # this is the root folder for the backup:
 root_folder = world_name
@@ -90,7 +87,7 @@ with requests.Session() as session:
 
     try:
         # load the rss data
-        rss_response = session.get('https://www.worldanvil.com/w/'+world_name+'/opendata/rss', headers=api_headers)
+        rss_response = session.get(rss_url, headers=request_headers)
         rss_response.raise_for_status()
     except requests.RequestException as e:
         print(f"Error fetching RSS data: {e}")
@@ -110,12 +107,12 @@ with requests.Session() as session:
         title = i.title.text
         link = i.link.text
         article_id = i.guid.text
-        print(f'Title: {title}\nLink: {link}\nArticle ID: {article_id}')
+        print(f'Title: {title}')
 
         # fetch article via API
         get_article = api_url + "article?id=" + article_id + "&granularity=3"
         try:
-            response = session.get(get_article, headers=api_headers)
+            response = session.get(get_article, headers=request_headers)
             response.raise_for_status()
         except requests.RequestException as e:
             print(f"Error fetching article data: {e}")
@@ -156,14 +153,14 @@ with requests.Session() as session:
                 if (diff >= 0):
                     wdiff = "+" + str(diff)
                 wdiff = "("+str(wdiff)+", "+str(round(perc))+"% of previous size)"
-
+        if ((last_modif_old == last_modif) and (diff == 0) and length <= length_old):
+            print("Info: file didn't change, not saving.")
+        else:
+            print(f'Link: {link}\nArticle ID: {article_id}')
             print(f'SLUG: {slug}')
             print(f'Last Modified: {last_modif.replace(".000000","")}')
             print(f'Wordcount: {wordcount} {wdiff}')
 
-        if ((last_modif_old == last_modif) and (diff == 0) and length <= length_old):
-            print("INFO: file didn't change, not saving.")
-        else:
             if (perc <= overwrite_threshold):
                 print("\n    #### ERROR: not overwriting file, the file did shrink too much! Saving with postfix .NEW\n")
                 filepath = filepath + ".NEW"

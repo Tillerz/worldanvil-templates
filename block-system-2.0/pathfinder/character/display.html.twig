@@ -55,17 +55,17 @@
 </tr>{% endif %}{% endif %}{% endmacro %}
 {# ----------------------------------------------------------------------- #}
 {% macro displayClassLevelTable(dataString) %}
-    {% set dataRows = dataString|trim |split(';') %} 
+    {% set dataRows = dataString|trim|replace({"│" : "|"})|split(';') %} 
     {% set done = 0 %}
     {% for dataStringRow in dataRows %}
-        {% if dataStringRow is defined and dataStringRow|length > 0 %}
-            {% if done == 1 %}, {% endif %}{% set done = 1 %}{% set valueTab = dataStringRow|trim |split('|') %}{{ valueTab[0]|trim }} {{ valueTab[1]|trim }}
+        {% if dataStringRow|default|length > 0 %}
+            {% if done == 1 %}, {% endif %}{% set done = 1 %}{% set valueTab = dataStringRow|trim|split('|') %}{{ valueTab[0]|trim }} {{ valueTab[1]|trim }}
         {% endif %}
     {% endfor %}
     {% if done == 0 %}-{% endif %}
 {% endmacro %}
 {# ----------------------------------------------------------------------- #}
-{% macro displayWeaponsTable(dataString) %}
+{% macro displayWeaponsTable(dataString) %}{% if "block:" in dataString %}{{dataString}}{% else %}
     <table width="100%" class="bs">
         <tr>
             <th colspan="7" class="row-title nbg">WEAPONS</th>
@@ -79,9 +79,9 @@
             <th class="col-1 ability-header" title="Ammunition">Ammo</th>
             <th class="col-2 ability-header" title="Damage">Dmg</th>
         </tr>
-        {% set dataRows = dataString|trim|split(';') %}
+        {% set dataRows = dataString|trim|replace({"│" : "|"})|split(';') %}
         {% for dataStringRow in dataRows %}
-            {% if dataStringRow is defined and dataStringRow|length > 0 %}
+            {% if dataStringRow|default|length > 0 %}
                 {% set valueTab = dataStringRow|trim|split('|') %}
                 <tr class="ability-row">
                     <td class="text-center">{{ valueTab[0] }}</td>
@@ -92,7 +92,7 @@
                     <td class="text-center">{{ valueTab[5] }}</td>
                     <td class="text-center">[roll:{{ valueTab[6] }}]</td>
                 </tr>{% endif %}
-        {% endfor %}</table>{% endmacro %}
+        {% endfor %}</table>{% endif %}{% endmacro %}
 {# ----------------------------------------------------------------------- #}
 {% macro displayArmorsTable(dataString) %}
     <table width="100%" class="bs">
@@ -108,7 +108,7 @@
             <td class="ability-header">Weight</td>
             <td class="ability-header">Properties</td>
         </tr>
-            {% set dataRows = dataString|trim|split(';') %}
+            {% set dataRows = dataString|trim|replace({"│" : "|"})|split(';') %}
             {% for dataStringRow in dataRows %}
                 {% if dataStringRow is defined and dataStringRow|length > 0 %}
                     <tr class="ability-row">
@@ -127,7 +127,7 @@
                 {% for i in 0..9 %}<div class="col-1 col-xs-1 skill-header">{{i}}</div>{% endfor %}
             </div>
             {% if known is defined and known|length > 0 %}
-                {% set valueTab = known|trim |split('|') %} 
+                {% set valueTab = known|trim|replace({"│" : "|"})|split('|') %} 
                 <div class="row">
                     <div class="col-2 col-xs-2 spell-label-row od">Known</div>
                     {% for i in 0..9 %}<div class="col-1 col-xs-1 spell-value od">{{ valueTab[i] ?? 0 }}</div>{% endfor %}
@@ -975,7 +975,7 @@
     <div class="row character-footer mt-5">
         <div class="col-12 col-md-12 c">
             <small>
-                <a href="/w/sheet-creation/a/sheet-list">Pathfinder 1e Sheet v1.10</a> (2024-04-25) - Developed with love by Gorkam Wonka, designed by Dimitris, updated by Tillerz
+                <a href="/w/sheet-creation/a/sheet-list">Pathfinder 1e Sheet v1.11</a> (2024-06-11) - Developed with love by Gorkam Wonka, designed by Dimitris, updated by Tillerz
             </small>
         </div>
     </div>
