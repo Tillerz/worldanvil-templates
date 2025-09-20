@@ -1,0 +1,238 @@
+﻿<div class='container-fluid sheet-legends-in-the-mist'>
+  <div class='row'>
+    <div class='col-12 col-md-12'>
+      <div class='card hero card' id='card-hero card'>
+        <div class='card-header hero card'>Hero Card</div>
+        <div class='card-body of'>
+          <table class='ctable'>
+            <tr><th class='ilbl od ilbl-name'><label for='name'>Character Name</label></th><td class='ivar od ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' type='text' required=required /></td></tr>
+            <tr><th class='ilbl ev ilbl-player-name'><label for='player_name'>Player Name</label></th><td class='ivar ev ivar-player-name'><input value='{{variables.player_name|default}}' class='form-control ivar ivar-player-name' id='player_name' name='player_name' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-portrait'><label for='portrait'>Portrait</label></th><td class='ivar od ivar-portrait'><input value='{{variables.portrait|default}}' class='form-control ivar ivar-portrait c' id='portrait' name='portrait' type='number' /></td></tr>
+          </table>
+          <table class='ctable'>
+          <tr>
+          <th class='ilbl od ilbl-companion'><label for='companion'>Companion</label></th>
+          <th class='ilbl od ilbl-relationship-tag'><label for='relationship_tag'>Relationship Tag</label></th>
+          </tr>
+          {% for i in 1..5 %}
+            {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+            {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+          <tr>
+          <td class='ivar {{eo}} ivar-companion'><input value='{{attribute(variables, 'companion_' ~ id)|default}}' class='form-control ivar ivar-companion' id='companion' name='companion_{{id}}' type='text' /></td><td class='ivar {{eo}} ivar-relationship-tag'><input value='{{attribute(variables, 'relationship_tag_' ~ id)|default}}' class='form-control ivar ivar-relationship-tag' id='relationship_tag' name='relationship_tag_{{id}}' type='text' /></td>
+          </tr>
+          {% endfor %}
+          </table>
+          <div class='ilbl od ilbl-promise c'><label for='promise'>Promise</label></div><div class='ivar od ivar-promise c'>
+            {% for i in 1..5 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <input value='0' id='promise' name='promise_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'promise_' ~ id)|default > 0 %} checked='checked'{% endif %} id='promise' name='promise_{{id}}' type='checkbox' />
+            {% endfor %}
+          </div>
+          <div class='row'>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl ev ilbl-quintessences c'><label for='quintessences'>Quintessences</label></div><div class='ivar ev ivar-quintessences'><div class='iContent'><textarea class='form-control ivar ivar-quintessences ' id='quintessences' name='quintessences' rows='3'  >{{variables.quintessences|default}}</textarea></div></div>
+            </div>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl od ilbl-notes c'><label for='notes'>Notes</label></div><div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes ' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+            </div>
+          </div>
+          <div class='ilbl od ilbl-backpack c'><label for='backpack'>Backpack</label></div>
+          <div class='row'>
+            <div class='col-12 col-md-6'>
+              <div class='ivar od ivar-backpack'>
+                <table class='ctable'>
+                  {% for i in 1..5 %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                    <tr><td class='ivar {{eo}} ivar-backpack'><input value='{{attribute(variables, 'backpack_' ~ id)|default}}' class='form-control ivar ivar-backpack' id='backpack' name='backpack_{{id}}' type='text' /></td></tr>
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+            <div class='col-12 col-md-6'>
+                <table class='ctable'>
+                  {% for i in 6..10 %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                    <tr><td class='ivar {{eo}} ivar-backpack'><input value='{{attribute(variables, 'backpack_' ~ id)|default}}' class='form-control ivar ivar-backpack' id='backpack' name='backpack_{{id}}' type='text' /></td></tr>
+                  {% endfor %}
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    {% for td in 1..4 %}
+      {% set eo = 'od' %}{% if td is even %}{% set eo = 'ev' %}{% endif %}
+      <div class='col-12 col-md-6'>
+        <div class='card theme card' id='card-theme card'>
+          <div class='card-header theme card'>Theme Card {{td}}</div>
+          <div class='card-body of'>
+            <div class='ilbl {{eo}} ilbl-theme c'><label for='theme'>Theme Type</label></div><div class='ivar {{eo}} ivar-theme'>
+              <select  class='form-control ivar ivar-theme' id='theme' name='theme_{{td}}'>
+                <option value='none' {% if attribute(variables, 'theme_' ~ td)|default == 'none' %}selected='selected' {% endif %} > Select </option>
+                <option value='origin_circumstance' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_circumstance' %}selected='selected' {% endif %} > Origin: Circumstance </option>
+                <option value='origin_devotion' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_devotion' %}selected='selected' {% endif %} > Origin: Devotion </option>
+                <option value='origin_past' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_past' %}selected='selected' {% endif %} > Origin: Past </option>
+                <option value='origin_people' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_people' %}selected='selected' {% endif %} > Origin: People </option>
+                <option value='origin_personality' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_personality' %}selected='selected' {% endif %} > Origin: Personality </option>
+                <option value='origin_skill' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_skill' %}selected='selected' {% endif %} > Origin: Skill or Trade </option>
+                <option value='origin_trait' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_trait' %}selected='selected' {% endif %} > Origin: Trait </option>
+                <option value='adventure_duty' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_duty' %}selected='selected' {% endif %} > Adventure: Duty </option>
+                <option value='adventure_influence' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_influence' %}selected='selected' {% endif %} > Adventure: Influence </option>
+                <option value='adventure_knowledge' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_knowledge' %}selected='selected' {% endif %} > Adventure: Knowledge </option>
+                <option value='adventure_prodigious_ability' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_prodigious_ability' %}selected='selected' {% endif %} > Adventure: Prodigious Ability </option>
+                <option value='adventure_relic' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_relic' %}selected='selected' {% endif %} > Adventure: Relic </option>
+                <option value='adventure_uncanny_being' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_uncanny_being' %}selected='selected' {% endif %} > Adventure: Uncanny Being </option>
+                <option value='greatness_destiny' {% if attribute(variables, 'theme_' ~ td)|default == 'greatness_destiny' %}selected='selected' {% endif %} > Greatness: Destiny </option>
+                <option value='greatness_dominion' {% if attribute(variables, 'theme_' ~ td)|default == 'greatness_dominion' %}selected='selected' {% endif %} > Greatness: Dominion </option>
+                <option value='greatness_mastery' {% if attribute(variables, 'theme_' ~ td)|default == 'greatness_mastery' %}selected='selected' {% endif %} > Greatness: Mastery </option>
+                <option value='greatness_monstrosity' {% if attribute(variables, 'theme_' ~ td)|default == 'greatness_monstrosity' %}selected='selected' {% endif %} > Greatness: Monstrosity </option>
+              </select></div>
+            <table class='ctable'>
+              <tr>
+                <th class='ilbl ilbl-theme-tag c'><label for='theme_tag'>Power Tags</label></th>
+                <th class='ilbl ilbl-theme-tag-used c' title='used'>U</th>
+              </tr>
+            {% for i in 1..12 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr>
+                <td class='ivar {{eo}} ivar-theme-tag'><input value='{{attribute(variables, 'theme_tag_' ~ td ~ '_' ~ id)|default}}' class='form-control ivar ivar-theme-tag' id='theme_tag' name='theme_tag_{{td}}_{{id}}' type='text' /></td>
+                <td class='ivar {{eo}} ivar-theme-tag-used c'><input value='0' id='theme_tag_used' name='theme_tag_used_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'theme_tag_used_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='theme_tag_used' name='theme_tag_used_{{td}}_{{id}}' type='checkbox' /></td>
+              </tr>
+            {% endfor %}
+              <tr>
+                <th class='ilbl ilbl-theme-tag c'><label for='theme_tag'>Weakness Tags</label></th>
+                <th class='ilbl ilbl-theme-tag-used c' title='used'>&nbsp;</th>
+              </tr>
+            {% for i in 1..6 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr>
+                <td class='ivar {{eo}} ivar-theme-tag-neg'><input value='{{attribute(variables, 'theme_tag_neg_' ~ td ~ '_' ~ id)|default}}' class='form-control ivar ivar-theme-tag-neg' id='theme_tag_neg' name='theme_tag_neg_{{td}}_{{id}}' type='text' /></td>
+                <td class='ivar {{eo}} ivar-theme-tag-used c'>&nbsp;</td>
+              </tr>
+            {% endfor %}
+            </table>
+            <div class='ilbl {{eo}} ilbl-quest c'><label for='quest'>Quests</label></div>
+            {% for i in 1..6 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <div class='ivar {{eo}} ivar-quest'><input value='{{attribute(variables, 'quest_' ~ td ~ '_' ~ id)|default}}' class='form-control ivar ivar-quest' id='quest' name='quest_{{td}}_{{id}}' type='text' /></div>
+            {% endfor %}
+            <div class='row'>
+              <div class='col-12 col-md-4'>
+                <div class='ilbl {{eo}} ilbl-abandon c'><label for='abandon'>Abandon</label></div><div class='ivar {{eo}} ivar-abandon c'>
+                {% for i in 1..3 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='abandon' name='abandon_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'abandon_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='abandon' name='abandon_{{td}}_{{id}}' type='checkbox' />
+                {% endfor %}
+                </div>
+              </div>
+              <div class='col-12 col-md-4'>
+                <div class='ilbl {{eo}} ilbl-improve c'><label for='improve'>Improve</label></div><div class='ivar {{eo}} ivar-improve c'>
+                {% for i in 1..3 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='improve' name='improve_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'improve_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='improve' name='improve_{{td}}_{{id}}' type='checkbox' />
+                {% endfor %}
+                </div>
+              </div>
+              <div class='col-12 col-md-4'>
+                <div class='ilbl {{eo}} ilbl-milestone c'><label for='milestone'>Milestone</label></div><div class='ivar {{eo}} ivar-milestone c'>
+                {% for i in 1..3 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='milestone' name='milestone_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'milestone_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='milestone' name='milestone_{{td}}_{{id}}' type='checkbox' />
+                {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class='ilbl od ilbl-special-improvements c'><label for='special_improvements'>Special Improvements</label></div><div class='ivar od ivar-special-improvements'><div class='iContent'><textarea class='form-control ivar ivar-special-improvements ' id='special_improvements_{{td}}' name='special_improvements_{{td}}' rows='3'  >{{attribute(variables, 'special_improvements_' ~ td )|default}}</textarea></div></div>
+</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class='row'>
+    {% for td in 0..0 %}
+      {% set eo = 'od' %}{% if td is even %}{% set eo = 'ev' %}{% endif %}
+      <div class='col-12 col-md-3'> </div><div class='col-12 col-md-6'>
+        <div class='card theme card' id='card-theme card'>
+          <div class='card-header theme card'>Fellowship Card</div>
+          <div class='card-body of'>
+            <div class='ilbl {{eo}} ilbl-theme c'><label for='theme'>Name of the Fellowship</label></div><div class='ivar {{eo}} ivar-theme'>
+            <input value='{{attribute(variables, 'theme_' ~ td)|default}}' class='form-control ivar ivar-theme' id='theme' name='theme_{{td}}' type='text' /></div>
+            <table class='ctable'>
+              <tr>
+                <th class='ilbl ilbl-theme-tag c'><label for='theme_tag'>Power Tags</label></th>
+                <th class='ilbl ilbl-theme-tag-used c' title='used'>U</th>
+              </tr>
+            {% for i in 1..12 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr>
+                <td class='ivar {{eo}} ivar-theme-tag'><input value='{{attribute(variables, 'theme_tag_' ~ td ~ '_' ~ id)|default}}' class='form-control ivar ivar-theme-tag' id='theme_tag' name='theme_tag_{{td}}_{{id}}' type='text' /></td>
+                <td class='ivar {{eo}} ivar-theme-tag-used c'><input value='0' id='theme_tag_used' name='theme_tag_used_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'theme_tag_used_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='theme_tag_used' name='theme_tag_used_{{td}}_{{id}}' type='checkbox' /></td>
+              </tr>
+            {% endfor %}
+              <tr>
+                <th class='ilbl ilbl-theme-tag c'><label for='theme_tag'>Weakness Tags</label></th>
+                <th class='ilbl ilbl-theme-tag-used c' title='used'>&nbsp;</th>
+              </tr>
+            {% for i in 1..6 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr>
+                <td class='ivar {{eo}} ivar-theme-tag-neg'><input value='{{attribute(variables, 'theme_tag_neg_' ~ td ~ '_' ~ id)|default}}' class='form-control ivar ivar-theme-tag-neg' id='theme_tag_neg' name='theme_tag_neg_{{td}}_{{id}}' type='text' /></td>
+                <td class='ivar {{eo}} ivar-theme-tag-used c'>&nbsp;</td>
+              </tr>
+            {% endfor %}
+            </table>
+            <div class='ilbl {{eo}} ilbl-quest c'><label for='quest'>Quests</label></div>
+            {% for i in 1..6 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <div class='ivar {{eo}} ivar-quest'><input value='{{attribute(variables, 'quest_' ~ td ~ '_' ~ id)|default}}' class='form-control ivar ivar-quest' id='quest' name='quest_{{td}}_{{id}}' type='text' /></div>
+            {% endfor %}
+            <div class='row'>
+              <div class='col-12 col-md-4'>
+                <div class='ilbl {{eo}} ilbl-abandon c'><label for='abandon'>Abandon</label></div><div class='ivar {{eo}} ivar-abandon c'>
+                {% for i in 1..3 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='abandon' name='abandon_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'abandon_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='abandon' name='abandon_{{td}}_{{id}}' type='checkbox' />
+                {% endfor %}
+                </div>
+              </div>
+              <div class='col-12 col-md-4'>
+                <div class='ilbl {{eo}} ilbl-improve c'><label for='improve'>Improve</label></div><div class='ivar {{eo}} ivar-improve c'>
+                {% for i in 1..3 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='improve' name='improve_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'improve_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='improve' name='improve_{{td}}_{{id}}' type='checkbox' />
+                {% endfor %}
+                </div>
+              </div>
+              <div class='col-12 col-md-4'>
+                <div class='ilbl {{eo}} ilbl-milestone c'><label for='milestone'>Milestone</label></div><div class='ivar {{eo}} ivar-milestone c'>
+                {% for i in 1..3 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='milestone' name='milestone_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'milestone_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='milestone' name='milestone_{{td}}_{{id}}' type='checkbox' />
+                {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class='ilbl od ilbl-special-improvements c'><label for='special_improvements'>Special Improvements</label></div><div class='ivar od ivar-special-improvements'><div class='iContent'><textarea class='form-control ivar ivar-special-improvements ' id='special_improvements_{{td}}' name='special_improvements_{{td}}' rows='3'  >{{attribute(variables, 'special_improvements_' ~ td )|default}}</textarea></div></div>
+</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

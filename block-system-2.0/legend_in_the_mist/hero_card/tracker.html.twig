@@ -1,0 +1,121 @@
+<div class='container-fluid sheet-legends-in-the-mist tracker'>
+  <div class='row'>
+    <div class='col-12 col-md-12'>
+      <div class='card hero card' id='card-hero card'>
+        <div class='card-body of'>
+          <div class='row'>
+            <div class='col-12 col-md-4'>
+              <div class='ilbl od ilbl-backpack c'><label for='backpack'>Backpack</label></div>
+              <div class='ivar od ivar-backpack'>
+                <table class='ctable'>
+                  {% for i in 1..10 %}
+                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                    {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                    <tr><td class='ivar {{eo}} ivar-backpack'><input value='{{attribute(variables, 'backpack_' ~ id)|default}}' class='form-control ivar ivar-backpack' id='backpack' name='backpack_{{id}}' type='text' /></td></tr>
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+            <div class='col-12 col-md-8'>
+              <div class='ilbl od ilbl-notes c'><label for='notes'>Notes</label></div><div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes ' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+              <div class='ilbl od ilbl-promise c'><label for='promise'>Promise</label></div><div class='ivar od ivar-promise c'>
+                {% for i in 1..5 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='promise' name='promise_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'promise_' ~ id)|default > 0 %} checked='checked'{% endif %} id='promise' name='promise_{{id}}' type='checkbox' />
+                {% endfor %}
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    {% for td in 0..4 %}
+      {% set tx = attribute(variables, 'theme_' ~ td)|default %}
+      {% set theme_list = {
+  "none": [ "none", "none", "none"],
+  "origin_circumstance": [ "Origin", "Circumstance", "fa-leaf"],
+  "origin_devotion": [ "Origin", "Devotion", "fa-leaf"],
+  "origin_past": [ "Origin", "Past", "fa-leaf"],
+  "origin_people": [ "Origin", "People", "fa-leaf"],
+  "origin_personality": [ "Origin", "Personality", "fa-leaf"],
+  "origin_skill": [ "Origin", "Skill or Trade", "fa-leaf"],
+  "origin_trade": [ "Origin", "Trade", "fa-leaf"],
+  "origin_trait": [ "Origin", "Trait", "fa-leaf"],
+  "adventure_duty": [ "Adventure", "Duty", "fa-swords"],
+  "adventure_influence": [ "Adventure", "Influence", "fa-swords"],
+  "adventure_knowledge": [ "Adventure", "Knowledge", "fa-swords"],
+  "adventure_prodigious_ability": [ "Adventure", "Prodigious Ability", "fa-swords"],
+  "adventure_relic": [ "Adventure", "Relic", "fa-swords"],
+  "adventure_uncanny_being": [ "Adventure", "Uncanny Being", "fa-swords"],
+  "greatness_destiny": [ "Greatness", "Destiny", "fa-crown"],
+  "greatness_dominion": [ "Greatness", "Dominion", "fa-crown"],
+  "greatness_mastery": [ "Greatness", "Mastery", "fa-crown"],
+  "greatness_monstrosity": [ "Greatness", "Monstrosity", "fa-crown"] }
+%}
+{% set theme = theme_list[tx][0] %}
+{% set ttype = theme_list[tx][1] %}
+{% set ticon = theme_list[tx][2] %}
+      {% if theme != "none" %}
+      {% set eo = 'od' %}{% if td is even %}{% set eo = 'ev' %}{% endif %}
+      <div class='col-12 col-md-6'>
+        <div class='card theme card' id='card-theme card'>
+          {% if td > 0 %}
+          <div class='card-header theme card' title='Theme Card'><i class='fa-regular {{ticon}}'></i> {{theme}}: {{ttype}}</div>
+          {% else %}
+          <div class='card-header theme card' title='Fellowship Card'><i class='fa-regular fa-campfire'></i> {{tx}}</div>
+          {% endif %}
+          <div class='card-body of'>
+            <table class='ctable'>
+              <tr>
+                <th class='ilbl ilbl-theme-tag c'><label for='theme_tag'>Power Tags</label></th>
+                <th class='ilbl ilbl-theme-tag-used c' title='used'>U</th>
+              </tr>
+            {% for i in 1..12 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'theme_tag_' ~ td ~ '_' ~ id)|default %}
+              {% if name != "" %}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+              <tr>
+                <td class='ivar {{eo}} ivar-theme-tag'>{{name}}</td>
+                <td class='ivar {{eo}} ivar-theme-tag-used c'><input value='0' id='theme_tag_used' name='theme_tag_used_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'theme_tag_used_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='theme_tag_used' name='theme_tag_used_{{td}}_{{id}}' type='checkbox' /></td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+            </table>
+            <div class='row'>
+              <div class='col-12 col-md-4'>
+                <div class='ilbl {{eo}} ilbl-abandon c'><label for='abandon'>Abandon</label></div><div class='ivar {{eo}} ivar-abandon c'>
+                {% for i in 1..3 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='abandon' name='abandon_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'abandon_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='abandon' name='abandon_{{td}}_{{id}}' type='checkbox' />
+                {% endfor %}
+                </div>
+              </div>
+              <div class='col-12 col-md-4'>
+                <div class='ilbl {{eo}} ilbl-improve c'><label for='improve'>Improve</label></div><div class='ivar {{eo}} ivar-improve c'>
+                {% for i in 1..3 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='improve' name='improve_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'improve_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='improve' name='improve_{{td}}_{{id}}' type='checkbox' />
+                {% endfor %}
+                </div>
+              </div>
+              <div class='col-12 col-md-4'>
+                <div class='ilbl {{eo}} ilbl-milestone c'><label for='milestone'>Milestone</label></div><div class='ivar {{eo}} ivar-milestone c'>
+                {% for i in 1..3 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <input value='0' id='milestone' name='milestone_{{td}}_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'milestone_' ~ td ~ '_' ~ id)|default > 0 %} checked='checked'{% endif %} id='milestone' name='milestone_{{td}}_{{id}}' type='checkbox' />
+                {% endfor %}
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+      {% endif %}
+    {% endfor %}
+</div>

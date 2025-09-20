@@ -1,0 +1,52 @@
+ .container-fluid {
+   --hero-bg: #AB7F58A0;
+   --header-bg: #E0CFC0A0;
+   font-family: PragRoman;
+   font-size: 24px !important;
+   padding: 20px}
+ .CodeMirror-buttonsPanel { font-size: 14px}
+ .table { margin-bottom: 0px}
+ .table>tbody>tr>th,  .table>tbody>tr>td { border-top: none; padding: 0px 6px}
+ .ilbl,  .lbl { font-size:14px; text-transform: uppercase}
+ .ivar,  .var { font-size: 16px}
+ .artist-credits,  .artist-credits a {
+   font-size: 14px;
+   text-align: center;
+   padding-top: 3px}
+ .card { border: none; margin-bottom:8px}
+ .card-header { border-radius: 0}
+ .card-body { padding: 0px; border: 2px solid var(--hero-bg)}
+ .card-header { text-align: center}
+ .card-header,  .lbl,  .ilbl {
+     text-transform: uppercase;
+     font-size: 12px;
+     font-weight: 800;
+     padding-top: 6px;
+     padding-left: 6px;
+     padding-bottom: 0px;
+     margin: 0px}
+ .attributes .ivar,  .ivar-portrait,  .ivar-hp,  .ivar-ac,  .ivar-gp,  .ivar-sp,  .ivar-cp { text-align: center}
+ .lbl-hp,  .lbl-ac { padding-top:0px}
+ th.lbl { vertical-align: middle}
+ .var-quintessences,  .var-notes,  .ivar-quintessences,  .ivar-notes { padding:6px; font-size:14px}
+ .var-theme-tag,  .var-quest,  .ivar-theme-tag,  .ivar-quest,  .var-theme-tag-neg,  .ivar-theme-tag-neg,  .var-companion,  .var-relationship-tag,  .var-backpack,  .ivar-companion,  .ivar-relationship-tag,  .ivar-backpack { padding: 0px 6px}
+ .card-header,  :is(.quintessences,  .backpack,  .notes) .lbl { font-size:22px; color: var(--light) ; background-color: var(--hero-bg)}
+ .lbl-theme-tag,  .lbl-theme-tag-used,  .ilbl-theme-tag,  .ilbl-theme-tag-used,  .lbl-quest,  ilbl-quest,  .lbl-abandon,  .ilbl-abandon,  .lbl-improve,  .ilbl-improve,  .lbl-milestone,  .ilbl-milestone,  .lbl-companion,  .lbl-relationship-tag,  .lbl-quintessences,  .lbl-backpack,  .lbl-notes,  .ilbl-companion,  .ilbl-relationship-tag,  .ilbl-quintessences,  .ilbl-backpack,  .ilbl-notes
+ { color: var(--dark) ; background-color: var(--header-bg)}
+ .l { text-align: left}
+ .c { text-align: center}
+ .r { text-align: right}
+ p { margin-bottom: 0px}
+ ol { padding-left: 20px}
+ .pd { padding: 10px}
+ .inline { display: inline-block; width:100px}
+ .sm,  .ctable th,  .ctable td { font-size:14px}
+ .ctable { width: 100%}
+ .artist-credits,  .artist-credits a,  small { font-size:10px}
+.tracker .ivar-notes { min-height: 310px !important }
+ .form-control {
+    border: 1px solid #9d9fa0;
+    border-radius: 10px;
+    margin: 1px;
+    width: 95%;}
+ select.form-control:not([size]):not([multiple]) { height: 2.8rem;}
