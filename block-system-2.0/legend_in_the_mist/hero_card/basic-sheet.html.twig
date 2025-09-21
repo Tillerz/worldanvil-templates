@@ -9,13 +9,26 @@
       <div class='card hero card' id='card-hero card'>
         <div class='card-header hero card'>{{variables.name|default}}</div>
         <div class='card-body of c'>
-          <span class='lbl ev lbl-player-name'> Player Name </span><span class='var ev var-player-name'> {{variables.player_name|default}} </span>
+          <div class='row'>
+            <div class='col-12 col-md-6 c'>
+              <span class='lbl ev lbl-player-name'> Player Name: </span><span class='var ev var-player-name'> {{variables.player_name|default}} </span>
+            </div>
+            <div class='col-12 col-md-6 c'>
+              <span class='lbl od lbl-promise'> Promise: </span><span class='var od var-promise'>
+              {% for i in 1..5 %}
+                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                {% if attribute(variables, 'promise_' ~ id)|default|trim == 1 %}<i class='fa-solid fa-circle-check'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
+              {% endfor %}
+              </span>
+            </div>
+          </div>
           <table class='ctable'>
           <tr>
           <th class='lbl od lbl-companion'> Companion </th>
           <th class='lbl od lbl-relationship-tag'> Relationship Tag </th>
           </tr><br>
-          {% for i in 1..5 %}
+          {% for i in 1..10 %}
             {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
             {% set name = attribute(variables, 'companion_' ~ id)|default %}
             {% if name != "" %}
@@ -25,28 +38,14 @@
           </tr>
             {% endif %}
           {% endfor %}
-          </table><br>
-          <div class='lbl od lbl-promise c'> Promise </div><div class='var od var-promise c'>
-          {% for i in 1..5 %}
-            {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
-            {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-            {% if attribute(variables, 'promise_' ~ id)|default|default == 1 %}<i class='fa-square-check'></i>{% else %}<i class='fa-square'></i>{% endif %}
-          {% endfor %}
-          </div>
+          </table>
           <div class='lbl ev lbl-quintessences c'> Quintessences </div><div class='var ev var-quintessences l'> {{variables.quintessences|default|nl2br}} </div>
           <div class='row'>
             <div class='col-12 col-md-6'>
-              <div class='lbl od lbl-backpack c'> Backpack </div>
-              <table class='ctable var-backpack'>
-                {% for i in 1..10 %}
-                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
-                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-                  <tr><td class='var {{eo}} var-backpack l'> {{attribute(variables, 'backpack_' ~ id)|default}} </td></tr>
-                {% endfor %}
-              </table>
+              <div class='lbl od lbl-backpack c'> Backpack </div><div class='var od var-backpack l'> {{variables.backpack|default|nl2br}} </div>
             </div>
             <div class='col-12 col-md-6'>
-              <div class='lbl od lbl-notes c'> Notes </div><div class='var od var-notes l'> {{variables.notes|default|nl2br}} </div>
+              <div class='lbl od lbl-notes c'> Status / Notes </div><div class='var od var-notes l'> {{variables.notes|default|nl2br}} </div>
             </div>
           </div>
         </div>
@@ -112,8 +111,7 @@
                   {% endif %}
                 {% endfor %}
               <tr>
-                <th class='ilbl ilbl-theme-tag c'><label for='theme_tag'>Weakness Tags</label></th>
-                <th class='ilbl ilbl-theme-tag-used c' title='used'>&nbsp;</th>
+                <th class='ilbl ilbl-theme-tag c' colspan=2><label for='theme_tag'>Weakness Tags</label></th>
               </tr>
                 {% for i in 1..6 %}
                   {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
@@ -124,7 +122,7 @@
                   {% endif %}
                 {% endfor %}
             </table>
-            <div class='lbl {{eo}} lbl-quest'> Quests </div>
+            <div class='lbl lbl-quest c'> Quests </div>
             {% for i in 1..6 %}
               {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
               {% set name = attribute(variables, 'quest_' ~ td ~ '_' ~ id)|default %}
@@ -139,7 +137,7 @@
                 {% for i in 1..3 %}
                   {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
                   {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-                  {% if attribute(variables, 'abandon_' ~ td ~ '_' ~ id)|default|default == 1 %}<i class='fa-solid fa-circle-xmark'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
+                  {% if attribute(variables, 'abandon_' ~ td ~ '_' ~ id)|default|trim == 1 %}<i class='fa-solid fa-circle-xmark'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
                 {% endfor %}
                 </div>
               </div>
@@ -148,7 +146,7 @@
                 {% for i in 1..3 %}
                   {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
                   {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-                  {% if attribute(variables, 'improve_' ~ td ~ '_' ~ id)|default|default == 1 %}<i class='fa-solid fa-circle-check'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
+                  {% if attribute(variables, 'improve_' ~ td ~ '_' ~ id)|default|trim == 1 %}<i class='fa-solid fa-circle-check'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
                 {% endfor %}
                 </div>
               </div>
@@ -157,7 +155,7 @@
                 {% for i in 1..3 %}
                   {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
                   {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-                  {% if attribute(variables, 'milestone_' ~ td ~ '_' ~ id)|default|default == 1 %}<i class='fa-solid fa-circle-check'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
+                  {% if attribute(variables, 'milestone_' ~ td ~ '_' ~ id)|default|trim == 1 %}<i class='fa-solid fa-circle-check'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
                 {% endfor %}
                 </div>
                 {% set tx = attribute(variables, 'special_improvements_' ~ td)|default %}
@@ -176,85 +174,103 @@
     {% for td in 0..0 %}
       {% set tx = attribute(variables, 'theme_' ~ td)|default %}
       {% set eo = 'od' %}{% if td is even %}{% set eo = 'ev' %}{% endif %}
-      <div class='col-12 col-md-3'> </div><div class='col-12 col-md-6'>
+      <div class='col-12 col-md-12'>
         <div class='card theme card' id='card-theme card'>
           <div class='card-header theme card' title='Fellowship Card'><i class='fa-regular fa-campfire'></i> {{tx}}</div>
           <div class='card-body of'>
-            <table class='ctable'>
-              <tr>
-                <th class='ilbl ilbl-theme-tag c'><label for='theme_tag'>Power Tags</label></th>
-                <th class='ilbl ilbl-theme-tag-used c' title='used'>U</th>
-              </tr>
-                {% for i in 1..12 %}
-                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
-                  {% set name = attribute(variables, 'theme_tag_' ~ td ~ '_' ~ id)|default %}
-                  {% if name != "" %}
-                    {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-              <tr>
-                  <td class='var {{eo}} var-theme-tag'> {{name}} </td>
-                  <td class='var {{eo}} var-theme-tag-used c'>{% if attribute(variables, 'theme_tag_used_' ~ td ~ '_' ~ id)|default == 1 %}<i class='fa-solid fa-circle-xmark'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}</td>
-              </tr>
-                  {% endif %}
-                {% endfor %}
-              <tr>
-                <th class='ilbl ilbl-theme-tag c'><label for='theme_tag'>Weakness Tags</label></th>
-                <th class='ilbl ilbl-theme-tag-used c' title='used'>&nbsp;</th>
-              </tr>
+            <div class='row'>
+              <div class='col-12 col-md-6'>
+                <table class='ctable'>
+                  <tr>
+                    <th class='ilbl ilbl-theme-tag c'><label for='theme_tag'>Power Tags</label></th>
+                    <th class='ilbl ilbl-theme-tag-used c' title='used'>U</th>
+                  </tr>
+                    {% for i in 1..12 %}
+                      {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                      {% set name = attribute(variables, 'theme_tag_' ~ td ~ '_' ~ id)|default %}
+                      {% if name != "" %}
+                        {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <tr>
+                      <td class='var {{eo}} var-theme-tag'> {{name}} </td>
+                      <td class='var {{eo}} var-theme-tag-used c'>{% if attribute(variables, 'theme_tag_used_' ~ td ~ '_' ~ id)|default == 1 %}<i class='fa-solid fa-circle-xmark'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}</td>
+                  </tr>
+                      {% endif %}
+                    {% endfor %}
+                </table>
+              </div>
+              <div class='col-12 col-md-6'>
+                <table class='ctable'>
+                  <tr>
+                    <th class='ilbl ilbl-theme-tag c' colspan=2><label for='theme_tag'>Weakness Tags</label></th>
+                  </tr>
+                    {% for i in 1..6 %}
+                      {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                      {% set name = attribute(variables, 'theme_tag_neg_' ~ td ~ '_' ~ id)|default %}
+                      {% if name != "" %}
+                        {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                      <tr><td class='var {{eo}} var-theme-tag-neg' colspan=2> {{name}} </td></tr>
+                      {% endif %}
+                    {% endfor %}
+                </table>
+                <div class='lbl lbl-quest c'> Quests </div>
                 {% for i in 1..6 %}
                   {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
-                  {% set name = attribute(variables, 'theme_tag_neg_' ~ td ~ '_' ~ id)|default %}
+                  {% set name = attribute(variables, 'quest_' ~ td ~ '_' ~ id)|default %}
                   {% if name != "" %}
                     {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-                  <tr><td class='var {{eo}} var-theme-tag-neg' colspan=2> {{name}} </td></tr>
+                  <div class='var {{eo}} var-quest'>{{name}}</div>
                   {% endif %}
                 {% endfor %}
-            </table>
-            <div class='lbl {{eo}} lbl-quest'> Quests </div>
-            {% for i in 1..6 %}
-              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
-              {% set name = attribute(variables, 'quest_' ~ td ~ '_' ~ id)|default %}
-              {% if name != "" %}
-                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-               <div class='var {{eo}} var-quest'>{{name}}</div>
-               {% endif %}
-            {% endfor %}
-            <div class='row'>
-              <div class='col-12 col-md-4'>
-                <div class='lbl lbl-abandon c'> Abandon </div><div class='var var-abandon c'>
-                {% for i in 1..3 %}
-                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
-                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-                  {% if attribute(variables, 'abandon_' ~ td ~ '_' ~ id)|default|default == 1 %}<i class='fa-solid fa-circle-xmark'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
-                {% endfor %}
+                <div class='row'>
+                  <div class='col-12 col-md-4'>
+                    <div class='lbl lbl-abandon c'> Abandon </div><div class='var var-abandon c'>
+                    {% for i in 1..3 %}
+                      {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                      {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                      {% if attribute(variables, 'abandon_' ~ td ~ '_' ~ id)|default|trim == 1 %}<i class='fa-solid fa-circle-xmark'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
+                    {% endfor %}
+                    </div>
+                  </div>
+                  <div class='col-12 col-md-4'>
+                    <div class='lbl lbl-improve c'> Improve </div><div class='var var-improve c'>
+                    {% for i in 1..3 %}
+                      {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                      {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                      {% if attribute(variables, 'improve_' ~ td ~ '_' ~ id)|default|trim == 1 %}<i class='fa-solid fa-circle-check'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
+                    {% endfor %}
+                    </div>
+                  </div>
+                  <div class='col-12 col-md-4'>
+                    <div class='lbl lbl-milestone c'> Milestone </div><div class='var var-milestone c'>
+                    {% for i in 1..3 %}
+                      {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                      {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                      {% if attribute(variables, 'milestone_' ~ td ~ '_' ~ id)|default|trim == 1 %}<i class='fa-solid fa-circle-check'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
+                    {% endfor %}
+                    </div>
+                    {% set tx = attribute(variables, 'special_improvements_' ~ td)|default %}
+                    {% if tx != "" %}
+                    <div class='lbl od lbl-special-improvements'> Special Improvements </div><div class='var od var-special-improvements'> {{tx|nl2br}} </div>
+                    {% endif %}
+                  </div>
                 </div>
-              </div>
-              <div class='col-12 col-md-4'>
-                <div class='lbl lbl-improve c'> Improve </div><div class='var var-improve c'>
-                {% for i in 1..3 %}
-                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
-                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-                  {% if attribute(variables, 'improve_' ~ td ~ '_' ~ id)|default|default == 1 %}<i class='fa-solid fa-circle-check'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
-                {% endfor %}
-                </div>
-              </div>
-              <div class='col-12 col-md-4'>
-                <div class='lbl lbl-milestone c'> Milestone </div><div class='var var-milestone c'>
-                {% for i in 1..3 %}
-                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
-                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-                  {% if attribute(variables, 'milestone_' ~ td ~ '_' ~ id)|default|default == 1 %}<i class='fa-solid fa-circle-check'></i>{% else %}<i class='fa-regular fa-circle'></i>{% endif %}
-                {% endfor %}
-                </div>
-                {% set tx = attribute(variables, 'special_improvements_' ~ td)|default %}
-                {% if tx != "" %}
-                <div class='lbl od lbl-special-improvements'> Special Improvements </div><div class='var od var-special-improvements'> {{tx|nl2br}} </div>
-                {% endif %}
               </div>
             </div>
           </div>
         </div>
       </div>
     {% endfor %}
+    {% set tx = variables.morenotes|default|trim %}
+    {% if tx != "" %}
+    <div class='col-12 col-md-12'>
+      <div class='card morenotes' id='card-morenotes card'>
+        <div class='card-header morenotes card'>More Notes</div>
+        <div class='card-body of'>
+          <div class='var od var-morenotes l'> {{tx|nl2br}} </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
   </div>
   <div class='row do-not-print'>
     <div class='col-12 c sm copyright'>

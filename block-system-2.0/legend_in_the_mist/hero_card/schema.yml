@@ -36,12 +36,10 @@ fields:
     label: "Quintessences"
     input: text
     rows: 3
-          # table
-            # iter: 10
   Backpack:
-    input: string
-            # /iter
-          # /table
+    label: "Backpack"
+    input: text
+    rows: 3
   Notes:
     label: "Notes"
     input: text

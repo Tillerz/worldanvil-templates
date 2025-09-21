@@ -3,12 +3,15 @@
    --header-bg: #E0CFC0A0;
    font-family: PragRoman;
    font-size: 24px !important;
+   letter-spacing: -0.04em;
+   word-spacing: 0.14em;
+   line-height: 1.4em;
    padding: 20px}
  .CodeMirror-buttonsPanel { font-size: 14px}
  .table { margin-bottom: 0px}
  .table>tbody>tr>th,  .table>tbody>tr>td { border-top: none; padding: 0px 6px}
  .ilbl,  .lbl { font-size:14px; text-transform: uppercase}
- .ivar,  .var { font-size: 16px}
+ .ivar,  .var { font-size: 14px}
  .artist-credits,  .artist-credits a {
    font-size: 14px;
    text-align: center;
@@ -28,11 +31,10 @@
  .attributes .ivar,  .ivar-portrait,  .ivar-hp,  .ivar-ac,  .ivar-gp,  .ivar-sp,  .ivar-cp { text-align: center}
  .lbl-hp,  .lbl-ac { padding-top:0px}
  th.lbl { vertical-align: middle}
- .var-quintessences,  .var-notes,  .ivar-quintessences,  .ivar-notes { padding:6px; font-size:14px}
- .var-theme-tag,  .var-quest,  .ivar-theme-tag,  .ivar-quest,  .var-theme-tag-neg,  .ivar-theme-tag-neg,  .var-companion,  .var-relationship-tag,  .var-backpack,  .ivar-companion,  .ivar-relationship-tag,  .ivar-backpack { padding: 0px 6px}
+ .var-quintessences,  .var-notes,  .ivar-quintessences,  .ivar-notes, .ivar-morenotes, .var-morenotes, .var-backpack, .ivar-backpack { padding:6px; font-size:14px }
+ .var-theme-tag,  .var-quest,  .ivar-theme-tag,  .ivar-quest,  .var-theme-tag-neg,  .ivar-theme-tag-neg,  .var-companion,  .var-relationship-tag, .ivar-companion,  .ivar-relationship-tag { padding: 0px 6px}
  .card-header,  :is(.quintessences,  .backpack,  .notes) .lbl { font-size:22px; color: var(--light) ; background-color: var(--hero-bg)}
- .lbl-theme-tag,  .lbl-theme-tag-used,  .ilbl-theme-tag,  .ilbl-theme-tag-used,  .lbl-quest,  ilbl-quest,  .lbl-abandon,  .ilbl-abandon,  .lbl-improve,  .ilbl-improve,  .lbl-milestone,  .ilbl-milestone,  .lbl-companion,  .lbl-relationship-tag,  .lbl-quintessences,  .lbl-backpack,  .lbl-notes,  .ilbl-companion,  .ilbl-relationship-tag,  .ilbl-quintessences,  .ilbl-backpack,  .ilbl-notes
- { color: var(--dark) ; background-color: var(--header-bg)}
+ .lbl-theme-tag,  .lbl-theme-tag-used,  .ilbl-theme-tag,  .ilbl-theme-tag-used,  .lbl-quest,  ilbl-quest,  .lbl-abandon,  .ilbl-abandon,  .lbl-improve,  .ilbl-improve,  .lbl-milestone,  .ilbl-milestone,  .lbl-companion,  .lbl-relationship-tag,  .lbl-quintessences,  .lbl-backpack,  .lbl-notes,  .ilbl-companion,  .ilbl-relationship-tag,  .ilbl-quintessences,  .ilbl-backpack,  .ilbl-notes, .ilbl-quest, .lbl-quest, .ilbl-special-improvements, .lbl-special-improvements, .ilbl-theme, .lbl-theme { color: var(--dark) ; background-color: var(--header-bg)}
  .l { text-align: left}
  .c { text-align: center}
  .r { text-align: right}
@@ -40,10 +42,12 @@
  ol { padding-left: 20px}
  .pd { padding: 10px}
  .inline { display: inline-block; width:100px}
- .sm,  .ctable th,  .ctable td { font-size:14px}
+ .ctable th,  .ctable td { font-size:14px}
+ .sm { font-size:10px}
+ .ctable td { border-bottom: 1px dotted var(--hero-bg)}
  .ctable { width: 100%}
  .artist-credits,  .artist-credits a,  small { font-size:10px}
-.tracker .ivar-notes { min-height: 310px !important }
+.note { color: #800000; font-size:14px; }
  .form-control {
     border: 1px solid #9d9fa0;
     border-radius: 10px;

@@ -4,20 +4,12 @@
       <div class='card hero card' id='card-hero card'>
         <div class='card-body of'>
           <div class='row'>
-            <div class='col-12 col-md-4'>
+            <div class='col-12 col-md-6'>
               <div class='ilbl od ilbl-backpack c'><label for='backpack'>Backpack</label></div>
-              <div class='ivar od ivar-backpack'>
-                <table class='ctable'>
-                  {% for i in 1..10 %}
-                    {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
-                    {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-                    <tr><td class='ivar {{eo}} ivar-backpack'><input value='{{attribute(variables, 'backpack_' ~ id)|default}}' class='form-control ivar ivar-backpack' id='backpack' name='backpack_{{id}}' type='text' /></td></tr>
-                  {% endfor %}
-                </table>
-              </div>
+              <div class='ivar od ivar-backpack c'><textarea class='form-control ivar ivar-backpack ' id='notes' name='backpack' rows='3'  >{{variables.backpack|default}}</textarea></div>
             </div>
-            <div class='col-12 col-md-8'>
-              <div class='ilbl od ilbl-notes c'><label for='notes'>Notes</label></div><div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes ' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl od ilbl-notes c'><label for='notes'>Status / Notes</label></div><div class='ivar od ivar-notes'><textarea class='form-control ivar ivar-notes ' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div>
               <div class='ilbl od ilbl-promise c'><label for='promise'>Promise</label></div><div class='ivar od ivar-promise c'>
                 {% for i in 1..5 %}
                   {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
