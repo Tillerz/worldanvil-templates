@@ -86,6 +86,8 @@ if os.path.isfile(inputfile):
                         print(f'{field}\t\t{type(jdata[field])}')
                     else:
                         print(f'{field}')
+            else:
+                print(f'{field}')
         print('------------------------')
     else:
         fields = default_fields
