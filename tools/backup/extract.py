@@ -62,7 +62,7 @@ def unroll(data, indent=0, types=False, all=False, fields={}):
 
 parser = ArgumentParser()
 parser.add_argument('filename', help="article json file name, it will be looked for in the world folder")
-parser.add_argument("-f", "--fields", required=False, help="fields to extract, separated by commas, default: " + " ".join(str(x) for x in default_fields))
+parser.add_argument("-f", "--fields", required=False, help="fields to extract, separated by commas, default: " + ",".join(str(x) for x in default_fields))
 parser.add_argument("-l", "--list", required=False, action='store_true', help="list fields found in the json file, default: only strings")
 parser.add_argument("-a", "--all", required=False, action='store_true', help="-l will list ALL fields found in the json file, not just strings")
 parser.add_argument("-t", "--types", required=False, action='store_true', help="-l will display the type of each field found")
@@ -130,8 +130,7 @@ if os.path.isfile(inputfile):
             unroll({field: jdata[field]}, 0, args.types, args.all, fields)
         print('------------------------')
     else:
-        print(f'Field list: {fields}')
-        fields = fields.split(",")
+        print(f'Field list: ' + ",".join(str(x) for x in default_fields))
         print('------------------------')
         for field in fields:
             if field in jdata:
@@ -140,7 +139,7 @@ if os.path.isfile(inputfile):
                     print(f'Extracting field {field} to {fullpath}')
                     Path(fullpath).write_text(jdata[field])
                 else:
-                    print(f'Field {field} is empty, not saving.')
+                    print(f'Field {field} is empty/unset, not saving.')
             else:
                 print(f'Field {field} not found in json data.')
         print('------------------------')
