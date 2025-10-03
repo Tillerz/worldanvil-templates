@@ -65,34 +65,23 @@
     {% for td in 1..4 %}
       {% set eo = 'od' %}{% if td is even %}{% set eo = 'ev' %}{% endif %}
       {% set tx = attribute(variables, 'theme_' ~ td)|default %}
-      {% set theme_list = {
-  "none": [ "none", "none", "none"],
-  "origin_circumstance": [ "Origin", "Circumstance", "fa-leaf"],
-  "origin_devotion": [ "Origin", "Devotion", "fa-leaf"],
-  "origin_past": [ "Origin", "Past", "fa-leaf"],
-  "origin_people": [ "Origin", "People", "fa-leaf"],
-  "origin_personality": [ "Origin", "Personality", "fa-leaf"],
-  "origin_skill": [ "Origin", "Skill or Trade", "fa-leaf"],
-  "origin_trade": [ "Origin", "Trade", "fa-leaf"],
-  "origin_trait": [ "Origin", "Trait", "fa-leaf"],
-  "adventure_duty": [ "Adventure", "Duty", "fa-swords"],
-  "adventure_influence": [ "Adventure", "Influence", "fa-swords"],
-  "adventure_knowledge": [ "Adventure", "Knowledge", "fa-swords"],
-  "adventure_prodigious_ability": [ "Adventure", "Prodigious Ability", "fa-swords"],
-  "adventure_relic": [ "Adventure", "Relic", "fa-swords"],
-  "adventure_uncanny_being": [ "Adventure", "Uncanny Being", "fa-swords"],
-  "greatness_destiny": [ "Greatness", "Destiny", "fa-crown"],
-  "greatness_dominion": [ "Greatness", "Dominion", "fa-crown"],
-  "greatness_mastery": [ "Greatness", "Mastery", "fa-crown"],
-  "greatness_monstrosity": [ "Greatness", "Monstrosity", "fa-crown"] }
-%}
-{% set theme = theme_list[tx][0] %}
-{% set ttype = theme_list[tx][1] %}
-{% set ticon = theme_list[tx][2] %}
+      {% set theme_list = { "Origin": [ "Origin", "fa-leaf"], "Adventure": [ "Adventure", "fa-swords"], "Greatness": [ "Greatness", "fa-crown"] }
+%}{% set theme = theme_list[tx][0]|default %}{% set ticon = theme_list[tx][1]|default %}
+{% if theme == "" %}{% set theme = tx %}{% endif %}
+{% set ttype = attribute(variables, 'themetype_' ~ td)|default %}
       {% if theme != "none" %}
       <div class='col-12 col-md-6'>
         <div class='card theme card' id='card-theme card'>
-          <div class='card-header theme card' title='Theme Card'><i class='fa-regular {{ticon}}'></i> {{theme}}: {{ttype}}</div>
+          <div class='card-header theme card' title='Theme Card'>
+            <div class='row'>
+              <div class='col-12 col-md-1 r'>
+                <i class='fa-regular {{ticon}}'></i> 
+              </div>
+              <div class='col-12 col-md-11 l'>
+                {{theme}}: {{ttype}}
+              </div>
+            </div>            
+          </div>
           <div class='card-body of'>
             <table class='ctable'>
               <tr>
@@ -176,7 +165,16 @@
       {% set eo = 'od' %}{% if td is even %}{% set eo = 'ev' %}{% endif %}
       <div class='col-12 col-md-12'>
         <div class='card theme card' id='card-theme card'>
-          <div class='card-header theme card' title='Fellowship Card'><i class='fa-regular fa-campfire'></i> {{tx}}</div>
+          <div class='card-header theme card' title='Fellowship Card'>
+            <div class='row'>
+              <div class='col-12 col-md-1 r'>
+                <i class='fa-regular fa-campfire'></i>  
+              </div>
+              <div class='col-12 col-md-11 l'>
+                {{tx}}
+              </div>
+            </div>            
+          </div>
           <div class='card-body of'>
             <div class='row'>
               <div class='col-12 col-md-6'>
@@ -274,7 +272,7 @@
   </div>
   <div class='row do-not-print'>
     <div class='col-12 c sm copyright'>
-      &copy; 2025 Son of Oak Game Studio - LitM Sheet v1.00 made by Tillerz - Updated: 2025-09-20</a><br>
+      &copy; 2025 Son of Oak Game Studio - LitM Sheet v1.01 made by Tillerz - Updated: 2025-09-28</a><br>
     </div>
   </div>
 </div>

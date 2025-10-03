@@ -1,4 +1,8 @@
-﻿<div class='container-fluid sheet-legends-in-the-mist'>
+﻿{% import _self as sheet %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set themes = [ "Origin", "Adventure", "Greatness" ] %}
+{% set types = [ "Circumstance", "Companion", "Destiny", "Devotion", "Dominion", "Duty", "Influence", "Knowledge", "Magic", "Mastery", "Monstrosity", "Past", "People", "Personality", "Possessions", "Prodigious Ability", "Relic", "Skill or Trade", "Trait", "Uncanny Being", "Alchemy & Herbalism", "Fey Patronage", "Landshaping", "Runic Invocation", "Shapeshifting", "Sorcery", "Spirit Binding", "Witchcraft" ] %}
+<div class='container-fluid sheet-legends-in-the-mist'>
   <div class='row'>
     <div class='col-12 col-md-12'>
       <span class='note'>NOTE: lists are auto-expanding. If you have filled all entries of a list, save, and new empty fields will appear.</span><br/>
@@ -58,28 +62,10 @@
         <div class='card theme card' id='card-theme card'>
           <div class='card-header theme card'>Theme Card {{td}}</div>
           <div class='card-body of'>
-            <div class='ilbl {{eo}} ilbl-theme c'><label for='theme'>Theme Type</label></div>
+            <div class='ilbl {{eo}} ilbl-theme c'><label for='theme'>Theme &amp; Type</label></div>
             <div class='ivar {{eo}} ivar-theme'>
-              <select  class='form-control ivar ivar-theme' id='theme' name='theme_{{td}}'>
-                <option value='none' {% if attribute(variables, 'theme_' ~ td)|default == 'none' %}selected='selected' {% endif %} > Select </option>
-                <option value='origin_circumstance' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_circumstance' %}selected='selected' {% endif %} > Origin: Circumstance </option>
-                <option value='origin_devotion' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_devotion' %}selected='selected' {% endif %} > Origin: Devotion </option>
-                <option value='origin_past' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_past' %}selected='selected' {% endif %} > Origin: Past </option>
-                <option value='origin_people' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_people' %}selected='selected' {% endif %} > Origin: People </option>
-                <option value='origin_personality' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_personality' %}selected='selected' {% endif %} > Origin: Personality </option>
-                <option value='origin_skill' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_skill' %}selected='selected' {% endif %} > Origin: Skill or Trade </option>
-                <option value='origin_trait' {% if attribute(variables, 'theme_' ~ td)|default == 'origin_trait' %}selected='selected' {% endif %} > Origin: Trait </option>
-                <option value='adventure_duty' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_duty' %}selected='selected' {% endif %} > Adventure: Duty </option>
-                <option value='adventure_influence' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_influence' %}selected='selected' {% endif %} > Adventure: Influence </option>
-                <option value='adventure_knowledge' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_knowledge' %}selected='selected' {% endif %} > Adventure: Knowledge </option>
-                <option value='adventure_prodigious_ability' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_prodigious_ability' %}selected='selected' {% endif %} > Adventure: Prodigious Ability </option>
-                <option value='adventure_relic' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_relic' %}selected='selected' {% endif %} > Adventure: Relic </option>
-                <option value='adventure_uncanny_being' {% if attribute(variables, 'theme_' ~ td)|default == 'adventure_uncanny_being' %}selected='selected' {% endif %} > Adventure: Uncanny Being </option>
-                <option value='greatness_destiny' {% if attribute(variables, 'theme_' ~ td)|default == 'greatness_destiny' %}selected='selected' {% endif %} > Greatness: Destiny </option>
-                <option value='greatness_dominion' {% if attribute(variables, 'theme_' ~ td)|default == 'greatness_dominion' %}selected='selected' {% endif %} > Greatness: Dominion </option>
-                <option value='greatness_mastery' {% if attribute(variables, 'theme_' ~ td)|default == 'greatness_mastery' %}selected='selected' {% endif %} > Greatness: Mastery </option>
-                <option value='greatness_monstrosity' {% if attribute(variables, 'theme_' ~ td)|default == 'greatness_monstrosity' %}selected='selected' {% endif %} > Greatness: Monstrosity </option>
-              </select>
+              {% set x = attribute(variables, 'theme_' ~ td)|default %}<input value='{{x}}' list='themes' class='form-control ivar ivar-theme' id='theme' name='theme_{{td}}' />{{ _self.genList(themes, 'themes', x) }}
+              {% set x = attribute(variables, 'themetype_' ~ td)|default %}<input value='{{x}}' list='types' class='form-control ivar ivar-themetype' id='themetype' name='themetype_{{td}}' />{{ _self.genList(types, 'types', x) }}
             </div>
             <table class='ctable'>
               <tr>
