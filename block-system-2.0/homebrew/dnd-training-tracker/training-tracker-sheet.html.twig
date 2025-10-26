@@ -1,0 +1,29 @@
+{% import _self as sheet %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set sheetname = 'dnd-training-tracker' %}
+{% set trainings = [ "Strength Training", "Fine Motor Skill Training", "Endurance Training", "Concentration Training", "Performance Training", "Stillness Training", "Nature Study", "Prayer", "Book Study", "Weapon Training", "Tool Training", "Language Practice" ] %}
+{# ---------------------------------------------- #}
+<div class="container-fluid {{sheetname}}">
+	<div class="row">
+		<div class="col-12"><div class="card"><div class="card-header hdr">Ability Training - {{ variables.name|default }}</div></div></div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        {% for a in trainings %}
+                        <div class="col-6 col-md-4 col-lg-2 c">
+                            <div class="box c">
+                                <div class="form-group c">
+                                {% set l = a|lower|replace({' ': "_"}) %}
+                                    <label for="{{l}}">{{a}}</label><br/>
+                                    <span class="larger">{{ attribute(variables, l)|default }}</span><br/>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
