@@ -1,0 +1,34 @@
+<div class='container-fluid sheet-opponent'>
+  <div class='row'>
+    <div class='col-12 col-md-12'>
+      <div class='card opponent' id='card-opponent'>
+        <div class='card-body of d-flex justify-content-center'>
+          {% set curr = variables.stress_curr|default %}{% set max = variables.stress|default %}
+          {% set crucials = variables.stress_crux|default|replace({' ': ''})|split(',') %}
+          <table><tr>
+            {% for i in 1..max %}<td>
+                {% set checked = '' %}
+                {% if i <= curr %}
+                  {% set checked = 'checked=checked' %}
+                  {% if i in crucials %}
+                  <i class="fa-sharp fa-solid fa-burst"></i>
+                  {% else %}
+                  <i class='fa-sharp fa-solid fa-square'></i>
+                  {% endif %}
+                {% else %}
+                  {% if i in crucials %}
+                  <i class="fa-sharp fa-thin fa-burst"></i>
+                  {% else %}
+                  <i class='fa-sharp fa-thin fa-square'></i>
+                  {% endif %}
+                {% endif %}
+                <br>
+                <input value='{{i}}' class='form-control ivar ivar-stress-curr c' id='stress_curr' name='stress_curr' type='checkbox' {{checked}} />
+              </td>
+            {% endfor %}
+          </tr></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
