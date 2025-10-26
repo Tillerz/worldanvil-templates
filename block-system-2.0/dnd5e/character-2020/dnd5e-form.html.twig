@@ -450,6 +450,13 @@
                             <input class="form-control" type="text" value="{{ variables.speed is defined ? variables.speed }}" name="speed" placeholder="eg 30/60/-" />
                         </div>
                     </div>
+                    <div class="col-12 col-md-4">
+                        <div class="form-group">
+                            <label for="pp_bonus">Passive Perception Bonus</label>
+                            <input class="form-control" type="number" value="{{ variables.pp_bonus|default }}" name="pp_bonus" placeholder="eg +5" />
+                            <p class="dnd5e-sheet-description m-t-10 mt-1">Passive Perception Bonus, eg from Observant feat.</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <p class="dnd5e-sheet-description m-t-10 mt-1">Class resources:
