@@ -1,0 +1,92 @@
+fields:
+# sheet: Daggerheart Adversary
+  # row
+    # col: col-12
+      # card: adversary: Adversary
+        # card-body
+          # table
+  Name:
+    label: "Name"
+    input: string
+    required: true
+  tier:
+    label: "Tier"
+    input: select
+    options:
+      1: "1 (Level 1)"
+      2: "2 Level 2-4)"
+      3: "3 (Level 5-7)"
+      4: "4 (Level 8-10)"
+    placeholder: "eg. Tier 1"
+  type:
+    label: "Type"
+    input: select
+    options:
+      Bruiser: "Bruiser"
+      Horde: "Horde"
+      Minion: "Minion"
+      Ranged: "Ranged"
+      Skulk: "Skulk"
+      Social: "Social"
+      Solo: "Solo"
+      Standard: "Standard"
+      Support: "Support"
+  descriptioin:
+    label: "Description"
+    input: string
+  motives and tactics:
+    label: "Motives and Tactics"
+    input: text
+    rows: 3
+  difficulty:
+    label: "Difficulty"
+    input: string
+    placeholder: "eg. 12"
+  damage thresholds:
+    label: "Damage Thresholds"
+    input: string
+    placeholder: "eg. 8/14"
+  hit points:
+    label: "Hit Points"
+    input: string
+  stress:
+    label: "Stress"
+    input: string
+  attack modifier:
+    label: "Attack Modifier"
+    input: string
+    placeholder: "eg. +1"
+  standard attack:
+    label: "Standard Attack"
+    input: string
+    placeholder: "eg. Daggers: Melee | 1d8+1 phy"
+  experience:
+    label: "Experience"
+    input: string
+    placeholder: "eg. Thief +2"
+  features:
+    label: "Features"
+    input: text
+    rows: 3
+  img:
+    label: "Portrait"
+    input: integer
+    placeholder: "WA Image-ID"
+    render: image
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12
+      # card: notes: Notes
+        # card-body
+  Notes:
+    input: text
+    rows: 3
+        # /card-body
+      # /card
+    # /col
+  # /row
+# /sheet
