@@ -393,4 +393,5 @@ h3,  h4,  h5,  small,  strong,  em,  b {
 .dnd5e-sheet-header, .bookauthor, .bookdesc { text-shadow: 1px 1px 4px #666 }
 .bookauthor { font-size:26px; margin-top:10px; margin-bottom:20px }
 .bookdesc { line-height: 1.8em; }
+.ibox-content, .card-box, .ibox-content { background-color: #00000000 !important }
 .notes { padding: 5px 10px !important; margin-right:5px; background-color: #ffffff50!important }
