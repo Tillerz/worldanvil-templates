@@ -1,11 +1,11 @@
-﻿{% import _self as sheet %}
+﻿{% import _self as sheet %}{% set theme = variables.theme|default('vivid') %}{% if theme == '' %}{% set theme = 'vivid' %}{% endif %}
 {% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
 {% set attributes = { "Agility": "Sprint,Leap,Maneuver", "Strength": "Lift,Smash,Grapple", "Finesse": "Control,Hide,Tinker", "Instinct": "Perceive,Sense,Navigate", "Presence": "Charm,Perform,Deceive", "Knowledge": "Recall,Analyze,Comprehend" } %}
 {% set classes = { "Bard": "Troubadour,Wordsmith", "Druid": "Warden of the Elements,Warden of Renewal", "Guardian": "Stalwart,Vengeance", "Ranger": "Beastbound,Wayfinder", "Rogue": "Nightwalker,Syndicate", "Seraph": "Divine Wielder,Winged Sentinel", "Sorcerer": "Elemental Origin,Primal Origin", "Warrior": "Call of the Brave,Call of the Slayer", "Wizard": "School of Knowledge,School of War" } %}
 {% set domains = [ "Arcana", "Blade", "Bone", "Codex", "Grace", "Midnight", "Sage", "Splendor", "Valor" ] %}
 {% set ancestries = { "Clank": 1553696, "Drakona": 1553697, "Dwarf": 1553698, "Elf": 1553700, "Faerie": 1553703, "Faun": 1553704, "Firbolg": 1553706, "Fungril": 1553708, "Galapa": 1553710, "Giant": 1553711, "Goblin": 1553713, "Halfling": 1553714, "Human": 1553716, "Infernis": 1553717, "Katari": 1553722, "Orc": 1553724, "Ribbet": 1553727, "Simiah": 1 } %}
 {% set communities = { "Highborne" : 1553645, "Loreborne" : 1553647, "Orderborne" : 1553650, "Ridgeborne" : 1553651, "Seaborne" : 1553653, "Slyborne" : 1553654, "Underborne" : 1553655, "Wanderborne" : 1553656, "Wildborne" : 1553657 } %}
-<div class='container-fluid sheet-daggerheart sheet'>
+<div class='container-fluid sheet-daggerheart sheet {{theme}}'>
   <div class='row'>
     <div class='col-12 col-lg-8'>
       <div class='card personal' id='card-personal'>
@@ -407,7 +407,11 @@
   </div>
   <div class='row do-not-print'>
     <div class='col-12 c'>
-      <span class='copyright small'>Daggerheart &copy; 2025 by Darrington Press - Sheet v1.00 made by Tillerz - Updated: 2025-05-25</span>
+      <span class='copyright small'>
+This product includes materials from the Daggerheart System Reference Document 1.0, &copy; Critical Role, LLC. under the terms of the Darrington Press Community Gaming (DPCGL)
+License. More information can be found at <a href='https://www.daggerheart.com' target='_new'>https://www.daggerheart.com</a>. There are no
+previous modifications by others. - Character Sheet v1.00 made by Tillerz - Updated: 2025-05-25
+      </span>
     </div>
   </div>
 </div>
