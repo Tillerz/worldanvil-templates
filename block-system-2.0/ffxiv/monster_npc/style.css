@@ -1,4 +1,4 @@
-.ffxiv {
+ .ffxiv {
   --black: #202020;
   --white: #ffffff;
   --lightgrey: #f0f0f0;
@@ -49,7 +49,7 @@
  table { line-height:1.5}
  .table td,  .table th,  .table > tbody > tr > td {
   border: none}
-.att .label-roller {
+ .att .label-roller {
     border: none;
     cursor: pointer;
     background: #00000000;
@@ -57,8 +57,7 @@
     padding: 5px 6px;
     margin: 1px 3px;
     color: var(--white) ;
-    font-size:18px; padding: 0px 10px; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; letter-spacing: 0.04em
-}
+    font-size:18px; padding: 0px 10px; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; letter-spacing: 0.04em}
  table {
   width: 100%;
   border-spacing: 2px;
@@ -131,20 +130,20 @@
  .card-body li { margin-left: 15px}
  ul { list-style-type: square}
  .level { font-size:64px}
- .rcol { color: #804040 }
+ .rcol, h2 { color: #804040 !important }
  .badge { font-size: 13px; padding: 4px; margin: 0px 5px; background-color: #00000000}
  .fr { float:right; margin-right:10px}
- h1 { font-size: 32px; text-align: left; text-transform: uppercase; }
- h2 { font-size: 24px; text-align: left; border-bottom: 2px solid #706060; text-transform: uppercase; }
+ h1 { font-size: 32px; text-align: left; text-transform: uppercase;}
+ h2 { font-size: 24px; text-align: left; border-bottom: 2px solid #706060; text-transform: uppercase;}
  h4 { border-bottom: 2px solid #706060; text-align: left; background-color: #00000020; padding: 5px; margin: 0px 0px 2px 0px}
  .darker { background-color: #00000020}
  .lbl.att { margin-bottom:5px; font-size:18px; padding: 0px 10px; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; letter-spacing: 0.04em}
  .lbl.pool { font-size:24px; padding: 0px 10px; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; letter-spacing: 0.04em}
  .lbl-barrier { color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; letter-spacing: 0.04em}
- .fa-angle-down { color: #00000030 }
- .invoked { background: #804040; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; padding: 1px 4px }
- .ivar-trname, .ivar-abname { font-size: 20px !important; font-weight: 800; }
- .npc { background-color: #404040 }
+ .fa-angle-down { color: #00000030}
+ .invoked { background: #804040; color: var(--white) ; text-shadow: 1px 1px 2px var(--black) ; padding: 1px 4px}
+ .ivar-trname,  .ivar-abname { font-size: 20px !important; font-weight: 800;}
+ .npc { background-color: #404040}
  .traits { background-color: #D5B546}
  .limitbreak {background-color: #D2733B}
  .instant,  .notes,  .profile,  .items {background-color: #7888AC}
@@ -155,9 +154,10 @@
  .dps { background-color: #AE4441}
  .hp { background-color: #5FA84F}
  .mp { background-color: #A55389}
-.shadedl { background-color: #ffffff20 }
-.shadedd { background-color: #00000020 }
-.topborder { border-top: 2px solid #808080 }
+ .shadedl { background-color: #ffffff20}
+ .shadedd { background-color: #00000020}
+ .topborder { border-top: 2px solid #808080}
+.btn { background: transparent; border: none }
  ::-webkit-input-placeholder { opacity: .5; color: var(--darkblue)}
  input[type=number],  input[type=number]:focus { -moz-appearance: textfield; text-align: center}
  select.form-control:not([size]):not([multiple]) { height: 3.05rem;}

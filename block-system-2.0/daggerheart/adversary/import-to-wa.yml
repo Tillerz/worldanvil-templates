@@ -1,0 +1,88 @@
+﻿fields:
+  Name:
+    label: "Name"
+    input: string
+    description: "Name"
+    required: true
+  tier:
+    label: "tier"
+    input: select
+    description: "Tier"
+    options:
+      1: "1 (Level 1)"
+      2: "2 Level 2-4)"
+      3: "3 (Level 5-7)"
+      4: "4 (Level 8-10)"
+      placeholder: "eg. Tier 1"
+  type:
+    label: "type"
+    input: select
+    description: "Type"
+    options:
+      Bruiser: "Bruiser"
+      Horde: "Horde"
+      Minion: "Minion"
+      Ranged: "Ranged"
+      Skulk: "Skulk"
+      Social: "Social"
+      Solo: "Solo"
+      Standard: "Standard"
+      Support: "Support"
+  descriptioin:
+    label: "descriptioin"
+    input: string
+    description: "Description"
+  motives and tactics:
+    label: "motives and tactics"
+    input: text
+    description: "Motives and Tactics"
+    rows: 3
+  difficulty:
+    label: "difficulty"
+    input: string
+    description: "Difficulty"
+    placeholder: "eg. 12"
+  damage thresholds:
+    label: "damage thresholds"
+    input: string
+    description: "Damage Thresholds"
+    placeholder: "eg. 8/14"
+  hit points:
+    label: "hit points"
+    input: string
+    description: "Hit Points"
+  stress:
+    label: "stress"
+    input: string
+    description: "Stress"
+  attack modifier:
+    label: "attack modifier"
+    input: string
+    description: "Attack Modifier"
+    placeholder: "eg. +1"
+  standard attack:
+    label: "standard attack"
+    input: string
+    description: "Standard Attack"
+    placeholder: "eg. Daggers: Melee | 1d8+1 phy"
+  experience:
+    label: "experience"
+    input: string
+    description: "Experience"
+    placeholder: "eg. Thief +2"
+  features:
+    label: "features"
+    input: text
+    description: "Features"
+    rows: 3
+  img:
+    label: "img"
+    input: integer
+    description: "Portrait"
+    placeholder: "WA Image-ID"
+    render: image
+  Notes:
+    label: "Notes"
+    input: text
+    description: ""
+    rows: 3

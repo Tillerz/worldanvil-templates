@@ -1,0 +1,80 @@
+﻿fields:
+  name:
+    label: "Name"
+    input: string
+    description: "Character Name"
+    required: true
+  strength:
+    label: "Strength"
+    input: number
+    min: 0
+    max: 20
+  dexterity:
+    label: "Dexterity"
+    input: number
+    min: 0
+    max: 20
+  constitution:
+    label: "Constitution"
+    input: number
+    min: 0
+    max: 20
+  intelligence:
+    label: "Intelligence"
+    input: number
+    min: 0
+    max: 20
+  wisdom:
+    label: "Wisdom"
+    input: number
+    min: 0
+    max: 20
+  charisma:
+    label: "Charisma"
+    input: number
+    min: 0
+    max: 20
+  Strength Training:
+    label: "Strength Training"
+    input: number
+    description: "Strength Training"
+  Fine Motor Skill Training:
+    label: "Fine Motor Skill Training"
+    input: number
+    description: "Fine Motor Skill Training"
+  Endurance Training:
+    label: "Endurance Training"
+    input: number
+    description: "Endurance Training"
+  Concentration Training:
+    label: "Concentration Training"
+    input: number
+    description: "Concentration Training"
+  Performance Training:
+    label: "Performance Training"
+    input: number
+    description: "Performance Training"
+  Stillness Training:
+    label: "Stillness Training"
+    input: number
+    description: "Stillness Training"
+  Nature Study:
+    label: "Nature Study"
+    input: number
+    description: "Nature Study"
+  Prayer:
+    label: "Prayer"
+    input: number
+    description: "Prayer"
+  Book Study:
+    label: "Book Study"
+    input: number
+    description: "Book Study"
+  Weapon Training:
+    label: "Weapon Training"
+    input: number
+    description: "Weapon Training"
+  Tool Training:
+    label: "Tool Training"
+    input: number
+    description: "Tool Training"

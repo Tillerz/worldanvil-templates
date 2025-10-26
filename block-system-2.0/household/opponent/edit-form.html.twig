@@ -1,0 +1,57 @@
+﻿{% set roman = [ "I", "II", "III", "IIII", "V", "VI" ] %}
+<div class='container-fluid sheet-opponent'>
+  <div class='row'>
+    <div class='col-12 col-md-12'>
+      <div class='card opponent' id='card-opponent'>
+        <div class='card-body of'>
+          <h1>Opponent</h1>
+          <div class='row'>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl od ilbl-name'><label for='name'>Name</label></div><div class='ivar od ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' type='text' required=required /></div>
+            </div>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl od ilbl-wa-image-id'><label for='wa_image_id'>WA Image ID</label></div><div class='ivar od ivar-wa-image-id'><input value='{{variables.wa_image_id|default}}' class='form-control ivar ivar-wa-image-id c' id='wa_image_id' name='wa_image_id' type='number' /></div>
+            </div>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl od ilbl-type'><label for='type'>Type</label></div><div class='ivar od ivar-type'>
+                <select  class='form-control ivar ivar-type' id='type' name='type'>
+                  <option value='Basic Opponent' {% if variables.type|default == 'Basic Opponent' %}selected='selected' {% endif %} > Basic Opponent </option>
+                  <option value='Extreme Opponent' {% if variables.type|default == 'Extreme Opponent' %}selected='selected' {% endif %} > Extreme Opponent </option>
+                  <option value='Critical Opponent' {% if variables.type|default == 'Critical Opponent' %}selected='selected' {% endif %} > Critical Opponent </option>
+                  <option value='Colossal Opponent' {% if variables.type|default == 'Colossal Opponent' %}selected='selected' {% endif %} > Colossal Opponent </option>
+                </select></div>
+            </div>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl od ilbl-threat-level'><label for='threat_level'>Threat Level</label></div><div class='ivar od ivar-threat-level'><input value='{{variables.threat_level|default}}' class='form-control ivar ivar-threat-level c' id='threat_level' name='threat_level' type='number' min='0' max='5'/></div>
+            </div>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl od ilbl-stress'><label for='stress'>Stress (maximum)</label></div><div class='ivar od ivar-stress'><input value='{{variables.stress|default}}' class='form-control ivar ivar-stress c' id='stress' name='stress' type='number' min='1' /></div>
+            </div>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl od ilbl-stress-curr'><label for='stress_curr'>Stress (current)</label></div><div class='ivar od ivar-stress-curr'><input value='{{variables.stress_curr|default}}' class='form-control ivar ivar-stress-curr c' id='stress_curr' name='stress_curr' type='number' min='0' /></div>
+            </div>
+            <div class='col-12 col-md-6'>
+              <div class='ilbl od ilbl-stress-crux'><label for='stress_crux'>Crucial Boxes</label></div><div class='ivar od ivar-stress-crux'><input value='{{variables.stress_crux|default}}' class='form-control ivar ivar-stress-crux c' id='stress_crux' name='stress_crux' type='string' placeholder='eg. 3,5,8' /></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='col-12'>
+      <div class='card other' id='card-other'>
+        <div class='card-body of'>
+          <div class='ilbl od ilbl-moves'><label for='moves'>Moves</label></div><div class='ivar od ivar-moves'><input value='{{variables.moves|default}}' class='form-control ivar ivar-moves' id='moves' name='moves' type='text' /></div>
+          <div class='ilbl od ilbl-traits'><label for='traits'>Traits</label></div><div class='ivar od ivar-traits'><input value='{{variables.traits|default}}' class='form-control ivar ivar-traits' id='traits' name='traits' type='text' /></div>
+          <div class='ilbl od ilbl-optional-traits'><label for='optional_traits'>Optional Traits</label></div><div class='ivar od ivar-optional-traits'><input value='{{variables.optional_traits|default}}' class='form-control ivar ivar-optional-traits' id='optional_traits' name='optional_traits' type='text' /></div>
+          {% for i in 1..6 %}
+            {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+            {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <div class='ilbl {{eo}} ilbl-actions'><label for='actions'>Action {{roman[i-1]}}</label></div><div class='ivar {{eo}} ivar-actions'><input value='{{attribute(variables, 'actions_' ~ id)|default}}' class='form-control ivar ivar-actions' id='actions' name='actions_{{id}}' type='text' /></div>
+          {% endfor %}
+          <div class='ilbl od ilbl-description'><label for='description'>Description</label></div><div class='ivar od ivar-description'><div class='iContent'><textarea class='form-control ivar ivar-description mention' id='description' name='description' rows='3'  >{{variables.description|default}}</textarea></div></div>
+          <div class='ilbl od ilbl-moves-description'><label for='moves_description'>Move Details</label></div><div class='ivar od ivar-moves-description'><div class='iContent'><textarea class='form-control ivar ivar-moves-description mention' id='moves_description' name='moves_description' rows='3'  >{{variables.moves_description|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

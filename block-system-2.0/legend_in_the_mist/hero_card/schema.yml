@@ -1,0 +1,120 @@
+fields:
+# sheet: Legends in the Mist
+  # row
+    # col: col-12 col-md-12
+      # card: hero card: Hero Card
+        # card-body
+          # table
+  Name:
+    label: "Character Name"
+    input: string
+    required: true
+  Player Name:
+    label: "Player Name"
+    input: string
+  Portrait:
+    label: "Portrait"
+    input: integer
+    render: image
+          # /table
+          # table: horiz
+            # iter: 5
+  Companion:
+    label: "Companion"
+    input: string
+  Relationship Tag:
+    label: "Relationship Tag"
+    input: string
+            # /iter
+          # /table
+          # iter: 5
+  Promise:
+    label: "Promise"
+    input: checkbox
+          # /iter
+  Quintessences:
+    label: "Quintessences"
+    input: text
+    rows: 3
+  Backpack:
+    label: "Backpack"
+    input: text
+    rows: 3
+  Notes:
+    label: "Notes"
+    input: text
+    rows: 3
+        # /card-body   
+      # /card
+    # /col
+  # /row
+  # row
+    # iter: 0: 4
+    # col: col-12 col-md-6
+      # card: theme card: Theme Card
+        # card-body
+  Theme:
+    label: "Theme"
+    input: select
+    options:
+      "Origin: Circumstance": "Origin: Circumstance"
+      "Origin: Devotion": "Origin: Devotion"
+      "Origin: Past": "Origin: Past"
+      "Origin: People": "Origin: People"
+      "Origin: Personality": "Origin: Personality"
+      "Origin: Skill": "Origin: Skill"
+      "Origin: Trade": "Origin: Trade"
+      "Origin: Trait": "Origin: Trait"
+      "Adventure: Duty": "Adventure: Duty"
+      "Adventure: Influence": "Adventure: Influence"
+      "Adventure: Knowledge": "Adventure: Knowledge"
+      "Adventure: Prodigious Ability": "Adventure: Prodigious Ability"
+      "Adventure: Relic": "Adventure: Relic"
+      "Adventure: Uncanny Being": "Adventure: Uncanny Being"
+      "Greatness: Destiny": "Greatness: Destiny"
+      "Greatness: Dominion": "Greatness: Dominion"
+      "Greatness: Mastery": "Greatness: Mastery"
+      "Greatness: Monstrosity": "Greatness: Monstrosity"
+  Special Improvements:
+    label: "Special Improvements"
+    input: text
+    rows: 3
+          # iter: 30
+  Theme Tag qq:
+    label: "Theme Tag"
+    input: string
+  Theme Tag Used qq:
+    label: "Theme Tag Used"
+    input: checkbox
+          # /iter
+          # iter: 30
+  Theme Tag Neg qq:
+    label: "Theme Tag Neg"
+    input: string
+          # /iter
+          # iter: 50
+  Quest qq:
+    label: "Quest"
+    input: string
+          # /iter
+          # iter: 3
+  Abandon qq:
+    label: "Abandon"
+    input: checkbox
+          # /iter
+          # iter: 3
+  Improve qq:
+    label: "Improve"
+    input: checkbox
+          # /iter
+          # iter: 3
+  Milestone qq:
+    label: "Milestone"
+    input: checkbox
+          # /iter
+        # /card-body
+      # /card 
+    # /col
+    # /iter
+  # /row
+# /sheet

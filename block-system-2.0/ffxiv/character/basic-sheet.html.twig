@@ -133,7 +133,7 @@
   <div class='row'>
     <div class='col-12'>
       <div class='card' id='card-traits and other effects'>
-        <div class='card-header traits'>Traits And Other Effects{% set section="traits" %}<button title="Minimize" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapse{{section}}" href="#collapse{{section}}" role="button" aria-expanded="false" aria-controls="collapse{{section}}"><em class="fas fa-angle-down"></em></button></div>
+        <div class='card-header traits'>Traits And Other Effects {% set section="traits" %}<button title="Minimize" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapse{{section}}" href="#collapse{{section}}" role="button" aria-expanded="false" aria-controls="collapse{{section}}"><em class="fas fa-angle-down"></em></button></div>
           <div class='row collapse hide' id='collapse{{section}}'>
             {% for i in 1..5 %}
               {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}

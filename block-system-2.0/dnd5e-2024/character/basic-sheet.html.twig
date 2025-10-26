@@ -525,7 +525,8 @@ sam:	spell attack modifier (scm + proficiency)
 			</div>
 			<div class="card c">
 				<div class="card-header" title="Passive Perception">Passive Perception</div>
-				{% set pp = 10 + wis_bonus|number_format %}
+				{% set ppb = variables.pp_bonus|default|number_format %}
+				{% set pp = 10 + wis_bonus|number_format + ppb %}
 				{% if variables.perception_prof|default > 0 %}{% set pp = pp + pb %}{% endif %}
 				<div class="var od">{{pp}}</div>
 			</div>
@@ -1008,7 +1009,7 @@ sam:	spell attack modifier (scm + proficiency)
     <div class="row do-not-print">
         <div class="col-12 text-center small">
 				<br><br>
-                &trade; &amp; &copy; Wizards of the Coast - <a href="/w/sheet-creation/a/sheet-list">D &amp; D 5e Character Sheet v3.03</a>, made by Tillerz - <a href="/w/sheet-creation/board/dungeons-and-dragons-5e-28202429">Updated: 2025-02-15</a><br><br>
+                &trade; &amp; &copy; Wizards of the Coast - <a href="/w/sheet-creation/a/sheet-list">D &amp; D 5e Character Sheet v3.04</a>, made by Tillerz - <a href="/w/sheet-creation/board/dungeons-and-dragons-5e-28202429">Updated: 2025-06-11</a><br><br>
 				To print this sheet: Expand the spell book (if you have any entries there), then click "Print Sheet" at the top, select "Print to PDF" with a large format like A3.<br>Then print the resulting PDF to whichever format you need with "fit to page" selected.
         </div>
     </div>

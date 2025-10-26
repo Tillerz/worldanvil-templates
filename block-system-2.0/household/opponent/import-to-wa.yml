@@ -1,0 +1,80 @@
+﻿fields:
+  Name:
+    label: "Name"
+    input: string
+    description: "Name"
+    required: true
+  WA Image ID:
+    label: "WA Image ID"
+    input: integer
+    description: "WA Image ID"
+    render: image
+  Type:
+    label: "Type"
+    input: select
+    description: "Type"
+    options:
+      "Basic Opponent": "Basic Opponent"
+      "Extreme Opponent": "Extreme Opponent"
+      "Critical Opponent": "Critical Opponent"
+      "Colossal Opponent": "Colossal Opponent"
+  Threat Level:
+    label: "Threat Level"
+    input: integer
+    description: "Threat Level"
+    min: 0
+  Stress:
+    label: "Stress"
+    input: integer
+    description: "Stress"
+    min: 1
+  Stress Current:
+    label: "Stress Current"
+    input: integer
+    description: "Stress Current"
+  Moves:
+    label: "Moves"
+    input: string
+    description: "Moves"
+  Traits:
+    label: "Traits"
+    input: string
+    description: "Traits"
+  Optional Traits:
+    label: "Optional Traits"
+    input: string
+    description: "Optional Traits"
+  Actions 001:
+    label: "Actions 001"
+    input: string
+    description: "Actions"
+  Actions 002:
+    label: "Actions 002"
+    input: string
+    description: "Actions"
+  Actions 003:
+    label: "Actions 003"
+    input: string
+    description: "Actions"
+  Actions 004:
+    label: "Actions 004"
+    input: string
+    description: "Actions"
+  Actions 005:
+    label: "Actions 005"
+    input: string
+    description: "Actions"
+  Actions 006:
+    label: "Actions 006"
+    input: string
+    description: "Actions"
+  Description:
+    label: "Description"
+    input: text
+    description: "Description"
+    rows: 3
+  Moves Description:
+    label: "Moves Description"
+    input: text
+    description: "Moves Description"
+    rows: 3

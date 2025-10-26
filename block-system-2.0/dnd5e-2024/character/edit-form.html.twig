@@ -288,7 +288,6 @@ sam:	spell attack modifier (scm + proficiency)
 {% endmacro spell %}
 {# ---------------------------------------------- #}
 {# --- sheet --- #}
-
 <div class="container-fluid {{sheetname}}-{{style}}">
     <!-- Header -->
     <div class="row">
@@ -588,6 +587,14 @@ sam:	spell attack modifier (scm + proficiency)
                                             <input value='1' {% if attribute(variables, 'inspiration_' ~ id)|default == 1 %} checked='checked'{% endif %} id='inspiration' name='inspiration_{{id}}' type='checkbox' />
                                         {% endfor %}
                                     </center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="card">
+                                <div class="card-header hdr"><label for="pp_bonus">Passive Perception Bonus</label></div>
+                                <div class="card-body">
+                                    <input class="form-control c" type="text" value="{{ variables.pp_bonus|default }}" name="pp_bonus" id="pp_bonus" placeholder="eg. +5" />
                                 </div>
                             </div>
                         </div>

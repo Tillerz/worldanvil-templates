@@ -1,0 +1,44 @@
+﻿{% import _self as sheet %}{% set theme = variables.theme|default('vivid') %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set types = [ "Event", "Exploration", "Social", "Traversal" ] %}
+<div class='container-fluid sheet-daggerheart-environment'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card environment' id='card-environment'>
+        <div class='card-header environment'>Environment</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-name'><label for='name'>Name</label></th><td class='ivar od ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' type='text' required=required /></td></tr>
+            <tr><th class='ilbl ev ilbl-tier'><label for='tier'>Tier</label></th><td class='ivar ev ivar-tier'>
+              <select  class='form-control ivar ivar-tier' id='tier' name='tier'>
+                <option value='1' {% if variables.tier|default == '1' %}selected='selected' {% endif %} > 1 (Level 1) </option>
+                <option value='2' {% if variables.tier|default == '2' %}selected='selected' {% endif %} > 2 (Level 2-4) </option>
+                <option value='3' {% if variables.tier|default == '3' %}selected='selected' {% endif %} > 3 (Level 5-7) </option>
+                <option value='4' {% if variables.tier|default == '4' %}selected='selected' {% endif %} > 4 (Level 8-10) </option>
+                <option value='placeholder' {% if variables.tier|default == 'placeholder' %}selected='selected' {% endif %} > eg. Tier 1 </option>
+              </select></td></tr>
+            <tr><th class='ilbl od ilbl-type'><label for='type'>Type</label></th><td class='ivar od ivar-type'>
+              {% set x = variables.type|default %}<input value='{{x}}' list='types' class='form-control ivar ivar-type' id='type' name='type' />{{ _self.genList(types, 'types', x) }}
+            </td></tr>
+            <tr><th class='ilbl ev ilbl-description'><label for='description'>Description</label></th><td class='ivar ev ivar-description'><input value='{{variables.description|default}}' class='form-control ivar ivar-description' id='description' name='description' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-impulses'><label for='impulses'>Impulses</label></th><td class='ivar od ivar-impulses'><div class='iContent'><input value='{{variables.impulses|default}}' class='form-control ivar ivar-impulses' id='impulses' name='impulses' type='text' /></div></td></tr>
+            <tr><th class='ilbl ev ilbl-difficulty'><label for='difficulty'>Difficulty</label></th><td class='ivar ev ivar-difficulty'><input value='{{variables.difficulty|default}}' class='form-control ivar ivar-difficulty' id='difficulty' name='difficulty' placeholder='eg. 12' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-adversaries'><label for='adversaries'>Potential Adversaries</label></th><td class='ivar od ivar-adversaries'><input value='{{variables.adversaries|default}}' class='form-control ivar ivar-adversaries' id='adversaries' name='adversaries' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-features'><label for='features'>Features</label></th><td class='ivar od ivar-features'><div class='iContent'><textarea class='form-control ivar ivar-features ' id='features' name='features' rows='3'  >{{variables.features|default}}</textarea></div></td></tr>
+            <tr><th class='ilbl ev ilbl-img'><label for='img'>Image</label></th><td class='ivar ev ivar-img'><input value='{{variables.img|default}}' class='form-control ivar ivar-img c' id='img' name='img' placeholder='WA Image-ID' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes ' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

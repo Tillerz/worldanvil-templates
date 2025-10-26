@@ -5,6 +5,9 @@
    background: url(https://www.worldanvil.com/i/5530015/render) ;
    background-size: contain;
    padding: 20px;}
+.table th {
+   color: #202020!important;
+}
  .logo {
      background: url(https://www.worldanvil.com/i/4653188/render) center center no-repeat!important;
      height: 150px;

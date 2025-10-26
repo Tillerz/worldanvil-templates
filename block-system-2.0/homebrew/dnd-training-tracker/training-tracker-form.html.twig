@@ -1,0 +1,37 @@
+{% import _self as sheet %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set sheetname = 'dnd-training-tracker' %}
+{% set trainings = [ "Strength Training", "Fine Motor Skill Training", "Endurance Training", "Concentration Training", "Performance Training", "Stillness Training", "Nature Study", "Prayer", "Book Study", "Weapon Training", "Tool Training", "Language Practice" ] %}
+{# ---------------------------------------------- #}
+<div class="container-fluid {{sheetname}}">
+	<div class="row">
+		<div class="col-12"><div class="card"><div class="card-header hdr">Ability Training</div></div></div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                	<div class="row">
+                        <div class="col-12 col-md-5 r">
+                            <label for="name">Character Name</label>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <input class="form-control" type="text" value="{{ variables.name|default }}" name="name" id="name" required="required" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for a in trainings %}
+                        <div class="col-6 col-md-4 col-lg-2 c">
+                            <div class="box c">
+                                <div class="form-group c">
+                                {% set l = a|lower|replace({' ': "_"}) %}
+                                    <label for="{{l}}">{{a}}</label><br/>
+                                    <input class="form-control c" type="number" value="{{ attribute(variables, l)|default }}" name="{{l}}" id="{{l}} min=0 max=20" />
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

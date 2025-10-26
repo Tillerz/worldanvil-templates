@@ -1,4 +1,4 @@
-﻿{% import _self as sheet %}
+﻿{% import _self as sheet %}{% set theme = variables.theme|default('vivid') %}{% if theme == '' %}{% set theme = 'vivid' %}{% endif %}
 {% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
 {% set attributes = {
     "Agility": "Sprint,Leap,Maneuver",
@@ -24,7 +24,7 @@
 {% set domains = [ "Arcana", "Blade", "Bone", "Codex", "Grace", "Midnight", "Sage", "Splendor", "Valor" ] %}
 {% set ancestries = [ "Clank", "Drakona", "Dwarf", "Elf", "Faerie", "Faun", "Firbolg", "Fungril", "Galapa", "Giant", "Goblin", "Halfling", "Human", "Infernis", "Katari", "Orc", "Ribbet", "Simiah" ] %}
 {% set communities = { "Highborne" : 1553645, "Loreborne" : 1553647, "Orderborne" : 1553650, "Ridgeborne" : 1553651, "Seaborne" : 1553653, "Slyborne" : 1553654, "Underborne" : 1553655, "Wanderborne" : 1553656, "Wildborne" : 1553657 } %}
-<div class='container-fluid sheet-daggerheart form'>
+<div class='container-fluid sheet-daggerheart form {{theme}}'>
   <div class='row'>
     <div class='col-12 col-md-8'>
       <div class='card personal' id='card-personal'>
@@ -48,6 +48,13 @@
               </td></tr>
             <tr><th class='ilbl od ilbl-level'><label for='level'>Level</label></th><td class='ivar od ivar-level'><input value='{{variables.level|default(1)}}' class='form-control ivar ivar-level c' id='level' name='level' type='number' /></td></tr>
             <tr><th class='ilbl ev ilbl-img'><label for='img'>Portrait</label></th><td class='ivar ev ivar-img'><input value='{{variables.img|default}}' class='form-control ivar ivar-img c' id='img' name='img' type='number' placeholder='WA Image-ID'/></td></tr>
+
+            <tr><th class='ilbl od ilbl-theme'><label for='theme'>Theme/Style for the sheet</label></th><td class='ivar {{eo}} ivar-theme'>
+              <select class='form-control ivar ivar-theme c' id='theme' name='theme'>
+                <option value='vivid' {% if variables.theme|default == 'vivid' %}selected='selected' {% endif %} > vivid </option>
+                <option value='dark' {% if variables.theme|default == 'dark' %}selected='selected' {% endif %} > dark </option>
+              </select>
+            </td></tr>
             <tr><th class='ilbl note' colspan=2>Only for level 5 or higher:</th></tr>
             <tr><th class='ilbl od ilbl-mclass'><label for='mclass'>Second Class (Multiclass)</label></th><td class='ivar od ivar-mclass'>
               {% set x = variables.mclass|default %}<input value='{{variables.mclass|default}}' list='classes' class='form-control ivar ivar-mclass' id='mclass' name='mclass' type='text' />{{ _self.genList(classes|keys, 'classes', x) }}
@@ -56,7 +63,6 @@
             <tr><th class='ilbl ev ilbl-msubclass'><label for='msubclass'>Second Subclass (Multiclass)</label></th><td class='ivar ev ivar-msubclass'>
               <input value='{{variables.msubclass|default}}' list='subclasses' class='form-control ivar ivar-msubclass' id='msubclass' name='msubclass' type='text' />{{ _self.genList(subclasses, 'subclasses', x) }}
               </td></tr>
-
           </table>
         </div>
       </div>

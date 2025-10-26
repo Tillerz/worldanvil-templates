@@ -1,0 +1,65 @@
+fields:
+# sheet: Opponent
+  # row
+    # col: col-12 col-md-8
+      # card: opponent: Opponent
+        # card-body
+  Name:
+    label: "Name"
+    input: string
+    required: true
+  WA Image ID:
+    label: "WA Image ID"
+    input: integer
+    render: image
+  Type:
+    label: "Type"
+    input: select
+    options:
+      "Basic Opponent": "Basic Opponent"
+      "Extreme Opponent": "Extreme Opponent"
+      "Critical Opponent": "Critical Opponent"
+      "Colossal Opponent": "Colossal Opponent"
+  Threat Level:
+    label: "Threat Level"
+    input: integer
+    min: 0
+          # dots: 12
+  Stress:
+    label: "Stress"
+    input: integer
+    min: 1
+  ####
+        # /card-body
+      # /card
+    # /col
+    # col: col-12
+      # card: other
+        # card-body
+  Moves:
+    label: "Moves"
+    input: string
+  Traits:
+    label: "Traits"
+    input: string
+  Optional Traits:
+    label: "Optional Traits"
+    input: string
+          # iter: 6
+  Actions:
+    label: "Actions"
+    input: string
+          # /iter
+  Description:
+    label: "Description"
+    input: text
+    rows: 3
+  Moves Description:
+    label: "Moves Description"
+    input: text
+    rows: 3
+        # /card-body
+      # /card
+    # /col
+  # /row
+# /sheet

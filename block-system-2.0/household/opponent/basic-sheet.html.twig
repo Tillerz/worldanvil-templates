@@ -1,0 +1,58 @@
+﻿{% set roman = [ "I", "II", "III", "IIII", "V", "VI" ] %}
+<div class='container-fluid sheet-opponent'>
+  <div class='row'>
+    <div class='col-12 col-md-8'>
+      <div class='card opponent' id='card-opponent'>
+        <div class='card-body of'>
+          <h1>{{variables.name|default}}</h1>
+          <h2>{{variables.type|default}}</h2>
+          {% if variables.type|default != 'Colossal Opponent' %}
+          <h2>{% set max = variables.threat_level|default %}{% for i in 1..max %}<i class="fa-solid fa-spider" title="Threat Level"></i> {% endfor %}</h2><br>
+          {% endif %}
+          <b>STRESS</b>: {% set curr = variables.stress_curr|default %}{% set max = variables.stress|default %}
+            {% set crucials = variables.stress_crux|default|replace({' ': ''})|split(',') %}
+            {% for i in 1..max %}
+                {% if i <= curr %}
+                  {% if i in crucials %}
+                  <i class="fa-sharp fa-solid fa-burst"></i>
+                  {% else %}
+                  <i class='fa-sharp fa-solid fa-square'></i>
+                  {% endif %}
+                {% else %}
+                  {% if i in crucials %}
+                  <i class="fa-sharp fa-thin fa-burst"></i>
+                  {% else %}
+                  <i class='fa-sharp fa-thin fa-square'></i>
+                  {% endif %}
+                {% endif %}
+            {% endfor %}<br>
+          <b>MOVES:</b> {{variables.moves|default}}<br>
+          <b>TRAITS:</b> {{variables.traits|default}}<br>
+          {% if variables.optional_traits|default != "" %}<b>Optional Traits:</b> {{variables.optional_traits|default}}<br>{% endif %}
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-4'>
+      <div class='var var-wa-image-id c'>[img:{{variables.wa_image_id|default}}]</div>
+    </div>
+    <div class='col-12'>
+      <div class='card other' id='card-other'>
+        <div class='card-body of'>
+          <b>ACTIONS:</b><br>
+          <table class='actiontable'>
+          {% for i in 1..6 %}
+            {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+            <tr><td class='r' width=50px>{{roman[i-1]}} - </td><td><div class='var var-actions'> {{attribute(variables, 'actions_' ~ id)|default}}</td></tr>
+          {% endfor %}
+          </table><br>
+          {% if variables.description|default != "" %}
+          <div class='var od var-description'> {{variables.description|default|nl2br}} </div><br>
+          {% endif %}
+          {% if variables.moves_description|default != "" %}
+          <div class='var ev var-moves-description'> {{variables.moves_description|default|nl2br}} </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
