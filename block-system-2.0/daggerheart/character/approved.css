@@ -4,4 +4,5 @@
 @font-face {
     font-family: Alegreya Regular; font-style: normal; font-weight: 400; src: url(https://worldanvil-static.sfo2.cdn.digitaloceanspaces.com/fonts/Alegreya-Regular.otf)
 }
-.card-header { background-image: linear-gradient( 45deg, #ff8000, #a000a0, #ffcf00 ) }
+.vivid .card-header { background-image: linear-gradient( 45deg, #ff8000, #a000a0, #ffcf00 ) }
+.dark .card-header { background-image: linear-gradient( 45deg, #5e0018, #350080, #4d0056 ) }
