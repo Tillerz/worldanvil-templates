@@ -94,7 +94,7 @@
                 </tr>{% endif %}
         {% endfor %}</table>{% endif %}{% endmacro %}
 {# ----------------------------------------------------------------------- #}
-{% macro displayArmorsTable(dataString) %}
+{% macro displayArmorsTable(dataString) %}{% if "block:" in dataString %}{{dataString}}{% else %}
     <table width="100%" class="bs">
         <tr>
             <th colspan="7" class="row-title nbg">ARMOUR</th>
@@ -115,7 +115,7 @@
                     {% set valueTab = dataStringRow|trim|split('|') %} 
                         {% for i in 0..6 %}<td class="text-center">{{ valueTab[i] }}</td>{% endfor %}
                     </tr>{% endif %}
-        {% endfor %}</table>{% endmacro %}
+        {% endfor %}</table>{% endif %}{% endmacro %}
 {# ----------------------------------------------------------------------- #}
 {% macro displaySpellTable(known,perDay,bonus,dc) %}{% if known ~ perDay ~ bonus ~ dc != "" %}
 <div class="col-12 col-xs-12">
