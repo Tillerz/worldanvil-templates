@@ -1,0 +1,49 @@
+﻿{% import _self as sheet %}{% set theme = variables.theme|default('vivid') %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+{% set types = [ "Bruiser", "Horde", "Minion", "Ranged", "Skulk", "Social", "Solo", "Standard", "Support"] %}
+<div class='container-fluid sheet-daggerheart-adversary'>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card adversary' id='card-adversary'>
+        <div class='card-header adversary'>Adversary</div>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-name'><label for='name'>Name</label></th><td class='ivar od ivar-name'><input value='{{variables.name|default}}' class='form-control ivar ivar-name' id='name' name='name' type='text' required=required /></td></tr>
+            <tr><th class='ilbl ev ilbl-tier'><label for='tier'>Tier</label></th><td class='ivar ev ivar-tier'>
+              <select  class='form-control ivar ivar-tier' id='tier' name='tier'>
+                <option value='1' {% if variables.tier|default == '1' %}selected='selected' {% endif %} > 1 (Level 1) </option>
+                <option value='2' {% if variables.tier|default == '2' %}selected='selected' {% endif %} > 2 (Level 2-4) </option>
+                <option value='3' {% if variables.tier|default == '3' %}selected='selected' {% endif %} > 3 (Level 5-7) </option>
+                <option value='4' {% if variables.tier|default == '4' %}selected='selected' {% endif %} > 4 (Level 8-10) </option>
+                <option value='placeholder' {% if variables.tier|default == 'placeholder' %}selected='selected' {% endif %} > eg. Tier 1 </option>
+              </select></td></tr>
+            <tr><th class='ilbl od ilbl-type'><label for='type'>Type</label></th><td class='ivar od ivar-type'>
+              {% set x = variables.type|default %}<input value='{{x}}' list='types' class='form-control ivar ivar-type' id='type' name='type' />{{ _self.genList(types, 'types', x) }}
+            </td></tr>
+            <tr><th class='ilbl ev ilbl-description'><label for='description'>Description</label></th><td class='ivar ev ivar-description'><input value='{{variables.description|default}}' class='form-control ivar ivar-description' id='description' name='description' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-motives-and-tactics'><label for='motives_and_tactics'>Motives and Tactics</label></th><td class='ivar od ivar-motives-and-tactics'><div class='iContent'><textarea class='form-control ivar ivar-motives-and-tactics ' id='motives_and_tactics' name='motives_and_tactics' rows='3'  >{{variables.motives_and_tactics|default}}</textarea></div></td></tr>
+            <tr><th class='ilbl ev ilbl-difficulty'><label for='difficulty'>Difficulty</label></th><td class='ivar ev ivar-difficulty'><input value='{{variables.difficulty|default}}' class='form-control ivar ivar-difficulty' id='difficulty' name='difficulty' placeholder='eg. 12' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-damage-thresholds'><label for='damage_thresholds'>Damage Thresholds</label></th><td class='ivar od ivar-damage-thresholds'><input value='{{variables.damage_thresholds|default}}' class='form-control ivar ivar-damage-thresholds' id='damage_thresholds' name='damage_thresholds' placeholder='eg. 8/14' type='text' /></td></tr>
+            <tr><th class='ilbl ev ilbl-hit-points'><label for='hit_points'>Hit Points</label></th><td class='ivar ev ivar-hit-points'><input value='{{variables.hit_points|default}}' class='form-control ivar ivar-hit-points' id='hit_points' name='hit_points' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-stress'><label for='stress'>Stress</label></th><td class='ivar od ivar-stress'><input value='{{variables.stress|default}}' class='form-control ivar ivar-stress' id='stress' name='stress' type='text' /></td></tr>
+            <tr><th class='ilbl ev ilbl-attack-modifier'><label for='attack_modifier'>Attack Modifier</label></th><td class='ivar ev ivar-attack-modifier'><input value='{{variables.attack_modifier|default}}' class='form-control ivar ivar-attack-modifier' id='attack_modifier' name='attack_modifier' placeholder='eg. +1' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-standard-attack'><label for='standard_attack'>Standard Attack</label></th><td class='ivar od ivar-standard-attack'><input value='{{variables.standard_attack|default}}' class='form-control ivar ivar-standard-attack' id='standard_attack' name='standard_attack' placeholder='eg. Daggers: Melee | 1d8+1 phy' type='text' /></td></tr>
+            <tr><th class='ilbl ev ilbl-experience'><label for='experience'>Experience</label></th><td class='ivar ev ivar-experience'><input value='{{variables.experience|default}}' class='form-control ivar ivar-experience' id='experience' name='experience' placeholder='eg. Thief +2' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-features'><label for='features'>Features</label></th><td class='ivar od ivar-features'><div class='iContent'><textarea class='form-control ivar ivar-features ' id='features' name='features' rows='3'  >{{variables.features|default}}</textarea></div></td></tr>
+            <tr><th class='ilbl ev ilbl-img'><label for='img'>Portrait</label></th><td class='ivar ev ivar-img'><input value='{{variables.img|default}}' class='form-control ivar ivar-img c' id='img' name='img' placeholder='WA Image-ID' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes ' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
