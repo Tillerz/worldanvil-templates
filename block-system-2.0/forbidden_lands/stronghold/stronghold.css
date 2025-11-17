@@ -1,0 +1,80 @@
+ * {
+  border: 0;
+  position: relative;
+  font-weight: 400;
+  letter-spacing: -0.04em;}
+div.fl-sheet {
+  -webkit-box-decoration-break: slice;
+  -o-box-decoration-break: slice;
+  box-decoration-break: slice;
+  background-color: #222;
+  background: url(https://www.worldanvil.com/i/1076966/render)}
+.card { margin: 10px 0px }
+.card-body,
+.noback { background-color: transparent!important}
+body,  p,  div,  a,  span,  small,  strong,  h3,  h4,  b,  .small {
+  font-family: Eczar!important;
+  font-size: 16px;
+  font-weight: 400;
+  color: #404040;}
+.card-header {
+  padding: 10px 20px;
+  position: relative;
+  text-align: center;
+  background: #81281C20;}
+.card-header {
+  background: #81281C;
+  text-align: left;
+  padding: 10px 20px;}
+ .card,  .img-fluid {
+  padding:0px;
+  background: transparent;
+  border: 1px solid #404040;
+  border-radius: 0px;}
+.card-header {
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #e0e0e0!important;
+  -webkit-text-fill-color: #e0e0e0;
+}
+.card-header {
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #404040;}
+.c { text-align: center}
+.r { text-align: right}
+.l { text-align: left}
+.of { overflow-y: auto; width: 100% }
+.ev { background-color:#81281C20!important; padding-left: 10px; padding-right:10px }
+.od { background-color:#ffffff20!important; padding-left: 10px; padding-right:10px }
+.lbl { font-size: 16px; font-weight:800; padding-left:10px; padding-right:10px}
+.hdr { font-size:16px; background: #60606050; padding-left:10px; padding-right:10px; font-weight: 800 }
+.mytable { width: 100%; padding-top:5px; border-spacing: 2px; border-collapse: separate;}
+.badge { font-size: 16px; padding: 5px 20px 1px 20px!important;
+   color: #404040; -webkit-text-fill-color: #404040;
+   border: 1px solid #404040; float:right; letter-spacing: 0.1pt; margin-top: 3px; margin-right:10px}
+b,  .bold { font-weight: 800}
+.rolldice {
+   font-size: 16px!important;
+   background: #81281C!important;
+   color: #e0e0e0;
+   -webkit-text-fill-color: #e0e0e0;
+   padding: 6px 10px 1px 10px!important}
+h1,  .small,  .small a,  .artist-credits,  .artist-credits a { color: #404040; -webkit-text-fill-color: #404040;}
+.btn,  .btn-dark,  .btn-default { color:#ffffff; -webkit-text-fill-color: #ffffff; background-color: #404040 !important}
+.nobg { background-color: #a59c84 !important}
+.artist-credits,  .credit-art-title,  .credit-artist-name { text-align: center; font-size:10px !important}
+.var-notes { padding: 10px }
+::-webkit-input-placeholder { opacity: .5}
+input[required] { border: 2px solid red!important;}
+input.form-control,  select.form-control,  select.form-control option,  textarea.form-control,
+input.form-control:focus,  select.form-control:focus,  select.form-control:focus option,  textarea.form-control:focus
+ { color:#404040 !important; background-color :#ffffff50 !important; border: 1px solid black }
+textarea.form-control { margin: 10px 1px 0px 0px}
+textarea.form-control { min-height: 6em!important;}
+input,  textarea { caret-color: #404040 !important}
+input::-webkit-outer-spin-button,  input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0 }

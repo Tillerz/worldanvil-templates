@@ -1,18 +1,17 @@
-{
+* {
   border: 0;
   position: relative;
   color: #404040!important;
   -webkit-text-fill-color: #404040;
-  font-family: Eczar;
   font-weight: 400;
-  font-size: 20px;
-  padding:0px!important}
+  letter-spacing: -0.04em;
+}
  div.fl-sheet {
   -webkit-box-decoration-break: slice;
   -o-box-decoration-break: slice;
   box-decoration-break: slice;
   background-color: #222;
-  background: url(https://www.worldanvil.com/i/1076966/render) }
+  background: url(https://www.worldanvil.com/i/1076966/render)}
  .logo {
     background: url(https://www.worldanvil.com/i/3467764/render) center center no-repeat!important;
     height: 200px;
@@ -23,13 +22,13 @@
     background-color: transparent!important}
  body,  p,  div,  a,  span,  small,  strong,  h3,  h4,  b,  .small {
   font-family: Eczar!important;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   color: #404040;}
-.small, .small a { font-size:16px }
+ .small,  .small a { font-size:16px}
  h1,  h2 {
   font-family: Skranji Regular!important;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   color: #404040;}
  .contentContainer {
@@ -65,7 +64,7 @@
  .inputLabel {
   display: block;
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 800;
   padding: 2px 8px;
   margin-top: 3px;}
@@ -77,7 +76,7 @@
   text-align:left;
   text-transform: uppercase}
  .contentContainer .inputContent {
-  font-size: 20px;
+  font-size: 16px;
   color: #58180d;}
  .headerContainer {
   background: #81281C;
@@ -90,7 +89,7 @@
   border-radius: 0px;}
  .headerContent {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #e0e0e0!important;
@@ -98,13 +97,13 @@
   padding: 0px 0px 0px 10px}
  .headerContainer .headerContent {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #404040;}
  .list {
   text-align:left;
-  font-size: 20px;
+  font-size: 16px;
   line-height:2em;}
  .c {
   text-align: center}
@@ -118,28 +117,27 @@
  .ev { background-color:#81281C20!important;}
  .odd { background-color:#ffffff20!important;}
  input[required] { border: 2px solid red!important;}
- .att { font-size: 20px; padding: 2px}
- .attu { font-size: 20px; padding: 2px; background:#60606050!important}
- .cond { font-size: 20px; padding: 2px}
- .txt { font-size: 20px}
- .lbl { font-size: 20px; font-weight:800; padding-left:10px}
- .lblf { font-size: 20px; font-weight:800}
- .hdr { font-size:20px; background: #60606050 }
+ .att { font-size: 16px; padding: 2px}
+ .attu { font-size: 16px; padding: 2px; background:#60606050!important}
+ .cond { font-size: 16px; padding: 2px}
+ .txt { font-size: 16px}
+ .lbl { font-size: 16px; font-weight:800; padding-left:10px}
+ .lblf { font-size: 16px; font-weight:800}
+ .hdr { font-size:16px; background: #60606050}
  .alttable {
  padding-top:5px;
  border-spacing: 2px;
  border-collapse: separate;}
- .badge {
-   font-size: 20px; background:#fff; padding: 5px 20px 1px 20px!important;
+ .badge { font-size: 16px; padding: 5px 20px 1px 20px!important;
    color: #404040; -webkit-text-fill-color: #404040;
    border: 1px solid #404040; float:right; letter-spacing: 0.1pt; margin-top: 3px; margin-right:10px}
  .float {
-   font-size: 20px; padding: 1px 1px 5px 20px!important;
+   font-size: 16px; padding: 1px 1px 5px 20px!important;
    float:right; letter-spacing: 0.1pt; margin-top: 3px}
  h1 { font-size:48px; text-align:center; font-weight:800; padding-top:20px}
  b,  .bold { font-weight: 800}
  .rolldice {
-   font-size: 20px!important;
+   font-size: 16px!important;
    background: #81281C!important;
    color: #e0e0e0;
    -webkit-text-fill-color: #e0e0e0;
@@ -155,12 +153,17 @@
   -webkit-appearance: none;
   margin: 0;}
  h1,  .small,  .small a,  .artist-credits,  .artist-credits a { color: #404040; -webkit-text-fill-color: #404040;}
- .form-control,  .form-control:focus { font-size: 20px!important; padding:2px 2px 2px 4px; color:#404040; background:#fff;}
- input.form-control { margin: 1px 1px 1px 1px}
- textarea.form-control { margin: 10px 1px 0px 0px}
  .sm { width:100px!important}
- .smf,  .smf:focus { font-size: 20px!important}
-.btn, .btn-dark, .btn-default {-webkit-text-fill-color: #fff; background: #444; }
+ .smf,  .smf:focus { font-size: 16px!important}
+ .btn,  .btn-dark,  .btn-default {-webkit-text-fill-color: #404040; background-color: #ffffff30 !important }
  ::-webkit-input-placeholder { opacity: .5}
+ xxxinput.form-control { margin: 1px 1px 1px 1px; color:#404040 }
+ .form-control,  .form-control:focus { font-size: 16px!important; padding:2px 2px 2px 4px; color:#404040 }
+.form-control:focus { background-color :#ffffff30 !important }
+ textarea.form-control { margin: 10px 1px 0px 0px}
  textarea.form-control { min-height: 3em!important;}
- select.form-control:not([size]):not([multiple]) { height: 2.45rem!important; width:150px; margin: 1px 1px 1px 1px; padding:0px 2px 0px 2px; color:#404040; background-color:#fff!important;}
+ select.form-control, select.form-control option { height: 2.45rem!important; width:150px; margin: 1px 1px 1px 1px; padding:0px 2px 0px 2px; color:#404040; background-color: #ffffff30 !important }
+input, textarea { caret-color: #404040 !important }
+.nobg { background-color: #a59c84 !important }
+.var-gr-name { font-weight: 800 }
+.artist-credits, .credit-artist-name { text-align: center; font-size:10px !important }
