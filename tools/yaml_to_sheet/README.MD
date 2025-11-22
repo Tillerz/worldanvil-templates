@@ -334,7 +334,7 @@ Input:
 
 
 ## Loops
-### iter
+### iter <start> [end]
 
 Repeats the block inbetween iter and /iter `count` times and also adds _`count` to all variable names. Default for counter is 1..10.
 If you give a count value , it is 1..`count`. if you hand over two numbers, it is `start`..`count`.
@@ -355,7 +355,7 @@ Input:
 
 Input:
 ```yaml
-# iter: <start>: <end>
+# iter: <start>: [end]
 # /iter
 ```
 
@@ -394,6 +394,54 @@ Example output for iter and table: horiz combination:
     {% endfor %}
     </table>
 ```
+
+The second variant is not doing a count from start to end but instead loops over all elements of a list, and if an index is given, will then pick the <index>th element of the found sub-list.
+
+Input:
+```yaml
+# iter: <TwigArrayName>[: index]
+# /iter
+
+
+Full example input:
+
+```yaml
+
+include/data.yml
+{% set ability_list = [ 'Tenacity', 'Agility', 'Vigor', 'Acuity', 'Allure', 'Logic', 'Ethic', 'Craft' ] %}
+
+schema.yml
+...
+    # iter: ability_list
+  Ability Base:
+    label: "Ability Base"
+    input: string
+  Ability Item Modifier:
+    label: "Ability Item Modifier"
+    input: string
+    # /iter
+# /table
+```
+
+Example output for iter and table: horiz combination:
+```html
+  {% for i in ability_list %}
+    {% set id = i|lower|replace({' ': '_'}) %}
+    {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+    <div class='ilbl {{eo}} ilbl-ability-base'><label for='ability_base'>Ability Base</label></div>
+    <div class='ivar {{eo}} ivar-ability-base'>
+      <input value='{{attribute(variables, 'ability_base_' ~ id)|default}}' class='form-control ivar ivar-ability-base' id='ability_base' name='ability_base_{{id}}' type='text' />
+    </div>
+    <div class='ilbl {{eo}} ilbl-ability-item-modifier'><label for='ability_item_modifier'>Ability Item Modifier</label></div>
+    <div class='ivar {{eo}} ivar-ability-item-modifier'>
+      <input value='{{attribute(variables, 'ability_item_modifier_' ~ id)|default}}' class='form-control ivar ivar-ability-item-modifier' id='ability_item_modifier' name='ability_item_modifier_{{id}}' type='text' />
+    </div>
+  {% endfor %}
+```
+
+When using also the `[index]`, it will do `{% set id = i[index]|lower|replace({' ': '_'}) %}` instead.
+
+---
 
 Full example see in the example folder. Note: the indentation of the # command lines is not necessary, it is just helpful to see which blocks are properly closed.
 The fields must be properly indented.

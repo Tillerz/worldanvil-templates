@@ -52,33 +52,15 @@ fields:
     # /col
   # /row
   # row
-    # col: col-12 col-md-4
-      # card: brawn
+    # col: col-12 col-md-12
+      # card: Attributes
         # card-body
-          # dots: 10
-  brawn:
-    label: "Brawn"
+          # iter: attribute_list
+            # dots: 10
+  Value:
+    label: "Value"
     input: string
-        # /card-body
-      # /card
-    # /col
-    # col: col-12 col-md-4
-      # card: agility
-        # card-body
-          # dots: 10
-  agility:
-    label: "Agility"
-    input: string
-        # /card-body
-      # /card
-    # /col
-    # col: col-12 col-md-4
-      # card: vitality
-        # card-body
-          # dots: 10
-  vitality:
-    label: "Vitality"
-    input: string
+          # /iter
         # /card-body
       # /card
     # /col
