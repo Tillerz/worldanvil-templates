@@ -334,7 +334,7 @@ Input:
 
 
 ## Loops
-### iter <start> [end]
+### iter [start] [end]
 
 Repeats the block inbetween iter and /iter `count` times and also adds _`count` to all variable names. Default for counter is 1..10.
 If you give a count value , it is 1..`count`. if you hand over two numbers, it is `start`..`count`.
@@ -355,7 +355,7 @@ Input:
 
 Input:
 ```yaml
-# iter: <start>: [end]
+# iter: [start]: [end]
 # /iter
 ```
 
@@ -395,18 +395,19 @@ Example output for iter and table: horiz combination:
     </table>
 ```
 
-The second variant is not doing a count from start to end but instead loops over all elements of a list, and if an index is given, will then pick the <index>th element of the found sub-list.
+### iter [list name] [index]
+
+The second variant of `iter` is not doing a count from start to end but instead loops over all elements of a list, and if an index is given, will then pick the `index`-th element of the found sub-list. The list must be defined as a one-liner in an include file ending with its filename ending with `data.yml`.
 
 Input:
 ```yaml
-# iter: <TwigArrayName>[: index]
+# iter: <TwigListName>[: index]
 # /iter
 
 
 Full example input:
 
 ```yaml
-
 include/data.yml
 {% set ability_list = [ 'Tenacity', 'Agility', 'Vigor', 'Acuity', 'Allure', 'Logic', 'Ethic', 'Craft' ] %}
 
@@ -420,7 +421,6 @@ schema.yml
     label: "Ability Item Modifier"
     input: string
     # /iter
-# /table
 ```
 
 Example output for iter and table: horiz combination:
@@ -439,7 +439,11 @@ Example output for iter and table: horiz combination:
   {% endfor %}
 ```
 
-When using also the `[index]`, it will do `{% set id = i[index]|lower|replace({' ': '_'}) %}` instead.
+When using also the `[index]`, it will create `{% set id = i[index]|lower|replace({' ': '_'}) %}` instead. This allows you to use lists like this, index 0 would pick the skill name, index 1 would pick the ability name of that skill:
+
+```yaml
+{% set skill_list = [ ['Brawling', 'Tenacity'], ['Stealth', 'Agility'], ... ] %}
+```
 
 ---
 
