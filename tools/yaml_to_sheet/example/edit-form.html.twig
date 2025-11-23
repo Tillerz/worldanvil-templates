@@ -35,11 +35,12 @@
   <div class='row'>
     <div class='col-12 col-md-12'>
       <div class='card attributes' id='card-attributes'>
+        <div class='card-header attributes'>Attributes</div>
         <div class='card-body of'>
-          {% for i in attribute_list %}
-            {% set id = i|lower|replace({' ': '_'}) %}
-            {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
-            <div class='ilbl {{eo}} ilbl-value'><label for='value'>Value</label></div><div class='ivar {{eo}} ivar-value'><input value='{{attribute(variables, 'value_' ~ id)|default}}' class='form-control ivar ivar-value' id='value' name='value_{{id}}' type='text' /></div>
+          {% set eo = 'ev' %}{% for i in attribute_list %}
+            {% set id = i|lower|replace({' ': '_'}) %}{% set ic = i|lower|replace({' ': '-'}) %}
+            {% if eo == 'od' %}{% set eo = 'ev' %}{% else %}{% set eo = 'od' %}{% endif %}
+            <div class='ilbl {{eo}} ilbl-value-{{ic}}'><label for='value'>Value {{i}}</label></div><div class='ivar {{eo}} ivar-value-{{ic}}'><input value='{{attribute(variables, 'value_' ~ id)|default}}' class='form-control ivar ivar-value' id='value' name='value_{{id}}' type='text' /></div>
           {% endfor %}
         </div>
       </div>
@@ -119,7 +120,7 @@
     <div class='row do-not-print'>
       <div class='col-12 c small'>
         <br>
-        Sheet made by Tillerz - Updated: 2025-11-22</a><br>
+        Sheet made by Tillerz - Updated: 2025-11-23</a><br>
       </div>
     </div>
 </div>

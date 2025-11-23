@@ -1,7 +1,7 @@
 #
 # @name: yaml to sheet
-# @version: 1.7
-# @date: 2025-11-22
+# @version: 1.8
+# @date: 2025-11-23
 #
 
 import re
@@ -170,6 +170,7 @@ def doLayout(line, context):
                         context["sheet_output"].append(s.rstrip())
                         context["form_output"].append(s.rstrip())
 
+            # if there are any data files, parse them and extract the variables
             if filename.endswith('data.twig'):
                 # Dictionary to store the extracted variables
                 twig_variables = {}
@@ -197,15 +198,19 @@ def doLayout(line, context):
         context["iterOn"] = True
         context["iterFrom"] = 1
         context["iterTo"] = 10
+        eostring = "{% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}"
         isForeach = False
         if len(cmd) > 1:
+            # it is a number range
             if cmd[1].strip().isdigit():
                 context["iterTo"] = int(cmd[1].strip())
                 if len(cmd) > 2:
                     context["iterFrom"] = int(cmd[1].strip())
                     context["iterTo"] = int(cmd[2].strip())
+            # it is a foreach loop over a list/array
             else:
                 isForeach = True
+                eostring = "{% if eo == 'od' %}{% set eo = 'ev' %}{% else %}{% set eo = 'od' %}{% endif %}"
                 # example: iter: ability_list: 0 for a list like [ 'ability name 1', 'attribute' ], [ 'ability name 2', 'attribute' ], ...
                 # this would contain ability_list
                 context["iterFrom"] = cmd[1].strip().lower()
@@ -223,8 +228,8 @@ def doLayout(line, context):
 
         if context["table"] == 1 and context["horiz"] == 1:
             if isForeach:
-                s1 = "{% " + f"for i in {context['iterFrom']}" + " %}###"
-                s2 = "".ljust(context["tabsize"]) + "{% set id = i"+arr+"|lower|replace({' ': '_'}) %}###"
+                s1 = "{% set eo = 'ev' %}{% " + f"for i in {context['iterFrom']}" + " %}###"
+                s2 = "".ljust(context["tabsize"]) + "{% set id = i"+arr+"|lower|replace({' ': '_'}) %}{% set ic = i|lower|replace({' ': '-'}) %}###"
             else:
                 s1 = "{% " + f"for i in {context['iterFrom']}..{context['iterTo']}" + " %}###"
                 s2 = "".ljust(context["tabsize"]) + "{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}###"
@@ -234,17 +239,17 @@ def doLayout(line, context):
             context["f_table"] += s2
         else:
             if isForeach:
-                context["sheet_output"].append("{% " + f"for i in {context['iterFrom']}" + " %}")
-                context["sheet_output"].append("".ljust(context["tabsize"]) + "{% set id = i"+arr+"|lower|replace({' ': '_'}) %}")
+                context["sheet_output"].append("{% set eo = 'ev' %}{% " + f"for i in {context['iterFrom']}" + " %}")
+                context["sheet_output"].append("".ljust(context["tabsize"]) + "{% set id = i"+arr+"|lower|replace({' ': '_'}) %}{% set ic = i|lower|replace({' ': '-'}) %}")
             else:
                 context["sheet_output"].append("{% " + f"for i in {context['iterFrom']}..{context['iterTo']}" + " %}")
                 context["sheet_output"].append("".ljust(context["tabsize"]) + "{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}")
         if context["table"] == 1 and context["horiz"] == 1:
-            s1 = "".ljust(context["tabsize"]) + "{% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}###<tr>###"
+            s1 = "".ljust(context["tabsize"]) + eostring + "###<tr>###"
             context["s_table"] += s1
             context["f_table"] += s1
         else:
-            context["sheet_output"].append("".ljust(context["tabsize"]) + "{% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}")
+            context["sheet_output"].append("".ljust(context["tabsize"]) + eostring )
         context["clevel"] = 1
     elif cmd[0] == '/iter':
         context["counters"]["iter"] -= 1
@@ -625,22 +630,28 @@ def doField(field, params, context):
     # === basic sheet ==============================================================
 
     # --- print the label
+    lpostfix = ""
+    lpostfix_class = ""
+    lpostfix_form = ""
     tdwith_orig=tdwidth
     if (label != ""):
         lalign = align
         if isLoop:
             lalign = ""
+            if isForeach:
+                lpostfix = ' {{i}}'
+                lpostfix_class = '-{{ic}}'
         if (context["table"] == 1):
             if (context["horiz"] == 1):
                 if (context["split"] == 1):
                     eo2 = "od"
-                    context["s_tableheader"] += "<th class='lbl %s lbl-%s %s' %s> %s </th>###" % (eo2, fieldname_for_class, lalign, tdwidth, label)
+                    context["s_tableheader"] += "<th class='lbl %s lbl-%s%s %s' %s> %s%s </th>###" % (eo2, fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
                 else:
-                    so += "<th class='lbl %s lbl-%s %s' %s title='$DESC'> %s </th>" % (context["eo"], fieldname_for_class, lalign, tdwidth, label)
+                    so += "<th class='lbl %s lbl-%s%s %s' %s title='$DESC'> %s%s </th>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
             else:
-                so += "<th class='lbl %s lbl-%s %s' %s title='$DESC'> %s </th>" % (context["eo"], fieldname_for_class, lalign, tdwidth, label)
+                so += "<th class='lbl %s lbl-%s%s %s' %s title='$DESC'> %s%s </th>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
         else:
-            so += "<div class='lbl %s lbl-%s %s' %s title='$DESC'> %s </div>" % (context["eo"], fieldname_for_class, lalign, tdwidth, label)
+            so += "<div class='lbl %s lbl-%s%s %s' %s title='$DESC'> %s%s </div>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
         # if we have a label/th, do not use the width for the field value also
         tdwidth = ""
 
@@ -649,7 +660,7 @@ def doField(field, params, context):
         so += "<td "
     else:
         so += "<div "
-    so += "class='var %s var-%s %s' %s title='$DESC'>" % (context["eo"], fieldname_for_class, align, tdwidth)
+    so += "class='var %s var-%s%s %s' %s title='$DESC'>" % (context["eo"], fieldname_for_class, lpostfix_class, align, tdwidth)
 
     if ("text" == type):
         if isLoop:
@@ -737,16 +748,16 @@ def doField(field, params, context):
             if (context["horiz"] == 1):
                 if (context["split"] == 1):
                     eo2 = "od"
-                    context["f_tableheader"] += "<th class='ilbl %s ilbl-%s %s' %s><label for='%s'>%s</label></th>###" % (eo2, fieldname_for_class, lalign, tdwidth, fieldname_for_form, label)
+                    context["f_tableheader"] += "<th class='ilbl %s ilbl-%s%s %s' %s><label for='%s'>%s%s</label></th>###" % (eo2, fieldname_for_class, lpostfix_class, lalign, tdwidth, fieldname_for_form, label, lpostfix)
                     tdwidth = ""
                 else:
-                    fo += "<th class='ilbl %s ilbl-%s %s %s' title='$DESC'><label for='%s'>%s</label></th>" % (context["eo"], fieldname_for_class, lalign, tdwidth, fieldname_for_form, label)
+                    fo += "<th class='ilbl %s ilbl-%s%s %s %s' title='$DESC'><label for='%s'>%s%s</label></th>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, fieldname_for_form, label, lpostfix)
                     tdwidth = ""
             else:
-                fo += "<th class='ilbl %s ilbl-%s %s' %s title='$DESC'><label for='%s'>%s</label></th>" % (context["eo"], fieldname_for_class, lalign, tdwidth, fieldname_for_form, label)
+                fo += "<th class='ilbl %s ilbl-%s%s %s' %s title='$DESC'><label for='%s'>%s%s</label></th>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, fieldname_for_form, label, lpostfix)
                 tdwidth = ""
         else:
-            fo = "<div class='ilbl %s ilbl-%s %s' %s title='$DESC'><label for='%s'>%s</label></div>" % (context["eo"], fieldname_for_class, lalign, tdwidth, fieldname_for_form, label)
+            fo = "<div class='ilbl %s ilbl-%s%s %s' %s title='$DESC'><label for='%s'>%s%s</label></div>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, fieldname_for_form, label, lpostfix)
             tdwidth = ""
         # if we have a label/th, do not use the width for the field value also
 
@@ -755,7 +766,7 @@ def doField(field, params, context):
         fo += "<td "
     else:
         fo += "<div "
-    fo += "class='ivar %s ivar-%s %s' %s title='$DESC'>" % (context["eo"], fieldname_for_class, align, tdwidth)
+    fo += "class='ivar %s ivar-%s%s %s' %s title='$DESC'>" % (context["eo"], fieldname_for_class, lpostfix_class, align, tdwidth)
 
     # text field
     if ("text" == type):
