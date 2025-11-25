@@ -1,18 +1,13 @@
-{
-    padding: 0px !important;
+.cypher-sheet,  a,  body,  .descriptor,  .type,  .focus,  small,  strong,  h1,  h2,  h3,  h4,  h5, .card, .card-body, .card-header, table {
     font-family: Teko Regular;
     font-weight: 400;
-}
- .cypher-sheet,  a,  body,  .descriptor,  .type,  .focus,  small,  strong,  h1,  h2,  h3,  h4,  h5 {
-    font-weight: 400;
     font-size: 20px}
-.black { color: black; }
-.bgimage {
+ .black { color: black;}
+ .bgimage {
     background-repeat: repeat;
     background-attachment: fixed;
     box-shadow: inset 0 0 0 2000px #ffffffd0;
-    background: url(https://www.worldanvil.com/i/4787026/render)
-}
+    background: url(https://www.worldanvil.com/i/4787026/render)}
  .logocontainer {
     height: 175px;}
  .logo {
@@ -22,8 +17,7 @@
  .header,  .header th {
     font-size: 20px;
     background-color: var(--gray) ;
-    color: var(--white)
- }
+    color: var(--white)}
  .padding-left {
     padding-left: 16px}
  textarea .form-control,  .list-group {
@@ -33,8 +27,7 @@
  .list-group-item {
     text-align: left;
     border-radius: 0px;
-    border-color: var(--gray-dark)
-}
+    border-color: var(--gray-dark)}
  .line-spacer {
     padding: none !important;
     margin: none !important}
@@ -42,32 +35,24 @@
     padding: 2px 2px 2px 2px;
     margin: 1px 10px 0px 10px;
     display: inline}
-.btn { background: none; border:none; color: var(--gray-dark) }
-.card {
+ .btn { background: none; border:none; color: var(--lightest-gray) !important }
+ .card {
     margin: 2px;
     border: 1px solid var(--gray-dark) !important;
-    border-radius: .25rem !important;
-}
-.card .col {
-    color: var(--gray-dark) ;
-    background-color: var(--white);
+    border-radius: .25rem !important;}
+ .card .col {
     margin: 0px 10px;
-}
-.table-striped th, .table-striped td {
-    color: var(--gray-dark) !important;
-    background-color: var(--white) !important;
+   }
+ .table-striped th,  .table-striped td {
     padding-left: 10px;
-    padding-right: 10px
-}
-th { font-weight: 400 !important }
-.card-header {
+    padding-right: 10px}
+ th { font-weight: 400 !important}
+ .card-header {
     padding: 0px;
-    padding-left: 0.10em
-}
-.card-body,  .collapse {
+    padding-left: 0.10em}
+ .card-body,  .collapse {
     padding: 5px !important;
-    width: 100%
-}
+    width: 100%}
  .label-roller {
     position: relative;
     top: -3px}
@@ -96,12 +81,11 @@ th { font-weight: 400 !important }
     font-size: 30px}
  .table-striped {
     border: 1px solid #ccc}
- .c {
-    text-align: center}
+ .c { text-align: center !important }
  .form-control,  .form-control:focus {
     font-size: 18px !important}
  input.form-control {
-    max-width: 450px}
+    max-width: 450px; border: 1px solid var(white) !important; border: 1px solid var(--gray) !important }
  select.form-control {
     width: auto !important}
  table.cypher {
@@ -111,5 +95,11 @@ th { font-weight: 400 !important }
  textarea.form-control-tracker {
     min-height: 13em !important;
     width: 100%}
- .od { background-color: var(--white) }
- .ev { background-color: var(--light) }
+ .od { background-color: #40404030 }
+ .ev { background-color: #40404010 }
+.form-control, .form-control-tracker {
+    padding: 2px;
+    background-color: var(--gray) !important;
+    color: var(--white)
+}
+.notes { margin: 10px !important }

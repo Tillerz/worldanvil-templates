@@ -313,21 +313,21 @@
                 <div class="card-header header text-center">Damage Tracking</div>
                 <div class="card-body">
                     <div class="row m-1">
-                        <div class="col-8 dk od">
+                        <div class="col-10 dk od">
                             <span class="h4 card-title" title="Armour: Subtract your armour from incoming damage"><i class="fas fa-shield-alt"></i> Armour</span>
                             {% if variables.armour is defined and variables.armour > 0 %} {% set tt = variables.armour %} {% else %} {% set tt = 0 %} {% endif %}
                         </div>
-                        <div class="col-4 dk od text-center">
+                        <div class="col-2 dk od text-center">
                             <span class="h4 card-text" title="Armour {{tt}}">{{tt}}</span>
                         </div>
-                        <div class="col-8 ev">
+                        <div class="col-10 ev">
                             <span class="h4 card-title" title="Armour Speed Cost"> Speed Cost</span>
                             {% if variables.armour_speed_cost is defined and variables.armour_speed_cost > 0 %} {% set tt = variables.armour_speed_cost %} {% else %} {% set tt = 0 %} {% endif %}
                         </div>
-                        <div class="col-4 ev text-center">
+                        <div class="col-2 ev text-center">
                             <span class="h4 card-text" title="Armour Speed Cost {{tt}}">{{tt}}</span>
                         </div>
-                        <div class="col-8 dk od">
+                        <div class="col-10 dk od">
                             {% set tt = 'Hale is the normal state for a character. All three stat Pools are at 1 or higher, and the PC has no penalties from harmful conditions.' %}
                             {% if variables.status is defined %}
                                 {% if variables.status == 'Impaired' %}{% set tt = 'Impaired is a wounded or injured state. Effort costs +1 per level, ignore minor and major effect results on rolls, combat roll of 17-20 deals only +1 damage.' %}{% endif %}
@@ -337,7 +337,7 @@
                             <span class="h4 card-title"><i class="fas fa-heartbeat"></i> State</span>
                             {% if variables.status is defined %}{% set tt = variables.status %}{% else %}{% set tt = "Hale" %}{% endif %}
                         </div>
-                        <div class="col-4 dk od text-center">
+                        <div class="col-2 dk od text-center">
                             <span class="h4 card-text">{{tt}}</span>
                         </div>
                         <div class="col-12 ev text-center">
@@ -462,7 +462,7 @@
                             <tr>
                                 <th>Rest</th>
                                 <th class="c">Duration</th>
-                                <th class="c">Already Taken</th>
+                                <th class="c" width='130px'>Already Taken</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -498,7 +498,7 @@
             <div class="card my-2">
                 {% set section = "Notes" %}
                 <div class="card-header header text-center">{{section}} <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#collapse{{section}}" href="#collapse{{section}}" role="button" aria-expanded="true" aria-controls="collapse{{section}}"><em class="fas fa-angle-down"></em></button></div>
-                <div class="card-body collapse hide" id = "collapse{{section}}">
+                <div class="card-body collapse hide notes" id="collapse{{section}}">
                     {{ variables.notes|default|nl2br }}
                 </div>
             </div>
@@ -513,17 +513,17 @@ Use all your options to reduce the difficulty, if it is still above zero, roll a
 <table width="100%">
 <tr class="header"><th>Difficulty</th><th class="c">0</th><th class="c">1</th><th class="c">2</th><th class="c">3</th><th class="c">4</th><th class="c">5</th><th class="c">6</th><th class="c">7</th><th class="c">8</th><th class="c">9</th><th class="c">10</th></tr>
 <tr><th title="Target Number">TN</th>
-<th class="c" title="Routine - Anyone can do this basically every time. No Roll required.">-</th>
-<th class="c" title="Simple - Most people can do this most of the time.">[roll:1d20>=3|3]</th>
-<th class="c" title="Standard - Typical task requiring focus, but most people can usually do this.">[roll:1d20>=6|6]</th>
-<th class="c" title="Demanding - Requires full attention; most people have a 50/50 chance to succeed.">[roll:1d20>=9|9]</th>
-<th class="c" title="Difficult - Trained people have a 50/50 chance to succeed.">[roll:1d20>=12|12]</th>
-<th class="c" title="Challenging - Even trained people often fail.">[roll:1d20>=15|15]</th>
-<th class="c" title="Intimidating - Normal people almost never succeed.">[roll:1d20>=18|18]</th>
-<th class="c" title="Formidable - Impossible without skills or great effort.">21</th>
-<th class="c" title="Heroic - A task worthy of tales told for years afterward.">24</th>
-<th class="c" title="Immortal - A task worthy of legends that last lifetimes.">27</th>
-<th class="c" title="Impossible - A task that normal humans couldn't consider.">30</th>
+<th class="c" width='8%' title="Routine - Anyone can do this basically every time. No Roll required.">-</th>
+<th class="c" width='8%' title="Simple - Most people can do this most of the time.">[roll:1d20>=3|3]</th>
+<th class="c" width='8%' title="Standard - Typical task requiring focus, but most people can usually do this.">[roll:1d20>=6|6]</th>
+<th class="c" width='8%' title="Demanding - Requires full attention; most people have a 50/50 chance to succeed.">[roll:1d20>=9|9]</th>
+<th class="c" width='8%' title="Difficult - Trained people have a 50/50 chance to succeed.">[roll:1d20>=12|12]</th>
+<th class="c" width='8%' title="Challenging - Even trained people often fail.">[roll:1d20>=15|15]</th>
+<th class="c" width='8%' title="Intimidating - Normal people almost never succeed.">[roll:1d20>=18|18]</th>
+<th class="c" width='8%' title="Formidable - Impossible without skills or great effort.">21</th>
+<th class="c" width='8%' title="Heroic - A task worthy of tales told for years afterward.">24</th>
+<th class="c" width='8%' title="Immortal - A task worthy of legends that last lifetimes.">27</th>
+<th class="c" width='8%' title="Impossible - A task that normal humans couldn't consider.">30</th>
 </tr>
 </table>
 </div>
@@ -532,7 +532,7 @@ result 0 = failure, 1 = success<br><br>
 </div>
     <div class="row">
         <div class="col-12 text-center copyright">
-                &trade; &amp; &copy; Monte Cook Games<br><a href="/w/sheet-creation/a/sheet-list">Cypher Sheet v2.7, works with Cypher 1.0 and 2.0, Numenera and The Strange</a>, made by Tillerz - Updated: 2023-08-14
+                &trade; &amp; &copy; Monte Cook Games<br><a href="/w/sheet-creation/a/sheet-list">Cypher Sheet v2.8, works with Cypher 1.0 and 2.0, Numenera and The Strange</a>, made by Tillerz - Updated: 2025-11-25
         </div>
     </div>    
 </div>
