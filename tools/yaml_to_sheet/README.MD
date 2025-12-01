@@ -1,5 +1,9 @@
 # Creating a sheet or statblock for World Anvil
 
+## TODO/BUGS
+
+- nosplit in combination with iter created wrong tr tags.
+
 ## Preparations
 
 - If you are working locally, make sure to have a version of Python 3 installed.
