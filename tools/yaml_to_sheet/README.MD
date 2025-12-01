@@ -94,7 +94,15 @@ Input:
 
 This will add a select box to your sheet. The select box will get the name "Some Name", class name for css and the id will be "some-name", and the form field will have the name "some_name". The saved value for the options will be "first" and "second", and it will display "Some String" and "Another String" in the select box.
 
-# Script parameters
+# Script command line parameters
+
+```
+-d or --debug for more console output
+-q or --quiet for no console output (except errors)
+-f or --folder <foldername> to switch into a subfolder for reading/writing
+```
+
+# Script yaml file commands
 
 Also see example input and output in the example/ folder. Do not enter these &lt;brackets&gt;, they only tell you this is a string to replace with something else.
 

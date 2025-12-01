@@ -1,0 +1,57 @@
+fields:
+# sheet: table test
+  # row
+    # col: col-12 col-md-3
+      # card: table
+        # table
+  field 1:
+    label: "Field 1"
+    input: string
+  field 2:
+    label: "Field 2"
+    input: string
+  field 3:
+    label: "Field 3"
+    input: string
+        # /table
+      # /card
+    # /col
+    # col: col-12 col-md-3
+      # card: table horiz
+        # table: horiz
+  field 4:
+    label: "Field 4"
+    input: string
+  field 5:
+    label: "Field 5"
+    input: string
+  field 6:
+    label: "Field 6"
+    input: string
+        # /table
+      # /card
+    # /col
+    # col: col-12 col-md-3
+      # card: table iter
+        # table
+          # iter: 3
+  field:
+    label: "Field"
+    input: string
+          # /iter
+        # /table
+      # /card
+    # /col
+    # col: col-12 col-md-3
+      # card: table horiz iter
+        # table: horiz
+          # iter: 3
+  field:
+    label: "Field"
+    input: string
+          # /iter
+        # /table
+      # /card
+    # /col
+  # /row
+# /sheet
