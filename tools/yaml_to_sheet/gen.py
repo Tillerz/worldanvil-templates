@@ -1,7 +1,7 @@
 #
 # @name: yaml to sheet
-# @version: 1.8
-# @date: 2025-11-23
+# @version: 1.9
+# @date: 2025-12-01
 #
 
 import re
@@ -61,6 +61,8 @@ context = {
     "f_tableheader": "",
     "s_table": "",
     "f_table": "",
+    "s_tr": 0,
+    "f_tr": 0,
     "width": "",
     "tr_open": 0,
     "quit": 0,
@@ -86,7 +88,7 @@ def clean(line, level):
         Formatted line.
     """
     global today
-    line = "".ljust(level*context["tabsize"])+s.replace("TIMESTAMP", today)+"\n"
+    line = "".ljust(level*context["tabsize"])+line.replace("TIMESTAMP", today)+"\n"
 
     # remove superfluous spaces
     line = line.replace("' >", "'>")
@@ -338,18 +340,18 @@ def doLayout(line, context):
         context["clevel"] = 1
     elif cmd[0] == '/table':
         context["counters"]["table"] -= 1
-        tro_h = ""
-        trc_h = ""
+        trOpen_h = ""
+        trClose_h = ""
         if context["s_tableheader"] != "" and context["horiz"] == 1 and (context["iter_in_table"] == 1 or context["split"] == 1) and context["s_tableheader"].find("<tr>") == -1:
-            tro_h = "<tr>"
-            trc_h = "</tr>"
+            trOpen_h = "<tr>"
+            trClose_h = "</tr>"
         if context["s_table"] != "":
-            context["s_table"] = context["s_table"].replace("$TABLEHEADER", tro_h + "###" + context["s_tableheader"] + "###" + trc_h + "###")
+            context["s_table"] = context["s_table"].replace("$TABLEHEADER", trOpen_h + "###" + context["s_tableheader"] + "###" + trClose_h + "###")
             tmp = re.split('###', context["s_table"])
             for s in tmp:
                 context["sheet_output"].append(s)
         if context["f_table"] != "":
-            context["f_table"] = context["f_table"].replace("$TABLEHEADER", tro_h + "###" + context["f_tableheader"] + "###" + trc_h + "###")
+            context["f_table"] = context["f_table"].replace("$TABLEHEADER", trOpen_h + "###" + context["f_tableheader"] + "###" + trClose_h + "###")
             tmp = re.split('###', context["f_table"])
             for s in tmp:
                 context["form_output"].append(s)
@@ -358,6 +360,8 @@ def doLayout(line, context):
             context["form_output"].append('</tr>')
         context["sheet_output"].append('</table>')
         context["form_output"].append('</table>')
+        context["s_tr"] = 0
+        context["f_tr"] = 0
         context["iter_in_table"] = 0
         context["horiz"] = 0
         context["split"] = 1
@@ -630,21 +634,12 @@ def doField(field, params, context):
     if context["debug"]:
         print("    DEBUG: table %s, iter %s, foreach %s, horiz %s, split %s" % (context["table"], isLoop, isForeach, context["horiz"], context["split"]) )
 
+    # regular div section
     if (context["table"] == 1):
-        if isLoop:
-            if (context["horiz"] == 0):
-                so += "<tr>"
-                fo += "<tr>"
-            else:
-                if (context["split"] == 1):
-                    if (context["tr_open"] == 0):
-                        so += "<tr>"
-                        fo += "<tr>"
-                        context["tr_open"] = 1
-        else:
-            if (context["horiz"] == 0):
-                so += "<tr>"
-                fo += "<tr>"
+        # table with one entry per line
+        if (context["horiz"] == 0):
+            so += "<tr>"
+            fo += "<tr>"
 
     if (isLoop or (context["table"] == 1 and context["horiz"] == 1)):
         context["eo"] = "{{eo}}"
@@ -674,9 +669,9 @@ def doField(field, params, context):
             if (context["horiz"] == 1):
                 if (context["split"] == 1):
                     eo2 = "od"
-                    context["s_tableheader"] += "<th class='lbl %s lbl-%s%s %s' %s> %s%s </th>###" % (eo2, fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
+                    context["s_tableheader"] += "<th class='lbl %s lbl-%s%s %s' %s> %s%s </th>" % (eo2, fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
                 else:
-                    so += "<th class='lbl %s lbl-%s%s %s' %s title='$DESC'> %s%s </th>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
+                    so += "<th class='lbl %s lbl-%s%s %s' %s title='$DESC'> %s%s </th>###" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
             else:
                 so += "<th class='lbl %s lbl-%s%s %s' %s title='$DESC'> %s%s </th>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
         else:
@@ -686,6 +681,10 @@ def doField(field, params, context):
 
     # --- print the saved data, different per input type:
     if (context["table"] == 1):
+        if (context["horiz"] == 1) and not isLoop:
+            if context["s_tr"] == 0:
+                context["s_tr"] = 1
+                so += "<tr>"
         so += "<td "
     else:
         so += "<div "
@@ -747,22 +746,18 @@ def doField(field, params, context):
             so += "{% for i in 1.."+context["dots"]+" %}{% if i <= curr %}<i class='fa-solid fa-square'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}{% endfor %}"
             context["dots"] = 0
 
-    # table
-    if (context["table"] == 1):
-        so += "</td>"
-        if isLoop:
-            if (context["horiz"] == 0):
-                so += "</tr>"
-        else:
-            if (context["horiz"] == 0):
-                so += "</tr>"
-            else:
-                if (context["split"] == 1):
-                    if (context["tr_open"] == 0):
-                        so += "</tr>"
-                        context["tr_open"] = 0
-    else:
+    # regular div section
+    if (context["table"] == 0):
         so += "</div>"
+    else:
+        # it's a table
+        so += "</td>"
+        # table with one entry per line
+        if (context["horiz"] == 0):
+            so += "</tr>"
+        else:
+            if not isLoop:
+                so += "</tr>"
 
     # === edit form =============================================================
 
@@ -792,6 +787,10 @@ def doField(field, params, context):
 
     # --- print the saved data, different per input type:
     if (context["table"] == 1):
+        if (context["horiz"] == 1) and not isLoop:
+            if context["f_tr"] == 0:
+                context["f_tr"] = 1
+                fo += "<tr>"
         fo += "<td "
     else:
         fo += "<div "
@@ -896,23 +895,18 @@ def doField(field, params, context):
             fo += "<input value='1' class='c' {% if variables.$ID|default > 0 %} checked='checked'{% endif %} id='$ID' name='$ID' type='checkbox' />"
         fo = fo.replace("$ID", fieldname_for_form)
 
-    # table
-    if (context["table"] == 1):
-        fo += "</td>"
-        if isLoop:
-            if (context["horiz"] == 0):
-                fo += "</tr>"
-        else:
-            if (context["horiz"] == 0):
-                fo += "</tr>"
-            else:
-                if (context["split"] == 1):
-                    if (context["tr_open"] == 0):
-                        fo += "</tr>"
-                        # context["f_tableheader"] += "</tr>"
-                        context["tr_open"] = 0
-    else:
+    # regular div section
+    if (context["table"] == 0):
         fo += "</div>"
+    else:
+        # it's a table
+        fo += "</td>"
+        # table with one entry per line
+        if (context["horiz"] == 0):
+            fo += "</tr>"
+        else:
+            if not isLoop:
+                fo += "</tr>"
 
     # --- end form -----------------------------------------------------------------
 
