@@ -1,0 +1,87 @@
+fields:
+# sheet: stronghold
+  # row
+    # col: col-12
+      # card: stronghold details: Stronghold Details
+        # card-body
+          # table
+  name:
+    label: "Name"
+    input: string
+  location:
+    label: "Location"
+    input: string
+  defense rating:
+    label: "Defense Rating"
+    input: integer
+  notes:
+    input: text
+    rows: 3  
+  img:
+    label: "Image"
+    input: integer
+    render: image
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12 col-md-6
+      # card: functions: Functions
+        # card-body
+          # table: horiz
+            # iter: 99
+  function name:
+    label: "Name"
+    input: string
+  function number:
+    label: "Number"
+    input: integer
+  function production:
+    label: "Production / Effect"
+    input: string
+            # /iter
+          # /table
+        # /card-body
+      # /card
+    # /col
+    # col: col-12 col-md-6
+      # card: hirelings: Hirelings
+        # card-body
+          # table: horiz
+            # iter: 99
+  hireling name:
+    label: "Name"
+    input: string
+  hireling number:
+    label: "Number"
+    input: integer
+  hireling salary:
+    label: "Salary"
+    input: string
+            # /iter
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+  # row
+    # col: col-12 col-md-4
+      # card: stockpile: Stockpile
+        # card-body
+          # table: horiz
+            # iter: 30
+  stockpile name:
+    label: "Name"
+    input: string
+  stockpile units:
+    label: "Units"
+    input: integer
+            # /iter
+          # /table
+        # /card-body
+      # /card
+    # /col
+  # /row
+# /sheet

@@ -1,17 +1,18 @@
  {
    padding: 0px !important;
-   font-family: Teko Regular !important;
+   font-family: Teko !important;
    font-weight: 400}
  .cypher-sheet,  a,  body,  .descriptor,  .type,  .focus,  small,  strong,  h1,  h2,  h3,  h4,  h5,  td,  th,  .btn {
    background-color: white;
    color: #4F2026;
-   font-family: Teko Regular !important;
+   font-family: Teko !important;
    font-weight: 400;
    font-size: 18px}
  .header,  .level {
    font-size: 36px;
-   color: #222222;
-   text-transform: uppercase}
+   text-transform: uppercase;
+   color: var(--gray)
+}
  textarea .form-control,  .list-group {
    width: 100% !important}
  .form-control {
@@ -90,9 +91,9 @@
    min-height: 3em !important;
    width: 100%}
  b {
-   color: #222222 !important}
+   color: var(--gray) !important}
  th,  td {
-   color: #222222 !important;
+   color: var(--lightest-gray) !important;
    background: none !important;}
  .list-group-item {
    background: none !important;
@@ -105,7 +106,7 @@
  th {
    font-weight: 800;}
  th,  .dk,  .od {
-   background-color: #CCC8BF !important}
+   background-color: var(--gray) !important}
  .table-striped tr {
    border: none !important}
  .float-right {
@@ -129,8 +130,8 @@
  .table-striped tbody tr:nth-of-type(odd )
 {
    background-color: #00000010 !important}
- .ivar.ev,  .var.ev { background-color: #00000000 !important}
- .ivar.od,  .var.od { background-color: #00000010 !important}
+ .ivar.ev,  .var.ev { background-color: #40404000 !important}
+ .ivar.od,  .var.od { background-color: #40404020 !important}
  .card { border:0!important}
  .level {
     float: right!important;

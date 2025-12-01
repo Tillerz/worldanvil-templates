@@ -1,0 +1,2639 @@
+﻿fields:
+  name:
+    label: "name"
+    input: string
+    description: "Name"
+  location:
+    label: "location"
+    input: string
+    description: "Location"
+  defense rating:
+    label: "defense rating"
+    input: integer
+    description: "Defense Rating"
+  notes:
+    label: "notes"
+    input: text
+    description: ""
+    rows: 3
+  img:
+    label: "img"
+    input: integer
+    description: "Image"
+    render: image
+  function name 001:
+    label: "function name 001"
+    input: string
+    description: "Name"
+  function name 002:
+    label: "function name 002"
+    input: string
+    description: "Name"
+  function name 003:
+    label: "function name 003"
+    input: string
+    description: "Name"
+  function name 004:
+    label: "function name 004"
+    input: string
+    description: "Name"
+  function name 005:
+    label: "function name 005"
+    input: string
+    description: "Name"
+  function name 006:
+    label: "function name 006"
+    input: string
+    description: "Name"
+  function name 007:
+    label: "function name 007"
+    input: string
+    description: "Name"
+  function name 008:
+    label: "function name 008"
+    input: string
+    description: "Name"
+  function name 009:
+    label: "function name 009"
+    input: string
+    description: "Name"
+  function name 010:
+    label: "function name 010"
+    input: string
+    description: "Name"
+  function name 011:
+    label: "function name 011"
+    input: string
+    description: "Name"
+  function name 012:
+    label: "function name 012"
+    input: string
+    description: "Name"
+  function name 013:
+    label: "function name 013"
+    input: string
+    description: "Name"
+  function name 014:
+    label: "function name 014"
+    input: string
+    description: "Name"
+  function name 015:
+    label: "function name 015"
+    input: string
+    description: "Name"
+  function name 016:
+    label: "function name 016"
+    input: string
+    description: "Name"
+  function name 017:
+    label: "function name 017"
+    input: string
+    description: "Name"
+  function name 018:
+    label: "function name 018"
+    input: string
+    description: "Name"
+  function name 019:
+    label: "function name 019"
+    input: string
+    description: "Name"
+  function name 020:
+    label: "function name 020"
+    input: string
+    description: "Name"
+  function name 021:
+    label: "function name 021"
+    input: string
+    description: "Name"
+  function name 022:
+    label: "function name 022"
+    input: string
+    description: "Name"
+  function name 023:
+    label: "function name 023"
+    input: string
+    description: "Name"
+  function name 024:
+    label: "function name 024"
+    input: string
+    description: "Name"
+  function name 025:
+    label: "function name 025"
+    input: string
+    description: "Name"
+  function name 026:
+    label: "function name 026"
+    input: string
+    description: "Name"
+  function name 027:
+    label: "function name 027"
+    input: string
+    description: "Name"
+  function name 028:
+    label: "function name 028"
+    input: string
+    description: "Name"
+  function name 029:
+    label: "function name 029"
+    input: string
+    description: "Name"
+  function name 030:
+    label: "function name 030"
+    input: string
+    description: "Name"
+  function name 031:
+    label: "function name 031"
+    input: string
+    description: "Name"
+  function name 032:
+    label: "function name 032"
+    input: string
+    description: "Name"
+  function name 033:
+    label: "function name 033"
+    input: string
+    description: "Name"
+  function name 034:
+    label: "function name 034"
+    input: string
+    description: "Name"
+  function name 035:
+    label: "function name 035"
+    input: string
+    description: "Name"
+  function name 036:
+    label: "function name 036"
+    input: string
+    description: "Name"
+  function name 037:
+    label: "function name 037"
+    input: string
+    description: "Name"
+  function name 038:
+    label: "function name 038"
+    input: string
+    description: "Name"
+  function name 039:
+    label: "function name 039"
+    input: string
+    description: "Name"
+  function name 040:
+    label: "function name 040"
+    input: string
+    description: "Name"
+  function name 041:
+    label: "function name 041"
+    input: string
+    description: "Name"
+  function name 042:
+    label: "function name 042"
+    input: string
+    description: "Name"
+  function name 043:
+    label: "function name 043"
+    input: string
+    description: "Name"
+  function name 044:
+    label: "function name 044"
+    input: string
+    description: "Name"
+  function name 045:
+    label: "function name 045"
+    input: string
+    description: "Name"
+  function name 046:
+    label: "function name 046"
+    input: string
+    description: "Name"
+  function name 047:
+    label: "function name 047"
+    input: string
+    description: "Name"
+  function name 048:
+    label: "function name 048"
+    input: string
+    description: "Name"
+  function name 049:
+    label: "function name 049"
+    input: string
+    description: "Name"
+  function name 050:
+    label: "function name 050"
+    input: string
+    description: "Name"
+  function name 051:
+    label: "function name 051"
+    input: string
+    description: "Name"
+  function name 052:
+    label: "function name 052"
+    input: string
+    description: "Name"
+  function name 053:
+    label: "function name 053"
+    input: string
+    description: "Name"
+  function name 054:
+    label: "function name 054"
+    input: string
+    description: "Name"
+  function name 055:
+    label: "function name 055"
+    input: string
+    description: "Name"
+  function name 056:
+    label: "function name 056"
+    input: string
+    description: "Name"
+  function name 057:
+    label: "function name 057"
+    input: string
+    description: "Name"
+  function name 058:
+    label: "function name 058"
+    input: string
+    description: "Name"
+  function name 059:
+    label: "function name 059"
+    input: string
+    description: "Name"
+  function name 060:
+    label: "function name 060"
+    input: string
+    description: "Name"
+  function name 061:
+    label: "function name 061"
+    input: string
+    description: "Name"
+  function name 062:
+    label: "function name 062"
+    input: string
+    description: "Name"
+  function name 063:
+    label: "function name 063"
+    input: string
+    description: "Name"
+  function name 064:
+    label: "function name 064"
+    input: string
+    description: "Name"
+  function name 065:
+    label: "function name 065"
+    input: string
+    description: "Name"
+  function name 066:
+    label: "function name 066"
+    input: string
+    description: "Name"
+  function name 067:
+    label: "function name 067"
+    input: string
+    description: "Name"
+  function name 068:
+    label: "function name 068"
+    input: string
+    description: "Name"
+  function name 069:
+    label: "function name 069"
+    input: string
+    description: "Name"
+  function name 070:
+    label: "function name 070"
+    input: string
+    description: "Name"
+  function name 071:
+    label: "function name 071"
+    input: string
+    description: "Name"
+  function name 072:
+    label: "function name 072"
+    input: string
+    description: "Name"
+  function name 073:
+    label: "function name 073"
+    input: string
+    description: "Name"
+  function name 074:
+    label: "function name 074"
+    input: string
+    description: "Name"
+  function name 075:
+    label: "function name 075"
+    input: string
+    description: "Name"
+  function name 076:
+    label: "function name 076"
+    input: string
+    description: "Name"
+  function name 077:
+    label: "function name 077"
+    input: string
+    description: "Name"
+  function name 078:
+    label: "function name 078"
+    input: string
+    description: "Name"
+  function name 079:
+    label: "function name 079"
+    input: string
+    description: "Name"
+  function name 080:
+    label: "function name 080"
+    input: string
+    description: "Name"
+  function name 081:
+    label: "function name 081"
+    input: string
+    description: "Name"
+  function name 082:
+    label: "function name 082"
+    input: string
+    description: "Name"
+  function name 083:
+    label: "function name 083"
+    input: string
+    description: "Name"
+  function name 084:
+    label: "function name 084"
+    input: string
+    description: "Name"
+  function name 085:
+    label: "function name 085"
+    input: string
+    description: "Name"
+  function name 086:
+    label: "function name 086"
+    input: string
+    description: "Name"
+  function name 087:
+    label: "function name 087"
+    input: string
+    description: "Name"
+  function name 088:
+    label: "function name 088"
+    input: string
+    description: "Name"
+  function name 089:
+    label: "function name 089"
+    input: string
+    description: "Name"
+  function name 090:
+    label: "function name 090"
+    input: string
+    description: "Name"
+  function name 091:
+    label: "function name 091"
+    input: string
+    description: "Name"
+  function name 092:
+    label: "function name 092"
+    input: string
+    description: "Name"
+  function name 093:
+    label: "function name 093"
+    input: string
+    description: "Name"
+  function name 094:
+    label: "function name 094"
+    input: string
+    description: "Name"
+  function name 095:
+    label: "function name 095"
+    input: string
+    description: "Name"
+  function name 096:
+    label: "function name 096"
+    input: string
+    description: "Name"
+  function name 097:
+    label: "function name 097"
+    input: string
+    description: "Name"
+  function name 098:
+    label: "function name 098"
+    input: string
+    description: "Name"
+  function name 099:
+    label: "function name 099"
+    input: string
+    description: "Name"
+  function number 001:
+    label: "function number 001"
+    input: integer
+    description: "Number"
+  function number 002:
+    label: "function number 002"
+    input: integer
+    description: "Number"
+  function number 003:
+    label: "function number 003"
+    input: integer
+    description: "Number"
+  function number 004:
+    label: "function number 004"
+    input: integer
+    description: "Number"
+  function number 005:
+    label: "function number 005"
+    input: integer
+    description: "Number"
+  function number 006:
+    label: "function number 006"
+    input: integer
+    description: "Number"
+  function number 007:
+    label: "function number 007"
+    input: integer
+    description: "Number"
+  function number 008:
+    label: "function number 008"
+    input: integer
+    description: "Number"
+  function number 009:
+    label: "function number 009"
+    input: integer
+    description: "Number"
+  function number 010:
+    label: "function number 010"
+    input: integer
+    description: "Number"
+  function number 011:
+    label: "function number 011"
+    input: integer
+    description: "Number"
+  function number 012:
+    label: "function number 012"
+    input: integer
+    description: "Number"
+  function number 013:
+    label: "function number 013"
+    input: integer
+    description: "Number"
+  function number 014:
+    label: "function number 014"
+    input: integer
+    description: "Number"
+  function number 015:
+    label: "function number 015"
+    input: integer
+    description: "Number"
+  function number 016:
+    label: "function number 016"
+    input: integer
+    description: "Number"
+  function number 017:
+    label: "function number 017"
+    input: integer
+    description: "Number"
+  function number 018:
+    label: "function number 018"
+    input: integer
+    description: "Number"
+  function number 019:
+    label: "function number 019"
+    input: integer
+    description: "Number"
+  function number 020:
+    label: "function number 020"
+    input: integer
+    description: "Number"
+  function number 021:
+    label: "function number 021"
+    input: integer
+    description: "Number"
+  function number 022:
+    label: "function number 022"
+    input: integer
+    description: "Number"
+  function number 023:
+    label: "function number 023"
+    input: integer
+    description: "Number"
+  function number 024:
+    label: "function number 024"
+    input: integer
+    description: "Number"
+  function number 025:
+    label: "function number 025"
+    input: integer
+    description: "Number"
+  function number 026:
+    label: "function number 026"
+    input: integer
+    description: "Number"
+  function number 027:
+    label: "function number 027"
+    input: integer
+    description: "Number"
+  function number 028:
+    label: "function number 028"
+    input: integer
+    description: "Number"
+  function number 029:
+    label: "function number 029"
+    input: integer
+    description: "Number"
+  function number 030:
+    label: "function number 030"
+    input: integer
+    description: "Number"
+  function number 031:
+    label: "function number 031"
+    input: integer
+    description: "Number"
+  function number 032:
+    label: "function number 032"
+    input: integer
+    description: "Number"
+  function number 033:
+    label: "function number 033"
+    input: integer
+    description: "Number"
+  function number 034:
+    label: "function number 034"
+    input: integer
+    description: "Number"
+  function number 035:
+    label: "function number 035"
+    input: integer
+    description: "Number"
+  function number 036:
+    label: "function number 036"
+    input: integer
+    description: "Number"
+  function number 037:
+    label: "function number 037"
+    input: integer
+    description: "Number"
+  function number 038:
+    label: "function number 038"
+    input: integer
+    description: "Number"
+  function number 039:
+    label: "function number 039"
+    input: integer
+    description: "Number"
+  function number 040:
+    label: "function number 040"
+    input: integer
+    description: "Number"
+  function number 041:
+    label: "function number 041"
+    input: integer
+    description: "Number"
+  function number 042:
+    label: "function number 042"
+    input: integer
+    description: "Number"
+  function number 043:
+    label: "function number 043"
+    input: integer
+    description: "Number"
+  function number 044:
+    label: "function number 044"
+    input: integer
+    description: "Number"
+  function number 045:
+    label: "function number 045"
+    input: integer
+    description: "Number"
+  function number 046:
+    label: "function number 046"
+    input: integer
+    description: "Number"
+  function number 047:
+    label: "function number 047"
+    input: integer
+    description: "Number"
+  function number 048:
+    label: "function number 048"
+    input: integer
+    description: "Number"
+  function number 049:
+    label: "function number 049"
+    input: integer
+    description: "Number"
+  function number 050:
+    label: "function number 050"
+    input: integer
+    description: "Number"
+  function number 051:
+    label: "function number 051"
+    input: integer
+    description: "Number"
+  function number 052:
+    label: "function number 052"
+    input: integer
+    description: "Number"
+  function number 053:
+    label: "function number 053"
+    input: integer
+    description: "Number"
+  function number 054:
+    label: "function number 054"
+    input: integer
+    description: "Number"
+  function number 055:
+    label: "function number 055"
+    input: integer
+    description: "Number"
+  function number 056:
+    label: "function number 056"
+    input: integer
+    description: "Number"
+  function number 057:
+    label: "function number 057"
+    input: integer
+    description: "Number"
+  function number 058:
+    label: "function number 058"
+    input: integer
+    description: "Number"
+  function number 059:
+    label: "function number 059"
+    input: integer
+    description: "Number"
+  function number 060:
+    label: "function number 060"
+    input: integer
+    description: "Number"
+  function number 061:
+    label: "function number 061"
+    input: integer
+    description: "Number"
+  function number 062:
+    label: "function number 062"
+    input: integer
+    description: "Number"
+  function number 063:
+    label: "function number 063"
+    input: integer
+    description: "Number"
+  function number 064:
+    label: "function number 064"
+    input: integer
+    description: "Number"
+  function number 065:
+    label: "function number 065"
+    input: integer
+    description: "Number"
+  function number 066:
+    label: "function number 066"
+    input: integer
+    description: "Number"
+  function number 067:
+    label: "function number 067"
+    input: integer
+    description: "Number"
+  function number 068:
+    label: "function number 068"
+    input: integer
+    description: "Number"
+  function number 069:
+    label: "function number 069"
+    input: integer
+    description: "Number"
+  function number 070:
+    label: "function number 070"
+    input: integer
+    description: "Number"
+  function number 071:
+    label: "function number 071"
+    input: integer
+    description: "Number"
+  function number 072:
+    label: "function number 072"
+    input: integer
+    description: "Number"
+  function number 073:
+    label: "function number 073"
+    input: integer
+    description: "Number"
+  function number 074:
+    label: "function number 074"
+    input: integer
+    description: "Number"
+  function number 075:
+    label: "function number 075"
+    input: integer
+    description: "Number"
+  function number 076:
+    label: "function number 076"
+    input: integer
+    description: "Number"
+  function number 077:
+    label: "function number 077"
+    input: integer
+    description: "Number"
+  function number 078:
+    label: "function number 078"
+    input: integer
+    description: "Number"
+  function number 079:
+    label: "function number 079"
+    input: integer
+    description: "Number"
+  function number 080:
+    label: "function number 080"
+    input: integer
+    description: "Number"
+  function number 081:
+    label: "function number 081"
+    input: integer
+    description: "Number"
+  function number 082:
+    label: "function number 082"
+    input: integer
+    description: "Number"
+  function number 083:
+    label: "function number 083"
+    input: integer
+    description: "Number"
+  function number 084:
+    label: "function number 084"
+    input: integer
+    description: "Number"
+  function number 085:
+    label: "function number 085"
+    input: integer
+    description: "Number"
+  function number 086:
+    label: "function number 086"
+    input: integer
+    description: "Number"
+  function number 087:
+    label: "function number 087"
+    input: integer
+    description: "Number"
+  function number 088:
+    label: "function number 088"
+    input: integer
+    description: "Number"
+  function number 089:
+    label: "function number 089"
+    input: integer
+    description: "Number"
+  function number 090:
+    label: "function number 090"
+    input: integer
+    description: "Number"
+  function number 091:
+    label: "function number 091"
+    input: integer
+    description: "Number"
+  function number 092:
+    label: "function number 092"
+    input: integer
+    description: "Number"
+  function number 093:
+    label: "function number 093"
+    input: integer
+    description: "Number"
+  function number 094:
+    label: "function number 094"
+    input: integer
+    description: "Number"
+  function number 095:
+    label: "function number 095"
+    input: integer
+    description: "Number"
+  function number 096:
+    label: "function number 096"
+    input: integer
+    description: "Number"
+  function number 097:
+    label: "function number 097"
+    input: integer
+    description: "Number"
+  function number 098:
+    label: "function number 098"
+    input: integer
+    description: "Number"
+  function number 099:
+    label: "function number 099"
+    input: integer
+    description: "Number"
+  function production 001:
+    label: "function production 001"
+    input: string
+    description: "Production / Effect"
+  function production 002:
+    label: "function production 002"
+    input: string
+    description: "Production / Effect"
+  function production 003:
+    label: "function production 003"
+    input: string
+    description: "Production / Effect"
+  function production 004:
+    label: "function production 004"
+    input: string
+    description: "Production / Effect"
+  function production 005:
+    label: "function production 005"
+    input: string
+    description: "Production / Effect"
+  function production 006:
+    label: "function production 006"
+    input: string
+    description: "Production / Effect"
+  function production 007:
+    label: "function production 007"
+    input: string
+    description: "Production / Effect"
+  function production 008:
+    label: "function production 008"
+    input: string
+    description: "Production / Effect"
+  function production 009:
+    label: "function production 009"
+    input: string
+    description: "Production / Effect"
+  function production 010:
+    label: "function production 010"
+    input: string
+    description: "Production / Effect"
+  function production 011:
+    label: "function production 011"
+    input: string
+    description: "Production / Effect"
+  function production 012:
+    label: "function production 012"
+    input: string
+    description: "Production / Effect"
+  function production 013:
+    label: "function production 013"
+    input: string
+    description: "Production / Effect"
+  function production 014:
+    label: "function production 014"
+    input: string
+    description: "Production / Effect"
+  function production 015:
+    label: "function production 015"
+    input: string
+    description: "Production / Effect"
+  function production 016:
+    label: "function production 016"
+    input: string
+    description: "Production / Effect"
+  function production 017:
+    label: "function production 017"
+    input: string
+    description: "Production / Effect"
+  function production 018:
+    label: "function production 018"
+    input: string
+    description: "Production / Effect"
+  function production 019:
+    label: "function production 019"
+    input: string
+    description: "Production / Effect"
+  function production 020:
+    label: "function production 020"
+    input: string
+    description: "Production / Effect"
+  function production 021:
+    label: "function production 021"
+    input: string
+    description: "Production / Effect"
+  function production 022:
+    label: "function production 022"
+    input: string
+    description: "Production / Effect"
+  function production 023:
+    label: "function production 023"
+    input: string
+    description: "Production / Effect"
+  function production 024:
+    label: "function production 024"
+    input: string
+    description: "Production / Effect"
+  function production 025:
+    label: "function production 025"
+    input: string
+    description: "Production / Effect"
+  function production 026:
+    label: "function production 026"
+    input: string
+    description: "Production / Effect"
+  function production 027:
+    label: "function production 027"
+    input: string
+    description: "Production / Effect"
+  function production 028:
+    label: "function production 028"
+    input: string
+    description: "Production / Effect"
+  function production 029:
+    label: "function production 029"
+    input: string
+    description: "Production / Effect"
+  function production 030:
+    label: "function production 030"
+    input: string
+    description: "Production / Effect"
+  function production 031:
+    label: "function production 031"
+    input: string
+    description: "Production / Effect"
+  function production 032:
+    label: "function production 032"
+    input: string
+    description: "Production / Effect"
+  function production 033:
+    label: "function production 033"
+    input: string
+    description: "Production / Effect"
+  function production 034:
+    label: "function production 034"
+    input: string
+    description: "Production / Effect"
+  function production 035:
+    label: "function production 035"
+    input: string
+    description: "Production / Effect"
+  function production 036:
+    label: "function production 036"
+    input: string
+    description: "Production / Effect"
+  function production 037:
+    label: "function production 037"
+    input: string
+    description: "Production / Effect"
+  function production 038:
+    label: "function production 038"
+    input: string
+    description: "Production / Effect"
+  function production 039:
+    label: "function production 039"
+    input: string
+    description: "Production / Effect"
+  function production 040:
+    label: "function production 040"
+    input: string
+    description: "Production / Effect"
+  function production 041:
+    label: "function production 041"
+    input: string
+    description: "Production / Effect"
+  function production 042:
+    label: "function production 042"
+    input: string
+    description: "Production / Effect"
+  function production 043:
+    label: "function production 043"
+    input: string
+    description: "Production / Effect"
+  function production 044:
+    label: "function production 044"
+    input: string
+    description: "Production / Effect"
+  function production 045:
+    label: "function production 045"
+    input: string
+    description: "Production / Effect"
+  function production 046:
+    label: "function production 046"
+    input: string
+    description: "Production / Effect"
+  function production 047:
+    label: "function production 047"
+    input: string
+    description: "Production / Effect"
+  function production 048:
+    label: "function production 048"
+    input: string
+    description: "Production / Effect"
+  function production 049:
+    label: "function production 049"
+    input: string
+    description: "Production / Effect"
+  function production 050:
+    label: "function production 050"
+    input: string
+    description: "Production / Effect"
+  function production 051:
+    label: "function production 051"
+    input: string
+    description: "Production / Effect"
+  function production 052:
+    label: "function production 052"
+    input: string
+    description: "Production / Effect"
+  function production 053:
+    label: "function production 053"
+    input: string
+    description: "Production / Effect"
+  function production 054:
+    label: "function production 054"
+    input: string
+    description: "Production / Effect"
+  function production 055:
+    label: "function production 055"
+    input: string
+    description: "Production / Effect"
+  function production 056:
+    label: "function production 056"
+    input: string
+    description: "Production / Effect"
+  function production 057:
+    label: "function production 057"
+    input: string
+    description: "Production / Effect"
+  function production 058:
+    label: "function production 058"
+    input: string
+    description: "Production / Effect"
+  function production 059:
+    label: "function production 059"
+    input: string
+    description: "Production / Effect"
+  function production 060:
+    label: "function production 060"
+    input: string
+    description: "Production / Effect"
+  function production 061:
+    label: "function production 061"
+    input: string
+    description: "Production / Effect"
+  function production 062:
+    label: "function production 062"
+    input: string
+    description: "Production / Effect"
+  function production 063:
+    label: "function production 063"
+    input: string
+    description: "Production / Effect"
+  function production 064:
+    label: "function production 064"
+    input: string
+    description: "Production / Effect"
+  function production 065:
+    label: "function production 065"
+    input: string
+    description: "Production / Effect"
+  function production 066:
+    label: "function production 066"
+    input: string
+    description: "Production / Effect"
+  function production 067:
+    label: "function production 067"
+    input: string
+    description: "Production / Effect"
+  function production 068:
+    label: "function production 068"
+    input: string
+    description: "Production / Effect"
+  function production 069:
+    label: "function production 069"
+    input: string
+    description: "Production / Effect"
+  function production 070:
+    label: "function production 070"
+    input: string
+    description: "Production / Effect"
+  function production 071:
+    label: "function production 071"
+    input: string
+    description: "Production / Effect"
+  function production 072:
+    label: "function production 072"
+    input: string
+    description: "Production / Effect"
+  function production 073:
+    label: "function production 073"
+    input: string
+    description: "Production / Effect"
+  function production 074:
+    label: "function production 074"
+    input: string
+    description: "Production / Effect"
+  function production 075:
+    label: "function production 075"
+    input: string
+    description: "Production / Effect"
+  function production 076:
+    label: "function production 076"
+    input: string
+    description: "Production / Effect"
+  function production 077:
+    label: "function production 077"
+    input: string
+    description: "Production / Effect"
+  function production 078:
+    label: "function production 078"
+    input: string
+    description: "Production / Effect"
+  function production 079:
+    label: "function production 079"
+    input: string
+    description: "Production / Effect"
+  function production 080:
+    label: "function production 080"
+    input: string
+    description: "Production / Effect"
+  function production 081:
+    label: "function production 081"
+    input: string
+    description: "Production / Effect"
+  function production 082:
+    label: "function production 082"
+    input: string
+    description: "Production / Effect"
+  function production 083:
+    label: "function production 083"
+    input: string
+    description: "Production / Effect"
+  function production 084:
+    label: "function production 084"
+    input: string
+    description: "Production / Effect"
+  function production 085:
+    label: "function production 085"
+    input: string
+    description: "Production / Effect"
+  function production 086:
+    label: "function production 086"
+    input: string
+    description: "Production / Effect"
+  function production 087:
+    label: "function production 087"
+    input: string
+    description: "Production / Effect"
+  function production 088:
+    label: "function production 088"
+    input: string
+    description: "Production / Effect"
+  function production 089:
+    label: "function production 089"
+    input: string
+    description: "Production / Effect"
+  function production 090:
+    label: "function production 090"
+    input: string
+    description: "Production / Effect"
+  function production 091:
+    label: "function production 091"
+    input: string
+    description: "Production / Effect"
+  function production 092:
+    label: "function production 092"
+    input: string
+    description: "Production / Effect"
+  function production 093:
+    label: "function production 093"
+    input: string
+    description: "Production / Effect"
+  function production 094:
+    label: "function production 094"
+    input: string
+    description: "Production / Effect"
+  function production 095:
+    label: "function production 095"
+    input: string
+    description: "Production / Effect"
+  function production 096:
+    label: "function production 096"
+    input: string
+    description: "Production / Effect"
+  function production 097:
+    label: "function production 097"
+    input: string
+    description: "Production / Effect"
+  function production 098:
+    label: "function production 098"
+    input: string
+    description: "Production / Effect"
+  function production 099:
+    label: "function production 099"
+    input: string
+    description: "Production / Effect"
+  hireling name 001:
+    label: "hireling name 001"
+    input: string
+    description: "Name"
+  hireling name 002:
+    label: "hireling name 002"
+    input: string
+    description: "Name"
+  hireling name 003:
+    label: "hireling name 003"
+    input: string
+    description: "Name"
+  hireling name 004:
+    label: "hireling name 004"
+    input: string
+    description: "Name"
+  hireling name 005:
+    label: "hireling name 005"
+    input: string
+    description: "Name"
+  hireling name 006:
+    label: "hireling name 006"
+    input: string
+    description: "Name"
+  hireling name 007:
+    label: "hireling name 007"
+    input: string
+    description: "Name"
+  hireling name 008:
+    label: "hireling name 008"
+    input: string
+    description: "Name"
+  hireling name 009:
+    label: "hireling name 009"
+    input: string
+    description: "Name"
+  hireling name 010:
+    label: "hireling name 010"
+    input: string
+    description: "Name"
+  hireling name 011:
+    label: "hireling name 011"
+    input: string
+    description: "Name"
+  hireling name 012:
+    label: "hireling name 012"
+    input: string
+    description: "Name"
+  hireling name 013:
+    label: "hireling name 013"
+    input: string
+    description: "Name"
+  hireling name 014:
+    label: "hireling name 014"
+    input: string
+    description: "Name"
+  hireling name 015:
+    label: "hireling name 015"
+    input: string
+    description: "Name"
+  hireling name 016:
+    label: "hireling name 016"
+    input: string
+    description: "Name"
+  hireling name 017:
+    label: "hireling name 017"
+    input: string
+    description: "Name"
+  hireling name 018:
+    label: "hireling name 018"
+    input: string
+    description: "Name"
+  hireling name 019:
+    label: "hireling name 019"
+    input: string
+    description: "Name"
+  hireling name 020:
+    label: "hireling name 020"
+    input: string
+    description: "Name"
+  hireling name 021:
+    label: "hireling name 021"
+    input: string
+    description: "Name"
+  hireling name 022:
+    label: "hireling name 022"
+    input: string
+    description: "Name"
+  hireling name 023:
+    label: "hireling name 023"
+    input: string
+    description: "Name"
+  hireling name 024:
+    label: "hireling name 024"
+    input: string
+    description: "Name"
+  hireling name 025:
+    label: "hireling name 025"
+    input: string
+    description: "Name"
+  hireling name 026:
+    label: "hireling name 026"
+    input: string
+    description: "Name"
+  hireling name 027:
+    label: "hireling name 027"
+    input: string
+    description: "Name"
+  hireling name 028:
+    label: "hireling name 028"
+    input: string
+    description: "Name"
+  hireling name 029:
+    label: "hireling name 029"
+    input: string
+    description: "Name"
+  hireling name 030:
+    label: "hireling name 030"
+    input: string
+    description: "Name"
+  hireling name 031:
+    label: "hireling name 031"
+    input: string
+    description: "Name"
+  hireling name 032:
+    label: "hireling name 032"
+    input: string
+    description: "Name"
+  hireling name 033:
+    label: "hireling name 033"
+    input: string
+    description: "Name"
+  hireling name 034:
+    label: "hireling name 034"
+    input: string
+    description: "Name"
+  hireling name 035:
+    label: "hireling name 035"
+    input: string
+    description: "Name"
+  hireling name 036:
+    label: "hireling name 036"
+    input: string
+    description: "Name"
+  hireling name 037:
+    label: "hireling name 037"
+    input: string
+    description: "Name"
+  hireling name 038:
+    label: "hireling name 038"
+    input: string
+    description: "Name"
+  hireling name 039:
+    label: "hireling name 039"
+    input: string
+    description: "Name"
+  hireling name 040:
+    label: "hireling name 040"
+    input: string
+    description: "Name"
+  hireling name 041:
+    label: "hireling name 041"
+    input: string
+    description: "Name"
+  hireling name 042:
+    label: "hireling name 042"
+    input: string
+    description: "Name"
+  hireling name 043:
+    label: "hireling name 043"
+    input: string
+    description: "Name"
+  hireling name 044:
+    label: "hireling name 044"
+    input: string
+    description: "Name"
+  hireling name 045:
+    label: "hireling name 045"
+    input: string
+    description: "Name"
+  hireling name 046:
+    label: "hireling name 046"
+    input: string
+    description: "Name"
+  hireling name 047:
+    label: "hireling name 047"
+    input: string
+    description: "Name"
+  hireling name 048:
+    label: "hireling name 048"
+    input: string
+    description: "Name"
+  hireling name 049:
+    label: "hireling name 049"
+    input: string
+    description: "Name"
+  hireling name 050:
+    label: "hireling name 050"
+    input: string
+    description: "Name"
+  hireling name 051:
+    label: "hireling name 051"
+    input: string
+    description: "Name"
+  hireling name 052:
+    label: "hireling name 052"
+    input: string
+    description: "Name"
+  hireling name 053:
+    label: "hireling name 053"
+    input: string
+    description: "Name"
+  hireling name 054:
+    label: "hireling name 054"
+    input: string
+    description: "Name"
+  hireling name 055:
+    label: "hireling name 055"
+    input: string
+    description: "Name"
+  hireling name 056:
+    label: "hireling name 056"
+    input: string
+    description: "Name"
+  hireling name 057:
+    label: "hireling name 057"
+    input: string
+    description: "Name"
+  hireling name 058:
+    label: "hireling name 058"
+    input: string
+    description: "Name"
+  hireling name 059:
+    label: "hireling name 059"
+    input: string
+    description: "Name"
+  hireling name 060:
+    label: "hireling name 060"
+    input: string
+    description: "Name"
+  hireling name 061:
+    label: "hireling name 061"
+    input: string
+    description: "Name"
+  hireling name 062:
+    label: "hireling name 062"
+    input: string
+    description: "Name"
+  hireling name 063:
+    label: "hireling name 063"
+    input: string
+    description: "Name"
+  hireling name 064:
+    label: "hireling name 064"
+    input: string
+    description: "Name"
+  hireling name 065:
+    label: "hireling name 065"
+    input: string
+    description: "Name"
+  hireling name 066:
+    label: "hireling name 066"
+    input: string
+    description: "Name"
+  hireling name 067:
+    label: "hireling name 067"
+    input: string
+    description: "Name"
+  hireling name 068:
+    label: "hireling name 068"
+    input: string
+    description: "Name"
+  hireling name 069:
+    label: "hireling name 069"
+    input: string
+    description: "Name"
+  hireling name 070:
+    label: "hireling name 070"
+    input: string
+    description: "Name"
+  hireling name 071:
+    label: "hireling name 071"
+    input: string
+    description: "Name"
+  hireling name 072:
+    label: "hireling name 072"
+    input: string
+    description: "Name"
+  hireling name 073:
+    label: "hireling name 073"
+    input: string
+    description: "Name"
+  hireling name 074:
+    label: "hireling name 074"
+    input: string
+    description: "Name"
+  hireling name 075:
+    label: "hireling name 075"
+    input: string
+    description: "Name"
+  hireling name 076:
+    label: "hireling name 076"
+    input: string
+    description: "Name"
+  hireling name 077:
+    label: "hireling name 077"
+    input: string
+    description: "Name"
+  hireling name 078:
+    label: "hireling name 078"
+    input: string
+    description: "Name"
+  hireling name 079:
+    label: "hireling name 079"
+    input: string
+    description: "Name"
+  hireling name 080:
+    label: "hireling name 080"
+    input: string
+    description: "Name"
+  hireling name 081:
+    label: "hireling name 081"
+    input: string
+    description: "Name"
+  hireling name 082:
+    label: "hireling name 082"
+    input: string
+    description: "Name"
+  hireling name 083:
+    label: "hireling name 083"
+    input: string
+    description: "Name"
+  hireling name 084:
+    label: "hireling name 084"
+    input: string
+    description: "Name"
+  hireling name 085:
+    label: "hireling name 085"
+    input: string
+    description: "Name"
+  hireling name 086:
+    label: "hireling name 086"
+    input: string
+    description: "Name"
+  hireling name 087:
+    label: "hireling name 087"
+    input: string
+    description: "Name"
+  hireling name 088:
+    label: "hireling name 088"
+    input: string
+    description: "Name"
+  hireling name 089:
+    label: "hireling name 089"
+    input: string
+    description: "Name"
+  hireling name 090:
+    label: "hireling name 090"
+    input: string
+    description: "Name"
+  hireling name 091:
+    label: "hireling name 091"
+    input: string
+    description: "Name"
+  hireling name 092:
+    label: "hireling name 092"
+    input: string
+    description: "Name"
+  hireling name 093:
+    label: "hireling name 093"
+    input: string
+    description: "Name"
+  hireling name 094:
+    label: "hireling name 094"
+    input: string
+    description: "Name"
+  hireling name 095:
+    label: "hireling name 095"
+    input: string
+    description: "Name"
+  hireling name 096:
+    label: "hireling name 096"
+    input: string
+    description: "Name"
+  hireling name 097:
+    label: "hireling name 097"
+    input: string
+    description: "Name"
+  hireling name 098:
+    label: "hireling name 098"
+    input: string
+    description: "Name"
+  hireling name 099:
+    label: "hireling name 099"
+    input: string
+    description: "Name"
+  hireling number 001:
+    label: "hireling number 001"
+    input: integer
+    description: "Number"
+  hireling number 002:
+    label: "hireling number 002"
+    input: integer
+    description: "Number"
+  hireling number 003:
+    label: "hireling number 003"
+    input: integer
+    description: "Number"
+  hireling number 004:
+    label: "hireling number 004"
+    input: integer
+    description: "Number"
+  hireling number 005:
+    label: "hireling number 005"
+    input: integer
+    description: "Number"
+  hireling number 006:
+    label: "hireling number 006"
+    input: integer
+    description: "Number"
+  hireling number 007:
+    label: "hireling number 007"
+    input: integer
+    description: "Number"
+  hireling number 008:
+    label: "hireling number 008"
+    input: integer
+    description: "Number"
+  hireling number 009:
+    label: "hireling number 009"
+    input: integer
+    description: "Number"
+  hireling number 010:
+    label: "hireling number 010"
+    input: integer
+    description: "Number"
+  hireling number 011:
+    label: "hireling number 011"
+    input: integer
+    description: "Number"
+  hireling number 012:
+    label: "hireling number 012"
+    input: integer
+    description: "Number"
+  hireling number 013:
+    label: "hireling number 013"
+    input: integer
+    description: "Number"
+  hireling number 014:
+    label: "hireling number 014"
+    input: integer
+    description: "Number"
+  hireling number 015:
+    label: "hireling number 015"
+    input: integer
+    description: "Number"
+  hireling number 016:
+    label: "hireling number 016"
+    input: integer
+    description: "Number"
+  hireling number 017:
+    label: "hireling number 017"
+    input: integer
+    description: "Number"
+  hireling number 018:
+    label: "hireling number 018"
+    input: integer
+    description: "Number"
+  hireling number 019:
+    label: "hireling number 019"
+    input: integer
+    description: "Number"
+  hireling number 020:
+    label: "hireling number 020"
+    input: integer
+    description: "Number"
+  hireling number 021:
+    label: "hireling number 021"
+    input: integer
+    description: "Number"
+  hireling number 022:
+    label: "hireling number 022"
+    input: integer
+    description: "Number"
+  hireling number 023:
+    label: "hireling number 023"
+    input: integer
+    description: "Number"
+  hireling number 024:
+    label: "hireling number 024"
+    input: integer
+    description: "Number"
+  hireling number 025:
+    label: "hireling number 025"
+    input: integer
+    description: "Number"
+  hireling number 026:
+    label: "hireling number 026"
+    input: integer
+    description: "Number"
+  hireling number 027:
+    label: "hireling number 027"
+    input: integer
+    description: "Number"
+  hireling number 028:
+    label: "hireling number 028"
+    input: integer
+    description: "Number"
+  hireling number 029:
+    label: "hireling number 029"
+    input: integer
+    description: "Number"
+  hireling number 030:
+    label: "hireling number 030"
+    input: integer
+    description: "Number"
+  hireling number 031:
+    label: "hireling number 031"
+    input: integer
+    description: "Number"
+  hireling number 032:
+    label: "hireling number 032"
+    input: integer
+    description: "Number"
+  hireling number 033:
+    label: "hireling number 033"
+    input: integer
+    description: "Number"
+  hireling number 034:
+    label: "hireling number 034"
+    input: integer
+    description: "Number"
+  hireling number 035:
+    label: "hireling number 035"
+    input: integer
+    description: "Number"
+  hireling number 036:
+    label: "hireling number 036"
+    input: integer
+    description: "Number"
+  hireling number 037:
+    label: "hireling number 037"
+    input: integer
+    description: "Number"
+  hireling number 038:
+    label: "hireling number 038"
+    input: integer
+    description: "Number"
+  hireling number 039:
+    label: "hireling number 039"
+    input: integer
+    description: "Number"
+  hireling number 040:
+    label: "hireling number 040"
+    input: integer
+    description: "Number"
+  hireling number 041:
+    label: "hireling number 041"
+    input: integer
+    description: "Number"
+  hireling number 042:
+    label: "hireling number 042"
+    input: integer
+    description: "Number"
+  hireling number 043:
+    label: "hireling number 043"
+    input: integer
+    description: "Number"
+  hireling number 044:
+    label: "hireling number 044"
+    input: integer
+    description: "Number"
+  hireling number 045:
+    label: "hireling number 045"
+    input: integer
+    description: "Number"
+  hireling number 046:
+    label: "hireling number 046"
+    input: integer
+    description: "Number"
+  hireling number 047:
+    label: "hireling number 047"
+    input: integer
+    description: "Number"
+  hireling number 048:
+    label: "hireling number 048"
+    input: integer
+    description: "Number"
+  hireling number 049:
+    label: "hireling number 049"
+    input: integer
+    description: "Number"
+  hireling number 050:
+    label: "hireling number 050"
+    input: integer
+    description: "Number"
+  hireling number 051:
+    label: "hireling number 051"
+    input: integer
+    description: "Number"
+  hireling number 052:
+    label: "hireling number 052"
+    input: integer
+    description: "Number"
+  hireling number 053:
+    label: "hireling number 053"
+    input: integer
+    description: "Number"
+  hireling number 054:
+    label: "hireling number 054"
+    input: integer
+    description: "Number"
+  hireling number 055:
+    label: "hireling number 055"
+    input: integer
+    description: "Number"
+  hireling number 056:
+    label: "hireling number 056"
+    input: integer
+    description: "Number"
+  hireling number 057:
+    label: "hireling number 057"
+    input: integer
+    description: "Number"
+  hireling number 058:
+    label: "hireling number 058"
+    input: integer
+    description: "Number"
+  hireling number 059:
+    label: "hireling number 059"
+    input: integer
+    description: "Number"
+  hireling number 060:
+    label: "hireling number 060"
+    input: integer
+    description: "Number"
+  hireling number 061:
+    label: "hireling number 061"
+    input: integer
+    description: "Number"
+  hireling number 062:
+    label: "hireling number 062"
+    input: integer
+    description: "Number"
+  hireling number 063:
+    label: "hireling number 063"
+    input: integer
+    description: "Number"
+  hireling number 064:
+    label: "hireling number 064"
+    input: integer
+    description: "Number"
+  hireling number 065:
+    label: "hireling number 065"
+    input: integer
+    description: "Number"
+  hireling number 066:
+    label: "hireling number 066"
+    input: integer
+    description: "Number"
+  hireling number 067:
+    label: "hireling number 067"
+    input: integer
+    description: "Number"
+  hireling number 068:
+    label: "hireling number 068"
+    input: integer
+    description: "Number"
+  hireling number 069:
+    label: "hireling number 069"
+    input: integer
+    description: "Number"
+  hireling number 070:
+    label: "hireling number 070"
+    input: integer
+    description: "Number"
+  hireling number 071:
+    label: "hireling number 071"
+    input: integer
+    description: "Number"
+  hireling number 072:
+    label: "hireling number 072"
+    input: integer
+    description: "Number"
+  hireling number 073:
+    label: "hireling number 073"
+    input: integer
+    description: "Number"
+  hireling number 074:
+    label: "hireling number 074"
+    input: integer
+    description: "Number"
+  hireling number 075:
+    label: "hireling number 075"
+    input: integer
+    description: "Number"
+  hireling number 076:
+    label: "hireling number 076"
+    input: integer
+    description: "Number"
+  hireling number 077:
+    label: "hireling number 077"
+    input: integer
+    description: "Number"
+  hireling number 078:
+    label: "hireling number 078"
+    input: integer
+    description: "Number"
+  hireling number 079:
+    label: "hireling number 079"
+    input: integer
+    description: "Number"
+  hireling number 080:
+    label: "hireling number 080"
+    input: integer
+    description: "Number"
+  hireling number 081:
+    label: "hireling number 081"
+    input: integer
+    description: "Number"
+  hireling number 082:
+    label: "hireling number 082"
+    input: integer
+    description: "Number"
+  hireling number 083:
+    label: "hireling number 083"
+    input: integer
+    description: "Number"
+  hireling number 084:
+    label: "hireling number 084"
+    input: integer
+    description: "Number"
+  hireling number 085:
+    label: "hireling number 085"
+    input: integer
+    description: "Number"
+  hireling number 086:
+    label: "hireling number 086"
+    input: integer
+    description: "Number"
+  hireling number 087:
+    label: "hireling number 087"
+    input: integer
+    description: "Number"
+  hireling number 088:
+    label: "hireling number 088"
+    input: integer
+    description: "Number"
+  hireling number 089:
+    label: "hireling number 089"
+    input: integer
+    description: "Number"
+  hireling number 090:
+    label: "hireling number 090"
+    input: integer
+    description: "Number"
+  hireling number 091:
+    label: "hireling number 091"
+    input: integer
+    description: "Number"
+  hireling number 092:
+    label: "hireling number 092"
+    input: integer
+    description: "Number"
+  hireling number 093:
+    label: "hireling number 093"
+    input: integer
+    description: "Number"
+  hireling number 094:
+    label: "hireling number 094"
+    input: integer
+    description: "Number"
+  hireling number 095:
+    label: "hireling number 095"
+    input: integer
+    description: "Number"
+  hireling number 096:
+    label: "hireling number 096"
+    input: integer
+    description: "Number"
+  hireling number 097:
+    label: "hireling number 097"
+    input: integer
+    description: "Number"
+  hireling number 098:
+    label: "hireling number 098"
+    input: integer
+    description: "Number"
+  hireling number 099:
+    label: "hireling number 099"
+    input: integer
+    description: "Number"
+  hireling salary 001:
+    label: "hireling salary 001"
+    input: string
+    description: "Salary"
+  hireling salary 002:
+    label: "hireling salary 002"
+    input: string
+    description: "Salary"
+  hireling salary 003:
+    label: "hireling salary 003"
+    input: string
+    description: "Salary"
+  hireling salary 004:
+    label: "hireling salary 004"
+    input: string
+    description: "Salary"
+  hireling salary 005:
+    label: "hireling salary 005"
+    input: string
+    description: "Salary"
+  hireling salary 006:
+    label: "hireling salary 006"
+    input: string
+    description: "Salary"
+  hireling salary 007:
+    label: "hireling salary 007"
+    input: string
+    description: "Salary"
+  hireling salary 008:
+    label: "hireling salary 008"
+    input: string
+    description: "Salary"
+  hireling salary 009:
+    label: "hireling salary 009"
+    input: string
+    description: "Salary"
+  hireling salary 010:
+    label: "hireling salary 010"
+    input: string
+    description: "Salary"
+  hireling salary 011:
+    label: "hireling salary 011"
+    input: string
+    description: "Salary"
+  hireling salary 012:
+    label: "hireling salary 012"
+    input: string
+    description: "Salary"
+  hireling salary 013:
+    label: "hireling salary 013"
+    input: string
+    description: "Salary"
+  hireling salary 014:
+    label: "hireling salary 014"
+    input: string
+    description: "Salary"
+  hireling salary 015:
+    label: "hireling salary 015"
+    input: string
+    description: "Salary"
+  hireling salary 016:
+    label: "hireling salary 016"
+    input: string
+    description: "Salary"
+  hireling salary 017:
+    label: "hireling salary 017"
+    input: string
+    description: "Salary"
+  hireling salary 018:
+    label: "hireling salary 018"
+    input: string
+    description: "Salary"
+  hireling salary 019:
+    label: "hireling salary 019"
+    input: string
+    description: "Salary"
+  hireling salary 020:
+    label: "hireling salary 020"
+    input: string
+    description: "Salary"
+  hireling salary 021:
+    label: "hireling salary 021"
+    input: string
+    description: "Salary"
+  hireling salary 022:
+    label: "hireling salary 022"
+    input: string
+    description: "Salary"
+  hireling salary 023:
+    label: "hireling salary 023"
+    input: string
+    description: "Salary"
+  hireling salary 024:
+    label: "hireling salary 024"
+    input: string
+    description: "Salary"
+  hireling salary 025:
+    label: "hireling salary 025"
+    input: string
+    description: "Salary"
+  hireling salary 026:
+    label: "hireling salary 026"
+    input: string
+    description: "Salary"
+  hireling salary 027:
+    label: "hireling salary 027"
+    input: string
+    description: "Salary"
+  hireling salary 028:
+    label: "hireling salary 028"
+    input: string
+    description: "Salary"
+  hireling salary 029:
+    label: "hireling salary 029"
+    input: string
+    description: "Salary"
+  hireling salary 030:
+    label: "hireling salary 030"
+    input: string
+    description: "Salary"
+  hireling salary 031:
+    label: "hireling salary 031"
+    input: string
+    description: "Salary"
+  hireling salary 032:
+    label: "hireling salary 032"
+    input: string
+    description: "Salary"
+  hireling salary 033:
+    label: "hireling salary 033"
+    input: string
+    description: "Salary"
+  hireling salary 034:
+    label: "hireling salary 034"
+    input: string
+    description: "Salary"
+  hireling salary 035:
+    label: "hireling salary 035"
+    input: string
+    description: "Salary"
+  hireling salary 036:
+    label: "hireling salary 036"
+    input: string
+    description: "Salary"
+  hireling salary 037:
+    label: "hireling salary 037"
+    input: string
+    description: "Salary"
+  hireling salary 038:
+    label: "hireling salary 038"
+    input: string
+    description: "Salary"
+  hireling salary 039:
+    label: "hireling salary 039"
+    input: string
+    description: "Salary"
+  hireling salary 040:
+    label: "hireling salary 040"
+    input: string
+    description: "Salary"
+  hireling salary 041:
+    label: "hireling salary 041"
+    input: string
+    description: "Salary"
+  hireling salary 042:
+    label: "hireling salary 042"
+    input: string
+    description: "Salary"
+  hireling salary 043:
+    label: "hireling salary 043"
+    input: string
+    description: "Salary"
+  hireling salary 044:
+    label: "hireling salary 044"
+    input: string
+    description: "Salary"
+  hireling salary 045:
+    label: "hireling salary 045"
+    input: string
+    description: "Salary"
+  hireling salary 046:
+    label: "hireling salary 046"
+    input: string
+    description: "Salary"
+  hireling salary 047:
+    label: "hireling salary 047"
+    input: string
+    description: "Salary"
+  hireling salary 048:
+    label: "hireling salary 048"
+    input: string
+    description: "Salary"
+  hireling salary 049:
+    label: "hireling salary 049"
+    input: string
+    description: "Salary"
+  hireling salary 050:
+    label: "hireling salary 050"
+    input: string
+    description: "Salary"
+  hireling salary 051:
+    label: "hireling salary 051"
+    input: string
+    description: "Salary"
+  hireling salary 052:
+    label: "hireling salary 052"
+    input: string
+    description: "Salary"
+  hireling salary 053:
+    label: "hireling salary 053"
+    input: string
+    description: "Salary"
+  hireling salary 054:
+    label: "hireling salary 054"
+    input: string
+    description: "Salary"
+  hireling salary 055:
+    label: "hireling salary 055"
+    input: string
+    description: "Salary"
+  hireling salary 056:
+    label: "hireling salary 056"
+    input: string
+    description: "Salary"
+  hireling salary 057:
+    label: "hireling salary 057"
+    input: string
+    description: "Salary"
+  hireling salary 058:
+    label: "hireling salary 058"
+    input: string
+    description: "Salary"
+  hireling salary 059:
+    label: "hireling salary 059"
+    input: string
+    description: "Salary"
+  hireling salary 060:
+    label: "hireling salary 060"
+    input: string
+    description: "Salary"
+  hireling salary 061:
+    label: "hireling salary 061"
+    input: string
+    description: "Salary"
+  hireling salary 062:
+    label: "hireling salary 062"
+    input: string
+    description: "Salary"
+  hireling salary 063:
+    label: "hireling salary 063"
+    input: string
+    description: "Salary"
+  hireling salary 064:
+    label: "hireling salary 064"
+    input: string
+    description: "Salary"
+  hireling salary 065:
+    label: "hireling salary 065"
+    input: string
+    description: "Salary"
+  hireling salary 066:
+    label: "hireling salary 066"
+    input: string
+    description: "Salary"
+  hireling salary 067:
+    label: "hireling salary 067"
+    input: string
+    description: "Salary"
+  hireling salary 068:
+    label: "hireling salary 068"
+    input: string
+    description: "Salary"
+  hireling salary 069:
+    label: "hireling salary 069"
+    input: string
+    description: "Salary"
+  hireling salary 070:
+    label: "hireling salary 070"
+    input: string
+    description: "Salary"
+  hireling salary 071:
+    label: "hireling salary 071"
+    input: string
+    description: "Salary"
+  hireling salary 072:
+    label: "hireling salary 072"
+    input: string
+    description: "Salary"
+  hireling salary 073:
+    label: "hireling salary 073"
+    input: string
+    description: "Salary"
+  hireling salary 074:
+    label: "hireling salary 074"
+    input: string
+    description: "Salary"
+  hireling salary 075:
+    label: "hireling salary 075"
+    input: string
+    description: "Salary"
+  hireling salary 076:
+    label: "hireling salary 076"
+    input: string
+    description: "Salary"
+  hireling salary 077:
+    label: "hireling salary 077"
+    input: string
+    description: "Salary"
+  hireling salary 078:
+    label: "hireling salary 078"
+    input: string
+    description: "Salary"
+  hireling salary 079:
+    label: "hireling salary 079"
+    input: string
+    description: "Salary"
+  hireling salary 080:
+    label: "hireling salary 080"
+    input: string
+    description: "Salary"
+  hireling salary 081:
+    label: "hireling salary 081"
+    input: string
+    description: "Salary"
+  hireling salary 082:
+    label: "hireling salary 082"
+    input: string
+    description: "Salary"
+  hireling salary 083:
+    label: "hireling salary 083"
+    input: string
+    description: "Salary"
+  hireling salary 084:
+    label: "hireling salary 084"
+    input: string
+    description: "Salary"
+  hireling salary 085:
+    label: "hireling salary 085"
+    input: string
+    description: "Salary"
+  hireling salary 086:
+    label: "hireling salary 086"
+    input: string
+    description: "Salary"
+  hireling salary 087:
+    label: "hireling salary 087"
+    input: string
+    description: "Salary"
+  hireling salary 088:
+    label: "hireling salary 088"
+    input: string
+    description: "Salary"
+  hireling salary 089:
+    label: "hireling salary 089"
+    input: string
+    description: "Salary"
+  hireling salary 090:
+    label: "hireling salary 090"
+    input: string
+    description: "Salary"
+  hireling salary 091:
+    label: "hireling salary 091"
+    input: string
+    description: "Salary"
+  hireling salary 092:
+    label: "hireling salary 092"
+    input: string
+    description: "Salary"
+  hireling salary 093:
+    label: "hireling salary 093"
+    input: string
+    description: "Salary"
+  hireling salary 094:
+    label: "hireling salary 094"
+    input: string
+    description: "Salary"
+  hireling salary 095:
+    label: "hireling salary 095"
+    input: string
+    description: "Salary"
+  hireling salary 096:
+    label: "hireling salary 096"
+    input: string
+    description: "Salary"
+  hireling salary 097:
+    label: "hireling salary 097"
+    input: string
+    description: "Salary"
+  hireling salary 098:
+    label: "hireling salary 098"
+    input: string
+    description: "Salary"
+  hireling salary 099:
+    label: "hireling salary 099"
+    input: string
+    description: "Salary"
+  stockpile name 001:
+    label: "stockpile name 001"
+    input: string
+    description: "Name"
+  stockpile name 002:
+    label: "stockpile name 002"
+    input: string
+    description: "Name"
+  stockpile name 003:
+    label: "stockpile name 003"
+    input: string
+    description: "Name"
+  stockpile name 004:
+    label: "stockpile name 004"
+    input: string
+    description: "Name"
+  stockpile name 005:
+    label: "stockpile name 005"
+    input: string
+    description: "Name"
+  stockpile name 006:
+    label: "stockpile name 006"
+    input: string
+    description: "Name"
+  stockpile name 007:
+    label: "stockpile name 007"
+    input: string
+    description: "Name"
+  stockpile name 008:
+    label: "stockpile name 008"
+    input: string
+    description: "Name"
+  stockpile name 009:
+    label: "stockpile name 009"
+    input: string
+    description: "Name"
+  stockpile name 010:
+    label: "stockpile name 010"
+    input: string
+    description: "Name"
+  stockpile name 011:
+    label: "stockpile name 011"
+    input: string
+    description: "Name"
+  stockpile name 012:
+    label: "stockpile name 012"
+    input: string
+    description: "Name"
+  stockpile name 013:
+    label: "stockpile name 013"
+    input: string
+    description: "Name"
+  stockpile name 014:
+    label: "stockpile name 014"
+    input: string
+    description: "Name"
+  stockpile name 015:
+    label: "stockpile name 015"
+    input: string
+    description: "Name"
+  stockpile name 016:
+    label: "stockpile name 016"
+    input: string
+    description: "Name"
+  stockpile name 017:
+    label: "stockpile name 017"
+    input: string
+    description: "Name"
+  stockpile name 018:
+    label: "stockpile name 018"
+    input: string
+    description: "Name"
+  stockpile name 019:
+    label: "stockpile name 019"
+    input: string
+    description: "Name"
+  stockpile name 020:
+    label: "stockpile name 020"
+    input: string
+    description: "Name"
+  stockpile name 021:
+    label: "stockpile name 021"
+    input: string
+    description: "Name"
+  stockpile name 022:
+    label: "stockpile name 022"
+    input: string
+    description: "Name"
+  stockpile name 023:
+    label: "stockpile name 023"
+    input: string
+    description: "Name"
+  stockpile name 024:
+    label: "stockpile name 024"
+    input: string
+    description: "Name"
+  stockpile name 025:
+    label: "stockpile name 025"
+    input: string
+    description: "Name"
+  stockpile name 026:
+    label: "stockpile name 026"
+    input: string
+    description: "Name"
+  stockpile name 027:
+    label: "stockpile name 027"
+    input: string
+    description: "Name"
+  stockpile name 028:
+    label: "stockpile name 028"
+    input: string
+    description: "Name"
+  stockpile name 029:
+    label: "stockpile name 029"
+    input: string
+    description: "Name"
+  stockpile name 030:
+    label: "stockpile name 030"
+    input: string
+    description: "Name"
+  stockpile units 001:
+    label: "stockpile units 001"
+    input: integer
+    description: "Units"
+  stockpile units 002:
+    label: "stockpile units 002"
+    input: integer
+    description: "Units"
+  stockpile units 003:
+    label: "stockpile units 003"
+    input: integer
+    description: "Units"
+  stockpile units 004:
+    label: "stockpile units 004"
+    input: integer
+    description: "Units"
+  stockpile units 005:
+    label: "stockpile units 005"
+    input: integer
+    description: "Units"
+  stockpile units 006:
+    label: "stockpile units 006"
+    input: integer
+    description: "Units"
+  stockpile units 007:
+    label: "stockpile units 007"
+    input: integer
+    description: "Units"
+  stockpile units 008:
+    label: "stockpile units 008"
+    input: integer
+    description: "Units"
+  stockpile units 009:
+    label: "stockpile units 009"
+    input: integer
+    description: "Units"
+  stockpile units 010:
+    label: "stockpile units 010"
+    input: integer
+    description: "Units"
+  stockpile units 011:
+    label: "stockpile units 011"
+    input: integer
+    description: "Units"
+  stockpile units 012:
+    label: "stockpile units 012"
+    input: integer
+    description: "Units"
+  stockpile units 013:
+    label: "stockpile units 013"
+    input: integer
+    description: "Units"
+  stockpile units 014:
+    label: "stockpile units 014"
+    input: integer
+    description: "Units"
+  stockpile units 015:
+    label: "stockpile units 015"
+    input: integer
+    description: "Units"
+  stockpile units 016:
+    label: "stockpile units 016"
+    input: integer
+    description: "Units"
+  stockpile units 017:
+    label: "stockpile units 017"
+    input: integer
+    description: "Units"
+  stockpile units 018:
+    label: "stockpile units 018"
+    input: integer
+    description: "Units"
+  stockpile units 019:
+    label: "stockpile units 019"
+    input: integer
+    description: "Units"
+  stockpile units 020:
+    label: "stockpile units 020"
+    input: integer
+    description: "Units"
+  stockpile units 021:
+    label: "stockpile units 021"
+    input: integer
+    description: "Units"
+  stockpile units 022:
+    label: "stockpile units 022"
+    input: integer
+    description: "Units"
+  stockpile units 023:
+    label: "stockpile units 023"
+    input: integer
+    description: "Units"
+  stockpile units 024:
+    label: "stockpile units 024"
+    input: integer
+    description: "Units"
+  stockpile units 025:
+    label: "stockpile units 025"
+    input: integer
+    description: "Units"
+  stockpile units 026:
+    label: "stockpile units 026"
+    input: integer
+    description: "Units"
+  stockpile units 027:
+    label: "stockpile units 027"
+    input: integer
+    description: "Units"
+  stockpile units 028:
+    label: "stockpile units 028"
+    input: integer
+    description: "Units"
+  stockpile units 029:
+    label: "stockpile units 029"
+    input: integer
+    description: "Units"
+  stockpile units 030:
+    label: "stockpile units 030"
+    input: integer
+    description: "Units"

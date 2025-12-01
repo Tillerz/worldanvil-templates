@@ -1,22 +1,43 @@
 #
 # @name: yaml to sheet
-# @version: 1.6
-# @date: 2025-03-10
+# @version: 1.9
+# @date: 2025-12-01
 #
 
 import re
 import os
+import ast
+from argparse import ArgumentParser
 from datetime import date
+
 today = date.today().strftime("%Y-%m-%d")
+
+parser = ArgumentParser()
+parser.add_argument("-f", "--folder", dest="folder", default=".",
+                    help="folder containing the .yml files (default: current folder)")
+parser.add_argument("-q", "--quiet",
+                    action="store_false", dest="verbose", default=True,
+                    help="don't print status messages to stdout")
+parser.add_argument("-d", "--debug",
+                    action="store_true", dest="debug", default=False,
+                    help="print debug messages to stdout")
+
+args = parser.parse_args()
+
+print (args.debug)
 
 # VS Code (Windows) might not switch to the folder the script is in, depending on the user's settings and environment, so we need to do it ourselves
 from sys import platform
 if (platform == 'win32' or platform == 'cygwin'):
     os.chdir(os.path.dirname(__file__))
-
+    if (args.folder != "."):
+        os.chdir(args.folder)
+        
 # Create a dictionary to hold all the variables
 context = {
-    "debug" : 0, # Set this to 1 to see some additional debug output
+    "debug" : args.debug,
+    "verbose" : args.verbose,
+    "table_name": "mytable",
     "yaml_output": [],
     "sheet_output": [],
     "form_output": [],
@@ -25,8 +46,9 @@ context = {
     "tabsize": 2,
     "table": 0,
     "horiz": 0,
-    "iterf": 1,
-    "iter": 0,
+    "iterOn": False,
+    "iterFrom": 1,
+    "iterTo": 0,
     "iter_in_table": 0,
     "fc": 0,
     "lc": 0,
@@ -39,6 +61,8 @@ context = {
     "f_tableheader": "",
     "s_table": "",
     "f_table": "",
+    "s_tr": 0,
+    "f_tr": 0,
     "width": "",
     "tr_open": 0,
     "quit": 0,
@@ -64,7 +88,7 @@ def clean(line, level):
         Formatted line.
     """
     global today
-    line = "".ljust(level*context["tabsize"])+s.replace("TIMESTAMP", today)+"\n"
+    line = "".ljust(level*context["tabsize"])+line.replace("TIMESTAMP", today)+"\n"
 
     # remove superfluous spaces
     line = line.replace("' >", "'>")
@@ -89,7 +113,7 @@ def doLayout(line, context):
     cmd = line.split(':', 3)
     cmd[0] = cmd[0].lower()
 
-    if context["debug"] == 1:
+    if context["debug"]:
         print(f"    DEBUG:" + "".ljust(+context["level"] * context["tabsize"]) + str(cmd))
 
     # linebreak (html)
@@ -158,7 +182,8 @@ def doLayout(line, context):
     # include (include another file, this file is not processed)
     elif cmd[0] == 'include':
         try:
-            ifile = open(cmd[1].strip(), mode='r', encoding='utf-8-sig')
+            filename = cmd[1].strip()
+            ifile = open(filename, mode='r', encoding='utf-8-sig')
             lines = ifile.readlines()
             ifile.close()
             if len(lines) > 0:
@@ -166,37 +191,87 @@ def doLayout(line, context):
                     if s.strip() != "":
                         context["sheet_output"].append(s.rstrip())
                         context["form_output"].append(s.rstrip())
+
+            # if there are any data files, parse them and extract the variables
+            if filename.endswith('data.twig'):
+                # Dictionary to store the extracted variables
+                twig_variables = {}
+
+                # Read and parse the Twig file
+                with open(filename, 'r') as file:
+                    content = file.read()
+
+                # Regular expression to match Twig variable assignments
+                pattern = r'{%\s*set\s+(\w+)\s*=\s*(\[.*?\])\s*%}'
+
+                # Find all matches
+                matches = re.findall(pattern, content, re.DOTALL)
+
+                # Convert the matched strings into Python variables
+                for var_name, var_value in matches:
+                    twig_variables[var_name] = ast.literal_eval(var_value)
+                    context["twig_variables"] = twig_variables
         except Exception as e:
             print(f"ERROR: cannot open include file {cmd[1]}: {e}")
 
     # iter (loop, script internal)
     elif cmd[0] == 'iter':
         context["counters"]["iter"] += 1
-        context["iterf"] = 1
-        context["iter"] = 10
+        context["iterOn"] = True
+        context["iterFrom"] = 1
+        context["iterTo"] = 10
+        eostring = "{% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}"
+        isForeach = False
         if len(cmd) > 1:
-            context["iter"] = int(cmd[1].strip())
-            if len(cmd) > 2:
-                context["iterf"] = int(cmd[1].strip())
-                context["iter"] = int(cmd[2].strip())
+            # it is a number range
+            if cmd[1].strip().isdigit():
+                context["iterTo"] = int(cmd[1].strip())
+                if len(cmd) > 2:
+                    context["iterFrom"] = int(cmd[1].strip())
+                    context["iterTo"] = int(cmd[2].strip())
+            # it is a foreach loop over a list/array
+            else:
+                isForeach = True
+                eostring = "{% if eo == 'od' %}{% set eo = 'ev' %}{% else %}{% set eo = 'od' %}{% endif %}"
+                # example: iter: ability_list: 0 for a list like [ 'ability name 1', 'attribute' ], [ 'ability name 2', 'attribute' ], ...
+                # this would contain ability_list
+                context["iterFrom"] = cmd[1].strip().lower()
+                context["iterTo"] = ""
+                if len(cmd) > 2:
+                    # this would contain the array index [0] to fetch the ability name from the list, or be empty if it a simple list
+                    context["iterTo"] = cmd[2].strip().lower()
         else:
-            print(f"WARN (line {context['lc']+1}): {cmd[0]} has no parameter, using 1 .. {context['iter']} as default")
+            print(f"WARN (line {context['lc']+1}): {cmd[0]} has no parameter, using {context['iterFrom']} .. {context['iterTo']} as default")
+
+        arr = ""
+        if isForeach:
+            if context["iterTo"] != "":
+                arr = "[" + context['iterTo'] + "]"
+
         if context["table"] == 1 and context["horiz"] == 1:
-            s1 = "{% " + f"for i in {context['iterf']}..{context['iter']}" + " %}###"
-            s2 = "".ljust(context["tabsize"]) + "{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}###"
+            if isForeach:
+                s1 = "{% set eo = 'ev' %}{% " + f"for i in {context['iterFrom']}" + " %}###"
+                s2 = "".ljust(context["tabsize"]) + "{% set il = i"+arr+"|default %}{% set id = il"+arr+"|lower|replace({' ': '_'}) %}{% set ic = il|lower|replace({' ': '-'}) %}###"
+            else:
+                s1 = "{% " + f"for i in {context['iterFrom']}..{context['iterTo']}" + " %}###"
+                s2 = "".ljust(context["tabsize"]) + "{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}###"
             context["s_table"] += s1
             context["s_table"] += s2
             context["f_table"] += s1
             context["f_table"] += s2
         else:
-            context["sheet_output"].append("{% " + f"for i in {context['iterf']}..{context['iter']}" + " %}")
-            context["sheet_output"].append("".ljust(context["tabsize"]) + "{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}")
+            if isForeach:
+                context["sheet_output"].append("{% set eo = 'ev' %}{% " + f"for i in {context['iterFrom']}" + " %}")
+                context["sheet_output"].append("".ljust(context["tabsize"]) + "{% set il = i"+arr+"|default %}{% set id = il"+arr+"|lower|replace({' ': '_'}) %}{% set ic = il|lower|replace({' ': '-'}) %}")
+            else:
+                context["sheet_output"].append("{% " + f"for i in {context['iterFrom']}..{context['iterTo']}" + " %}")
+                context["sheet_output"].append("".ljust(context["tabsize"]) + "{% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}")
         if context["table"] == 1 and context["horiz"] == 1:
-            s1 = "".ljust(context["tabsize"]) + "{% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}###<tr>###"
+            s1 = "".ljust(context["tabsize"]) + eostring + "###<tr>###"
             context["s_table"] += s1
             context["f_table"] += s1
         else:
-            context["sheet_output"].append("".ljust(context["tabsize"]) + "{% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}")
+            context["sheet_output"].append("".ljust(context["tabsize"]) + eostring )
         context["clevel"] = 1
     elif cmd[0] == '/iter':
         context["counters"]["iter"] -= 1
@@ -209,7 +284,9 @@ def doLayout(line, context):
                 context["sheet_output"].append("{% endfor %}")
         else:
             context["sheet_output"].append("{% endfor %}")
-        context["iter"] = 0
+        context["iterOn"] = False
+        context["iterFrom"] = 1
+        context["iterTo"] = 0
         context["level"] -= 1
         context["eo"] = ""
 
@@ -242,8 +319,8 @@ def doLayout(line, context):
 
     # table (html)
     elif cmd[0] == 'table':
-        context["sheet_output"].append("<table class='table'>")
-        context["form_output"].append("<table class='table'>")
+        context["sheet_output"].append("<table class='"+context["table_name"]+"'>")
+        context["form_output"].append("<table class='"+context["table_name"]+"'>")
         context["counters"]["table"] += 1
         context["eo"] = "ev"
         context["horiz"] = 0
@@ -263,18 +340,18 @@ def doLayout(line, context):
         context["clevel"] = 1
     elif cmd[0] == '/table':
         context["counters"]["table"] -= 1
-        tro_h = ""
-        trc_h = ""
+        trOpen_h = ""
+        trClose_h = ""
         if context["s_tableheader"] != "" and context["horiz"] == 1 and (context["iter_in_table"] == 1 or context["split"] == 1) and context["s_tableheader"].find("<tr>") == -1:
-            tro_h = "<tr>"
-            trc_h = "</tr>"
+            trOpen_h = "<tr>"
+            trClose_h = "</tr>"
         if context["s_table"] != "":
-            context["s_table"] = context["s_table"].replace("$TABLEHEADER", tro_h + "###" + context["s_tableheader"] + "###" + trc_h + "###")
+            context["s_table"] = context["s_table"].replace("$TABLEHEADER", trOpen_h + "###" + context["s_tableheader"] + "###" + trClose_h + "###")
             tmp = re.split('###', context["s_table"])
             for s in tmp:
                 context["sheet_output"].append(s)
         if context["f_table"] != "":
-            context["f_table"] = context["f_table"].replace("$TABLEHEADER", tro_h + "###" + context["f_tableheader"] + "###" + trc_h + "###")
+            context["f_table"] = context["f_table"].replace("$TABLEHEADER", trOpen_h + "###" + context["f_tableheader"] + "###" + trClose_h + "###")
             tmp = re.split('###', context["f_table"])
             for s in tmp:
                 context["form_output"].append(s)
@@ -283,6 +360,8 @@ def doLayout(line, context):
             context["form_output"].append('</tr>')
         context["sheet_output"].append('</table>')
         context["form_output"].append('</table>')
+        context["s_tr"] = 0
+        context["f_tr"] = 0
         context["iter_in_table"] = 0
         context["horiz"] = 0
         context["split"] = 1
@@ -312,8 +391,8 @@ def doField(field, params, context):
         context (dict): A dictionary containing context information for processing the field.
     Context Keys:
         mention (int): Indicates if the field should be a 'mention' field that displays the editor buttons.
-        iterf (int): The starting iteration index.
-        iter (int): The ending iteration index.
+        iterFrom (int): The starting iteration index.
+        iterTo (int): The ending iteration index.
         tabsize (int): The size of indentation for YAML output.
         width (str): The width of the table column.
         table (int): Indicates if the output should be in table format.
@@ -334,13 +413,16 @@ def doField(field, params, context):
     """
 
     # limit yaml field names to a-zA-Z0-9-_ and convert to lower case
-    fieldname_for_yaml = re.sub('[^a-zA-Z0-9\-\_ ]', '', field).replace("_", " ").replace("-", " ")
+    fieldname_for_yaml = re.sub('[^a-zA-Z0-9-_ ]', '', field).replace("_", " ").replace("-", " ")
 
     # limit form field names to a-z0-9, convert to lower case and concatenate words with -
     fieldname_for_class = fieldname_for_yaml.replace(" ", "-").lower()
 
     # limit form field names to a-z0-9, convert to lower case and concatenate words with _
     fieldname_for_form = fieldname_for_yaml.replace(" ", "_").lower()
+
+    if context["debug"]:
+        print(f"    DEBUG:" + "".ljust(+context["level"] * context["tabsize"]) + str(fieldname_for_form))
 
     # parameters
     desc = ""
@@ -435,54 +517,105 @@ def doField(field, params, context):
     # ### generate yaml for WA import #############################################
 
     postfix = ""
-    x = int(context["iterf"])
-    y = int(context["iter"])
-    if (y < 1):
-        y = 1
+    isLoop = False
+    isForeach = False
+    looplist = []
+    arr = ""
+    i=0
+    x=1
+    y=1
 
-    i = x
-    while (i <= y):
-        if (x != y):
-            postfix = " %03d" % i
+    if context["debug"]:
+        print(f"    DEBUG:{''.ljust(context['level'] * context['tabsize'])}{context['iterFrom']}.{context['iterTo']}")
 
-        # name:
-        #   label: "<text>"         - mandatory
-        #   input: <input type>     - mandatory
-        #   description: "<text>"   - optional
-        #   placeholder: "<text>"   - optional
-        #   required: true          - optional
-        #   rows: <rows>            - only for input: text
-        #   render: <image>         - only for input: image
-        #   min: <integer>          - only for input: integer
-        #   max: <integer>          - only for input: integer
-        #   options:                - only for input: select
-        #     x: x ...              - only for input: select
-
-        context["yaml_output"].append("".ljust(1*context["tabsize"])+fieldname_for_yaml+postfix+":")
-        context["yaml_output"].append("".ljust(2*context["tabsize"])+'label: "'+fieldname_for_yaml+postfix+'"')
-        context["yaml_output"].append("".ljust(2*context["tabsize"])+'input: '+type)
-
-        if (desc != ""):
-            context["yaml_output"].append("".ljust(2*context["tabsize"])+'description: "'+desc+'"')
+    if context["iterOn"]:
+        if str(context["iterFrom"]).isdigit():
+            x = int(context["iterFrom"])
+            y = int(context["iterTo"])
+            if (y < 1):
+                y = 1
+            i = x
+            if y > x:
+                isLoop = True
         else:
-            context["yaml_output"].append("".ljust(2*context["tabsize"])+'description: "'+label+'"')
-        if (pholder != ""):
-            context["yaml_output"].append("".ljust(2*context["tabsize"])+'placeholder: "'+pholder+'"')
-        if (required == "required=required"):
-            context["yaml_output"].append("".ljust(2*context["tabsize"])+'required: true')
-        if (rows != ""):
-            context["yaml_output"].append("".ljust(2*context["tabsize"])+'rows: '+rows)
-        if (render != ""):
-            context["yaml_output"].append("".ljust(2*context["tabsize"])+'render: '+render)
-        if (min != ""):
-            context["yaml_output"].append("".ljust(2*context["tabsize"])+'min: '+min)
-        if (max != ""):
-            context["yaml_output"].append("".ljust(2*context["tabsize"])+'max: '+max)
-        if (options != []):
-            context["yaml_output"].append("".ljust(2*context["tabsize"])+'options:')
-            for s in options:
-                context["yaml_output"].append("".ljust(3*context["tabsize"])+s.strip().replace("\n", ""))
-        i += 1
+            isLoop = True
+            isForeach = True
+            x=1
+            y=1
+            i=0
+            loopvar = context["iterFrom"]
+            loopvarsub = context["iterTo"]
+            if loopvarsub != "":
+                arr = "[" + loopvarsub + "]"
+            looplist = context["twig_variables"].get(loopvar, [])
+
+            if i!=1 or x!=1 or y!=1:
+                if context["debug"]:
+                    print(f"    DEBUG:{''.ljust(context['level'] * context['tabsize'])}{loopvar}.{arr} i{i} x{x} y{y} {looplist}")
+
+    # name:
+    #   label: "<text>"         - mandatory
+    #   input: <input type>     - mandatory
+    #   description: "<text>"   - optional
+    #   placeholder: "<text>"   - optional
+    #   required: true          - optional
+    #   rows: <rows>            - only for input: text
+    #   render: <image>         - only for input: image
+    #   min: <integer>          - only for input: integer
+    #   max: <integer>          - only for input: integer
+    #   options:                - only for input: select
+    #     x: x ...              - only for input: select
+
+    stopIt=False
+    counter=0
+    while (not stopIt):
+        # foreach loop pulling 1 element at a time
+        if  isForeach:
+            try:
+                listitem = looplist[counter]
+                counter += 1
+                if loopvarsub != "":
+                    postfix = " " + str(listitem[int(loopvarsub)])
+                else:
+                    postfix = " " + str(listitem)
+            # Catch the IndexError exception if the index is out of range
+            except IndexError as e:
+                i = y+1
+                stopIt=True
+        # regular iter counting loop
+        else:
+            if (x != y):
+                postfix = " %03d" % i
+            i += 1
+
+        if not stopIt:
+            context["yaml_output"].append("".ljust(1*context["tabsize"])+(fieldname_for_yaml+postfix).lower()+":")
+            context["yaml_output"].append("".ljust(2*context["tabsize"])+'label: "'+fieldname_for_yaml+postfix+'"')
+            context["yaml_output"].append("".ljust(2*context["tabsize"])+'input: '+type)
+
+            if (desc != ""):
+                context["yaml_output"].append("".ljust(2*context["tabsize"])+'description: "'+desc+'"')
+            else:
+                context["yaml_output"].append("".ljust(2*context["tabsize"])+'description: "'+label+postfix+'"')
+            if (pholder != ""):
+                context["yaml_output"].append("".ljust(2*context["tabsize"])+'placeholder: "'+pholder+'"')
+            if (required == "required=required"):
+                context["yaml_output"].append("".ljust(2*context["tabsize"])+'required: true')
+            if (rows != ""):
+                context["yaml_output"].append("".ljust(2*context["tabsize"])+'rows: '+rows)
+            if (render != ""):
+                context["yaml_output"].append("".ljust(2*context["tabsize"])+'render: '+render)
+            if (min != ""):
+                context["yaml_output"].append("".ljust(2*context["tabsize"])+'min: '+min)
+            if (max != ""):
+                context["yaml_output"].append("".ljust(2*context["tabsize"])+'max: '+max)
+            if (options != []):
+                context["yaml_output"].append("".ljust(2*context["tabsize"])+'options:')
+                for s in options:
+                    context["yaml_output"].append("".ljust(3*context["tabsize"])+s.strip().replace("\n", ""))
+
+            if i >= y:
+                stopIt=True
 
     # --- basic for all ------------------------------------------------------------
 
@@ -497,24 +630,18 @@ def doField(field, params, context):
         tdwidth = "width='%s'" % (context["width"])
 
     # table <tr>
-    # for debugging table formatting: print("table %s iter %s horiz %s split %s" % (table, iter, horiz) )
-    if (context["table"] == 1):
-        if (context["iter"] == 0):
-            if (context["horiz"] == 0):
-                so += "<tr>"
-                fo += "<tr>"
-            else:
-                if (context["split"] == 1):
-                    if (context["tr_open"] == 0):
-                        so += "<tr>"
-                        fo += "<tr>"
-                        context["tr_open"] = 1
-        else:
-            if (context["horiz"] == 0):
-                so += "<tr>"
-                fo += "<tr>"
+    # for debugging table formatting:
+    if context["debug"]:
+        print("    DEBUG: table %s, iter %s, foreach %s, horiz %s, split %s" % (context["table"], isLoop, isForeach, context["horiz"], context["split"]) )
 
-    if (context["iter"] > 0 or (context["table"] == 1 and context["horiz"] == 1)):
+    # regular div section
+    if (context["table"] == 1):
+        # table with one entry per line
+        if (context["horiz"] == 0):
+            so += "<tr>"
+            fo += "<tr>"
+
+    if (isLoop or (context["table"] == 1 and context["horiz"] == 1)):
         context["eo"] = "{{eo}}"
     else:
         if context["eo"] == "od":
@@ -526,63 +653,74 @@ def doField(field, params, context):
     # === basic sheet ==============================================================
 
     # --- print the label
+    lpostfix = ""
+    lpostfix_class = ""
+    lpostfix_form = ""
     tdwith_orig=tdwidth
     if (label != ""):
         lalign = align
-        if (context["iter"] == 0):
+        if isLoop:
             lalign = ""
+            if isForeach:
+                lpostfix = ' {{il}}'
+                lpostfix_class = '-{{ic}}'
+                lpostfix_form = '_{{ic}}'
         if (context["table"] == 1):
             if (context["horiz"] == 1):
                 if (context["split"] == 1):
                     eo2 = "od"
-                    context["s_tableheader"] += "<th class='lbl %s lbl-%s %s' %s> %s </th>###" % (eo2, fieldname_for_class, lalign, tdwidth, label)
+                    context["s_tableheader"] += "<th class='lbl %s lbl-%s%s %s' %s> %s%s </th>" % (eo2, fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
                 else:
-                    so += "<th class='lbl %s lbl-%s %s' %s title='$DESC'> %s </th>" % (context["eo"], fieldname_for_class, lalign, tdwidth, label)
+                    so += "<th class='lbl %s lbl-%s%s %s' %s title='$DESC'> %s%s </th>###" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
             else:
-                so += "<th class='lbl %s lbl-%s %s' %s title='$DESC'> %s </th>" % (context["eo"], fieldname_for_class, lalign, tdwidth, label)
+                so += "<th class='lbl %s lbl-%s%s %s' %s title='$DESC'> %s%s </th>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
         else:
-            so += "<div class='lbl %s lbl-%s %s' %s title='$DESC'> %s </div>" % (context["eo"], fieldname_for_class, lalign, tdwidth, label)
+            so += "<div class='lbl %s lbl-%s%s %s' %s title='$DESC'> %s%s </div>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, label, lpostfix)
         # if we have a label/th, do not use the width for the field value also
         tdwidth = ""
 
     # --- print the saved data, different per input type:
     if (context["table"] == 1):
+        if (context["horiz"] == 1) and not isLoop:
+            if context["s_tr"] == 0:
+                context["s_tr"] = 1
+                so += "<tr>"
         so += "<td "
     else:
         so += "<div "
-    so += "class='var %s var-%s %s' %s title='$DESC'>" % (context["eo"], fieldname_for_class, align, tdwidth)
+    so += "class='var %s var-%s%s %s' %s title='$DESC'>" % (context["eo"], fieldname_for_class, lpostfix_class, align, tdwidth)
 
     if ("text" == type):
-        if (context["iter"] == 0):
-            so += " {{variables.%s|default|nl2br}} " % fieldname_for_form
+        if isLoop:
+            so += " {{attribute(variables, '%s_' ~ id%s)|default|nl2br}} " % (fieldname_for_form, arr)
         else:
-            so += " {{attribute(variables, '%s_' ~ id)|default|nl2br}} " % fieldname_for_form
+            so += " {{variables.%s|default|nl2br}} " % fieldname_for_form
 
     if ("select" == type):
-        if (context["iter"] == 0):
-            so += " {{variables.%s|default}} " % fieldname_for_form
+        if isLoop:
+            so += " {{attribute(variables, '%s_' ~ id%s)|default}} " % (fieldname_for_form, arr)
         else:
-            so += " {{attribute(variables, '%s_' ~ id)|default}} " % fieldname_for_form
+            so += " {{variables.%s|default}} " % fieldname_for_form
 
     elif ("checkbox" == type):
-        if (context["iter"] == 0):
-            so += "{% if variables.$ID|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}"
-        else:
+        if isLoop:
             so += "{% if attribute(variables, '$ID_' ~ id)|default|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}"
+        else:
+            so += "{% if variables.$ID|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}"
         so = so.replace("$ID", fieldname_for_form)
 
     elif ("string" == type):
         if (context["dots"] == 0):
-            if (context["iter"] == 0):
-                so += " {{variables.%s|default}} " % fieldname_for_form
+            if isLoop:
+                so += " {{attribute(variables, '%s_' ~ id%s)|default}} " % (fieldname_for_form, arr)
             else:
-                so += " {{attribute(variables, '%s_' ~ id)|default}} " % fieldname_for_form
+                so += " {{variables.%s|default}} " % fieldname_for_form
         else:
             # make a line of boxes:
-            if (context["iter"] == 0):
-                so += "{% set curr = variables."+fieldname_for_form+"|default %}"
+            if isLoop:
+                so += "{% set curr = attribute(variables, '"+fieldname_for_form+"_' ~ id"+arr+")|default %}"
             else:
-                so += "{% set curr = attribute(variables, '"+fieldname_for_form+"_' ~ id)|default %}"
+                so += "{% set curr = variables."+fieldname_for_form+"|default %}"
             so += "{% for i in 1.."+context["dots"]+" %}{% if i <= curr %}<i class='fa-solid fa-square'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}{% endfor %}"
             context["dots"] = 0
 
@@ -595,35 +733,31 @@ def doField(field, params, context):
             if ("image" == render):
                 prefix = "[img:"
                 postfix = "]"
-            if (context["iter"] == 0):
-                so += prefix+("{{variables.%s|default}}" % fieldname_for_form)+postfix
+            if isLoop:
+                so += prefix+"{{attribute(variables, '"+fieldname_for_form+"_' ~ id"+arr+")|default}}"+postfix
             else:
-                so += prefix+("{{attribute(variables, '%s_' ~ id)|default}}" % fieldname_for_form)+postfix
+                so += prefix+"{{variables."+fieldname_for_form+"|default}}"+postfix
         else:
             # make a line of boxes:
-            if (context["iter"] == 0):
-                so += "{% set curr = variables."+fieldname_for_form+"|default %}"
+            if isLoop:
+                so += "{% set curr = attribute(variables, '"+fieldname_for_form+"_' ~ id"+arr+")|default %}"
             else:
-                so += "{% set curr = attribute(variables, '"+fieldname_for_form+"_' ~ id)|default %}"
+                so += "{% set curr = variables."+fieldname_for_form+"|default %}"
             so += "{% for i in 1.."+context["dots"]+" %}{% if i <= curr %}<i class='fa-solid fa-square'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}{% endfor %}"
             context["dots"] = 0
 
-    # table
-    if (context["table"] == 1):
-        so += "</td>"
-        if (context["iter"] == 0):
-            if (context["horiz"] == 0):
-                so += "</tr>"
-            else:
-                if (context["split"] == 1):
-                    if (context["tr_open"] == 0):
-                        so += "</tr>"
-                        context["tr_open"] = 0
-        else:
-            if (context["horiz"] == 0):
-                so += "</tr>"
-    else:
+    # regular div section
+    if (context["table"] == 0):
         so += "</div>"
+    else:
+        # it's a table
+        so += "</td>"
+        # table with one entry per line
+        if (context["horiz"] == 0):
+            so += "</tr>"
+        else:
+            if not isLoop:
+                so += "</tr>"
 
     # === edit form =============================================================
 
@@ -632,41 +766,45 @@ def doField(field, params, context):
     # --- print the label
     if (label != ""):
         lalign = align
-        if (context["iter"] == 0):
+        if not isLoop:
             lalign = ""
         if (context["table"] == 1):
             if (context["horiz"] == 1):
                 if (context["split"] == 1):
                     eo2 = "od"
-                    context["f_tableheader"] += "<th class='ilbl %s ilbl-%s %s' %s><label for='%s'>%s</label></th>###" % (eo2, fieldname_for_class, lalign, tdwidth, fieldname_for_form, label)
+                    context["f_tableheader"] += "<th class='ilbl %s ilbl-%s%s %s' %s><label for='%s%s'>%s%s</label></th>###" % (eo2, fieldname_for_class, lpostfix_class, lalign, tdwidth, fieldname_for_form, lpostfix_form, label, lpostfix)
                     tdwidth = ""
                 else:
-                    fo += "<th class='ilbl %s ilbl-%s %s %s' title='$DESC'><label for='%s'>%s</label></th>" % (context["eo"], fieldname_for_class, lalign, tdwidth, fieldname_for_form, label)
+                    fo += "<th class='ilbl %s ilbl-%s%s %s %s' title='$DESC'><label for='%s%s'>%s%s</label></th>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, fieldname_for_form, lpostfix_form, label, lpostfix)
                     tdwidth = ""
             else:
-                fo += "<th class='ilbl %s ilbl-%s %s' %s title='$DESC'><label for='%s'>%s</label></th>" % (context["eo"], fieldname_for_class, lalign, tdwidth, fieldname_for_form, label)
+                fo += "<th class='ilbl %s ilbl-%s%s %s' %s title='$DESC'><label for='%s%s'>%s%s</label></th>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, fieldname_for_form, lpostfix_form, label, lpostfix)
                 tdwidth = ""
         else:
-            fo = "<div class='ilbl %s ilbl-%s %s' %s title='$DESC'><label for='%s'>%s</label></div>" % (context["eo"], fieldname_for_class, lalign, tdwidth, fieldname_for_form, label)
+            fo = "<div class='ilbl %s ilbl-%s%s %s' %s title='$DESC'><label for='%s%s'>%s%s</label></div>" % (context["eo"], fieldname_for_class, lpostfix_class, lalign, tdwidth, fieldname_for_form, lpostfix_form, label, lpostfix)
             tdwidth = ""
         # if we have a label/th, do not use the width for the field value also
 
     # --- print the saved data, different per input type:
     if (context["table"] == 1):
+        if (context["horiz"] == 1) and not isLoop:
+            if context["f_tr"] == 0:
+                context["f_tr"] = 1
+                fo += "<tr>"
         fo += "<td "
     else:
         fo += "<div "
-    fo += "class='ivar %s ivar-%s %s' %s title='$DESC'>" % (context["eo"], fieldname_for_class, align, tdwidth)
+    fo += "class='ivar %s ivar-%s%s %s' %s title='$DESC'>" % (context["eo"], fieldname_for_class, lpostfix_class, align, tdwidth)
 
     # text field
     if ("text" == type):
-        # not in a loop:
-        if (context["iter"] == 0):
-            fo += "<div class='iContent'><textarea class='form-control ivar ivar-%s %s' id='%s' name='%s' placeholder='%s' $ROWS $REQUIRED >{{variables.%s|default}}</textarea></div>" % (
-                fieldname_for_class, mt, fieldname_for_form, fieldname_for_form, pholder, fieldname_for_form)
         # in a loop, add the loop counter to variable names:
+        if isLoop:
+            fo += "<div class='iContent'><textarea class='form-control ivar ivar-%s %s' id='%s_{{id}}' name='%s_{{id}}' placeholder='%s' $ROWS $REQUIRED >{{attribute(variables, '%s_' ~ id"+arr+")|default}}</textarea></div>" % (
+                fieldname_for_class, mt, fieldname_for_form, fieldname_for_form, pholder, fieldname_for_form)
+        # not in a loop:
         else:
-            fo += "<div class='iContent'><textarea class='form-control ivar ivar-%s %s' id='%s' name='%s_{{id}}' placeholder='%s' $ROWS $REQUIRED >{{attribute(variables, '%s_' ~ id)|default}}</textarea></div>" % (
+            fo += "<div class='iContent'><textarea class='form-control ivar ivar-%s %s' id='%s' name='%s' placeholder='%s' $ROWS $REQUIRED >{{variables.%s|default}}</textarea></div>" % (
                 fieldname_for_class, mt, fieldname_for_form, fieldname_for_form, pholder, fieldname_for_form)
         s = ""
         if (rows != ""):
@@ -676,13 +814,13 @@ def doField(field, params, context):
     # select field
     if ("select" == type):
         context["level"] += 1
-        # not in a loop:
-        if (context["iter"] == 0):
-            fo += "\n"+"".ljust(context["level"]*context["tabsize"])+"<select $REQUIRED class='form-control ivar ivar-%s' id='%s' name='%s'>\n" % (
-                fieldname_for_class, fieldname_for_form, fieldname_for_form)
         # in a loop, add the loop counter to variable names:
+        if isLoop:
+            fo += "\n"+"".ljust(+context["level"]*context["tabsize"])+"<select $REQUIRED class='form-control ivar ivar-%s' id='%s_{{id}}' name='%s_{{id}}'>\n" % (
+                fieldname_for_class, fieldname_for_form, fieldname_for_form)
+        # not in a loop:
         else:
-            fo += "\n"+"".ljust(+context["level"]*context["tabsize"])+"<select $REQUIRED class='form-control ivar ivar-%s' id='%s' name='%s_{{id}}'>\n" % (
+            fo += "\n"+"".ljust(context["level"]*context["tabsize"])+"<select $REQUIRED class='form-control ivar ivar-%s' id='%s' name='%s'>\n" % (
                 fieldname_for_class, fieldname_for_form, fieldname_for_form)
 
         x1 = len(options)
@@ -700,13 +838,13 @@ def doField(field, params, context):
                 v1 = k1
                 print("WARN: select option must not be empty: %s: <value>. Assuming they are the same." % k1)
             k1 = k1.lower().replace(' ','_').replace('-','_')
-            if (context["iter"] == 0):
+            if isLoop:
                 fo += "".ljust((context["level"]+1)*context["tabsize"])+"<option value='" + k1 + \
-                    "' {% if variables."+fieldname_for_form+"|default == '" + k1 + \
+                    "' {% if attribute(variables, '"+fieldname_for_form+"_' ~ id)|default == '" + k1 + \
                     "' %}selected='selected' {% endif %} > " + v1 + " </option>\n"
             else:
                 fo += "".ljust((context["level"]+1)*context["tabsize"])+"<option value='" + k1 + \
-                    "' {% if attribute(variables, '"+fieldname_for_form+"_' ~ id)|default == '" + k1 + \
+                    "' {% if variables."+fieldname_for_form+"|default == '" + k1 + \
                     "' %}selected='selected' {% endif %} > " + v1 + " </option>\n"
             i1 += 1
         fo += "".ljust(context["level"]*context["tabsize"])+"</select>"
@@ -714,25 +852,25 @@ def doField(field, params, context):
 
     # string field
     elif ("string" == type):
-        # not in a loop:
-        if (context["iter"] == 0):
-            fo += "<input value='{{variables.%s|default}}' class='form-control ivar ivar-%s' id='%s' name='%s' placeholder='%s' type='text' $REQUIRED />" % (
-                fieldname_for_form, fieldname_for_class, fieldname_for_form, fieldname_for_form, pholder)
         # in a loop, add the loop counter to variable names:
+        if isLoop:
+            fo += "<input value='{{attribute(variables, '%s_' ~ id%s)|default}}' class='form-control ivar ivar-%s' id='%s_{{id}}' name='%s_{{id}}' placeholder='%s' type='text' $REQUIRED />" % (
+                fieldname_for_form, arr, fieldname_for_class, fieldname_for_form, fieldname_for_form, pholder)
+        # not in a loop:
         else:
-            fo += "<input value='{{attribute(variables, '%s_' ~ id)|default}}' class='form-control ivar ivar-%s' id='%s' name='%s_{{id}}' placeholder='%s' type='text' $REQUIRED />" % (
+            fo += "<input value='{{variables.%s|default}}' class='form-control ivar ivar-%s' id='%s' name='%s' placeholder='%s' type='text' $REQUIRED />" % (
                 fieldname_for_form, fieldname_for_class, fieldname_for_form, fieldname_for_form, pholder)
 
     # number field
     elif ("number" == type):
         # fo += "<div class='iContent'>"
-        # not in a loop:
-        if (context["iter"] == 0):
-            fo += "<input value='{{variables.%s|default}}' class='form-control ivar ivar-%s c' id='%s' name='%s' placeholder='%s' type='number' $MIN $MAX $REQUIRED />" % (
-                fieldname_for_form, fieldname_for_class, fieldname_for_form, fieldname_for_form, pholder)
         # in a loop, add the loop counter to variable names:
+        if isLoop:
+            fo += "<input value='{{attribute(variables, '%s_' ~ id%s)|default}}' class='form-control ivar ivar-%s c' id='%s_{{id}}' name='%s_{{id}}' placeholder='%s' type='number' $MIN $MAX $REQUIRED />" % (
+                fieldname_for_form, arr, fieldname_for_class, fieldname_for_form, fieldname_for_form, pholder)
+        # not in a loop:
         else:
-            fo += "<input value='{{attribute(variables, '%s_' ~ id)|default}}' class='form-control ivar ivar-%s c' id='%s' name='%s_{{id}}' placeholder='%s' type='number' $MIN $MAX $REQUIRED />" % (
+            fo += "<input value='{{variables.%s|default}}' class='form-control ivar ivar-%s c' id='%s' name='%s' placeholder='%s' type='number' $MIN $MAX $REQUIRED />" % (
                 fieldname_for_form, fieldname_for_class, fieldname_for_form, fieldname_for_form, pholder)
 
         # add the optional min and max values
@@ -747,33 +885,28 @@ def doField(field, params, context):
 
     # checkbox field
     elif ("checkbox" == type):
+        # in a loop, add the loop counter to variable names:
+        if isLoop:
+            fo += "<input value='0' id='%s' name='%s_{{id}}' type='hidden' />" % (fieldname_for_form, fieldname_for_form)
+            fo += "<input value='1' class='c' {% if attribute(variables, '$ID_' ~ id"+arr+")|default > 0 %} checked='checked'{% endif %} id='$ID_{{id}}' name='$ID_{{id}}' type='checkbox' />"
         # not in a loop:
-        if (context["iter"] == 0):
+        else:
             fo += "<input value='0' id='%s' name='%s' type='hidden' />" % (fieldname_for_form, fieldname_for_form)
             fo += "<input value='1' class='c' {% if variables.$ID|default > 0 %} checked='checked'{% endif %} id='$ID' name='$ID' type='checkbox' />"
-        # in a loop, add the loop counter to variable names:
-        else:
-            fo += "<input value='0' id='%s' name='%s_{{id}}' type='hidden' />" % (fieldname_for_form, fieldname_for_form)
-            fo += "<input value='1' class='c' {% if attribute(variables, '$ID_' ~ id)|default > 0 %} checked='checked'{% endif %} id='$ID' name='$ID_{{id}}' type='checkbox' />"
         fo = fo.replace("$ID", fieldname_for_form)
 
-    # table
-    if (context["table"] == 1):
-        fo += "</td>"
-        if (context["iter"] == 0):
-            if (context["horiz"] == 0):
-                fo += "</tr>"
-            else:
-                if (context["split"] == 1):
-                    if (context["tr_open"] == 0):
-                        fo += "</tr>"
-                        # context["f_tableheader"] += "</tr>"
-                        context["tr_open"] = 0
-        else:
-            if (context["horiz"] == 0):
-                fo += "</tr>"
-    else:
+    # regular div section
+    if (context["table"] == 0):
         fo += "</div>"
+    else:
+        # it's a table
+        fo += "</td>"
+        # table with one entry per line
+        if (context["horiz"] == 0):
+            fo += "</tr>"
+        else:
+            if not isLoop:
+                fo += "</tr>"
 
     # --- end form -----------------------------------------------------------------
 
@@ -812,7 +945,8 @@ fn_yaml = "import-to-wa.yml"
 fn_sheet = "basic-sheet.html.twig"
 fn_form = "edit-form.html.twig"
 
-print(f"- Read schema yaml file {fn_schema}")
+if context["verbose"]:
+    print(f"- Read schema yaml file {fn_schema}")
 try:
     file = open(fn_schema, mode='r', encoding='utf-8-sig')
 except Exception as e:
@@ -838,7 +972,8 @@ while context["lc"] < x:
         itabsize = len(line) - len(line.lstrip())
         context["lc"] = x
     context["lc"] += 1
-print(f"- Detected YAML indent size: {itabsize}")
+if context["verbose"]:
+    print(f"- Detected YAML indent size: {itabsize}")
 
 # loop over all schema lines and parse them
 x = len(lines)
@@ -848,7 +983,8 @@ while context["lc"] < x:
     if context["lc"] == 0:
         if line.startswith('fields'):
             # we found the start of the actual yaml data
-            print("- Parse YAML data")
+            if context["verbose"]:
+                print("- Parse YAML data")
         else:
             print(f"ERROR (line {context['lc']+1}): file must start with fields: in the first line.")
             exit(0)
@@ -868,7 +1004,8 @@ while context["lc"] < x:
                 context["form_output"] = context["sheet_output"]
         elif (line.startswith('###!')):
             # special comment, this is being printed to stdout during the parsing process
-            print(line)
+            if context["verbose"]:
+                print(line)
         elif (not line.startswith('###')):
             # parse everything else
             s = line.split(":", 1)
@@ -908,7 +1045,8 @@ while context["lc"] < x:
         context["lc"]=x
 
 # close files
-print("- Write result files")
+if context["verbose"]:
+    print("- Write result files")
 file_sheet.close()
 file_form.close()
 
@@ -925,7 +1063,8 @@ for field in ["col", "row", "card", "card-body", "iter", "sheet", "table"]:
     elif value < 0:
         print(f"ERROR: superfluous # /{field} elements: {abs(value)}")
 
-print(f"- Finished, {context['lc']} lines, {context['fc']} fields, and {context['tc']} formatting tags processed")
-print(f"- Upload these files to WA: {fn_yaml}, {fn_sheet}, {fn_form}")
+if context["verbose"]:
+    print(f"- Finished, {context['lc']} lines, {context['fc']} fields, and {context['tc']} formatting tags processed")
+    print(f"- Upload these files to WA: {fn_yaml}, {fn_sheet}, {fn_form}")
 
 # eof

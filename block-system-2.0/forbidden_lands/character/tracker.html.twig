@@ -10,25 +10,37 @@
 						<tr>
 							<td class="lbl odd l">Sleepless</td><td class="cond odd c" width="50%">
 								<input value="0" id="cond_exhausted" name="cond_exhausted" type="hidden" />
-								<input value="1" {% if variables.cond_exhausted is defined and variables.cond_exhausted == 1 %} checked="checked"{% endif %} id="cond_exhausted" name="cond_exhausted" placeholder="" type="checkbox" />
+								<input value="1" {% if variables.cond_exhausted is defined and variables.cond_exhausted == 1 %} checked="checked"{% endif %} id="cond_exhausted" name="cond_exhausted" type="checkbox" />
 							</td>
 						</tr>
 						<tr>
 							<td class="lbl ev l">Thirsty</td><td class="cond ev c">
 								<input value="0" id="cond_dehydrated" name="cond_dehydrated" type="hidden" />
-								<input value="1" {% if variables.cond_dehydrated is defined and variables.cond_dehydrated == 1 %} checked="checked"{% endif %} id="cond_dehydrated" name="cond_dehydrated" placeholder="" type="checkbox" />
+								<input value="1" {% if variables.cond_dehydrated is defined and variables.cond_dehydrated == 1 %} checked="checked"{% endif %} id="cond_dehydrated" name="cond_dehydrated" type="checkbox" />
 							</td>
 						</tr>
 						<tr>
 							<td class="lbl odd l">Hungry</td><td class="cond odd c" width="50%">
 								<input value="0" id="cond_starving" name="cond_starving" type="hidden" />
-								<input value="1" {% if variables.cond_starving is defined and variables.cond_starving == 1 %} checked="checked"{% endif %} id="cond_starving" name="cond_starving" placeholder="" type="checkbox" />
+								<input value="1" {% if variables.cond_starving is defined and variables.cond_starving == 1 %} checked="checked"{% endif %} id="cond_starving" name="cond_starving" type="checkbox" />
 							</td>
 						</tr>
 						<tr>
 							<td class="lbl ev l">Cold</td><td class="cond ev c">
 								<input value="0" id="cond_freezing" name="cond_freezing" type="hidden" />
-								<input value="1" {% if variables.cond_freezing is defined and variables.cond_freezing == 1 %} checked="checked"{% endif %} id="cond_freezing" name="cond_freezing" placeholder="" type="checkbox" />
+								<input value="1" {% if variables.cond_freezing is defined and variables.cond_freezing == 1 %} checked="checked"{% endif %} id="cond_freezing" name="cond_freezing" type="checkbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="lbl ev l">Intoxicated</td><td class="cond ev c">
+								<input value="0" id="cond_intoxicated" name="cond_intoxicated" type="hidden" />
+								<input value="1" {% if variables.cond_intoxicated is defined and variables.cond_intoxicated == 1 %} checked="checked"{% endif %} id="cond_intoxicated" name="cond_intoxicated" type="checkbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="lbl ev l">Filthy</td><td class="cond ev c">
+								<input value="0" id="cond_filthy" name="cond_filthy" type="hidden" />
+								<input value="1" {% if variables.cond_filthy is defined and variables.cond_filthy == 1 %} checked="checked"{% endif %} id="cond_filthy" name="cond_filthy" type="checkbox" />
 							</td>
 						</tr>
 					</table>

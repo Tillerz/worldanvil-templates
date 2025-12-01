@@ -1,0 +1,157 @@
+﻿{% set resources = ["Iron Ore", "Iron", "Silver", "Gold", "Stone", "Glass", "Wood", "Fur", "Leather", "Cloth", "Wool", "Food", "Bread", "Water", "Flour", "Grain", "Meat", "Fish", "Vegetables", "Tallow", "Herbs" ] %}
+<div class='container-fluid fl-sheet'>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card stronghold details' id='card-stronghold details'>
+        <div class='card-header stronghold details'>Stronghold Details</div>
+        <div class='card-body of'>
+          <table class='mytable'>
+            <tr><th class='lbl od lbl-name'><label for='name'>Name</label></th><td class='var od var-name'><input value='{{variables.name|default}}' class='form-control var var-name' id='name' name='name' type='text' required=required /></td></tr>
+            <tr><th class='lbl ev lbl-location'><label for='location'>Location</label></th><td class='var ev var-location'><input value='{{variables.location|default}}' class='form-control var var-location' id='location' name='location' type='text' /></td></tr>
+            <tr><th class='lbl od lbl-defense-rating'><label for='defense_rating'>Defense Rating</label></th><td class='var od var-defense-rating'><input value='{{variables.defense_rating|default}}' class='form-control var var-defense-rating c' id='defense_rating' name='defense_rating' type='number' /></td></tr>
+            <tr><th class='lbl ev lbl-img'><label for='img'>Image</label></th><td class='var ev var-img'><input value='{{variables.img|default}}' class='form-control var var-img c' id='img' name='img' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='var od var-notes'><div class='iContent'><textarea class='form-control var var-notes ' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card functions' id='card-functions'>
+        <div class='card-header functions'>Functions</div>
+        <div class='card-body of'>
+          <table class='mytable'>
+            <tr>
+              <th class='hdr hdr-function-name'><label for='function_name'>Name</label></th>
+              <th class='hdr hdr-function-number c'><label for='function_number'>Number</label></th>
+              <th class='hdr hdr-function-production c'><label for='function_production'>Production / Effect</label></th>
+            </tr>
+            {% set list_max = 99 %}{% set empty_min = 5 %}{% set list_min = 15 %}{% set empty_count = 0 %}{% set count = 0 %}
+            {% for i in 1..list_max %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'function_name_' ~ id)|default|trim %}
+              {% if name == "" and i > list_min %}{% set empty_count = empty_count + 1 %}{% endif %}
+              {% if empty_count <= empty_min or i < list_min or name != "" %}
+                {% set count = count + 1 %}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <tr>
+              <td class='var {{eo}} var-function-name' width=20%><input value='{{name}}' class='form-control var var-function-name' id='function_name' name='function_name_{{id}}' type='text' /></td>
+              <td class='var {{eo}} var-function-number c' width=15%><input value='{{attribute(variables, 'function_number_' ~ id)|default}}' class='form-control var var-function-number c' id='function_number' name='function_number_{{id}}' type='number' /></td>
+              <td class='var {{eo}} var-function-production c'><input value='{{attribute(variables, 'function_production_' ~ id)|default}}' class='form-control var var-function-production c' id='function_production' name='function_production_{{id}}' type='text' /></td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card hirelings' id='card-hirelings'>
+        <div class='card-header hirelings'>Hirelings</div>
+        <div class='card-body of'>
+          <table class='mytable'>
+            <tr>
+              <th class='hdr hdr-hireling-name'><label for='hireling_name'>Name</label></th>
+              <th class='hdr hdr-hireling-number c' width=15%><label for='hireling_number'>Number</label></th>
+              <th class='hdr hdr-hireling-salary c' width=15%><label for='hireling_salary'>Salary</label></th>
+            </tr>
+            {% set list_max = 99 %}{% set empty_min = 5 %}{% set list_min = 15 %}{% set empty_count = 0 %}{% set count = 0 %}
+            {% for i in 1..list_max %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set name = attribute(variables, 'hireling_name_' ~ id)|default|trim %}
+              {% if name == "" and i > list_min %}{% set empty_count = empty_count + 1 %}{% endif %}
+              {% if empty_count <= empty_min or i < list_min or name != "" %}
+                {% set count = count + 1 %}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <tr>
+              <td class='var {{eo}} var-hireling-name'><input value='{{name}}' class='form-control var var-hireling-name' id='hireling_name' name='hireling_name_{{id}}' type='text' /></td>
+              <td class='var {{eo}} var-hireling-number c'><input value='{{attribute(variables, 'hireling_number_' ~ id)|default}}' class='form-control var var-hireling-number c' id='hireling_number' name='hireling_number_{{id}}' type='number' /></td>
+              <td class='var {{eo}} var-hireling-salary c'><input value='{{attribute(variables, 'hireling_salary_' ~ id)|default}}' class='form-control var var-hireling-salary c' id='hireling_salary' name='hireling_salary_{{id}}' type='text' /></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card stockpile' id='card-stockpile'>
+        <div class='card-header stockpile'>Stockpile</div>
+        <div class='card-body of'>
+          <div class='row'>
+            <div class='col-12 col-md-4'>
+              <table class='mytable'>
+                <tr>
+                  <th class='hdr hdr-stockpile-name'> Name </th>
+                  <th class='hdr hdr-stockpile-units c' width=25%> Units </th>
+                </tr>
+                {% for i in 1..10 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set name = attribute(variables, 'stockpile_name_' ~ id)|default %}
+                  {% if name == "" %}{% set name = resources[i-1]|default %}{% endif %}
+                  {% set units = attribute(variables, 'stockpile_units_' ~ id)|default %}
+                  {% if units < 1 %}{% set units = '0' %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                <tr>
+                  <td class='var {{eo}} var-stockpile-name'><input value='{{name}}' class='form-control var var-stockpile-name' id='stockpile_name' name='stockpile_name_{{id}}' type='text' /></td>
+                  <td class='var {{eo}} var-stockpile-units'><input value='{{units}}' class='form-control var var-stockpile-units c' id='stockpile_units' name='stockpile_units_{{id}}' type='number' /></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+            <div class='col-12 col-md-4'>
+              <table class='mytable'>
+                <tr>
+                  <th class='hdr hdr-stockpile-name'> Name </th>
+                  <th class='hdr hdr-stockpile-units c' width=25%> Units </th>
+                </tr>
+                {% for i in 11..20 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set name = attribute(variables, 'stockpile_name_' ~ id)|default %}
+                  {% if name == "" %}{% set name = resources[i-1]|default %}{% endif %}
+                  {% set units = attribute(variables, 'stockpile_units_' ~ id)|default %}
+                  {% if units < 1 %}{% set units = 0 %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                <tr>
+                  <td class='var {{eo}} var-stockpile-name'><input value='{{name}}' class='form-control var var-stockpile-name' id='stockpile_name' name='stockpile_name_{{id}}' type='text' /></td>
+                  <td class='var {{eo}} var-stockpile-units'><input value='{{units}}' class='form-control var var-stockpile-units c' id='stockpile_units' name='stockpile_units_{{id}}' type='number' /></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+            <div class='col-12 col-md-4'>
+              <table class='mytable'>
+                <tr>
+                  <th class='hdr hdr-stockpile-name'> Name </th>
+                  <th class='hdr hdr-stockpile-units c' width=25%> Units </th>
+                </tr>
+                {% for i in 21..30 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set name = attribute(variables, 'stockpile_name_' ~ id)|default %}
+                  {% if name == "" %}{% set name = resources[i-1]|default %}{% endif %}
+                  {% set units = attribute(variables, 'stockpile_units_' ~ id)|default %}
+                  {% if units < 1 %}{% set units = 0 %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                <tr>
+                  <td class='var {{eo}} var-stockpile-name'><input value='{{name}}' class='form-control var var-stockpile-name' id='stockpile_name' name='stockpile_name_{{id}}' type='text' /></td>
+                  <td class='var {{eo}} var-stockpile-units'><input value='{{units}}' class='form-control var var-stockpile-units c' id='stockpile_units' name='stockpile_units_{{id}}' type='number' /></td>
+                </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

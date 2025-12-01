@@ -1,5 +1,9 @@
 # Creating a sheet or statblock for World Anvil
 
+## TODO/BUGS
+
+- nosplit in combination with iter created wrong tr tags.
+
 ## Preparations
 
 - If you are working locally, make sure to have a version of Python 3 installed.
@@ -94,7 +98,15 @@ Input:
 
 This will add a select box to your sheet. The select box will get the name "Some Name", class name for css and the id will be "some-name", and the form field will have the name "some_name". The saved value for the options will be "first" and "second", and it will display "Some String" and "Another String" in the select box.
 
-# Script parameters
+# Script command line parameters
+
+```
+-d or --debug for more console output
+-q or --quiet for no console output (except errors)
+-f or --folder <foldername> to switch into a subfolder for reading/writing
+```
+
+# Script yaml file commands
 
 Also see example input and output in the example/ folder. Do not enter these &lt;brackets&gt;, they only tell you this is a string to replace with something else.
 
@@ -334,7 +346,7 @@ Input:
 
 
 ## Loops
-### iter
+### iter [start] [end]
 
 Repeats the block inbetween iter and /iter `count` times and also adds _`count` to all variable names. Default for counter is 1..10.
 If you give a count value , it is 1..`count`. if you hand over two numbers, it is `start`..`count`.
@@ -355,7 +367,7 @@ Input:
 
 Input:
 ```yaml
-# iter: <start>: <end>
+# iter: [start]: [end]
 # /iter
 ```
 
@@ -394,6 +406,58 @@ Example output for iter and table: horiz combination:
     {% endfor %}
     </table>
 ```
+
+### iter [list name] [index]
+
+The second variant of `iter` is not doing a count from start to end but instead loops over all elements of a list, and if an index is given, will then pick the `index`-th element of the found sub-list. The list must be defined as a one-liner in an include file ending with its filename ending with `data.yml`.
+
+Input:
+```yaml
+# iter: <TwigListName>[: index]
+# /iter
+
+
+Full example input:
+
+```yaml
+include/data.yml
+{% set ability_list = [ 'Tenacity', 'Agility', 'Vigor', 'Acuity', 'Allure', 'Logic', 'Ethic', 'Craft' ] %}
+
+schema.yml
+...
+    # iter: ability_list
+  Ability Base:
+    label: "Ability Base"
+    input: string
+  Ability Item Modifier:
+    label: "Ability Item Modifier"
+    input: string
+    # /iter
+```
+
+Example output for iter and table: horiz combination:
+```html
+  {% for i in ability_list %}
+    {% set id = i|lower|replace({' ': '_'}) %}
+    {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+    <div class='ilbl {{eo}} ilbl-ability-base'><label for='ability_base'>Ability Base</label></div>
+    <div class='ivar {{eo}} ivar-ability-base'>
+      <input value='{{attribute(variables, 'ability_base_' ~ id)|default}}' class='form-control ivar ivar-ability-base' id='ability_base' name='ability_base_{{id}}' type='text' />
+    </div>
+    <div class='ilbl {{eo}} ilbl-ability-item-modifier'><label for='ability_item_modifier'>Ability Item Modifier</label></div>
+    <div class='ivar {{eo}} ivar-ability-item-modifier'>
+      <input value='{{attribute(variables, 'ability_item_modifier_' ~ id)|default}}' class='form-control ivar ivar-ability-item-modifier' id='ability_item_modifier' name='ability_item_modifier_{{id}}' type='text' />
+    </div>
+  {% endfor %}
+```
+
+When using also the `[index]`, it will create `{% set id = i[index]|lower|replace({' ': '_'}) %}` instead. This allows you to use lists like this, index 0 would pick the skill name, index 1 would pick the ability name of that skill:
+
+```yaml
+{% set skill_list = [ ['Brawling', 'Tenacity'], ['Stealth', 'Agility'], ... ] %}
+```
+
+---
 
 Full example see in the example folder. Note: the indentation of the # command lines is not necessary, it is just helpful to see which blocks are properly closed.
 The fields must be properly indented.
