@@ -75,9 +75,9 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-12 col-lg-6">
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Investigator Sheet - {{flair|capitalize}}</span></div>
-                <div class="card-body">
+                <div class="card-body of">
                     <table width="100%">
                         <tr><td class="tdl" width="40%">Name</td><td class="tdr"> {% if variables.name is defined %}{{ variables.name}}{% endif %}</td></tr>
                         <tr><td class="tdl">Occupation</td><td class="tdr"> {% if variables.occupation is defined %}{{ variables.occupation}}{% endif %}</td></tr>
@@ -90,9 +90,9 @@
             </div>
         </div>
         <div class="col-12 col-md-12 col-lg-6">
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Characteristics</span></div>
-                <div class="card-body">
+                <div class="card-body of">
                     <table class="marginsm">
                     <tr>
                         <th rowspan="2" class="tdb" title="Strength">STR</th>
@@ -149,9 +149,9 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-12 col-lg-3">
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Combat</span></div>
-                <div class="card-body">
+                <div class="card-body of">
                     <table width="100%">
                         <tr>
                             <td class="tdb">Damage Bonus</td>
@@ -174,9 +174,9 @@
             </div>
         </div>
         <div class="col-12 col-md-12 col-lg-9">
-            <div class="card my-2 weapontable of">
+            <div class="card my-2 weapontable">
                 <div class="card-header head-bar"><span class="wbg">Weapons</span></div>
-                <div class="card-body">
+                <div class="card-body of">
                     <table width="100%">
                     <tr>
                         <td class="pl">Name</td>
@@ -202,20 +202,20 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-3 col-lg-3 my-2">
-            <div class="card my-2 of">
+            <div class="card my-2">
 {% set s = '' %}{% if variables.hit_points_current is defined and variables.hit_points_current < 1 %}{% set s = 'Unconscious' %}
 {% if variables.major_wound is defined and variables.major_wound == 1 %}{% set s = 'Dying' %}{% endif %}
 {% else %}
 {% if variables.major_wound is defined and variables.major_wound == 1 %}{% set s = 'Major Wound' %}{% endif %}
 {% endif %}
                 <div class="card-header head-bar"><span class="wbg">Hitpoints</span>{% if s != '' %}{{ sheet.genAlert( s ) }}{% endif %}</div>
-                <div class="card-body">
+                <div class="card-body of">
                 {{ sheet.genPills( variables.hit_points_current , hp ) }}
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-9 col-lg-9 my-2">
-            <div class="card my-2 of">
+            <div class="card my-2">
 {% set s = '' %}
 {% if variables.sanity_current is defined and variables.sanity_current == 0 %}
 {% if variables.temp_insane is defined and variables.temp_insane == 1 %}{% set s = 'Temporarily Insane' %}{% endif %}
@@ -224,7 +224,7 @@
 {% set mx = 99 %}
 {% if variables.skill_value_9 is defined %}{% set mx = 99 - variables.skill_value_9 %}{% endif %}
                 <div class="card-header head-bar"><span class="wbg">Sanity</span>{% if s != '' %}{{ sheet.genAlert( s ) }}{% endif %}</div>
-                <div class="card-body">
+                <div class="card-body of">
                 {{ sheet.genPills( variables.sanity_current , mx, 0 ) }}
                 </div>
             </div>
@@ -232,19 +232,19 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-9 col-lg-9">
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Luck</span>{% if variables.luck_current is defined and variables.luck_current == 0 %}{{ sheet.genAlert( "Out of Luck" ) }}{% endif %}</div>
-                <div class="card-body">
+                <div class="card-body of">
                 {{ sheet.genPills( variables.luck_current , variables.luck_max, 0 ) }}
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-3 col-lg-3">
-            <div class="card my-2 of">
+            <div class="card my-2">
 {% set mx = 0 %}
 {% if variables.power is defined %}{% set mx = variables.power // 5 %}{% endif %}
                 <div class="card-header head-bar"><span class="wbg">Magic Points</span></div>
-                <div class="card-body">
+                <div class="card-body of">
                 {{ sheet.genPills( variables.magic_points_current , mx, 0 ) }}
                 </div>
             </div>
@@ -471,79 +471,79 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Personal Description</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.personal is defined ? variables.personal|nl2br }}
                 </div>
             </div>
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Ideology / Beliefs</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.beliefs is defined ? variables.beliefs|nl2br }}
                 </div>
             </div>
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Significant People</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.people is defined ? variables.people|nl2br }}
                 </div>
             </div>
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Meaningful Locations</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.locations is defined ? variables.locations|nl2br }}
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Treasured Possessions</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.treasures is defined ? variables.treasures|nl2br }}
                 </div>
             </div>
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Traits</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.traits is defined ? variables.traits|nl2br }}
                 </div>
             </div>
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Injuries and Scars</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.injuries is defined ? variables.injuries|nl2br }}
                 </div>
             </div>
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Phobias and Manias</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.phobias is defined ? variables.phobias|nl2br }}
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Arcane Tomes, Spells and Artifacts</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.tomes is defined ? variables.tomes|nl2br }}
                 </div>
             </div>
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Encounters with Strange Entities</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.encounters is defined ? variables.encounters|nl2br }}
                 </div>
             </div>
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Gear and Possessions</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     {{ variables.gear is defined ? variables.gear|nl2br }}
                 </div>
             </div>
-            <div class="card my-2 of">
+            <div class="card my-2">
                 <div class="card-header head-bar"><span class="wbg">Cash and Assets</span></div>
-                <div class="card-body txt">
+                <div class="card-body txt of">
                     Spending Level: <strong>{{ variables.spending_level is defined ? variables.spending_level|number_format }}</strong><br>
                     Money: <strong>{{ variables.money is defined ? variables.money|number_format }}</strong><br>
                     {{ variables.assets is defined ? variables.assets|nl2br }}
@@ -551,5 +551,5 @@
             </div>
         </div>
     </div>
-    <div class="row"><div class="col-12 text-center"><small>Call of Cthulhu &copy; by Chaosium, Inc.<br><a href="/w/sheet-creation/a/sheet-list">Call of Cthulhu Edition 7 Character Sheet v1.2</a>, made by Tillerz - Updated: 2025-05-11</small></div></div>
+    <div class="row"><div class="col-12 text-center"><small>Call of Cthulhu &copy; by Chaosium, Inc.<br><a href="/w/sheet-creation/a/sheet-list">Call of Cthulhu Edition 7 Character Sheet v1.3</a>, made by Tillerz - Updated: 2026-01-30</small></div></div>
 </div>

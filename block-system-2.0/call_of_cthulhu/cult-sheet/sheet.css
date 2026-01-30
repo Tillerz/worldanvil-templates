@@ -1,12 +1,12 @@
  {
     padding: 0px!important;
-    color: #404040!important;
     font-family: "IM Fell Double Pica Roman";
     font-size: 18px;
     border: none;
+    color: #404040!important;
     background-color: #ffffef !important;
 }
- .sheet-call-of-cthulhu-monster {
+ .sheet-call-of-cthulhu-cult {
     padding: 10px!important;
     color: #404040;
     background-color: #ffffef;
@@ -18,9 +18,8 @@
  .card-body { background: none;}
  .card { background-color: #F5F0EC; border: none; padding: 10px !important}
  .header {  font-size: 24px; font-weight:700; font-style: italic; color: #890E11; text-align:center; background-color: #00000030;}
- .lbl,  ilbl { font-size: 14px; border-bottom: 1px solid #000000; margin-top:10px; background-color: #00000010;}
+ .lbl,  ilbl { font-size: 12px; border-bottom: 1px solid #000000; margin-top:10px; background-color: #00000010;}
  .var { padding: 10px}
  .artist-credits,  .artist-credits a { font-size:14px}
  .form-control,  .form-control:focus { font-size: 21px!important; background-color: #FFFFFF!important; -webkit-text-fill-color: #404040; border: 1px solid #808080}
-b, a, strong, small, em, i { color: #404040!important;}
  input[required] { border: 2px solid red!important;}
