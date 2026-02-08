@@ -1,0 +1,9 @@
+__pycache__
+.pylintrc
+.ruff.toml
+.settings
+alana
+all_articles_old.json
+all_articles.json
+cookies.json
+settings.cfg

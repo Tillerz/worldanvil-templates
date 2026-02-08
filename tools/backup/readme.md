@@ -1,11 +1,13 @@
 
-# Backup Script for World Anvil articles based on the Recently Modified RSS list
+# Backup Script for World Anvil articles
 
-Loads the Recent Articles RSS from World Anvil and downloads + saves the JSON file for each, if needed.
+Backup Recent: Loads the Recent Articles RSS from World Anvil and downloads + saves the JSON file for each, if needed.
+Backup Full: Fetches the article list and then downloads all articles that are not backed up yet.
+Extract: Allows to find existing fields and extract values into human readable text files.
 
-IMPORTANT NOTE: This will only find articles that are published and not hidden behind subscriber groups, because the 'Recent Articles' list only contains entries that are visible to everyone.
+IMPORTANT NOTE: "Backup" will only find articles that are published and not hidden behind subscriber groups, because the 'Recent Articles' list only contains entries that are visible to everyone. If you want a backup of all your articles, use "Backup Full" instead.
 
-The script will create a folder <worldname> and put all the articles in there, naming them <slug>.json, where <slug> is the article SLUG used by WA. Optionally (default) you can have the `last modified` appended to the SLUG.
+The scripts will create a folder <worldname> and put all the articles in there, naming them <slug>.json, where <slug> is the article SLUG used by WA. Optionally (default) you can have the `last modified` appended to the SLUG: <slug-timestamp>.json.
 
 
 # Requirements
@@ -33,14 +35,16 @@ Option 1: get files via git
 Option 2: download files manually
 
 - make a folder somewhere (eg `C:\wa-backup\` or `/home/username/wa-backup/`) and change into it
-- save backup.cmd (only for Windows), backup.py and settings.cfg into this folder.
+- for backup recent: save backup.cmd (only for Windows), backup.py and settings-template.cfg into this folder
+- for backup full: save backup-full.cmd (only for Windows), backup-full.py and settings-template.cfg into this folder
+- rename settings-template.cfg to settings.cfg
 
 Afterwards the folder should look like this:
 
 ```bash
 yourworldname/
-backup.cmd
-backup.py
+backup(-full).cmd
+backup(-full).py
 settings.cfg
 ```
 
@@ -60,6 +64,7 @@ world_id = YOUR_WORLD_ID_HERE
 x_auth_token = AUTH_TOKEN_HERE_THE_REALLY_REALLY_LONG_ONE
 
 # WA application key, you request this one from Dimitris (WA)
+# Never give this to anyone!
 x_application_key = APPLICATION_KEY_HERE
 
 # if the new file is down to this percentage of the previous version, then do NOT overwrite but print an error.
@@ -84,13 +89,15 @@ On Windows, just open the folder in Explorer and double-click backup.cmd
 
 ## Linux
 
-On MacOS and Linux, open a bash window, change to the folder with the script and execute `python backup.py`
+On MacOS and Linux, open a bash window, change to the folder with the script and execute `python backup.py` or `python backup-full.py`
 
 You can also add it to the crontab. Example (runs every 15 minutes, only from 9am to 8pm ):
 
 `*/15 9-20 * * * cd /opt/wa-backup ; python ./backup.py > /opt/wa-backup/backup.log 2>&1`
+`*/15 9-20 * * * cd /opt/wa-backup ; python ./backup-full.py > /opt/wa-backup/backup-full.log 2>&1`
 
 Note: do not force spam requests to WA. That causes unneeded traffic on the systems and also might trigger a block by Cloudflare.
+Additionally, WA will throttle requests, so you will get `421` errors.
 
 # Extract Script
 
