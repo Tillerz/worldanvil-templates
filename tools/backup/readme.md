@@ -1,9 +1,9 @@
 
 # Backup Script for World Anvil articles
 
-Backup Recent: Loads the Recent Articles RSS from World Anvil and downloads + saves the JSON file for each, if needed.
-Backup Full: Fetches the article list and then downloads all articles that are not backed up yet.
-Extract: Allows to find existing fields and extract values into human readable text files.
+- Backup Recent: Loads the Recent Articles RSS from World Anvil and downloads + saves the JSON file for each, if needed.
+- Backup Full: Fetches the article list and then downloads all articles that are not backed up yet.
+- Extract: Allows to find existing fields and extract values into human readable text files.
 
 IMPORTANT NOTE: "Backup" will only find articles that are published and not hidden behind subscriber groups, because the 'Recent Articles' list only contains entries that are visible to everyone. If you want a backup of all your articles, use "Backup Full" instead.
 
