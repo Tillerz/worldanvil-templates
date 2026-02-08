@@ -93,8 +93,10 @@ On MacOS and Linux, open a bash window, change to the folder with the script and
 
 You can also add it to the crontab. Example (runs every 15 minutes, only from 9am to 8pm ):
 
-`*/15 9-20 * * * cd /opt/wa-backup ; python ./backup.py > /opt/wa-backup/backup.log 2>&1`
-`*/15 9-20 * * * cd /opt/wa-backup ; python ./backup-full.py > /opt/wa-backup/backup-full.log 2>&1`
+```bash
+*/15 9-20 * * * cd /opt/wa-backup ; python ./backup.py > /opt/wa-backup/backup.log 2>&1
+*/15 9-20 * * * cd /opt/wa-backup ; python ./backup-full.py > /opt/wa-backup/backup-full.log 2>&1
+```
 
 Note: do not force spam requests to WA. That causes unneeded traffic on the systems and also might trigger a block by Cloudflare.
 Additionally, WA will throttle requests, so you will get `421` errors.
@@ -130,23 +132,33 @@ options:
 
 Example: you want to extract the main content fields of an article:
 
-`extract.py yourworldname\articlebackup.json`
+```bash
+extract.py yourworldname\articlebackup.json
+```
 
 This will extract the main fields (content, sidepanelcontenttop, sidepanelcontent, sidebarcontentbottom, footnotes, fullfooter, displayCss) into a sub folder `extract/` with the `article-slug` being the filename, followed by `_<fieldname>` and ending with `.txt`. The content of each file is plain text and ready for a copy/paste back into your WA article.
 
 Example: you want to extract just the css or whichever two fields:
 
-`extract.py yourworldname\articlebackup.json --fields displayCss`
-`extract.py yourworldname\articlebackup.json --fields fieldname1,fieldname2`
+```bash
+extract.py yourworldname\articlebackup.json --fields displayCss
+extract.py yourworldname\articlebackup.json --fields fieldname1,fieldname2
+```
 
 List all the fieldnames of your article backup (just the text ones, no booleans etc):
 
-`extract.py yourworldname\articlebackup.json -l`
+```bash
+extract.py yourworldname\articlebackup.json -l
+```
 
 If you want to get ALL fields, you use:
 
-`extract.py yourworldname\articlebackup.json -l -a`
+```bash
+extract.py yourworldname\articlebackup.json -l -a
+```
 
 And if you also want to see the type of each field:
 
-`extract.py yourworldname\articlebackup.json -l -a -t`
+```bash
+extract.py yourworldname\articlebackup.json -l -a -t
+```
