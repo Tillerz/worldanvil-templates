@@ -2,23 +2,26 @@
 
 version = 'Tillerz Article Extract (v1.1)'
 
-from sys import platform
+# --- requirements ----------------------------------------------------
+# see https://github.com/Tillerz/worldanvil-templates/blob/master/tools/backup/
+
+from argparse import ArgumentParser
 from bs4 import BeautifulSoup
+import datetime
+import json
+import os
 from pathlib import Path
 import requests
 from requests.utils import dict_from_cookiejar
 from requests.utils import cookiejar_from_dict
-import json
+from sys import platform
 import yaml
-import datetime
-import os
-from argparse import ArgumentParser
 
-types_str = { "excerpt", "publicationDate", "notificationDate", "updateDate", "snippet", "scrapbook", "url", "name", "title", "slug", "state", "icon", "tags", "credits", "editURL", "metaTitle", "metaDescription", "metaKeywords", "canonicalURL", "robots", "ogTitle", "ogDescription", "ogImage", "twitterTitle", "twitterDescription", "twitterImage", "customCss", "customJs", "content", "sidepanelcontenttop", "sidepanelcontent", "sidebarcontent", "sidebarcontentbottom", "footnotes", "fullfooter", "subheading", "authornotes", "pronunciation"}
-types_uuid = { "id", "worldID", "parentID", "categoryID", "authorID", "folderId"}
-types_int = { "likes", "views", "wordcount", "viewCount", "likeCount", "commentCount", "positionX", "positionY", "zoomLevel", "mapWidth", "mapHeight", "mapMarkerWidth", "mapMarkerHeight"}
+types_str = { "excerpt", "publicationDate", "notificationDate", "updateDate", "snippet", "scrapbook", "url", "name", "title", "slug", "state", "icon", "tags", "credits", "editURL", "metaTitle", "metaDescription", "metaKeywords", "canonicalURL", "robots", "ogTitle", "ogDescription", "ogImage", "twitterTitle", "twitterDescription", "twitterImage", "customCss", "customJs", "content", "sidepanelcontenttop", "sidepanelcontent", "sidebarcontent", "sidebarcontentbottom", "footnotes", "fullfooter", "subheading", "authornotes", "pronunciation" }
+types_uuid = { "id", "worldID", "parentID", "categoryID", "authorID", "folderId" }
+types_int = { "likes", "views", "wordcount", "viewCount", "likeCount", "commentCount", "positionX", "positionY", "zoomLevel", "mapWidth", "mapHeight", "mapMarkerWidth", "mapMarkerHeight" }
 types_bool = { "isWip", "isDraft", "isAdultContent", "isLocked", "allowComments", "showAuthor", "showLastModified", "showWordCount", "showInSidebar", "showInMap", "isPinned", "isFeatured", "isFeaturedArticle", "isPublished", "showInToc", "isEmphasized", "displayAuthor", "displayChildrenUnder", "displayTitle", "displaySheet", "isEditable", "coverIsMap" }
-default_fields = { "content", "sidepanelcontenttop", "sidepanelcontent", "sidebarcontentbottom", "footnotes", "fullfooter", "displayCss" }
+default_fields = { "excerpt", "displayCss", "content", "pronunciation", "snippet", "sidebarcontent", "sidepanelcontenttop", "sidepanelcontent", "sidebarcontentbottom", "footnotes", "fullfooter", "authornotes", "scrapbook", "credits", "subheading" }
 
 # --- unroll() ----------------------------------------------------
 
@@ -61,53 +64,51 @@ def unroll(data, indent=0, types=False, all=False, fields={}):
 # --- main() ----------------------------------------------------
 
 parser = ArgumentParser()
-parser.add_argument('filename', help="article json file name, it will be looked for in the world folder")
+parser.add_argument('filename', help="article json file name, it will be looked for in the world/json folder")
 parser.add_argument("-f", "--fields", required=False, help="fields to extract, separated by commas, default: " + ",".join(str(x) for x in default_fields))
 parser.add_argument("-l", "--list", required=False, action='store_true', help="list fields found in the json file, default: only strings")
 parser.add_argument("-a", "--all", required=False, action='store_true', help="-l will list ALL fields found in the json file, not just strings")
 parser.add_argument("-t", "--types", required=False, action='store_true', help="-l will display the type of each field found")
+parser.add_argument("-e", "--empty", required=False, action='store_true', help="create files for empty fields, too")
 args = parser.parse_args()
 
-# --- requirements ----------------------------------------------------
-# see https://github.com/Tillerz/worldanvil-templates/blob/master/tools/backup/
+os.chdir(os.path.dirname(__file__))
 
-# VS Code (Windows) does not switch to the folder the script is in, so we need to do it ourselves
-if platform in ('win32', 'cygwin'):
-    os.chdir(os.path.dirname(__file__))
+file_settings = "settings.cfg"
 
 # read the config file
 cfg = {}
 try:
-    with open("settings.cfg", "r") as myfile:
+    with open(file_settings, "r") as myfile:
         for line in myfile:
             line = line.strip()
             if not line.startswith("#"):
                 name, var = line.partition("=")[::2]
                 cfg[name.strip()] = str(var.strip())
 except FileNotFoundError:
-    print("Error: The settings.cfg file was not found.")
-    exit(1)
+    print(f"Error: The file {file_settings} was not found.")
+    raise SystemExit(1)
 except IOError:
-    print("Error: The settings.cfg file could not be read.")
-    exit(1)
+    print(f"Error: The file {file_settings} could not be read.")
+    raise SystemExit(1)
+
 world_name = cfg['world_name']
 world_id = cfg['world_id']
-output_folder = "extract"
+json_folder = world_name + "/json"
+output_folder = world_name + "/edit"
 
 # create the extract folder if it doesn't exist
 try:
     os.makedirs(output_folder, exist_ok=True)
 except OSError as error:
-    print(f"Cannot create folder {output_folder}: "+error)
+    print(f"Cannot create folder {output_folder}: {error}")
+    raise SystemExit(1)
 
 # --- action starts here ---------------------------------------------------
 
-inputfile = args.filename
-if os.path.isfile(inputfile):
-    # load the saved cookies
-    jdata = json.loads(Path(inputfile).read_text())
-
-    # print(json.dumps(jdata, indent=2))
+file_input = json_folder + '/' + args.filename
+if os.path.isfile(file_input):
+    jdata = json.loads(Path(file_input).read_text())
 
     title = jdata["title"]
     slug = jdata["slug"]
@@ -132,14 +133,32 @@ if os.path.isfile(inputfile):
     else:
         print(f'Field list: ' + ",".join(str(x) for x in default_fields))
         print('------------------------')
+
+        extract_folder = output_folder + '/' + slug
+
+        # create the extract folder if it doesn't exist
+        try:
+            os.makedirs(extract_folder, exist_ok=True)
+        except OSError as error:
+            print(f"Cannot create folder {extract_folder}: {error}")
+            raise SystemExit(1)
+
+        # extract all the fields into single text files
+        # if -e was given, create empty files for empty fields, too
         for field in fields:
             if field in jdata:
+                file_for_field = extract_folder + '/' + field + ".txt"
                 if (jdata[field] != "" and jdata[field] != None):
-                    fullpath = output_folder + "/" + slug + "_" + field + ".txt"
-                    print(f'Extracting field {field} to {fullpath}')
-                    Path(fullpath).write_text(jdata[field])
+                    print(f'Extracting field {field} to {file_for_field}')
+                    Path(file_for_field).write_text(jdata[field])
                 else:
-                    print(f'Field {field} is empty/unset, not saving.')
+                    if args.empty:
+                        Path(file_for_field).write_text("")
+                    else:
+                        print(f'Field {field} is empty/unset, not saving.')
             else:
                 print(f'Field {field} not found in json data.')
         print('------------------------')
+
+else:
+    print(f"Could not find file {file_input}")
