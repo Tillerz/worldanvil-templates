@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-version = 'Tillerz Full Article Backup (v1.1)'
+version = 'Tillerz Full Article Backup'
 
 # --- requirements ----------------------------------------------------
 # see https://github.com/Tillerz/worldanvil-templates/blob/master/tools/backup/
@@ -15,9 +15,8 @@ from requests.utils import cookiejar_from_dict
 from sys import platform
 import time
 
-os.chdir(os.path.dirname(__file__))
-
 TEXT_ENCODING = "utf-8"
+
 
 def read_text(path):
     return Path(path).read_text(encoding=TEXT_ENCODING)
@@ -29,10 +28,12 @@ def write_json(path, data, compact=False):
         kwargs["separators"] = (",", ":")
     Path(path).write_text(json.dumps(data, **kwargs), encoding=TEXT_ENCODING)
 
+
+# main
+os.chdir(os.path.dirname(__file__))
+
 file_settings = "settings.cfg"
 file_cookies = "cookies.json"
-
-# read the config file
 cfg = {}
 try:
     with open(file_settings, "r", encoding=TEXT_ENCODING) as myfile:

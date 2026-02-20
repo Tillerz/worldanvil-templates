@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-version = 'Tillerz Article Extract (v1.1)'
+version = 'Tillerz Article Extract'
 
 # --- requirements ----------------------------------------------------
 # see https://github.com/Tillerz/worldanvil-templates/blob/master/tools/backup/
@@ -16,7 +16,8 @@ types_int = { "likes", "views", "wordcount", "viewCount", "likeCount", "commentC
 types_bool = { "isWip", "isDraft", "isAdultContent", "isLocked", "allowComments", "showAuthor", "showLastModified", "showWordCount", "showInSidebar", "showInMap", "isPinned", "isFeatured", "isFeaturedArticle", "isPublished", "showInToc", "isEmphasized", "displayAuthor", "displayChildrenUnder", "displayTitle", "displaySheet", "isEditable", "coverIsMap" }
 default_fields = { "excerpt", "displayCss", "content", "pronunciation", "snippet", "sidebarcontent", "sidepanelcontenttop", "sidepanelcontent", "sidebarcontentbottom", "footnotes", "fullfooter", "authornotes", "scrapbook", "credits", "subheading" }
 
-# --- unroll() ----------------------------------------------------
+TEXT_ENCODING = "utf-8"
+
 
 def unroll(data, indent=0, types=False, all=False, fields={}):
     spacing = "  " * (indent)
@@ -54,7 +55,9 @@ def unroll(data, indent=0, types=False, all=False, fields={}):
     else:
         print(f"{spacing}{data}")
 
-# --- main() ----------------------------------------------------
+
+# main
+os.chdir(os.path.dirname(__file__))
 
 parser = ArgumentParser()
 parser.add_argument('filename', help="article json file name, it will be looked for in the world/json folder")
@@ -64,15 +67,10 @@ parser.add_argument("-a", "--all", required=False, action='store_true', help="-l
 parser.add_argument("-t", "--types", required=False, action='store_true', help="-l will display the type of each field found")
 parser.add_argument("-e", "--empty", required=False, action='store_true', help="create files for empty fields, too")
 args = parser.parse_args()
-
-os.chdir(os.path.dirname(__file__))
-
 file_settings = "settings.cfg"
-
-# read the config file
 cfg = {}
 try:
-    with open(file_settings, "r", encoding="utf-8") as myfile:
+    with open(file_settings, "r", encoding=TEXT_ENCODING) as myfile:
         for line in myfile:
             line = line.strip()
             if not line.startswith("#"):
@@ -97,8 +95,6 @@ except OSError as error:
     print(f"Cannot create folder {output_folder}: {error}")
     raise SystemExit(1)
 
-# --- action starts here ---------------------------------------------------
-
 invalid_filename_chars = '/\\<>:"|?*'
 invalid_filename_chars += ''.join(chr(i) for i in range(32))
 filename_sanitize_table = str.maketrans('', '', invalid_filename_chars)
@@ -109,7 +105,7 @@ if filename in {"", ".", ".."}:
 
 file_input = json_folder + '/' + filename
 if os.path.isfile(file_input):
-    jdata = json.loads(Path(file_input).read_text(encoding="utf-8"))
+    jdata = json.loads(Path(file_input).read_text(encoding=TEXT_ENCODING))
 
     title = jdata["title"]
     slug = jdata["slug"]
@@ -144,20 +140,22 @@ if os.path.isfile(file_input):
             print(f"Cannot create folder {extract_folder}: {error}")
             raise SystemExit(1)
 
+        # remember where the content came from (filename, article-id)
+        Path(extract_folder + '/.jsonfile').write_text(filename, encoding=TEXT_ENCODING)
+        if (jdata['id'] != "" and jdata['id'] != None):
+            Path(extract_folder + '/.uuid').write_text(jdata['id'], encoding=TEXT_ENCODING)
+
         # extract all the fields into single text files
         # if -e was given, create empty files for empty fields, too
-        if (jdata['id'] != "" and jdata['id'] != None):
-            Path(extract_folder + '/.uuid').write_text(jdata['id'], encoding="utf-8")
-
         for field in fields:
             if field in jdata:
                 file_for_field = extract_folder + '/' + field + ".txt"
                 if (jdata[field] != "" and jdata[field] != None):
                     print(f'Extracting field {field} to {file_for_field}')
-                    Path(file_for_field).write_text(jdata[field], encoding="utf-8")
+                    Path(file_for_field).write_text(jdata[field], encoding=TEXT_ENCODING)
                 else:
                     if args.empty:
-                        Path(file_for_field).write_text("", encoding="utf-8")
+                        Path(file_for_field).write_text("", encoding=TEXT_ENCODING)
                     else:
                         print(f'Field {field} is empty/unset, not saving.')
             else:

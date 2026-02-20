@@ -1,164 +1,160 @@
+# World Anvil Backup/Edit/Deploy Scripts
 
-# Backup Script for World Anvil articles
+Scripts in this folder support a full flow:
 
-- Backup Recent: Loads the Recent Articles RSS from World Anvil and downloads + saves the JSON file for each, if needed.
-- Backup Full: Fetches the article list and then downloads all articles that are not backed up yet.
-- Extract: Allows to find existing fields and extract values into human readable text files.
-
-IMPORTANT NOTE: "Backup" will only find articles that are published and not hidden behind subscriber groups, because the 'Recent Articles' list only contains entries that are visible to everyone. If you want a backup of all your articles, use "Backup Full" instead.
-
-The scripts will create a folder <worldname> and put all the articles in there, naming them <slug>.json, where <slug> is the article SLUG used by WA. Optionally (default) you can have the `last modified` appended to the SLUG: <slug-timestamp>.json.
+1. download article JSON backups
+2. extract editable text fields into plain text files
+3. prepare minimal update payloads from edited text files
+4. deploy payloads to WA REST API
 
 
 # Requirements
 
-1. You need a python 3 installation and the xml libraries:
+- Python 3
+- Python packages:
+  - `requests`
+  - `beautifulsoup4`
+  - `lxml`
 
-- install Python 3.x
-- - Linux: execute `apt install python3`
-- - Windows: get Python 3 installer here: `https://www.python.org/downloads/`
-
-In a shell window (Linux, MacOS) or command prompt window (Windows):
-
-- execute `pip install lxml` (xml parser)
-- execute `pip install bs4` (html/xml -> data)
-
-2. You need the script and the config file:
-
-Option 1: get files via git
-
-- install git client
-- - Linux: execute `apt install git`
-- - Windows: get the 64bit/Portable version from `https://www.git-scm.com/download/win` and install it
-- execute `git clone https://github.com/Tillerz/worldanvil-templates/tree/master/tools/backup wa-backup`
-
-Option 2: download files manually
-
-- make a folder somewhere (eg `C:\wa-backup\` or `/home/username/wa-backup/`) and change into it
-- for backup recent: save backup.cmd (only for Windows), backup.py and settings-template.cfg into this folder
-- for backup full: save backup-full.cmd (only for Windows), backup-full.py and settings-template.cfg into this folder
-- rename settings-template.cfg to settings.cfg
-
-Afterwards the folder should look like this:
+Install example:
 
 ```bash
-yourworldname/
-backup(-full).cmd
-backup(-full).py
-settings.cfg
+pip install requests beautifulsoup4 lxml
 ```
+
 
 # Configuration
 
-You need to adjust the values in `settings.cfg`:
+Copy `settings-template.cfg` to `settings.cfg` and fill values:
 
-```python
-# world name, example: alana
-world_name = YOUR_WORLD_NAME_HERE
+- `world_name`
+- `world_id`
+- `x_auth_token`
+- `x_application_key`
+- `proxy` (optional; leave empty to use `https://www.worldanvil.com`)
 
-# world id, example: b4c38990-f121-44b9-a966-2c80514ff3d6
-# You find the id in the address bar of the browser after clicking 'Edit World'.
-world_id = YOUR_WORLD_ID_HERE
+The scripts read `settings.cfg` from this folder (`tools/backup`).
 
-# WA Authentication token, you can create on here: https://www.worldanvil.com/api/auth/key
-x_auth_token = AUTH_TOKEN_HERE_THE_REALLY_REALLY_LONG_ONE
 
-# WA application key, you request this one from Dimitris (WA)
-# Never give this to anyone!
-x_application_key = APPLICATION_KEY_HERE
+# Scripts
 
-# if the new file is down to this percentage of the previous version, then do NOT overwrite but print an error.
-# example: 75 = if the file is only 75% of its previous size (or smaller), do not overwrite
-overwrite_threshold = 75
+## 1) Full Backup
 
-# True or False, default: True. If set to True, saved files will be named <slug>-<last_modif>.json, eg. martine-character-2024-06-05_143000.json
-# That way you have a fresh copy with each edit.
-append_last_modif = True
+Script:
 
-# use a cloudflare worker as a proxy inbetween
-# Setup instructions see here: https://developers.cloudflare.com/learning-paths/workers/get-started/first-worker/
-# proxy = https://YOURWORKER.NAME.workers.dev
-proxy =
-```
+- Linux/macOS: `python3 backup-full.py`
+- Windows: `backup-full.cmd`
 
-# Backup Script
+Purpose:
 
-## Windows
+- fetches all articles via WA API
+- stores full article JSON in `<world_name>/json/`
 
-On Windows, just open the folder in Explorer and double-click backup.cmd
+Parameters:
 
-## Linux
+- none
 
-On MacOS and Linux, open a bash window, change to the folder with the script and execute `python backup.py` or `python backup-full.py`
 
-You can also add it to the crontab. Example (runs every 15 minutes, only from 9am to 8pm ):
+## 2) Extract Editable Fields
 
-```bash
-*/15 9-20 * * * cd /opt/wa-backup ; python ./backup.py > /opt/wa-backup/backup.log 2>&1
-*/15 9-20 * * * cd /opt/wa-backup ; python ./backup-full.py > /opt/wa-backup/backup-full.log 2>&1
-```
+Script:
 
-Note: do not force spam requests to WA. That causes unneeded traffic on the systems and also might trigger a block by Cloudflare.
-Additionally, WA will throttle requests, so you will get `421` errors.
+- Linux/macOS: `python3 extract.py <filename> [options]`
+- Windows: `extract.cmd <filename> [options]`
 
-# Extract Script
+Input:
 
-Open a command prompt / bash and change to the folder with the scripts. The folder with your worldname should be visible in there, containing your backups.
+- `<filename>` is a JSON file name from `<world_name>/json/`
 
-## Windows
+Output:
 
-Execute the script `.\extract.cmd` with the parameters you need.
+- creates/updates `<world_name>/edit/<article-slug>/`
+- writes one `<field>.txt` per extracted field
+- writes `.jsonfile` with original JSON file name
+- writes `.uuid` with article id (if present)
 
-## Linux
-
-Execute the script `./extract.py` with the parameters you need.
-
-## Parameters
+Usage:
 
 ```bash
-usage: extract.[py|cmd] [-h] [-f FIELDS] [-l] [-a] [-t] filename
-positional arguments:
-  filename              article json file name, it will be looked for in the world folder
-
-options:
-  -h, --help            show this help message and exit
-  -f FIELDS, --fields FIELDS
-                        fields to extract, separated by commas, default:
-                        content,sidepanelcontenttop,sidepanelcontent,sidebarcontentbottom,footnotes,fullfooter,displayCss
-  -l, --list            list fields found in the json file, default: only strings
-  -a, --all             -l will now list ALL fields found in the json file
-  -t, --types           -l will now display the type of each field found
+usage: extract.py [-h] [-f FIELDS] [-l] [-a] [-t] [-e] filename
 ```
 
-Example: you want to extract the main content fields of an article:
+Parameters:
+
+- `filename` article json file name, looked up in `<world_name>/json/`
+- `-f, --fields` comma-separated field list to extract
+- `-l, --list` list fields in JSON (default list mode: string fields)
+- `-a, --all` with `-l`, include all fields (not only strings)
+- `-t, --types` with `-l`, show field types
+- `-e, --empty` create files for empty fields too
+
+
+## 3) Prepare Deploy Payload for One Article
+
+Script:
+
+- Linux/macOS: `python3 prepare.py <article-slug>`
+- Windows: `prepare.cmd <article-slug>`
+
+Purpose:
+
+- reads edited files from `<world_name>/edit/<article-slug>/`
+- loads original JSON (`.jsonfile` marker, with fallback by slug)
+- compares each edited field with original value
+- creates minimal payload containing:
+  - `id`
+  - only changed fields
+- writes payload to `<world_name>/deploy/<article-slug>.json`
+
+Notes:
+
+- `None` vs empty string for text fields is treated as unchanged
+- prints byte/word diffs for changed fields listed in `word_count_fields`
+
+Usage:
 
 ```bash
-extract.py yourworldname\articlebackup.json
+usage: prepare.py [-h] article_slug
 ```
 
-This will extract the main fields (content, sidepanelcontenttop, sidepanelcontent, sidebarcontentbottom, footnotes, fullfooter, displayCss) into a sub folder `extract/` with the `article-slug` being the filename, followed by `_<fieldname>` and ending with `.txt`. The content of each file is plain text and ready for a copy/paste back into your WA article.
+Parameters:
 
-Example: you want to extract just the css or whichever two fields:
+- `article_slug` slug folder name under `<world_name>/edit/`
+
+
+## 4) Deploy Payloads
+
+Script:
+
+- Linux/macOS: `python3 deploy.py [--dry-run]`
+- Windows: `deploy.cmd [--dry-run]`
+
+Purpose:
+
+- scans `<world_name>/deploy/*.json`
+- validates payload format (`id` + at least one changed field)
+- sends updates to WA API:
+  - method: `PATCH`
+  - URL: `.../api/external/boromir/article?id=<article_id>`
+  - body: payload without `id`
+
+Usage:
 
 ```bash
-extract.py yourworldname\articlebackup.json --fields displayCss
-extract.py yourworldname\articlebackup.json --fields fieldname1,fieldname2
+usage: deploy.py [-h] [--dry-run]
 ```
 
-List all the fieldnames of your article backup (just the text ones, no booleans etc):
+Parameters:
 
-```bash
-extract.py yourworldname\articlebackup.json -l
-```
+- `--dry-run` validate and print planned PATCH calls without sending requests
 
-If you want to get ALL fields, you use:
 
-```bash
-extract.py yourworldname\articlebackup.json -l -a
-```
+# Typical Workflow
 
-And if you also want to see the type of each field:
-
-```bash
-extract.py yourworldname\articlebackup.json -l -a -t
-```
+1. `python3 backup-full.py`
+2. `python3 extract.py <article-json-file>`
+3. edit files in `<world_name>/edit/<article-slug>/`
+4. `python3 prepare.py <article-slug>`
+5. review `<world_name>/deploy/<article-slug>.json`
+6. `python3 deploy.py --dry-run`
+7. `python3 deploy.py`
