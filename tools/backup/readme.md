@@ -126,8 +126,8 @@ Parameters:
 
 Script:
 
-- Linux/macOS: `python3 deploy.py [--dry-run]`
-- Windows: `deploy.cmd [--dry-run]`
+- Linux/macOS: `python3 deploy.py [--dry-run] [--validate]`
+- Windows: `deploy.cmd [--dry-run] [--validate]`
 
 Purpose:
 
@@ -141,12 +141,13 @@ Purpose:
 Usage:
 
 ```bash
-usage: deploy.py [-h] [--dry-run]
+usage: deploy.py [-h] [--dry-run] [--validate]
 ```
 
 Parameters:
 
 - `--dry-run` validate and print planned PATCH calls without sending requests
+- `--validate` after successful PATCH, fetch article again and verify uploaded fields
 
 
 # Typical Workflow
