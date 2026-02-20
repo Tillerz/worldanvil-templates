@@ -1,60 +1,52 @@
 #!/usr/bin/python3
 
-version = 'Tillerz Full Article Backup (v1.0)'
-
-from sys import platform
-from bs4 import BeautifulSoup
-from pathlib import Path
-import requests
-from requests.utils import dict_from_cookiejar
-from requests.utils import cookiejar_from_dict
-import json
-import os
-import time
-from collections import deque
+version = 'Tillerz Full Article Backup (v1.1)'
 
 # --- requirements ----------------------------------------------------
 # see https://github.com/Tillerz/worldanvil-templates/blob/master/tools/backup/
 
-# VS Code (Windows) does not switch to the folder the script is in, so we need to do it ourselves
-if platform in ('win32', 'cygwin'):
-    os.chdir(os.path.dirname(__file__))
+from bs4 import BeautifulSoup
+from collections import deque
+import json
+import os
+from pathlib import Path
+import requests
+from requests.utils import dict_from_cookiejar
+from requests.utils import cookiejar_from_dict
+from sys import platform
+import time
+
+os.chdir(os.path.dirname(__file__))
+
+file_settings = "settings.cfg"
+file_cookies = "cookies.json"
 
 # read the config file
-bla = ""
 cfg = {}
 try:
-    with open("settings.cfg", "r") as myfile:
+    with open(file_settings, "r") as myfile:
         for line in myfile:
             line = line.strip()
             if not line.startswith("#"):
                 name, var = line.partition("=")[::2]
                 cfg[name.strip()] = str(var.strip())
 except FileNotFoundError:
-    print("Error: The settings.cfg file was not found.")
+    print(f"Error: The file {file_settings} was not found.")
     raise SystemExit(1)
 except IOError:
-    print("Error: The settings.cfg file could not be read.")
+    print(f"Error: The file {file_settings} could not be read.")
     raise SystemExit(1)
 world_name = cfg['world_name']
 world_id = cfg['world_id']
 proxy_url = cfg['proxy']
 
-# if the new file is down to this percentage of the previous version, then do NOT overwrite but print an error.
-# example: 75 = if the file is only 75% or smaller of its previous size, do not overwrite
-overwrite_threshold = int(cfg['overwrite_threshold'])
-
-# Default: False. If set to True, saved files will be named <slug>_<last_modif>.json, eg. martine-character_2024-06-05_143000.json
-# That way you have a fresh copy with each edit.
-append_last_modif = cfg['append_last_modif'].lower() in ('true', '1', 't')
-
 # headers for the rss request
 request_headers =  {
-    "Content-Type" : "application/json",
-    "x-auth-token" : cfg['x_auth_token'],
-    "x-application-key" : cfg['x_application_key'],
-    "User-Agent" : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '+version,
-    "Referer" : 'https://www.worldanvil.com/w/'+world_name
+    'Content-Type' : 'application/json',
+    'x-auth-token' : cfg['x_auth_token'],
+    'x-application-key' : cfg['x_application_key'],
+    'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' + version,
+    'Referer' : 'https://www.worldanvil.com/w/' + world_name
 }
 
 # api and rss urls:
@@ -66,21 +58,25 @@ api_url = base_url + '/api/external/boromir/'
 
 # this is the root folder for the backup:
 root_folder = world_name
+root_folder_json = root_folder + '/json'
+file_all_articles_new = root_folder + "/all_articles_new.json"
+file_all_articles_old = root_folder + "/all_articles_old.json"
+file_all_articles = root_folder + "/all_articles.json"
 
 # create a backup folder if it doesn't exist
 try:
     os.makedirs(world_name, exist_ok=True)
 except OSError as error:
-    print(f"Cannot create folder {world_name}: "+error)
+    print(f"Cannot create folder {world_name}: {error}")
     raise SystemExit(1)
 
 # --- action starts here ---------------------------------------------------
 
 # create a session
 with requests.Session() as session:
-    if os.path.isfile("cookies.json"):
+    if os.path.isfile(file_cookies):
         # load the saved cookies
-        cookies = json.loads(Path("cookies.json").read_text())
+        cookies = json.loads(Path(file_cookies).read_text())
         # turn the object into a a cookie jar
         cookies = cookiejar_from_dict(cookies)
         # attach cookies to session
@@ -135,7 +131,7 @@ with requests.Session() as session:
     else:
         all_articles_old = []
 
-    Path("all_articles_new.json").write_text(json.dumps(all_articles_new, separators=(",", ":")))
+    Path(file_all_articles_new).write_text(json.dumps(all_articles_new, separators=(",", ":")))
 
     old_dates_by_id = {
         a.get("id"): a.get("updateDate", {}).get("date")
@@ -184,18 +180,15 @@ with requests.Session() as session:
         last_modif = jdata["updateDate"]["date"]
 
         # build path + filename to save the json:
-        filepath = root_folder+"/"+slug
-        if (append_last_modif):
-            filepath = filepath + "_" + last_modif.replace(".000000","").replace(' ','_').replace(':','')
-
+        file_json_article_base = root_folder_json + '/' + slug + '_' + last_modif.replace(".000000","").replace(' ','_').replace(':','')
         last_modif_old = ""
         old_wordcount = 0
         perc = 100
         wdiff = ""
 
         # if the file already exists, load it and extract some values for comparison with the new downloaded version
-        if os.path.isfile(filepath+".json"):
-            oldfile = Path(filepath+".json").read_text()
+        if os.path.isfile(file_json_article_base + '.json'):
+            oldfile = Path(file_json_article_base + '.json').read_text()
 
             length_old = len(oldfile)
             olddata = json.loads(oldfile)
@@ -211,7 +204,7 @@ with requests.Session() as session:
                     wdiff = "+" + str(diff)
                 wdiff = "("+str(wdiff)+", "+str(round(perc))+"% of previous size)"
         # do not save new article if it is unchanged
-        if ((last_modif_old == last_modif) and (diff == 0) and length <= length_old):
+        if ((last_modif_old == last_modif) and (diff == 0) and (length == length_old)):
             print(f'SLUG: {slug} --> file did not change, not saving.')
             unchanged_count += 1
         else:
@@ -220,17 +213,9 @@ with requests.Session() as session:
             print(f'Last Modified: {last_modif.replace(".000000","")}')
             print(f'Wordcount: {wordcount} {wdiff}')
 
-            # special check when we are in "overwrite mode":
-            if not append_last_modif:
-                # if the file dramatically changed in size, do not overwrite, save as new and give a warning
-                if (perc <= overwrite_threshold):
-                    ts = time.strftime("%Y-%m-%d_%H%M%S")
-                    print(f"\n    #### WARN: not overwriting file, the file did shrink too much! Saving with postfix .{ts}\n")
-                    filepath = filepath + "_" + ts
-
             # write the json file to disk
-            print(f'Writing file to {filepath}.json')
-            Path(filepath+".json").write_text(json.dumps(jdata))
+            print(f'Writing file to {file_json_article_base}.json')
+            Path(file_json_article_base + '.json').write_text(json.dumps(jdata))
             updated_count += 1
 
             # for debug: print(json.dumps(response.json(), indent=2))
@@ -238,28 +223,27 @@ with requests.Session() as session:
         print(f'------------------------ {remaining}')
 
     if updated_count == 0:
-        print("No articles were updated.")
-        if os.path.isfile("all_articles_new.json"):
-            os.remove("all_articles_new.json")
+        print(f"{unchanged_count} articles were already up-to-date.")
+        if os.path.isfile(file_all_articles_new):
+            os.remove(file_all_articles_new)
     else:
         print(f"Updated {updated_count} articles, {unchanged_count} articles were already up-to-date.")
-        # cleanup:
-        if os.path.isfile("all_articles_old.json"):
-            os.remove("all_articles_old.json")
-        if os.path.isfile("all_articles.json"):
-            os.replace("all_articles.json", "all_articles_old.json")
-        if os.path.isfile("all_articles_new.json"):
-            os.replace("all_articles_new.json", "all_articles.json")
+        if os.path.isfile(file_all_articles_old):
+            os.remove(file_all_articles_old)
+        if os.path.isfile(file_all_articles):
+            os.replace(file_all_articles, file_all_articles_old)
+        if os.path.isfile(file_all_articles_new):
+            os.replace(file_all_articles_new, file_all_articles)
 
     elapsed = int(time.monotonic() - loop_start)
     minutes, seconds = divmod(elapsed, 60)
     print(f"Elapsed time: {minutes}m {seconds:02d}s")
 
-    # turn cookiejar into dict and save them
+    # turn cookiejar into dict and save it
     cookies = dict_from_cookiejar(session.cookies)
-    if os.path.isfile("cookies.json"):
+    if os.path.isfile(file_cookies):
         if session.cookies:
             cookies = dict_from_cookiejar(session.cookies)
         else:
             cookies = {}
-    Path("cookies.json").write_text(json.dumps(cookies))
+    Path(file_cookies).write_text(json.dumps(cookies))
