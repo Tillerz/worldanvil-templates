@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 version = 'Tillerz Full Article Backup (v1.1)'
 
 # --- requirements ----------------------------------------------------
@@ -18,13 +17,25 @@ import time
 
 os.chdir(os.path.dirname(__file__))
 
+TEXT_ENCODING = "utf-8"
+
+def read_text(path):
+    return Path(path).read_text(encoding=TEXT_ENCODING)
+
+
+def write_json(path, data, compact=False):
+    kwargs: dict = {"ensure_ascii": False}
+    if compact:
+        kwargs["separators"] = (",", ":")
+    Path(path).write_text(json.dumps(data, **kwargs), encoding=TEXT_ENCODING)
+
 file_settings = "settings.cfg"
 file_cookies = "cookies.json"
 
 # read the config file
 cfg = {}
 try:
-    with open(file_settings, "r") as myfile:
+    with open(file_settings, "r", encoding=TEXT_ENCODING) as myfile:
         for line in myfile:
             line = line.strip()
             if not line.startswith("#"):
@@ -76,7 +87,7 @@ except OSError as error:
 with requests.Session() as session:
     if os.path.isfile(file_cookies):
         # load the saved cookies
-        cookies = json.loads(Path(file_cookies).read_text())
+        cookies = json.loads(read_text(file_cookies))
         # turn the object into a a cookie jar
         cookies = cookiejar_from_dict(cookies)
         # attach cookies to session
@@ -127,11 +138,11 @@ with requests.Session() as session:
     # load old article list, if existing
     all_articles_path = Path("all_articles.json")
     if all_articles_path.exists():
-        all_articles_old = json.loads(all_articles_path.read_text())
+        all_articles_old = json.loads(read_text(all_articles_path))
     else:
         all_articles_old = []
 
-    Path(file_all_articles_new).write_text(json.dumps(all_articles_new, separators=(",", ":")))
+    write_json(file_all_articles_new, all_articles_new, compact=True)
 
     old_dates_by_id = {
         a.get("id"): a.get("updateDate", {}).get("date")
@@ -188,7 +199,7 @@ with requests.Session() as session:
 
         # if the file already exists, load it and extract some values for comparison with the new downloaded version
         if os.path.isfile(file_json_article_base + '.json'):
-            oldfile = Path(file_json_article_base + '.json').read_text()
+            oldfile = read_text(file_json_article_base + '.json')
 
             length_old = len(oldfile)
             olddata = json.loads(oldfile)
@@ -215,7 +226,7 @@ with requests.Session() as session:
 
             # write the json file to disk
             print(f'Writing file to {file_json_article_base}.json')
-            Path(file_json_article_base + '.json').write_text(json.dumps(jdata))
+            write_json(file_json_article_base + '.json', jdata)
             updated_count += 1
 
             # for debug: print(json.dumps(response.json(), indent=2))
@@ -246,4 +257,4 @@ with requests.Session() as session:
             cookies = dict_from_cookiejar(session.cookies)
         else:
             cookies = {}
-    Path(file_cookies).write_text(json.dumps(cookies))
+    write_json(file_cookies, cookies)

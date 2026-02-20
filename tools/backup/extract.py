@@ -1,21 +1,14 @@
 #!/usr/bin/python3
-
 version = 'Tillerz Article Extract (v1.1)'
 
 # --- requirements ----------------------------------------------------
 # see https://github.com/Tillerz/worldanvil-templates/blob/master/tools/backup/
 
 from argparse import ArgumentParser
-from bs4 import BeautifulSoup
-import datetime
 import json
 import os
 from pathlib import Path
-import requests
-from requests.utils import dict_from_cookiejar
-from requests.utils import cookiejar_from_dict
 from sys import platform
-import yaml
 
 types_str = { "excerpt", "publicationDate", "notificationDate", "updateDate", "snippet", "scrapbook", "url", "name", "title", "slug", "state", "icon", "tags", "credits", "editURL", "metaTitle", "metaDescription", "metaKeywords", "canonicalURL", "robots", "ogTitle", "ogDescription", "ogImage", "twitterTitle", "twitterDescription", "twitterImage", "customCss", "customJs", "content", "sidepanelcontenttop", "sidepanelcontent", "sidebarcontent", "sidebarcontentbottom", "footnotes", "fullfooter", "subheading", "authornotes", "pronunciation" }
 types_uuid = { "id", "worldID", "parentID", "categoryID", "authorID", "folderId" }
@@ -79,7 +72,7 @@ file_settings = "settings.cfg"
 # read the config file
 cfg = {}
 try:
-    with open(file_settings, "r") as myfile:
+    with open(file_settings, "r", encoding="utf-8") as myfile:
         for line in myfile:
             line = line.strip()
             if not line.startswith("#"):
@@ -106,9 +99,17 @@ except OSError as error:
 
 # --- action starts here ---------------------------------------------------
 
-file_input = json_folder + '/' + args.filename
+invalid_filename_chars = '/\\<>:"|?*'
+invalid_filename_chars += ''.join(chr(i) for i in range(32))
+filename_sanitize_table = str.maketrans('', '', invalid_filename_chars)
+filename = os.path.basename(args.filename.replace('\\', '/')).translate(filename_sanitize_table).strip()
+if filename in {"", ".", ".."}:
+    print("Invalid filename.")
+    raise SystemExit(1)
+
+file_input = json_folder + '/' + filename
 if os.path.isfile(file_input):
-    jdata = json.loads(Path(file_input).read_text())
+    jdata = json.loads(Path(file_input).read_text(encoding="utf-8"))
 
     title = jdata["title"]
     slug = jdata["slug"]
@@ -146,17 +147,17 @@ if os.path.isfile(file_input):
         # extract all the fields into single text files
         # if -e was given, create empty files for empty fields, too
         if (jdata['id'] != "" and jdata['id'] != None):
-            Path(extract_folder + '/.uuid').write_text(jdata['id'])
+            Path(extract_folder + '/.uuid').write_text(jdata['id'], encoding="utf-8")
 
         for field in fields:
             if field in jdata:
                 file_for_field = extract_folder + '/' + field + ".txt"
                 if (jdata[field] != "" and jdata[field] != None):
                     print(f'Extracting field {field} to {file_for_field}')
-                    Path(file_for_field).write_text(jdata[field])
+                    Path(file_for_field).write_text(jdata[field], encoding="utf-8")
                 else:
                     if args.empty:
-                        Path(file_for_field).write_text("")
+                        Path(file_for_field).write_text("", encoding="utf-8")
                     else:
                         print(f'Field {field} is empty/unset, not saving.')
             else:
