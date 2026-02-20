@@ -2,39 +2,23 @@
 version = "Tillerz Article Prepare"
 
 from argparse import ArgumentParser
-import json
 import os
 from pathlib import Path
+from wa_common import (
+    TEXT_ENCODING,
+    ensure_dir,
+    load_cfg,
+    read_json,
+    read_text,
+    sanitize_filename_component,
+    write_json,
+)
 
-TEXT_ENCODING = "utf-8"
 word_count_fields = { "content", "sidebarcontent", "sidepanelcontenttop", "sidepanelcontent", "sidebarcontentbottom", "footnotes", "fullfooter" }
-
-def read_text(path):
-    return Path(path).read_text(encoding=TEXT_ENCODING)
-
-
-def write_json(path, data):
-    Path(path).write_text(
-        json.dumps(data, ensure_ascii=False, indent=2), encoding=TEXT_ENCODING
-    )
-
-
-def read_cfg(path):
-    cfg = {}
-    with open(path, "r", encoding=TEXT_ENCODING) as myfile:
-        for line in myfile:
-            line = line.strip()
-            if not line.startswith("#"):
-                name, var = line.partition("=")[::2]
-                cfg[name.strip()] = str(var.strip())
-    return cfg
 
 
 def sanitize_slug(slug):
-    invalid_filename_chars = '/\\<>:"|?*'
-    invalid_filename_chars += "".join(chr(i) for i in range(32))
-    table = str.maketrans("", "", invalid_filename_chars)
-    return os.path.basename(slug.replace("\\", "/")).translate(table).strip()
+    return sanitize_filename_component(slug)
 
 
 def resolve_source_json(world_name, slug, edit_folder):
@@ -96,7 +80,7 @@ def resolve_article_id(world_name, slug, edit_folder):
             return article_id, id_marker.as_posix()
 
     source_json_path = resolve_source_json(world_name, slug, edit_folder)
-    jdata = json.loads(read_text(source_json_path))
+    jdata = read_json(source_json_path)
     article_id = jdata.get("id")
     if not article_id:
         raise ValueError(f"Could not resolve article id from {source_json_path.as_posix()}")
@@ -111,7 +95,7 @@ parser.add_argument("article_slug", help="article slug to prepare from <world>/e
 args = parser.parse_args()
 file_settings = "settings.cfg"
 try:
-    cfg = read_cfg(file_settings)
+    cfg = load_cfg(file_settings)
 except FileNotFoundError:
     print(f"Error: The file {file_settings} was not found.")
     raise SystemExit(1)
@@ -132,8 +116,8 @@ if not edit_folder.is_dir():
 
 try:
     source_json_path = resolve_source_json(world_name, slug, edit_folder)
-    source_json = json.loads(read_text(source_json_path))
-except (FileNotFoundError, json.JSONDecodeError) as error:
+    source_json = read_json(source_json_path)
+except (FileNotFoundError, ValueError) as error:
     print(f"Error: {error}")
     raise SystemExit(1)
 
@@ -168,9 +152,9 @@ for field, value in edited_fields.items():
 
 if len(changed_fields)>0:
     deploy_folder = Path(world_name) / "deploy"
-    deploy_folder.mkdir(parents=True, exist_ok=True)
+    ensure_dir(deploy_folder)
     output_path = deploy_folder / f"{slug}.json"
-    write_json(output_path, payload)
+    write_json(output_path, payload, indent=2)
 
     print(f"Slug: {slug}")
     print(f"Article-ID: {article_id}")

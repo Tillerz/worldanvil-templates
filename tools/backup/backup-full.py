@@ -14,34 +14,24 @@ from requests.utils import dict_from_cookiejar
 from requests.utils import cookiejar_from_dict
 from sys import platform
 import time
-
-TEXT_ENCODING = "utf-8"
-
-
-def read_text(path):
-    return Path(path).read_text(encoding=TEXT_ENCODING)
-
-
-def write_json(path, data, compact=False):
-    kwargs: dict = {"ensure_ascii": False}
-    if compact:
-        kwargs["separators"] = (",", ":")
-    Path(path).write_text(json.dumps(data, **kwargs), encoding=TEXT_ENCODING)
-
+from wa_common import (
+    build_api_url,
+    build_request_headers,
+    ensure_dir,
+    fetch_article,
+    fetch_article_list_page,
+    load_cfg,
+    read_text,
+    write_json,
+)
 
 # main
 os.chdir(os.path.dirname(__file__))
 
 file_settings = "settings.cfg"
 file_cookies = "cookies.json"
-cfg = {}
 try:
-    with open(file_settings, "r", encoding=TEXT_ENCODING) as myfile:
-        for line in myfile:
-            line = line.strip()
-            if not line.startswith("#"):
-                name, var = line.partition("=")[::2]
-                cfg[name.strip()] = str(var.strip())
+    cfg = load_cfg(file_settings)
 except FileNotFoundError:
     print(f"Error: The file {file_settings} was not found.")
     raise SystemExit(1)
@@ -50,23 +40,8 @@ except IOError:
     raise SystemExit(1)
 world_name = cfg['world_name']
 world_id = cfg['world_id']
-proxy_url = cfg['proxy']
-
-# headers for the rss request
-request_headers =  {
-    'Content-Type' : 'application/json',
-    'x-auth-token' : cfg['x_auth_token'],
-    'x-application-key' : cfg['x_application_key'],
-    'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) ' + version,
-    'Referer' : 'https://www.worldanvil.com/w/' + world_name
-}
-
-# api and rss urls:
-base_url = "https://www.worldanvil.com"
-if proxy_url != "":
-    base_url = proxy_url
-
-api_url = base_url + '/api/external/boromir/'
+request_headers = build_request_headers(cfg, version)
+api_url = build_api_url(cfg)
 
 # this is the root folder for the backup:
 root_folder = world_name
@@ -77,7 +52,7 @@ file_all_articles = root_folder + "/all_articles.json"
 
 # create a backup folder if it doesn't exist
 try:
-    os.makedirs(world_name, exist_ok=True)
+    ensure_dir(world_name)
 except OSError as error:
     print(f"Cannot create folder {world_name}: {error}")
     raise SystemExit(1)
@@ -111,11 +86,14 @@ with requests.Session() as session:
                 if elapsed < 5:
                     time.sleep(5 - elapsed)
             request_times.append(time.monotonic())
-            get_article_list = api_url + "world/articles?id=" + world_id + "&granularity=1"
-            payload = { 'limit': pagesize, 'offset' : offset }
-            response = session.post(get_article_list, json=payload, headers=request_headers)
-            response.raise_for_status()
-            jdata = response.json()
+            jdata = fetch_article_list_page(
+                session,
+                api_url,
+                world_id,
+                request_headers,
+                limit=pagesize,
+                offset=offset,
+            )
             if jdata.get("success") is True:
                 if jdata.get("entities") == []:
                     break
@@ -174,16 +152,15 @@ with requests.Session() as session:
                 time.sleep(5 - elapsed)
         request_times.append(time.monotonic())
         # fetch article via API with granularity 3, means full article with all fields
-        get_article = api_url + "article?id=" + article_id + "&granularity=3"
         try:
-            response = session.get(get_article, headers=request_headers)
-            response.raise_for_status()
+            jdata = fetch_article(
+                session, api_url, article_id, request_headers, granularity=3
+            )
         except requests.RequestException as e:
             print(f"Error fetching article data: {e}")
             continue
 
         # parse the json file and extract some values
-        jdata = response.json()
         length = len(json.dumps(jdata))
         length_old = 0
 
@@ -195,6 +172,7 @@ with requests.Session() as session:
         file_json_article_base = root_folder_json + '/' + slug + '_' + last_modif.replace(".000000","").replace(' ','_').replace(':','')
         last_modif_old = ""
         old_wordcount = 0
+        diff = 0
         perc = 100
         wdiff = ""
 

@@ -5,19 +5,23 @@ version = 'Tillerz Article Extract'
 # see https://github.com/Tillerz/worldanvil-templates/blob/master/tools/backup/
 
 from argparse import ArgumentParser
-import json
 import os
 from pathlib import Path
 from sys import platform
+from wa_common import (
+    TEXT_ENCODING,
+    ensure_dir,
+    load_cfg,
+    read_json,
+    sanitize_filename_component,
+    write_text,
+)
 
 types_str = { "excerpt", "publicationDate", "notificationDate", "updateDate", "snippet", "scrapbook", "url", "name", "title", "slug", "state", "icon", "tags", "credits", "editURL", "metaTitle", "metaDescription", "metaKeywords", "canonicalURL", "robots", "ogTitle", "ogDescription", "ogImage", "twitterTitle", "twitterDescription", "twitterImage", "customCss", "customJs", "content", "sidepanelcontenttop", "sidepanelcontent", "sidebarcontent", "sidebarcontentbottom", "footnotes", "fullfooter", "subheading", "authornotes", "pronunciation" }
 types_uuid = { "id", "worldID", "parentID", "categoryID", "authorID", "folderId" }
 types_int = { "likes", "views", "wordcount", "viewCount", "likeCount", "commentCount", "positionX", "positionY", "zoomLevel", "mapWidth", "mapHeight", "mapMarkerWidth", "mapMarkerHeight" }
 types_bool = { "isWip", "isDraft", "isAdultContent", "isLocked", "allowComments", "showAuthor", "showLastModified", "showWordCount", "showInSidebar", "showInMap", "isPinned", "isFeatured", "isFeaturedArticle", "isPublished", "showInToc", "isEmphasized", "displayAuthor", "displayChildrenUnder", "displayTitle", "displaySheet", "isEditable", "coverIsMap" }
 default_fields = { "excerpt", "displayCss", "content", "pronunciation", "snippet", "sidebarcontent", "sidepanelcontenttop", "sidepanelcontent", "sidebarcontentbottom", "footnotes", "fullfooter", "authornotes", "scrapbook", "credits", "subheading" }
-
-TEXT_ENCODING = "utf-8"
-
 
 def unroll(data, indent=0, types=False, all=False, fields={}):
     spacing = "  " * (indent)
@@ -68,14 +72,8 @@ parser.add_argument("-t", "--types", required=False, action='store_true', help="
 parser.add_argument("-e", "--empty", required=False, action='store_true', help="create files for empty fields, too")
 args = parser.parse_args()
 file_settings = "settings.cfg"
-cfg = {}
 try:
-    with open(file_settings, "r", encoding=TEXT_ENCODING) as myfile:
-        for line in myfile:
-            line = line.strip()
-            if not line.startswith("#"):
-                name, var = line.partition("=")[::2]
-                cfg[name.strip()] = str(var.strip())
+    cfg = load_cfg(file_settings)
 except FileNotFoundError:
     print(f"Error: The file {file_settings} was not found.")
     raise SystemExit(1)
@@ -90,22 +88,19 @@ output_folder = world_name + "/edit"
 
 # create the extract folder if it doesn't exist
 try:
-    os.makedirs(output_folder, exist_ok=True)
+    ensure_dir(output_folder)
 except OSError as error:
     print(f"Cannot create folder {output_folder}: {error}")
     raise SystemExit(1)
 
-invalid_filename_chars = '/\\<>:"|?*'
-invalid_filename_chars += ''.join(chr(i) for i in range(32))
-filename_sanitize_table = str.maketrans('', '', invalid_filename_chars)
-filename = os.path.basename(args.filename.replace('\\', '/')).translate(filename_sanitize_table).strip()
+filename = sanitize_filename_component(args.filename)
 if filename in {"", ".", ".."}:
     print("Invalid filename.")
     raise SystemExit(1)
 
 file_input = json_folder + '/' + filename
 if os.path.isfile(file_input):
-    jdata = json.loads(Path(file_input).read_text(encoding=TEXT_ENCODING))
+    jdata = read_json(file_input)
 
     title = jdata["title"]
     slug = jdata["slug"]
@@ -135,15 +130,15 @@ if os.path.isfile(file_input):
 
         # create the extract folder if it doesn't exist
         try:
-            os.makedirs(extract_folder, exist_ok=True)
+            ensure_dir(extract_folder)
         except OSError as error:
             print(f"Cannot create folder {extract_folder}: {error}")
             raise SystemExit(1)
 
         # remember where the content came from (filename, article-id)
-        Path(extract_folder + '/.jsonfile').write_text(filename, encoding=TEXT_ENCODING)
+        write_text(extract_folder + '/.jsonfile', filename)
         if (jdata['id'] != "" and jdata['id'] != None):
-            Path(extract_folder + '/.uuid').write_text(jdata['id'], encoding=TEXT_ENCODING)
+            write_text(extract_folder + '/.uuid', jdata['id'])
 
         # extract all the fields into single text files
         # if -e was given, create empty files for empty fields, too
@@ -152,10 +147,10 @@ if os.path.isfile(file_input):
                 file_for_field = extract_folder + '/' + field + ".txt"
                 if (jdata[field] != "" and jdata[field] != None):
                     print(f'Extracting field {field} to {file_for_field}')
-                    Path(file_for_field).write_text(jdata[field], encoding=TEXT_ENCODING)
+                    write_text(file_for_field, jdata[field])
                 else:
                     if args.empty:
-                        Path(file_for_field).write_text("", encoding=TEXT_ENCODING)
+                        write_text(file_for_field, "")
                     else:
                         print(f'Field {field} is empty/unset, not saving.')
             else:

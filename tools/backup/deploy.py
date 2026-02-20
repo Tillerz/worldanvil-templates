@@ -6,24 +6,13 @@ import json
 import os
 from pathlib import Path
 import requests
-
-TEXT_ENCODING = "utf-8"
-
-
-def read_cfg(path):
-    cfg = {}
-    with open(path, "r", encoding=TEXT_ENCODING) as myfile:
-        for line in myfile:
-            line = line.strip()
-            if not line.startswith("#"):
-                name, var = line.partition("=")[::2]
-                cfg[name.strip()] = str(var.strip())
-    return cfg
-
-
-def read_json(path):
-    return json.loads(Path(path).read_text(encoding=TEXT_ENCODING))
-
+from wa_common import (
+    build_api_url,
+    build_request_headers,
+    load_cfg,
+    patch_article,
+    read_json,
+)
 
 # main
 os.chdir(os.path.dirname(__file__))
@@ -38,7 +27,7 @@ args = parser.parse_args()
 
 file_settings = "settings.cfg"
 try:
-    cfg = read_cfg(file_settings)
+    cfg = load_cfg(file_settings)
 except FileNotFoundError:
     print(f"Error: The file {file_settings} was not found.")
     raise SystemExit(1)
@@ -57,16 +46,8 @@ if not payload_files:
     print(f"No deploy files found in {deploy_folder.as_posix()}")
     raise SystemExit(0)
 
-proxy_url = cfg.get("proxy", "")
-base_url = proxy_url if proxy_url != "" else "https://www.worldanvil.com"
-api_url = base_url + "/api/external/boromir/"
-request_headers = {
-    "Content-Type": "application/json",
-    "x-auth-token": cfg["x_auth_token"],
-    "x-application-key": cfg["x_application_key"],
-    "User-Agent": "Mozilla/5.0 " + version,
-    "Referer": "https://www.worldanvil.com/w/" + world_name,
-}
+api_url = build_api_url(cfg)
+request_headers = build_request_headers(cfg, version)
 
 print(f"Deploy folder: {deploy_folder.as_posix()}")
 print(f"Deploy files found: {len(payload_files)}")
@@ -74,41 +55,46 @@ print(f"Mode: {'dry-run' if args.dry_run else 'live'}")
 
 deployable_count = 0
 deployed_count = 0
-for file_path in payload_files:
-    try:
-        payload = read_json(file_path)
-    except json.JSONDecodeError as error:
-        print(f"Skipping {file_path.name}: invalid JSON ({error})")
-        continue
+with requests.Session() as session:
+    for file_path in payload_files:
+        try:
+            payload = read_json(file_path)
+        except json.JSONDecodeError as error:
+            print(f"Skipping {file_path.name}: invalid JSON ({error})")
+            continue
 
-    article_id = payload.get("id")
-    if not article_id:
-        print(f"Skipping {file_path.name}: missing required field 'id'")
-        continue
-    if len(payload.keys()) <= 1:
-        print(f"Skipping {file_path.name}: no changed fields in payload")
-        continue
+        article_id = payload.get("id")
+        if not article_id:
+            print(f"Skipping {file_path.name}: missing required field 'id'")
+            continue
+        if len(payload.keys()) <= 1:
+            print(f"Skipping {file_path.name}: no changed fields in payload")
+            continue
 
-    deployable_count += 1
-    changed_fields = [key for key in payload.keys() if key != "id"]
-    print(f"Prepared: {file_path.name} -> article {article_id}")
-    print(f"Fields: {', '.join(changed_fields)}")
+        deployable_count += 1
+        changed_fields = [key for key in payload.keys() if key != "id"]
+        print(f"Prepared: {file_path.name} -> article {article_id}")
+        print(f"Fields: {', '.join(changed_fields)}")
 
-    update_article = api_url + "article?id=" + article_id
-    update_payload = {key: value for key, value in payload.items() if key != "id"}
-    if args.dry_run:
-        print(f"Dry-run: PATCH {update_article}")
-        continue
+        update_article = api_url + "article?id=" + article_id
+        update_payload = {key: value for key, value in payload.items() if key != "id"}
+        if args.dry_run:
+            print(f"Dry-run: PATCH {update_article}")
+            continue
 
-    try:
-        response = requests.patch(
-            update_article, json=update_payload, headers=request_headers, timeout=60
-        )
-        response.raise_for_status()
-        deployed_count += 1
-        print(f"Deployed: {file_path.name}")
-    except requests.RequestException as error:
-        print(f"Deploy failed for {file_path.name}: {error}")
+        try:
+            patch_article(
+                session,
+                api_url,
+                article_id,
+                update_payload,
+                request_headers,
+                timeout=60,
+            )
+            deployed_count += 1
+            print(f"Deployed: {file_path.name}")
+        except requests.RequestException as error:
+            print(f"Deploy failed for {file_path.name}: {error}")
 
 print(f"Deployable payloads: {deployable_count}")
 print(f"Deployed payloads: {deployed_count}")
