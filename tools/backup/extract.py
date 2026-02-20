@@ -145,6 +145,9 @@ if os.path.isfile(file_input):
 
         # extract all the fields into single text files
         # if -e was given, create empty files for empty fields, too
+        if (jdata['id'] != "" and jdata['id'] != None):
+            Path(extract_folder + '/.uuid').write_text(jdata['id'])
+
         for field in fields:
             if field in jdata:
                 file_for_field = extract_folder + '/' + field + ".txt"
