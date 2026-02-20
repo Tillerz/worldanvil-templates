@@ -150,6 +150,7 @@ if os.path.isfile(file_input):
                     write_text(file_for_field, jdata[field])
                 else:
                     if args.empty:
+                        print(f'Field {field} is empty, creating empty file {file_for_field}')
                         write_text(file_for_field, "")
                     else:
                         print(f'Field {field} is empty/unset, not saving.')

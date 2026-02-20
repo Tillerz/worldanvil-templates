@@ -100,9 +100,8 @@ with requests.Session() as session:
                 else:
                     all_articles_new.extend(jdata.get("entities", []))
                     offset += pagesize
+                    print(f"article list offset {counter} read ({counter * pagesize}+)")
                     counter += 1
-                    print(f"{counter * pagesize} articles read (article list)")
-                    # debug: print(json.dumps(jdata))
             else:
                 break
     except requests.RequestException as e:
@@ -115,7 +114,7 @@ with requests.Session() as session:
 
     print("Comparing list of existing articles with downloaded list.")
     # load old article list, if existing
-    all_articles_path = Path("all_articles.json")
+    all_articles_path = Path(file_all_articles)
     if all_articles_path.exists():
         all_articles_old = json.loads(read_text(all_articles_path))
     else:
@@ -128,6 +127,8 @@ with requests.Session() as session:
         for a in all_articles_old
         if "id" in a
     }
+    updated_count = 0
+    unchanged_count = 0
     new_articles = []
     for a in all_articles_new:
         article_id = a.get("id")
@@ -137,14 +138,13 @@ with requests.Session() as session:
         new_date = a.get("updateDate", {}).get("date")
         if old_date is None or (new_date is not None and new_date > old_date):
             new_articles.append(article_id)
-
+        else:
+            unchanged_count += 1
     # debug: Path("new_articles.json").write_text(json.dumps(new_articles, separators=(",", ":")))
 
     request_times = deque(maxlen=5)
     # loop over all new or changed articles
     remaining = len(new_articles)
-    updated_count = 0
-    unchanged_count = 0
     for article_id in new_articles:
         if len(request_times) == request_times.maxlen:
             elapsed = time.monotonic() - request_times[0]
