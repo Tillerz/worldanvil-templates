@@ -173,6 +173,7 @@ List all tags of the given article:
 List all articles using the given tags:
 
 - `python3 tagmgr.py --articles "<tag list>"`
+
 List all articles of type Document using the given tags:
 
 - `python3 tagmgr.py --articles "<tag list>" --type Document`
@@ -180,9 +181,11 @@ List all articles of type Document using the given tags:
 Replace a tag in all articles or the given article:
 
 - `python3 tagmgr.py --replace <old tag> <new tag> [--all | <article-slug>]`
+
 Replace a tag in all articles of type Document:
 
 - `python3 tagmgr.py --replace <old tag> <new tag> --all --type Document`
+
 Dry-run replace:
 
 - `python3 tagmgr.py --replace <old tag> <new tag> [--all | <article-slug>] --dry-run`
@@ -190,9 +193,11 @@ Dry-run replace:
 Add a list of tags to all articles or a given article:
 
 - `python3 tagmgr.py --add "<tag list>" [--all | <article-slug>]`
+
 Add a list of tags to all articles of type Document:
 
 - `python3 tagmgr.py --add "<tag list>" --all --type Document`
+
 Dry-run add:
 
 - `python3 tagmgr.py --add "<tag list>" [--all | <article-slug>] --dry-run`
@@ -200,9 +205,11 @@ Dry-run add:
 Remove a list of tags from all articles or a given article:
 
 - `python3 tagmgr.py --remove "<tag list>" [--all | <article-slug>]`
+
 Remove a list of tags from all articles of type Document:
 
 - `python3 tagmgr.py --remove "<tag list>" --all --type Document`
+
 Dry-run remove:
 
 - `python3 tagmgr.py --remove "<tag list>" [--all | <article-slug>] --dry-run`
