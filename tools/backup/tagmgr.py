@@ -209,7 +209,7 @@ def apply_remove(tags, remove_tags):
     return result, result != tags
 
 
-def command_bulk_update(records, deploy_folder, update_fn):
+def command_bulk_update(records, deploy_folder, update_fn, dry_run=False):
     changed = 0
     unchanged = 0
     for record in records:
@@ -218,11 +218,16 @@ def command_bulk_update(records, deploy_folder, update_fn):
         if not did_change:
             unchanged += 1
             continue
-        write_article_deploy(record, deploy_folder, new_tags)
+        if dry_run:
+            print(f"would update: {record.slug}")
+        else:
+            write_article_deploy(record, deploy_folder, new_tags)
+            print(f"updated: {record.slug}")
         changed += 1
-        print(f"updated: {record.slug}")
-
-    print(f"changed: {changed}")
+    if dry_run:
+        print(f"would change: {changed}")
+    else:
+        print(f"changed: {changed}")
     print(f"unchanged: {unchanged}")
 
 
@@ -260,16 +265,18 @@ parser.add_argument("--stats", action="store_true", help="list tag statistics")
 parser.add_argument("--tags", metavar="article_slug", help="list tags of one article")
 parser.add_argument("--articles", metavar="tag_list", help="list articles matching all tags")
 parser.add_argument("--replace", nargs="+", help="replace tag: with --all use '<old> <new>', without --all use '<old> <new> <article-slug>'")
-parser.add_argument("--add", nargs=2, metavar=("tag_list", "article_slug"), help="add tags to one article")
+parser.add_argument("--add", nargs="+", metavar=("tag_list", "article_slug"), help="add tags: with --all use '<tag_list>', without --all use '<tag_list> <article-slug>'")
 parser.add_argument("--remove", nargs="+", metavar=("tag_list", "target"), help="remove tags: with --all use '<tag_list>', without --all use '<tag_list> <article-slug>'")
-parser.add_argument("--all", action="store_true", help="apply replace/remove to all matching articles")
+parser.add_argument("--all", action="store_true", help="apply add/replace/remove to all matching articles")
+parser.add_argument("--dry-run", action="store_true", help="show planned changes for add/replace/remove without writing deploy files")
 parser.add_argument("--type", dest="entity_type", help="optional entity class filter for non-single-article operations")
 argv = sys.argv[1:]
 
 # Support user-friendly forms:
 #   --replace --all <old> <new>
+#   --add --all <tag list>
 #   --remove --all <tag list>
-for option_name in ("--replace", "--remove"):
+for option_name in ("--replace", "--add", "--remove"):
     if option_name in argv:
         index = argv.index(option_name)
         if index + 1 < len(argv) and argv[index + 1] == "--all":
@@ -302,8 +309,11 @@ try:
 except ValueError as error:
     print(f"Error: {error}")
     raise SystemExit(1)
-if args.all and operation not in {"replace", "remove"}:
-    print("Error: --all can only be used together with --replace or --remove.")
+if args.all and operation not in {"add", "replace", "remove"}:
+    print("Error: --all can only be used together with --add, --replace, or --remove.")
+    raise SystemExit(1)
+if args.dry_run and operation not in {"add", "replace", "remove"}:
+    print("Error: --dry-run can only be used together with --add, --replace, or --remove.")
     raise SystemExit(1)
 
 articles_by_slug = load_articles(json_folder)
@@ -352,7 +362,12 @@ if operation == "replace":
         validate_single_comma_free_tag(old_tag, "old tag")
         validate_single_comma_free_tag(new_tag, "new tag")
 
-        command_bulk_update(filtered, deploy_folder, lambda tags: apply_replace(tags, old_tag, new_tag))
+        command_bulk_update(
+            filtered,
+            deploy_folder,
+            lambda tags: apply_replace(tags, old_tag, new_tag),
+            dry_run=args.dry_run,
+        )
         raise SystemExit(0)
 
     if len(values) == 3:
@@ -374,20 +389,49 @@ if operation == "replace":
             print("No changes needed.")
             raise SystemExit(0)
 
-        output = write_article_deploy(record, deploy_folder, new_tags)
-        print(f"updated: {record.slug}")
-        print(f"deploy file: {output.as_posix()}")
+        output = deploy_folder / f"{record.slug}.json"
+        if args.dry_run:
+            print(f"would update: {record.slug}")
+            print(f"deploy file: {output.as_posix()}")
+        else:
+            output = write_article_deploy(record, deploy_folder, new_tags)
+            print(f"updated: {record.slug}")
+            print(f"deploy file: {output.as_posix()}")
         raise SystemExit(0)
 
     print("Error: --replace expects either '--replace --all <old> <new>' or '--replace <old> <new> <article-slug>'.")
     raise SystemExit(1)
 
 if operation == "add":
+    values = args.add
+    if args.all:
+        if len(values) != 1:
+            print("Error: with --add --all, provide exactly '<tag list>'.")
+            raise SystemExit(1)
+        add_tags = parse_tag_list(values[0])
+        if not add_tags:
+            print("Error: tag list is empty.")
+            raise SystemExit(1)
+        if args.entity_type is None:
+            filtered = list(articles_by_slug.values())
+        else:
+            filtered = [record for record in articles_by_slug.values() if is_type_match(record, args.entity_type)]
+        command_bulk_update(
+            filtered,
+            deploy_folder,
+            lambda tags: apply_add(tags, add_tags),
+            dry_run=args.dry_run,
+        )
+        raise SystemExit(0)
+
+    if len(values) != 2:
+        print("Error: --add expects either '--add --all <tag list>' or '--add <tag list> <article-slug>'.")
+        raise SystemExit(1)
     if args.entity_type is not None:
         print("Error: --type can only be used for operations that do not target a single article.")
         raise SystemExit(1)
 
-    raw_tags, article_slug = args.add
+    raw_tags, article_slug = values
     add_tags = parse_tag_list(raw_tags)
     if not add_tags:
         print("Error: tag list is empty.")
@@ -404,9 +448,14 @@ if operation == "add":
         print("No changes needed.")
         raise SystemExit(0)
 
-    output = write_article_deploy(record, deploy_folder, new_tags)
-    print(f"updated: {record.slug}")
-    print(f"deploy file: {output.as_posix()}")
+    output = deploy_folder / f"{record.slug}.json"
+    if args.dry_run:
+        print(f"would update: {record.slug}")
+        print(f"deploy file: {output.as_posix()}")
+    else:
+        output = write_article_deploy(record, deploy_folder, new_tags)
+        print(f"updated: {record.slug}")
+        print(f"deploy file: {output.as_posix()}")
     raise SystemExit(0)
 
 if operation == "remove":
@@ -424,7 +473,12 @@ if operation == "remove":
         else:
             filtered = [record for record in articles_by_slug.values() if is_type_match(record, args.entity_type)]
 
-        command_bulk_update(filtered, deploy_folder, lambda tags: apply_remove(tags, remove_tags))
+        command_bulk_update(
+            filtered,
+            deploy_folder,
+            lambda tags: apply_remove(tags, remove_tags),
+            dry_run=args.dry_run,
+        )
         raise SystemExit(0)
 
     if len(values) != 2:
@@ -451,9 +505,14 @@ if operation == "remove":
         print("No changes needed.")
         raise SystemExit(0)
 
-    output = write_article_deploy(record, deploy_folder, new_tags)
-    print(f"updated: {record.slug}")
-    print(f"deploy file: {output.as_posix()}")
+    output = deploy_folder / f"{record.slug}.json"
+    if args.dry_run:
+        print(f"would update: {record.slug}")
+        print(f"deploy file: {output.as_posix()}")
+    else:
+        output = write_article_deploy(record, deploy_folder, new_tags)
+        print(f"updated: {record.slug}")
+        print(f"deploy file: {output.as_posix()}")
     raise SystemExit(0)
 
 print("Error: unsupported operation.")

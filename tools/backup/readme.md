@@ -178,19 +178,30 @@ Replace a tag in all articles or the given article:
 - `python3 tagmgr.py --replace <old tag> <new tag> [--all | <article-slug>]`
 Replace a tag in all articles of type Document:
 - `python3 tagmgr.py --replace <old tag> <new tag> --all --type Document`
+Dry-run replace:
+- `python3 tagmgr.py --replace <old tag> <new tag> [--all | <article-slug>] --dry-run`
 
-Add a list of tags to a given article:
-- `python3 tagmgr.py --add "<tag list>" <article-slug>`
+Add a list of tags to all articles or a given article:
+- `python3 tagmgr.py --add "<tag list>" [--all | <article-slug>]`
+Add a list of tags to all articles of type Document:
+- `python3 tagmgr.py --add "<tag list>" --all --type Document`
+Dry-run add:
+- `python3 tagmgr.py --add "<tag list>" [--all | <article-slug>] --dry-run`
 
 Remove a list of tags from all articles or a given article:
 - `python3 tagmgr.py --remove "<tag list>" [--all | <article-slug>]`
 Remove a list of tags from all articles of type Document:
 - `python3 tagmgr.py --remove "<tag list>" --all --type Document`
+Dry-run remove:
+- `python3 tagmgr.py --remove "<tag list>" [--all | <article-slug>] --dry-run`
+
+A dry-run lets you run the command to see the output without writing any update files to deploy/.
 
 Optional filter `--type <entityClass>`:
 
 - all commands that do not target a single article support `--type <type>`
 - `<type>` matches the article root-level `entityClass` value in json files
+- `--dry-run` is supported by `--add`, `--replace`, and `--remove`
 - available values (alphabetical):
 - `Article`
 - `Condition`
