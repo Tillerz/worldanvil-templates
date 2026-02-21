@@ -5,7 +5,8 @@ Scripts in this folder support a full flow:
 1. download article JSON backups
 2. extract editable text fields into plain text files
 3. prepare minimal update payloads from edited text files
-4. deploy payloads to WA REST API
+4. manage the article tags
+5. deploy payloads to WA REST API
 
 
 # Requirements
@@ -122,7 +123,101 @@ Parameters:
 - `article_slug` slug folder name under `<world_name>/edit/`
 
 
-## 4) Deploy Payloads
+## 4) Tag Manager
+
+Script:
+
+- Linux/macOS: `python3 tagmgr.py <command>`
+
+Purpose:
+
+Tool to manage the article tags.
+
+- reads article json files from `<world_name>/json/`
+- inspects and updates article tags
+- writes tag updates to `<world_name>/deploy/<article-slug>.json`
+- if deploy payloads already exist, updates those files in place so multiple tag operations can be chained safely
+- update files can then deployed to WA using `python3 deploy.py`
+
+Format:
+
+- a `<tag list>` can be a single tag or several tags separated by comma
+- a single tag may not contain a comma
+- `<article-slug>` is the slug of the article as seen in its WA URL (`../a/<article-slug>`)
+
+Usage examples:
+
+List all tags of all articles with usage count and some stats:
+- `python3 tagmgr.py --stats`
+List all tags of type Document with usage count and some stats:
+- `python3 tagmgr.py --stats --type Document`
+
+```
+[..]
+we2021: 1
+we2022: 6
+we2023: 1
+we2024: 1
+we2025: 1
+zaxor: 1
+---
+articles with tags: 36
+articles with no tags: 25
+average tags per tagged article: 3.06
+```
+
+List all tags of the given article:
+- `python3 tagmgr.py --tags <article-slug>`
+
+List all articles using the given tags:
+- `python3 tagmgr.py --articles "<tag list>"`
+List all articles of type Document using the given tags:
+- `python3 tagmgr.py --articles "<tag list>" --type Document`
+
+Replace a tag in all articles or the given article:
+- `python3 tagmgr.py --replace <old tag> <new tag> [--all | <article-slug>]`
+Replace a tag in all articles of type Document:
+- `python3 tagmgr.py --replace <old tag> <new tag> --all --type Document`
+
+Add a list of tags to a given article:
+- `python3 tagmgr.py --add "<tag list>" <article-slug>`
+
+Remove a list of tags from all articles or a given article:
+- `python3 tagmgr.py --remove "<tag list>" [--all | <article-slug>]`
+Remove a list of tags from all articles of type Document:
+- `python3 tagmgr.py --remove "<tag list>" --all --type Document`
+
+Optional filter `--type <entityClass>`:
+
+- all commands that do not target a single article support `--type <type>`
+- `<type>` matches the article root-level `entityClass` value in json files
+- available values (alphabetical):
+- `Article`
+- `Condition`
+- `Document`
+- `Ethnicity`
+- `Formation`
+- `Item`
+- `Landmark`
+- `Language`
+- `Law`
+- `Location`
+- `Material`
+- `MilitaryConflict`
+- `Myth`
+- `Organization`
+- `Person`
+- `Plot`
+- `Profession`
+- `Prose`
+- `Rank`
+- `Ritual`
+- `Settlement`
+- `Species`
+- `Vehicle`
+
+
+## 5) Deploy Payloads
 
 Script:
 
@@ -154,8 +249,9 @@ Parameters:
 
 1. `python3 backup-full.py`
 2. `python3 extract.py <article-json-file>`
-3. edit files in `<world_name>/edit/<article-slug>/`
-4. `python3 prepare.py <article-slug>`
-5. review `<world_name>/deploy/<article-slug>.json`
-6. `python3 deploy.py --dry-run`
-7. `python3 deploy.py`
+3. update/add files in `<world_name>/edit/<article-slug>/`
+4. `python3 tagmgr --add <tag list> <article-slug>`
+5. `python3 prepare.py <article-slug>`
+6. review `<world_name>/deploy/<article-slug>.json`
+7. `python3 deploy.py --dry-run`
+8. `python3 deploy.py --validate`

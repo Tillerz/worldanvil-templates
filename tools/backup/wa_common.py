@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from datetime import datetime
 import json
 import os
 from pathlib import Path
@@ -50,6 +51,45 @@ def sanitize_filename_component(value):
 
 def ensure_dir(path):
     os.makedirs(path, exist_ok=True)
+
+
+def parse_wa_datetime(raw):
+    if not isinstance(raw, str) or raw == "":
+        return None
+    cleaned = raw.replace(".000000", "")
+    try:
+        return datetime.strptime(cleaned, "%Y-%m-%d %H:%M:%S")
+    except ValueError:
+        return None
+
+
+def parse_tags(value):
+    if value is None:
+        return []
+    if isinstance(value, str):
+        if value == "":
+            return []
+        return [part for part in value.split(",") if part != ""]
+    return []
+
+
+def format_tags(tags):
+    return ",".join(tags)
+
+
+def unique_preserve_order(values):
+    seen = set()
+    result = []
+    for value in values:
+        if value not in seen:
+            seen.add(value)
+            result.append(value)
+    return result
+
+
+def validate_single_comma_free_tag(value, label):
+    if "," in value:
+        raise ValueError(f"{label} may not contain commas.")
 
 
 def build_request_headers(cfg, version):
