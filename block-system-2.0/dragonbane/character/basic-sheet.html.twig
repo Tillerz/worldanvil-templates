@@ -40,21 +40,19 @@ set weapon_skills = ["Axes", "STR",
                 <div class="col-12 hidden-xs hidden-sm hidden-md d-none d-lg-block">
                     <div class="logo"></div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-12">
                     <div class="card personal" id="card-personal">
                         <div class="card-body">
                             <table class='table'>
                                 <tr><th class='lbl lbl-name' width='30%'> Name </th><td class='var var-name'> {{variables.name|default}} </td></tr>
+                                <tr><th class='lbl lbl-player'> Player </th><td class='var var-player'> {{variables.player|default}} </td></tr>
                                 <tr><th class='lbl lbl-kin'> Kin </th><td class='var var-kin'> {{variables.kin|default}} </td></tr>
                                 <tr><th class='lbl lbl-age'> Age </th><td class='var var-age'> {{variables.age|default}} </td></tr>
                                 <tr><th class='lbl lbl-profession'> Profession </th><td class='var var-profession'> {{variables.profession|default}} </td></tr>
                                 <tr><th class='lbl lbl-weakness'> Weakness </th><td class='var var-weakness'> {{variables.weakness|default}} </td></tr>
-                                <tr><th class='lbl lbl-player'> Player </th><td class='var var-player'> {{variables.player|default}} </td></tr>
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-6">
                     <div class="card appearance" id="card-appearance">
                         <div class="card-body">
                             <div class='cContainer'><div class='lbl lbl-appearance'> Appearance </div><div class='var var-appearance'> {{variables.appearance|default|nl2br}} </div></div>
@@ -238,7 +236,8 @@ set weapon_skills = ["Axes", "STR",
                             <td class='var {{eo}} var-weapon-name'> {{name}} </td>
                             <td class='var {{eo}} var-weapon-grip c'> {{attribute(variables, 'weapon_grip_' ~ id)|default}} </td>
                             <td class='var {{eo}} var-weapon-range c'> {{attribute(variables, 'weapon_range_' ~ id)|default}} </td>
-                            <td class='var {{eo}} var-weapon-damage c'> {{attribute(variables, 'weapon_damage_' ~ id)|default}} </td>
+                            {% set dmg = '[roll:' ~ attribute(variables, 'weapon_damage_' ~ id)|default ~ ']' %}
+                            <td class='var {{eo}} var-weapon-damage c'> {{dmg}} </td>
                             <td class='var {{eo}} var-weapon-durability c'> {{attribute(variables, 'weapon_durability_' ~ id)|default}} </td>
                             <td class='var {{eo}} var-weapon-features'> {{attribute(variables, 'weapon_features_' ~ id)|default}} </td>
                         </tr>
@@ -323,7 +322,7 @@ set weapon_skills = ["Axes", "STR",
                     <table class='table'>
                         <tr><th class='lbl' colspan=2> Equipment </th></tr>
                         <tr><th class='lbl ev lbl-enc-limit' width='60%'> Encumbrance Limit </th><td class='var ev var-enc-limit c'> {{variables.enc_limit|default}} </td></tr>
-                        <tr><td class='var ev var-equipment' colspan=2> {% if variables.backpack|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} Backpack </td></tr>
+                        <tr><td class='var ev var-equipment' colspan=2> {% if variables.backpack|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} Backpack (+2 ENC Limit) </td></tr>
                         {% for i in 1..10 %}
                             {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
                             {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
@@ -356,7 +355,7 @@ set weapon_skills = ["Axes", "STR",
     <div class="row do-not-print">
         <div class="col-12 c small">
             <br>
-            &copy; 2023 by Fria Ligan AB, Dragonbane is &trade; of Fria Ligan AB. - <a href="/w/sheet-creation/a/sheet-list">Dragonbane Character Sheet v1.00</a>, made by Tillerz - Updated: 2023-02-20</a><br>
+            &copy; 2023 by Fria Ligan AB, Dragonbane is &trade; of Fria Ligan AB. - <a href="/w/sheet-creation/a/sheet-list">Dragonbane Character Sheet v1.00</a>, made by Tillerz - Updated: 2026-05-20</a><br>
         </div>
     </div>
 </div>

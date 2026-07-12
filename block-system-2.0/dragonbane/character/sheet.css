@@ -1,4 +1,4 @@
-{
+ {
   color: #000000;
   font-size: 20px;
   font-family: PT Sans Narrow;}
@@ -84,7 +84,7 @@
    padding-right: 14px;
    font-size: 40px;
    font-weight: bold}
- .ivar.att { padding-top:12px}
+ .ivar.att { padding-top:12px }
  .data .var { text-align:center}
  .credit-artist-name,  .credit-art-title,  .credit-artist-name a,  .credit-art-title a,  a { font-size:12px; color: #000000 !important}
  input[required] { border: 2px solid #FF0000 !important}
@@ -98,13 +98,14 @@
  .table { background: none!important}
  .table tr { background: none!important}
  .magic .ivar { padding-left:10px !important}
- .personal .lbl,  .personal .var,  .personal .ilbl,  .personal .ivar { font-size:24px}
+ .personal .lbl,  .personal .var,  .personal .ilbl,  .personal .ivar { font-size:18px}
  .personal .ilbl { width: 20%}
  .personal .ilbl { padding-top:12px !important}
  .other .ilbl,  .classes .ilbl,  .heroism .ilbl,  .ivar-max-init,  .ilbl-armour,  .ilbl-hit-points,  .ilbl-soak,  .path-ability .ilbl,  .belongings .ilbl { padding-top:18px}
  .ilbl-max-init { padding-top:0px !important}
  .magic .card { margin:1px}
  .ivar-skill-value,  .ivar-weapon-skill-value,  .ivar-sec-skill-value { width: 60px}
+ select.ivar { padding: 0px; text-align: center }
  select.ivar-sec-skill-att {
     height: 2.15rem !important}
  .lbl-skill-value { width:30px}
@@ -117,13 +118,10 @@
  .tracker td.ivar { padding-left:0px}
  .tracker textarea.form-control { font-size:14px !important}
  .tracker .table.dr { border-top: 1px solid black; border-bottom: 1px solid black}
-input[type=checkbox] { color: #359176 }
-input.form-control:focus, 
-textarea.form-control:focus {
+ input[type=checkbox] { color: #359176}
+ input.form-control:focus,  textarea.form-control:focus {
     color: white !important;
-    background-color: #404040 !important;
-}
-input.form-control, textarea.form-control,input.form-control:focus, textarea.form-control:focus {
+    background-color: #404040 !important;}
+ input.form-control,  textarea.form-control,  input.form-control:focus,  textarea.form-control:focus {
     font-size: 20px !important;
-    font-family: PT Sans Narrow !important;
-}
+    font-family: PT Sans Narrow !important;}
