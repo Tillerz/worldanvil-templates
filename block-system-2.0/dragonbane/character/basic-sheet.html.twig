@@ -1,37 +1,244 @@
-﻿{%
-set skills = ["Acrobatics", "AGL",
-"Awareness", "INT",
-"Bartering", "CHA",
-"Beast Lore", "INT",
-"Bluffing", "CHA",
-"Bushcraft", "INT",
-"Crafting", "STR",
-"Evade", "AGL",
-"Healing", "INT",
-"Hunting & Fishing", "AGL",
-"Languages", "INT",
-"Myths & Legends", "INT",
-"Performance", "CHA",
-"Persuasion", "CHA",
-"Riding", "AGL",
-"Seamanship", "INT",
-"Sleight of Hand", "AGL",
-"Sneaking", "AGL",
-"Spot Hidden", "INT",
-"Swimming", "AGL"]
-%}
+﻿{% set lang = variables.lang|default('en') %}
+{% set tr = {
+  'en': {
+    'name': 'Name',
+    'player': 'Player',
+    'kin' : 'Kin',
+    'age' : 'Age',
+    'profession' : 'Profession',
+    'weakness' : 'Weakness',
+    'appearance' : 'Appearance',
+    'portrait' : 'Portrait / Crest',
+    'att' : 'ATT',
+    'attribute' : 'Attribute',
+    'STR' : 'STR',
+    'CON' : 'CON',
+    'AGL' : 'AGL',
+    'INT' : 'INT',
+    'WIL' : 'WIL',
+    'CHA' : 'CHA',
+    'strength' : 'Strength',
+    'constitution' : 'Constitution',
+    'agility' : 'Agility',
+    'intelligence' : 'Intelligence',
+    'willpower' : 'Willpower',
+    'charisma' : 'Charisma',
+    'exhausted' : 'Exhausted',
+    'sickly' : 'Sickly',
+    'dazed' : 'Dazed',
+    'angry' : 'Angry',
+    'scared' : 'Scared',
+    'disheartened' : 'Disheartened',
+    'learned skill' : 'learned skill',
+    'weapon skill' : 'Weapon Skill',
+    'secondary skill' : 'Secondary Skill',
+    'l' : 'L',
+    'value' : 'Value',
+    'skill' : 'Skill',
+    'weapon name' : 'Name',
+    'grip' : 'Grip',
+    'dmg' : 'DMG',
+    'rng' : 'RNG',
+    'dur' : 'dur.',
+    'features' : 'Features',
+    'armor' : 'Armor',
+    'armor name' : 'Name',
+    'helmet' : 'Helmet',
+    'helmet name' : 'Name',
+    'rating' : 'Rating',
+    'banes' : 'Banes',
+    'bane' : 'Bane',
+    'bows' : 'Bows',
+    'awareness' : 'Awareness',
+    'acrobatics' : 'Acrobatics',
+    'evade' : 'Evade',
+    'sneaking' : 'Sneaking',
+    'movement' : 'Movement',
+    'dmg bonus str' : 'DMG Bonus STR',
+    'dmg bonus agl' : 'DMG Bonus AGL',
+    'pools' : 'Pools',
+    'wil points' : 'WIL Points',
+    'hit points' : 'Hit Points',
+    'curr' : 'current',
+    'max' : 'maximum',
+    'coins' : 'Coins',
+    'gold' : 'Gold',
+    'silver' : 'Silver',
+    'copper' : 'Copper',
+    'equipment' : 'Equipment',
+    'backpack' : 'Backpack (+2 ENC Limit)',
+    'encumbrance limit' : 'Encumbrance Limit',
+    'tiny items' : 'Tiny Items',
+    'memento' : 'Memento',
+    'abilites' : 'Abilities',
+    'notes' : 'Notes',
+    'conditions' : 'Conditions',
+    'g' : 'G',
+    's' : 'S',
+    'c' : 'C',
+    'death rolls' : 'Death Rolls',
+    'failures' : 'Failures',
+    'successes' : 'Successes',
+    'money' : 'Money',
+    'sheet language' : 'sheet language'
+  },
+  'de': {
+    'name': 'Name',
+    'player': 'Gespielt von',
+    'kin' : 'Volk',
+    'age' : 'Alter',
+    'profession' : 'Beruf',
+    'weakness' : 'Schwäche',
+    'appearance' : 'Erscheinungsbild',
+    'portrait' : 'Bildnis / Wappen',
+    'att' : 'ATT',
+    'attribute' : 'Attribut',
+    'STR' : 'STÄ',
+    'CON' : 'KON',
+    'AGL' : 'GEW',
+    'INT' : 'INT',
+    'WIL' : 'WIL',
+    'CHA' : 'CHA',
+    'strength' : 'Stärke',
+    'constitution' : 'Konstitution',
+    'agility' : 'Gewandtheit',
+    'intelligence' : 'Intelligenz',
+    'willpower' : 'Willenskraft',
+    'charisma' : 'Charisma',
+    'exhausted' : 'Erschöpft',
+    'sickly' : 'Kränkelnd',
+    'dazed' : 'Benommen',
+    'angry' : 'Wütend',
+    'scared' : 'Verängstigt',
+    'disheartened' : 'Verzagt',
+    'learned skill' : 'gelernte Fertigkeit',
+    'weapon skill' : 'Waffen-Fertigkeit',
+    'secondary skill' : 'Sekundäre Fertigkeit',
+    'l' : 'G',
+    'value' : 'Wert',
+    'skill' : 'Fertigkeit',
+    'weapon name' : 'Name',
+    'grip' : 'Griff',
+    'dmg' : 'Schaden',
+    'rng' : 'Reichw.',
+    'dur' : 'Haltb.',
+    'features' : 'Merkmale',
+    'armor' : 'Rüstung',
+    'armor name' : 'Name',
+    'helmet' : 'Helm',
+    'helmet name' : 'Name',
+    'rating' : 'Rüstwert',
+    'banes' : 'Nachteil bei',
+    'bane' : 'Nachteil',
+    'bows' : 'Bögen',
+    'awareness' : 'Wahrnehmung',
+    'acrobatics' : 'Akrobatik',
+    'evade' : 'Ausweichen',
+    'sneaking' : 'Schleichen',
+    'movement' : 'Bewegung',
+    'dmg bonus str' : 'Schadensbonus STÄ',
+    'dmg bonus agl' : 'Schadensbonus GEW',
+    'pools' : 'Punkte',
+    'wil points' : 'Willenskraftpunkte (WP)',
+    'hit points' : 'Trefferpunkte (TP)',
+    'curr' : 'aktuell',
+    'max' : 'maximal',
+    'coins' : 'Münzen',
+    'gold' : 'Gold',
+    'silver' : 'Silber',
+    'copper' : 'Kupfer',
+    'equipment' : 'Inventar',
+    'backpack' : 'Rucksack (+2 max. Traglast)',
+    'encumbrance limit' : 'Traglast (Max.)',
+    'tiny items' : 'Kleinkram',
+    'memento' : 'Memento',
+    'abilites' : 'Talente',
+    'notes' : 'Notizen',
+    'conditions' : 'Zustände',
+    'g' : 'G',
+    's' : 'S',
+    'c' : 'K',
+    'death rolls' : 'Todeswürfe',
+    'failures' : 'Miserfolge',
+    'successes' : 'Erfolge',
+    'money' : 'Geld',
+    'sheet language' : 'Sprache Charakterblatt'
+  }
+} %}
 {%
-set weapon_skills = ["Axes", "STR",
-"Bows", "AGL",
-"Brawling", "STR",
-"Crossbows", "AGL",
-"Hammers", "STR",
-"Knives", "AGL",
-"Slings", "AGL",
-"Spears", "STR",
-"Staves", "AGL",
-"Swords", "STR"]
-%}
+set skills = {
+    'en': [
+        "Acrobatics" , "AGL",
+        "Awareness" , "INT",
+        "Bartering" , "CHA",
+        "Beast Lore" , "INT",
+        "Bluffing" , "CHA",
+        "Bushcraft" , "INT",
+        "Crafting" , "STR",
+        "Evade" , "AGL",
+        "Healing" , "INT",
+        "Hunting & Fishing" , "AGL",
+        "Languages" , "INT",
+        "Myths & Legends" , "INT",
+        "Performance" , "CHA",
+        "Persuasion" , "CHA",
+        "Riding" , "AGL",
+        "Seamanship" , "INT",
+        "Sleight of Hand" , "AGL",
+        "Sneaking" , "AGL",
+        "Spot Hidden" , "INT",
+        "Swimming" , "AGL"
+    ],
+    'de': [
+        "Akrobatik" , "GEW",
+        "Aufmerksamkeit" , "INT",
+        "Feilschen" , "CHA",
+        "Bestienkunde" , "INT",
+        "Täuschen" , "CHA",
+        "Wildnisleben" , "INT",
+        "Handwerk" , "STÄ",
+        "Ausweichen" , "GEW",
+        "Heilkunde" , "INT",
+        "Jagen & Fischen" , "GEW",
+        "Sprachen" , "INT",
+        "Mythen & Legenden" , "INT",
+        "Darbietung" , "CHA",
+        "Überzeugen" , "CHA",
+        "Reiten" , "GEW",
+        "Seefahrt" , "INT",
+        "Fingerfertigkeit" , "GEW",
+        "Heimlichkeit" , "GEW",
+        "Entdecken" , "INT",
+        "Schwimmen" , "GEW"
+    ]
+} %}
+{%
+set weapon_skills = {
+    'en': [
+        "Axes" , "STR",
+        "Bows" , "AGL",
+        "Brawling" , "STR",
+        "Crossbows" , "AGL",
+        "Hammers" , "STR",
+        "Knives" , "AGL",
+        "Slings" , "AGL",
+        "Spears" , "STR",
+        "Staves" , "AGL",
+        "Swords" , "STR"
+    ],
+    'de': [
+        "Äxte" , "STÄ",
+        "Bögen" , "GEW",
+        "Prügelei" , "STÄ",
+        "Armbrüste" , "GEW",
+        "Hämmer" , "STÄ",
+        "Messer" , "GEW",
+        "Schleudern" , "GEW",
+        "Speere" , "STÄ",
+        "Stäbe" , "GEW",
+        "Schwerter" , "STÄ"
+    ]
+} %}
 <div class="container-fluid sheet-dragonbane">
     <button title="Minimize header section" class="minimize btn btn-link collapsed" data-toggle="collapse" data-target="#collapseBackground" aria-expanded="true" aria-controls="collapseBackground"><em class="fas fa-angle-down"></em></button>
     <div class="row collapse show" id="collapseBackground">
@@ -44,18 +251,18 @@ set weapon_skills = ["Axes", "STR",
                     <div class="card personal" id="card-personal">
                         <div class="card-body">
                             <table class='table'>
-                                <tr><th class='lbl lbl-name' width='30%'> Name </th><td class='var var-name'> {{variables.name|default}} </td></tr>
-                                <tr><th class='lbl lbl-player'> Player </th><td class='var var-player'> {{variables.player|default}} </td></tr>
-                                <tr><th class='lbl lbl-kin'> Kin </th><td class='var var-kin'> {{variables.kin|default}} </td></tr>
-                                <tr><th class='lbl lbl-age'> Age </th><td class='var var-age'> {{variables.age|default}} </td></tr>
-                                <tr><th class='lbl lbl-profession'> Profession </th><td class='var var-profession'> {{variables.profession|default}} </td></tr>
-                                <tr><th class='lbl lbl-weakness'> Weakness </th><td class='var var-weakness'> {{variables.weakness|default}} </td></tr>
+                                <tr><th class='lbl lbl-name' width='30%'> {{ tr[lang]['name'] }} </th><td class='var var-name'> {{variables.name|default}} </td></tr>
+                                <tr><th class='lbl lbl-player'> {{ tr[lang]['player'] }} </th><td class='var var-player'> {{variables.player|default}} </td></tr>
+                                <tr><th class='lbl lbl-kin'> {{ tr[lang]['kin'] }} </th><td class='var var-kin'> {{variables.kin|default}} </td></tr>
+                                <tr><th class='lbl lbl-age'> {{ tr[lang]['age'] }} </th><td class='var var-age'> {{variables.age|default}} </td></tr>
+                                <tr><th class='lbl lbl-profession'> {{ tr[lang]['profession'] }} </th><td class='var var-profession'> {{variables.profession|default}} </td></tr>
+                                <tr><th class='lbl lbl-weakness'> {{ tr[lang]['weakness'] }} </th><td class='var var-weakness'> {{variables.weakness|default}} </td></tr>
                             </table>
                         </div>
                     </div>
                     <div class="card appearance" id="card-appearance">
                         <div class="card-body">
-                            <div class='cContainer'><div class='lbl lbl-appearance'> Appearance </div><div class='var var-appearance'> {{variables.appearance|default|nl2br}} </div></div>
+                            <div class='cContainer'><div class='lbl lbl-appearance'> {{ tr[lang]['appearance'] }} </div><div class='var var-appearance'> {{variables.appearance|default|nl2br}} </div></div>
                         </div>
                     </div>
                 </div>
@@ -64,7 +271,7 @@ set weapon_skills = ["Axes", "STR",
         <div class="col-12 col-lg-4 hidden-xs hidden-sm hidden-md d-none d-lg-block">
             <div class="card portrait" id="card-portrait">
                 <div class="card-body">
-                    <div class='cContainer'><div class='lbl lbl-imageid'> Portrait </div><div class='var var-imageid'>[img:{{variables.imageid|default}}]</div></div>
+                    <div class='cContainer'><div class='lbl lbl-imageid'> {{ tr[lang]['portrait'] }} </div><div class='var var-imageid'>[img:{{variables.imageid|default}}]</div></div>
                 </div>
             </div>
         </div>
@@ -75,48 +282,48 @@ set weapon_skills = ["Axes", "STR",
                 <div class="col-6 col-md-2">
                     <div class="card attributes" id="card-attributes">
                         <div class="card-body">
-                            <div class='cContainer'><div class='lbl att lbl-att-str' title='Strength'> STR </div><div class='var att var-att-str'> {{variables.att_str|default}} </div></div>
-                            <div class='cContainer'><div class='lbl cond lbl-cond-exhausted'>{% if variables.cond_exhausted|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} Exhausted </div></div>
+                            <div class='cContainer'><div class='lbl att lbl-att-str' title='{{ tr[lang]['strength'] }}'> {{ tr[lang]['STR'] }} </div><div class='var att var-att-str'> {{variables.att_str|default}} </div></div>
+                            <div class='cContainer'><div class='lbl cond lbl-cond-exhausted'>{% if variables.cond_exhausted|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} {{ tr[lang]['exhausted'] }} </div></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
                     <div class="card attributes" id="card-attributes">
                         <div class="card-body">
-                            <div class='cContainer'><div class='lbl att lbl-att-con' title='Constitution'> CON </div><div class='var att var-att-con'> {{variables.att_con|default}} </div></div>
-                            <div class='cContainer'><div class='lbl cond lbl-cond-sickly'>{% if variables.cond_sickly|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} Sickly </div></div>
+                            <div class='cContainer'><div class='lbl att lbl-att-con' title='{{ tr[lang]['constitution'] }}'> {{ tr[lang]['CON'] }} </div><div class='var att var-att-con'> {{variables.att_con|default}} </div></div>
+                            <div class='cContainer'><div class='lbl cond lbl-cond-sickly'>{% if variables.cond_sickly|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} {{ tr[lang]['sickly'] }} </div></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
                     <div class="card attributes" id="card-attributes">
                         <div class="card-body">
-                            <div class='cContainer'><div class='lbl att lbl-att-agl' title='Agility'> AGL </div><div class='var att var-att-agl'> {{variables.att_agl|default}} </div></div>
-                            <div class='cContainer'><div class='lbl cond lbl-cond-dazed'>{% if variables.cond_dazed|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} Dazed </div></div>
+                            <div class='cContainer'><div class='lbl att lbl-att-agl' title='{{ tr[lang]['agility'] }}'> {{ tr[lang]['AGL'] }} </div><div class='var att var-att-agl'> {{variables.att_agl|default}} </div></div>
+                            <div class='cContainer'><div class='lbl cond lbl-cond-dazed'>{% if variables.cond_dazed|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} {{ tr[lang]['dazed'] }} </div></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
                     <div class="card attributes" id="card-attributes">
                         <div class="card-body">
-                            <div class='cContainer'><div class='lbl att lbl-att-int' title='Intelligence'> INT </div><div class='var att var-att-int'> {{variables.att_int|default}} </div></div>
-                            <div class='cContainer'><div class='lbl cond lbl-cond-angry'>{% if variables.cond_angry|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} Angry </div></div>
+                            <div class='cContainer'><div class='lbl att lbl-att-int' title='{{ tr[lang]['intelligence'] }}'> {{ tr[lang]['INT'] }} </div><div class='var att var-att-int'> {{variables.att_int|default}} </div></div>
+                            <div class='cContainer'><div class='lbl cond lbl-cond-angry'>{% if variables.cond_angry|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} {{ tr[lang]['angry'] }} </div></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
                     <div class="card attributes" id="card-attributes">
                         <div class="card-body">
-                            <div class='cContainer'><div class='lbl att lbl-att-wil' title='Willpower'> WIL </div><div class='var att var-att-wil'> {{variables.att_wil|default}} </div></div>
-                            <div class='cContainer'><div class='lbl cond lbl-cond-scared'>{% if variables.cond_scared|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} Scared </div></div>
+                            <div class='cContainer'><div class='lbl att lbl-att-wil' title='{{ tr[lang]['willpower'] }}'> {{ tr[lang]['WIL'] }} </div><div class='var att var-att-wil'> {{variables.att_wil|default}} </div></div>
+                            <div class='cContainer'><div class='lbl cond lbl-cond-scared'>{% if variables.cond_scared|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} {{ tr[lang]['scared'] }} </div></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 col-md-2">
                     <div class="card attributes" id="card-attributes">
                         <div class="card-body">
-                            <div class='cContainer'><div class='lbl att lbl-att-cha' title='Charisma'> CHA </div><div class='var att var-att-cha'> {{variables.att_cha|default}} </div></div>
-                            <div class='cContainer'><div class='lbl cond lbl-cond-disheartened'>{% if variables.cond_disheartened|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} Disheartened </div></div>
+                            <div class='cContainer'><div class='lbl att lbl-att-cha' title='{{ tr[lang]['charisma'] }}'> {{ tr[lang]['CHA'] }} </div><div class='var att var-att-cha'> {{variables.att_cha|default}} </div></div>
+                            <div class='cContainer'><div class='lbl cond lbl-cond-disheartened'>{% if variables.cond_disheartened|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} {{ tr[lang]['disheartened'] }} </div></div>
                         </div>
                     </div>
                 </div>
@@ -131,9 +338,9 @@ set weapon_skills = ["Axes", "STR",
                         <div class="col-12 col-md-6 col-lg-3">
                             <table class='table'>
                                 <tr>
-                                    <th class='lbl {{eo}} lbl-skill-check' title='learned skill'> L </th>
-                                    <th class='lbl {{eo}} lbl-skill-value c'> Value </th>
-                                    <th class='lbl {{eo}} lbl-skill-name'> Skill </th>
+                                    <th class='lbl {{eo}} lbl-skill-check' title='{{ tr[lang]['learned skill'] }}'> {{ tr[lang]['l'] }} </th>
+                                    <th class='lbl {{eo}} lbl-skill-value c'> {{ tr[lang]['value'] }} </th>
+                                    <th class='lbl {{eo}} lbl-skill-name'> {{ tr[lang]['skill'] }} </th>
                                 </tr>
                                 {% for i in 1..10 %}
                                     {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
@@ -142,7 +349,7 @@ set weapon_skills = ["Axes", "STR",
                                 <tr>
                                     <td class='var {{eo}} var-skill-check'>{% if attribute(variables, 'skill_check_' ~ id)|default|default == 1 %}{% set em = 'em' %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td>
                                     <td class='var {{eo}} var-skill-value r {{em}}'> {{attribute(variables, 'skill_value_' ~ id)|default}} </td>
-                                    <td class='var {{eo}} var-skill-name {{em}}'> {{ skills[id*2-2]|default }} ({{ skills[id*2-1]|default|upper }})</td>
+                                    <td class='var {{eo}} var-skill-name {{em}}'> {{ skills[lang][id*2-2]|default }} ({{ skills[lang][id*2-1]|default|upper }})</td>
                                 </tr>
                                 {% endfor %}
                             </table>
@@ -150,18 +357,18 @@ set weapon_skills = ["Axes", "STR",
                         <div class="col-12 col-md-6 col-lg-3">
                             <table class='table'>
                                 <tr>
-                                    <th class='lbl {{eo}} lbl-skill-check' title='learned skill'> L </th>
-                                    <th class='lbl {{eo}} lbl-skill-value c'> Value </th>
-                                    <th class='lbl {{eo}} lbl-skill-name'> Skill </th>
+                                    <th class='lbl {{eo}} lbl-skill-check' title='{{ tr[lang]['learned skill'] }}'> {{ tr[lang]['l'] }} </th>
+                                    <th class='lbl {{eo}} lbl-skill-value c'> {{ tr[lang]['value'] }} </th>
+                                    <th class='lbl {{eo}} lbl-skill-name'> {{ tr[lang]['skill'] }} </th>
                                 </tr>
                                 {% for i in 11..20 %}
                                     {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
                                     {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
                                     {% set em = ''%}
                                 <tr>
-                                    <td class='var {{eo}} var-skill-check'>{% if attribute(variables, 'skill_check_' ~ id)|default|default == 1 %}{% set em = 'em' %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td>
+                                    <td class='var {{eo}} var-skill-check c'>{% if attribute(variables, 'skill_check_' ~ id)|default|default == 1 %}{% set em = 'em' %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td>
                                     <td class='var {{eo}} var-skill-value r {{em}}'> {{attribute(variables, 'skill_value_' ~ id)|default}} </td>
-                                    <td class='var {{eo}} var-skill-name {{em}}'> {{ skills[id*2-2]|default }} ({{ skills[id*2-1]|default|upper }})</td>
+                                    <td class='var {{eo}} var-skill-name {{em}}'> {{ skills[lang][id*2-2]|default }} ({{ skills[lang][id*2-1]|default|upper }})</td>
                                 </tr>
                                 {% endfor %}
                             </table>
@@ -169,9 +376,9 @@ set weapon_skills = ["Axes", "STR",
                         <div class="col-12 col-md-6 col-lg-3">
                             <table class='table'>
                                 <tr>
-                                    <th class='lbl {{eo}} lbl-skill-check' title='learned skill'> L </th>
-                                    <th class='lbl {{eo}} lbl-skill-value c'> Value </th>
-                                    <th class='lbl {{eo}} lbl-skill-name'> Weapon Skill </th>
+                                    <th class='lbl {{eo}} lbl-skill-check c' title='{{ tr[lang]['learned skill'] }}'> {{ tr[lang]['l'] }} </th>
+                                    <th class='lbl {{eo}} lbl-skill-value c'> {{ tr[lang]['value'] }} </th>
+                                    <th class='lbl {{eo}} lbl-skill-name'> {{ tr[lang]['weapon skill'] }} </th>
                                 </tr>
                                 <tr>
                                 {% for i in 1..10 %}
@@ -179,9 +386,9 @@ set weapon_skills = ["Axes", "STR",
                                     {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
                                     {% set em = ''%}
                                 <tr>
-                                    <td class='var {{eo}} var-skill-check'>{% if attribute(variables, 'weapon_skill_check_' ~ id)|default|default == 1 %}{% set em = 'em' %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td>
+                                    <td class='var {{eo}} var-skill-check c'>{% if attribute(variables, 'weapon_skill_check_' ~ id)|default|default == 1 %}{% set em = 'em' %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td>
                                     <td class='var {{eo}} var-skill-value r {{em}}'> {{attribute(variables, 'weapon_skill_value_' ~ id)|default}} </td>
-                                    <td class='var {{eo}} var-skill-name {{em}}'> {{ weapon_skills[id*2-2]|default }} ({{ weapon_skills[id*2-1]|default|upper }})</td>
+                                    <td class='var {{eo}} var-skill-name {{em}}'> {{ weapon_skills[lang][id*2-2]|default }} ({{ weapon_skills[lang][id*2-1]|default|upper }})</td>
                                 </tr>
                                 {% endfor %}
                             </table>
@@ -189,9 +396,9 @@ set weapon_skills = ["Axes", "STR",
                         <div class="col-12 col-md-6 col-lg-3">
                             <table class='table'>
                                 <tr>
-                                    <th class='lbl {{eo}} lbl-skill-check' title='learned skill'> L </th>
-                                    <th class='lbl {{eo}} lbl-skill-value c'> Value </th>
-                                    <th class='lbl {{eo}} lbl-skill-name'> Secondary Skill </th>
+                                    <th class='lbl {{eo}} lbl-skill-check' title='learned skill'> {{ tr[lang]['l'] }} </th>
+                                    <th class='lbl {{eo}} lbl-skill-value c'> {{ tr[lang]['value'] }} </th>
+                                    <th class='lbl {{eo}} lbl-skill-name'> {{ tr[lang]['secondary skill'] }} </th>
                                 </tr>
                                 <tr>
                                 {% for i in 1..10 %}
@@ -220,12 +427,12 @@ set weapon_skills = ["Axes", "STR",
                 <div class="card-body of">
                     <table class='table'>
                         <tr>
-                            <th class='lbl lbl-weapon-name'> Name </th>
-                            <th class='lbl lbl-weapon-grip'> Grip </th>
-                            <th class='lbl lbl-weapon-range' title='Range'> RNG </th>
-                            <th class='lbl lbl-weapon-damage' title='Damage'> DMG </th>
-                            <th class='lbl lbl-weapon-durability' title='Durability'> Dur. </th>
-                            <th class='lbl lbl-weapon-features'> Features </th>
+                            <th class='lbl lbl-weapon-name'> {{ tr[lang]['weapon name'] }} </th>
+                            <th class='lbl lbl-weapon-grip'> {{ tr[lang]['grip'] }} </th>
+                            <th class='lbl lbl-weapon-range' title='Range'> {{ tr[lang]['rng'] }} </th>
+                            <th class='lbl lbl-weapon-damage' title='Damage'> {{ tr[lang]['dmg'] }} </th>
+                            <th class='lbl lbl-weapon-durability' title='Durability'> {{ tr[lang]['dur'] }} </th>
+                            <th class='lbl lbl-weapon-features'> {{ tr[lang]['features'] }} </th>
                         </tr>
                         {% for i in 1..3 %}
                             {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
@@ -251,13 +458,13 @@ set weapon_skills = ["Axes", "STR",
             <div class="card armor" id="card-armor">
                 <div class="card-body">
                     <table class='table'>
-                        <tr><th class='lbl lbl-armor' colspan=2> Armor </th></tr>
-                        <tr><th class='lbl od lbl-armor-rating' width='40%'> Rating </th><td class='var {{eo}} var-armor-rating c'>{{variables.armor_rating|default}}</td></tr>
-                        <tr><th class='lbl ev lbl-armor-name'> Name </th><td class='var {{eo}} var-armor-name'> {{variables.armor_name|default}} </td></tr>
-                        <tr><th class='lbl lbl-armor-banes' colspan=2> Banes </th></tr>
-                        <tr><th class='lbl od lbl-armor-bane-acrobatics'> Acrobatics </th><td class='var {{eo}} var-armor-bane-acrobatics c'>{% if variables.armor_bane_acrobatics|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
-                        <tr><th class='lbl ev lbl-armor-bane-evade'> Evade </th><td class='var {{eo}} var-armor-bane-evade c'>{% if variables.armor_bane_evade|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
-                        <tr><th class='lbl od lbl-armor-bane-sneaking'> Sneaking </th><td class='var {{eo}} var-armor-bane-sneaking c'>{% if variables.armor_bane_sneaking|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
+                        <tr><th class='lbl lbl-armor' colspan=2> {{ tr[lang]['armor'] }} </th></tr>
+                        <tr><th class='lbl od lbl-armor-rating' width='40%'> {{ tr[lang]['rating'] }} </th><td class='var {{eo}} var-armor-rating c'>{{variables.armor_rating|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-armor-name'> {{ tr[lang]['armor name'] }} </th><td class='var {{eo}} var-armor-name c'> {{variables.armor_name|default}} </td></tr>
+                        <tr><th class='lbl lbl-armor-banes' colspan=2> {{ tr[lang]['banes'] }} </th></tr>
+                        <tr><th class='lbl od lbl-armor-bane-acrobatics'> {{ tr[lang]['acrobatics'] }} </th><td class='var {{eo}} var-armor-bane-acrobatics c'>{% if variables.armor_bane_acrobatics|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
+                        <tr><th class='lbl ev lbl-armor-bane-evade'> {{ tr[lang]['evade'] }} </th><td class='var {{eo}} var-armor-bane-evade c'>{% if variables.armor_bane_evade|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
+                        <tr><th class='lbl od lbl-armor-bane-sneaking'> {{ tr[lang]['sneaking'] }} </th><td class='var {{eo}} var-armor-bane-sneaking c'>{% if variables.armor_bane_sneaking|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
                     </table>
                 </div>
             </div>
@@ -266,12 +473,12 @@ set weapon_skills = ["Axes", "STR",
             <div class="card helmet" id="card-helmet">
                 <div class="card-body">
                     <table class='table'>
-                        <tr><th class='lbl lbl-helmet' colspan=2> Helmet </th></tr>
-                        <tr><th class='lbl od lbl-helmet-rating' width='40%'> Rating </th><td class='var {{eo}} var-helmet-rating c'>{{variables.helmet_rating|default}}</td></tr>
-                        <tr><th class='lbl ev lbl-helmet-name'> Name </th><td class='var {{eo}} var-helmet-name'> {{variables.helmet_name|default}} </td></tr>
-                        <tr><th class='lbl lbl-helmet-banes' colspan=2> Banes </th></tr>
-                        <tr><th class='lbl od lbl-helmet-bane-awareness'> Awareness </th><td class='var {{eo}} var-helmet-bane-awareness c'>{% if variables.helmet_bane_awareness|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
-                        <tr><th class='lbl ev lbl-helmet-bane-bows'> Bows </th><td class='var {{eo}} var-helmet-bane-bows c'>{% if variables.helmet_bane_bows|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
+                        <tr><th class='lbl lbl-helmet' colspan=2> {{ tr[lang]['helmet'] }} </th></tr>
+                        <tr><th class='lbl od lbl-helmet-rating' width='40%'> {{ tr[lang]['rating'] }} </th><td class='var {{eo}} var-helmet-rating c'>{{variables.helmet_rating|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-helmet-name'> {{ tr[lang]['helmet name'] }} </th><td class='var {{eo}} var-helmet-name c'> {{variables.helmet_name|default}} </td></tr>
+                        <tr><th class='lbl lbl-helmet-banes' colspan=2> {{ tr[lang]['banes'] }} </th></tr>
+                        <tr><th class='lbl od lbl-helmet-bane-awareness'> {{ tr[lang]['awareness'] }} </th><td class='var {{eo}} var-helmet-bane-awareness c'>{% if variables.helmet_bane_awareness|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
+                        <tr><th class='lbl ev lbl-helmet-bane-bows'> {{ tr[lang]['bows'] }} </th><td class='var {{eo}} var-helmet-bane-bows c'>{% if variables.helmet_bane_bows|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %}</td></tr>
                     </table>
                 </div>
             </div>
@@ -282,12 +489,12 @@ set weapon_skills = ["Axes", "STR",
             <div class="card misc" id="card-misc">
                 <div class="card-body">
                     <table class='table'>
-                        <tr><th class='lbl od lbl-movement' width='60%'> Movement </th><td class='var od var-movement c'> {{variables.movement|default}} </td></tr>
-                        <tr><th class='lbl ev lbl-dmg-bonus-str'> DMG Bonus STR </th><td class='var ev var-dmg-bonus-str c'> {{variables.dmg_bonus_str|default}} </td></tr>
-                        <tr><th class='lbl od lbl-dmg-bonus-agl'> DMG Bonus AGL </th><td class='var od var-dmg-bonus-agl c'> {{variables.dmg_bonus_agl|default}} </td></tr>
-                        <tr><th class='lbl lbl-movement' colspan=2> Pools </th></tr>
-                        <tr><th class='lbl ev lbl-wil-points'> WIL Points </th><td class='var ev var-wil-points c'>{{variables.wil_points|default}} / {{variables.wil_points_max|default}}</td></tr>
-                        <tr><th class='lbl od lbl-hit-points'> Hit Points </th><td class='var od var-hit-points c'>{{variables.hit_points|default}} / {{variables.hit_points_max|default}}</td></tr>
+                        <tr><th class='lbl od lbl-movement' width='60%'> {{ tr[lang]['movement'] }} </th><td class='var od var-movement c'> {{variables.movement|default}} </td></tr>
+                        <tr><th class='lbl ev lbl-dmg-bonus-str'> {{ tr[lang]['dmg bonus str'] }} </th><td class='var ev var-dmg-bonus-str c'> {{variables.dmg_bonus_str|default}} </td></tr>
+                        <tr><th class='lbl od lbl-dmg-bonus-agl'> {{ tr[lang]['dmg bonus agl'] }} </th><td class='var od var-dmg-bonus-agl c'> {{variables.dmg_bonus_agl|default}} </td></tr>
+                        <tr><th class='lbl lbl-pools' colspan=2> {{ tr[lang]['pools'] }} </th></tr>
+                        <tr><th class='lbl ev lbl-wil-points'> {{ tr[lang]['wil points'] }} </th><td class='var ev var-wil-points c'>{{variables.wil_points|default}} / {{variables.wil_points_max|default}}</td></tr>
+                        <tr><th class='lbl od lbl-hit-points'> {{ tr[lang]['hit points'] }} </th><td class='var od var-hit-points c'>{{variables.hit_points|default}} / {{variables.hit_points_max|default}}</td></tr>
                     </table>
                 </div>
             </div>
@@ -296,11 +503,11 @@ set weapon_skills = ["Axes", "STR",
             <div class="card belongings" id="card-belongings">
                 <div class="card-body">
                     <table class='table'>
-                        <tr><th class='lbl' colspan=2> Coins </th></tr>
-                        <tr><th class='lbl od lbl-gold' width='40%'> Gold </th><td class='var od var-gold c'>{{variables.gold|default}}</td></tr>
-                        <tr><th class='lbl ev lbl-silver'> Silver </th><td class='var ev var-silver c'>{{variables.silver|default}}</td></tr>
-                        <tr><th class='lbl od lbl-copper'> Copper </th><td class='var od var-copper c'>{{variables.copper|default}}</td></tr>
-                        <tr><th class='lbl ev lbl-memento' colspan=2> Memento </th></tr>
+                        <tr><th class='lbl' colspan=2> {{ tr[lang]['coins'] }} </th></tr>
+                        <tr><th class='lbl od lbl-gold' width='40%'> {{ tr[lang]['gold'] }} </th><td class='var od var-gold c'>{{variables.gold|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-silver'> {{ tr[lang]['silver'] }} </th><td class='var ev var-silver c'>{{variables.silver|default}}</td></tr>
+                        <tr><th class='lbl od lbl-copper'> {{ tr[lang]['copper'] }} </th><td class='var od var-copper c'>{{variables.copper|default}}</td></tr>
+                        <tr><th class='lbl ev lbl-memento' colspan=2> {{ tr[lang]['memento'] }} </th></tr>
                         <tr><td class='var ev var-memento' colspan=2> {{variables.memento|default|nl2br}} </td></tr>
                     </table>
                 </div>
@@ -310,7 +517,7 @@ set weapon_skills = ["Axes", "STR",
             <div class="card belongings" id="card-belongings">
                 <div class="card-body">
                     <table class='table'>
-                        <tr><th class='lbl lbl-tiny-items' colspan=2> Tiny Items </th></tr>
+                        <tr><th class='lbl lbl-tiny-items' colspan=2> {{ tr[lang]['tiny items'] }} </th></tr>
                         <tr><td class='var ev var-tiny-items' colspan=2> {{variables.tiny_items|default|nl2br}} </td></tr>
                     </table>
                 </div>
@@ -320,9 +527,9 @@ set weapon_skills = ["Axes", "STR",
             <div class="card belongings" id="card-belongings">
                 <div class="card-body">
                     <table class='table'>
-                        <tr><th class='lbl' colspan=2> Equipment </th></tr>
-                        <tr><th class='lbl ev lbl-enc-limit' width='60%'> Encumbrance Limit </th><td class='var ev var-enc-limit c'> {{variables.enc_limit|default}} </td></tr>
-                        <tr><td class='var ev var-equipment' colspan=2> {% if variables.backpack|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} Backpack (+2 ENC Limit) </td></tr>
+                        <tr><th class='lbl' colspan=2> {{ tr[lang]['equipment'] }} </th></tr>
+                        <tr><th class='lbl ev lbl-enc-limit' width='60%'> {{ tr[lang]['encumbrance limit'] }} </th><td class='var ev var-enc-limit c'> {{variables.enc_limit|default}} </td></tr>
+                        <tr><td class='var ev var-equipment' colspan=2> {% if variables.backpack|default == 1 %}<i class='fa-regular fa-square-check'></i>{% else %}<i class='fa-regular fa-square'></i>{% endif %} {{ tr[lang]['backpack'] }} </td></tr>
                         {% for i in 1..10 %}
                             {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}
                             {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
@@ -340,14 +547,14 @@ set weapon_skills = ["Axes", "STR",
         <div class="col-12 col-md-12 col-lg-6">
             <div class="card misc" id="card-misc">
                 <div class="card-body">
-                    <div class='cContainer'><div class='lbl lbl-abilities'> Abilities </div><div class='var var-abilities'> {{variables.abilities|default|nl2br}} </div></div>
+                    <div class='cContainer'><div class='lbl lbl-abilities'> {{ tr[lang]['abilites'] }} </div><div class='var var-abilities'> {{variables.abilities|default|nl2br}} </div></div>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-12 col-lg-6">
             <div class="card notes" id="card-notes">
                 <div class="card-body">
-                    <div class='cContainer'><div class='lbl lbl-notes'> Notes </div><div class='var var-notes'> {{variables.notes|default|nl2br}} </div></div>
+                    <div class='cContainer'><div class='lbl lbl-notes'> {{ tr[lang]['notes'] }} </div><div class='var var-notes'> {{variables.notes|default|nl2br}} </div></div>
                 </div>
             </div>
         </div>
@@ -355,7 +562,7 @@ set weapon_skills = ["Axes", "STR",
     <div class="row do-not-print">
         <div class="col-12 c small">
             <br>
-            &copy; 2023 by Fria Ligan AB, Dragonbane is &trade; of Fria Ligan AB. - <a href="/w/sheet-creation/a/sheet-list">Dragonbane Character Sheet v1.00</a>, made by Tillerz - Updated: 2026-05-20</a><br>
+            &copy; 2023 by Fria Ligan AB, Dragonbane is &trade; of Fria Ligan AB. - <a href="/w/sheet-creation/a/sheet-list">Dragonbane Character Sheet v1.01</a>, made by Tillerz - Updated: 2026-07-12</a><br>
         </div>
     </div>
 </div>

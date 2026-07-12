@@ -1,27 +1,268 @@
-﻿<div class="container-fluid sheet-dragonbane tracker pd2">
+﻿{% set lang = variables.lang|default('en') %}
+{% set tr = {
+  'en': {
+    'name': 'Name',
+    'player': 'Player',
+    'kin' : 'Kin',
+    'age' : 'Age',
+    'profession' : 'Profession',
+    'weakness' : 'Weakness',
+    'appearance' : 'Appearance',
+    'portrait' : 'Portrait / Crest',
+    'att' : 'ATT',
+    'attribute' : 'Attribute',
+    'STR' : 'STR',
+    'CON' : 'CON',
+    'AGL' : 'AGL',
+    'INT' : 'INT',
+    'WIL' : 'WIL',
+    'CHA' : 'CHA',
+    'strength' : 'Strength',
+    'constitution' : 'Constitution',
+    'agility' : 'Agility',
+    'intelligence' : 'Intelligence',
+    'willpower' : 'Willpower',
+    'charisma' : 'Charisma',
+    'exhausted' : 'Exhausted',
+    'sickly' : 'Sickly',
+    'dazed' : 'Dazed',
+    'angry' : 'Angry',
+    'scared' : 'Scared',
+    'disheartened' : 'Disheartened',
+    'learned skill' : 'learned skill',
+    'weapon skill' : 'Weapon Skill',
+    'secondary skill' : 'Secondary Skill',
+    'l' : 'L',
+    'value' : 'Value',
+    'skill' : 'Skill',
+    'weapon name' : 'Name',
+    'grip' : 'Grip',
+    'dmg' : 'DMG',
+    'rng' : 'RNG',
+    'dur' : 'dur.',
+    'features' : 'Features',
+    'armor' : 'Armor',
+    'armor name' : 'Name',
+    'helmet' : 'Helmet',
+    'helmet name' : 'Name',
+    'rating' : 'Rating',
+    'banes' : 'Banes',
+    'bane' : 'Bane',
+    'bows' : 'Bows',
+    'awareness' : 'Awareness',
+    'acrobatics' : 'Acrobatics',
+    'evade' : 'Evade',
+    'sneaking' : 'Sneaking',
+    'movement' : 'Movement',
+    'dmg bonus str' : 'DMG Bonus STR',
+    'dmg bonus agl' : 'DMG Bonus AGL',
+    'pools' : 'Pools',
+    'wil points' : 'WIL Points',
+    'hit points' : 'Hit Points',
+    'curr' : 'current',
+    'max' : 'maximum',
+    'coins' : 'Coins',
+    'gold' : 'Gold',
+    'silver' : 'Silver',
+    'copper' : 'Copper',
+    'equipment' : 'Equipment',
+    'backpack' : 'Backpack (+2 ENC Limit)',
+    'encumbrance limit' : 'Encumbrance Limit',
+    'tiny items' : 'Tiny Items',
+    'memento' : 'Memento',
+    'abilites' : 'Abilities',
+    'notes' : 'Notes',
+    'conditions' : 'Conditions',
+    'g' : 'G',
+    's' : 'S',
+    'c' : 'C',
+    'death rolls' : 'Death Rolls',
+    'failures' : 'Failures',
+    'successes' : 'Successes',
+    'money' : 'Money',
+    'sheet language' : 'sheet language'
+  },
+  'de': {
+    'name': 'Name',
+    'player': 'Gespielt von',
+    'kin' : 'Volk',
+    'age' : 'Alter',
+    'profession' : 'Beruf',
+    'weakness' : 'Schwäche',
+    'appearance' : 'Erscheinungsbild',
+    'portrait' : 'Bildnis / Wappen',
+    'att' : 'ATT',
+    'attribute' : 'Attribut',
+    'STR' : 'STÄ',
+    'CON' : 'KON',
+    'AGL' : 'GEW',
+    'INT' : 'INT',
+    'WIL' : 'WIL',
+    'CHA' : 'CHA',
+    'strength' : 'Stärke',
+    'constitution' : 'Konstitution',
+    'agility' : 'Gewandtheit',
+    'intelligence' : 'Intelligenz',
+    'willpower' : 'Willenskraft',
+    'charisma' : 'Charisma',
+    'exhausted' : 'Erschöpft',
+    'sickly' : 'Kränkelnd',
+    'dazed' : 'Benommen',
+    'angry' : 'Wütend',
+    'scared' : 'Verängstigt',
+    'disheartened' : 'Verzagt',
+    'learned skill' : 'gelernte Fertigkeit',
+    'weapon skill' : 'Waffen-Fertigkeit',
+    'secondary skill' : 'Sekundäre Fertigkeit',
+    'l' : 'G',
+    'value' : 'Wert',
+    'skill' : 'Fertigkeit',
+    'weapon name' : 'Name',
+    'grip' : 'Griff',
+    'dmg' : 'Schaden',
+    'rng' : 'Reichw.',
+    'dur' : 'Haltb.',
+    'features' : 'Merkmale',
+    'armor' : 'Rüstung',
+    'armor name' : 'Name',
+    'helmet' : 'Helm',
+    'helmet name' : 'Name',
+    'rating' : 'Rüstwert',
+    'banes' : 'Nachteil bei',
+    'bane' : 'Nachteil',
+    'bows' : 'Bögen',
+    'awareness' : 'Wahrnehmung',
+    'acrobatics' : 'Akrobatik',
+    'evade' : 'Ausweichen',
+    'sneaking' : 'Schleichen',
+    'movement' : 'Bewegung',
+    'dmg bonus str' : 'Schadensbonus STÄ',
+    'dmg bonus agl' : 'Schadensbonus GEW',
+    'pools' : 'Punkte',
+    'wil points' : 'Willenskraftpunkte (WP)',
+    'hit points' : 'Trefferpunkte (TP)',
+    'curr' : 'aktuell',
+    'max' : 'maximal',
+    'coins' : 'Münzen',
+    'gold' : 'Gold',
+    'silver' : 'Silber',
+    'copper' : 'Kupfer',
+    'equipment' : 'Inventar',
+    'backpack' : 'Rucksack (+2 max. Traglast)',
+    'encumbrance limit' : 'Traglast (Max.)',
+    'tiny items' : 'Kleinkram',
+    'memento' : 'Memento',
+    'abilites' : 'Talente',
+    'notes' : 'Notizen',
+    'conditions' : 'Zustände',
+    'g' : 'G',
+    's' : 'S',
+    'c' : 'K',
+    'death rolls' : 'Todeswürfe',
+    'failures' : 'Miserfolge',
+    'successes' : 'Erfolge',
+    'money' : 'Geld',
+    'sheet language' : 'Sprache Charakterblatt'
+  }
+} %}
+{%
+set skills = {
+    'en': [
+        "Acrobatics" , "AGL",
+        "Awareness" , "INT",
+        "Bartering" , "CHA",
+        "Beast Lore" , "INT",
+        "Bluffing" , "CHA",
+        "Bushcraft" , "INT",
+        "Crafting" , "STR",
+        "Evade" , "AGL",
+        "Healing" , "INT",
+        "Hunting & Fishing" , "AGL",
+        "Languages" , "INT",
+        "Myths & Legends" , "INT",
+        "Performance" , "CHA",
+        "Persuasion" , "CHA",
+        "Riding" , "AGL",
+        "Seamanship" , "INT",
+        "Sleight of Hand" , "AGL",
+        "Sneaking" , "AGL",
+        "Spot Hidden" , "INT",
+        "Swimming" , "AGL"
+    ],
+    'de': [
+        "Akrobatik" , "GEW",
+        "Aufmerksamkeit" , "INT",
+        "Feilschen" , "CHA",
+        "Bestienkunde" , "INT",
+        "Täuschen" , "CHA",
+        "Wildnisleben" , "INT",
+        "Handwerk" , "STÄ",
+        "Ausweichen" , "GEW",
+        "Heilkunde" , "INT",
+        "Jagen & Fischen" , "GEW",
+        "Sprachen" , "INT",
+        "Mythen & Legenden" , "INT",
+        "Darbietung" , "CHA",
+        "Überzeugen" , "CHA",
+        "Reiten" , "GEW",
+        "Seefahrt" , "INT",
+        "Fingerfertigkeit" , "GEW",
+        "Heimlichkeit" , "GEW",
+        "Entdecken" , "INT",
+        "Schwimmen" , "GEW"
+    ]
+} %}
+{%
+set weapon_skills = {
+    'en': [
+        "Axes" , "STR",
+        "Bows" , "AGL",
+        "Brawling" , "STR",
+        "Crossbows" , "AGL",
+        "Hammers" , "STR",
+        "Knives" , "AGL",
+        "Slings" , "AGL",
+        "Spears" , "STR",
+        "Staves" , "AGL",
+        "Swords" , "STR"
+    ],
+    'de': [
+        "Äxte" , "STÄ",
+        "Bögen" , "GEW",
+        "Prügelei" , "STÄ",
+        "Armbrüste" , "GEW",
+        "Hämmer" , "STÄ",
+        "Messer" , "GEW",
+        "Schleudern" , "GEW",
+        "Speere" , "STÄ",
+        "Stäbe" , "GEW",
+        "Schwerter" , "STÄ"
+    ]
+} %}
+<div class="container-fluid sheet-dragonbane tracker pd2">
     <div class="row">
         <div class="col-12 col-md-6">
             <div class="card left" id="card-left">
                 <div class="card-body c">
                     <table class='table'>
-                        <tr><th class='ilbl ilbl-conditions' colspan=4> Conditions </th></tr>
+                        <tr><th class='ilbl ilbl-conditions' colspan=4> {{ tr[lang]['conditions'] }} </th></tr>
                         <tr>
-                            <th class='ilbl od ilbl-cond-exhausted'> Exhausted </th><td class='ivar od cond ivar-cond-exhausted'><input value='0' id='cond_exhausted' name='cond_exhausted' type='hidden' /><input value='1' {% if variables.cond_exhausted|default > 0 %} checked='checked'{% endif %} id='cond_exhausted' name='cond_exhausted' type='checkbox' /></td>
-                            <th class='ilbl od ilbl-cond-sickly'> Sickly </th><td class='ivar od cond ivar-cond-sickly'><input value='0' id='cond_sickly' name='cond_sickly' type='hidden' /><input value='1' {% if variables.cond_sickly|default > 0 %} checked='checked'{% endif %} id='cond_sickly' name='cond_sickly' type='checkbox' /></td>
+                            <th class='ilbl od ilbl-cond-exhausted'> {{ tr[lang]['exhausted'] }} </th><td class='ivar od cond ivar-cond-exhausted'><input value='0' id='cond_exhausted' name='cond_exhausted' type='hidden' /><input value='1' {% if variables.cond_exhausted|default > 0 %} checked='checked'{% endif %} id='cond_exhausted' name='cond_exhausted' type='checkbox' /></td>
+                            <th class='ilbl od ilbl-cond-sickly'> {{ tr[lang]['sickly'] }} </th><td class='ivar od cond ivar-cond-sickly'><input value='0' id='cond_sickly' name='cond_sickly' type='hidden' /><input value='1' {% if variables.cond_sickly|default > 0 %} checked='checked'{% endif %} id='cond_sickly' name='cond_sickly' type='checkbox' /></td>
                         </tr>
                         <tr>
-                            <th class='ilbl ev cond ilbl-cond-dazed'> Dazed </th><td class='ivar ev cond ivar-cond-dazed'><input value='0' id='cond_dazed' name='cond_dazed' type='hidden' /><input value='1' {% if variables.cond_dazed|default > 0 %} checked='checked'{% endif %} id='cond_dazed' name='cond_dazed' type='checkbox' /></td>
-                            <th class='ilbl ev cond ilbl-cond-angry'> Angry </th><td class='ivar ev cond ivar-cond-angry'><input value='0' id='cond_angry' name='cond_angry' type='hidden' /><input value='1' {% if variables.cond_angry|default > 0 %} checked='checked'{% endif %} id='cond_angry' name='cond_angry' type='checkbox' /></td>
+                            <th class='ilbl ev cond ilbl-cond-dazed'> {{ tr[lang]['dazed'] }} </th><td class='ivar ev cond ivar-cond-dazed'><input value='0' id='cond_dazed' name='cond_dazed' type='hidden' /><input value='1' {% if variables.cond_dazed|default > 0 %} checked='checked'{% endif %} id='cond_dazed' name='cond_dazed' type='checkbox' /></td>
+                            <th class='ilbl ev cond ilbl-cond-angry'> {{ tr[lang]['angry'] }} </th><td class='ivar ev cond ivar-cond-angry'><input value='0' id='cond_angry' name='cond_angry' type='hidden' /><input value='1' {% if variables.cond_angry|default > 0 %} checked='checked'{% endif %} id='cond_angry' name='cond_angry' type='checkbox' /></td>
                         </tr>
                         <tr>
-                            <th class='ilbl od cond ilbl-cond-scared'> Scared </th><td class='ivar od cond ivar-cond-scared'><input value='0' id='cond_scared' name='cond_scared' type='hidden' /><input value='1' {% if variables.cond_scared|default > 0 %} checked='checked'{% endif %} id='cond_scared' name='cond_scared' type='checkbox' /></td>
-                            <th class='ilbl od cond ilbl-cond-disheartened'> Disheartened </th><td class='ivar od cond ivar-cond-disheartened'><input value='0' id='cond_disheartened' name='cond_disheartened' type='hidden' /><input value='1' {% if variables.cond_disheartened|default > 0 %} checked='checked'{% endif %} id='cond_disheartened' name='cond_disheartened' type='checkbox' /></td>
+                            <th class='ilbl od cond ilbl-cond-scared'> {{ tr[lang]['scared'] }} </th><td class='ivar od cond ivar-cond-scared'><input value='0' id='cond_scared' name='cond_scared' type='hidden' /><input value='1' {% if variables.cond_scared|default > 0 %} checked='checked'{% endif %} id='cond_scared' name='cond_scared' type='checkbox' /></td>
+                            <th class='ilbl od cond ilbl-cond-disheartened'> {{ tr[lang]['disheartened'] }} </th><td class='ivar od cond ivar-cond-disheartened'><input value='0' id='cond_disheartened' name='cond_disheartened' type='hidden' /><input value='1' {% if variables.cond_disheartened|default > 0 %} checked='checked'{% endif %} id='cond_disheartened' name='cond_disheartened' type='checkbox' /></td>
                         </tr>
                     </table>
                     <table class='table'>
-                        <tr><th class='ilbl ilbl-conditions' colspan=2> Pools </th></tr>
-                        <tr><th class='ilbl ev ilbl-hit-points'> Hit Points </th><td class='ivar ev ivar-hit-points'><input value='{{variables.hit_points|default}}' class='form-control ivar ivar-hit-points sm' id='hit_points' name='hit_points' type='number' /> / {{variables.hit_points_max|default}}</td></tr>
-                        <tr><th class='ilbl od ilbl-wil-points'> WIL Points </th><td class='ivar od ivar-wil-points'><input value='{{variables.wil_points|default}}' class='form-control ivar ivar-wil-points sm' id='wil_points' name='wil_points' type='number' /> / {{variables.wil_points_max|default}}</td></tr>
+                        <tr><th class='ilbl ilbl-conditions' colspan=2> {{ tr[lang]['pools'] }} </th></tr>
+                        <tr><th class='ilbl ev ilbl-hit-points'> {{ tr[lang]['hit points'] }} </th><td class='ivar ev ivar-hit-points'><input value='{{variables.hit_points|default}}' class='form-control ivar ivar-hit-points sm' id='hit_points' name='hit_points' type='number' /> / {{variables.hit_points_max|default}}</td></tr>
+                        <tr><th class='ilbl od ilbl-wil-points'> {{ tr[lang]['wil points'] }} </th><td class='ivar od ivar-wil-points'><input value='{{variables.wil_points|default}}' class='form-control ivar ivar-wil-points sm' id='wil_points' name='wil_points' type='number' /> / {{variables.wil_points_max|default}}</td></tr>
                     </table>
                     <table class='table dr'>
                         <tr>
@@ -30,7 +271,7 @@
                                 <input value='0' id='dr_f2' name='dr_f2' type='hidden' /><input value='1' {% if variables.dr_f2|default > 0 %} checked='checked'{% endif %} id='dr_f2' name='dr_f2' type='checkbox' />
                                 <input value='0' id='dr_f1' name='dr_f1' type='hidden' /><input value='1' {% if variables.dr_f1|default > 0 %} checked='checked'{% endif %} id='dr_f1' name='dr_f1' type='checkbox' />
                             </td>
-                            <th class='ilbl' rowspan=2>Death Rolls</th>
+                            <th class='ilbl' rowspan=2>{{ tr[lang]['death rolls'] }}</th>
                             <td class='ivar {{eo}} ivar-dr'>
                                 <input value='0' id='dr_s1' name='dr_s1' type='hidden' /><input value='1' {% if variables.dr_s1|default > 0 %} checked='checked'{% endif %} id='dr_s1' name='dr_s1' type='checkbox' />
                                 <input value='0' id='dr_s2' name='dr_s2' type='hidden' /><input value='1' {% if variables.dr_s2|default > 0 %} checked='checked'{% endif %} id='dr_s2' name='dr_s2' type='checkbox' />
@@ -38,15 +279,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <th class='ilbl'>Failures</th><th class='ilbl'>Successes</th>
+                            <th class='ilbl'>{{ tr[lang]['failures'] }}</th><th class='ilbl'>{{ tr[lang]['successes'] }}</th>
                         </tr>
                     </table>
                     <table class='table'>
-                        <tr><th class='ilbl' colspan=3> Money </th></tr>
+                        <tr><th class='ilbl' colspan=3> {{ tr[lang]['money'] }} </th></tr>
                         <tr>
-                            <td class='ivar ev ivar-money'><input value='{{variables.gold|default}}' class='form-control ivar ivar-money c md' id='gold' name='gold' type='number' /> G</td>
-                            <td class='ivar ev ivar-money'><input value='{{variables.silver|default}}' class='form-control ivar ivar-money c md' id='silver' name='silver' type='number' /> S</td>
-                            <td class='ivar ev ivar-money'><input value='{{variables.copper|default}}' class='form-control ivar ivar-money c md' id='copper' name='copper' type='number' /> C</td>
+                            <td class='ivar ev ivar-money'><input value='{{variables.gold|default}}' class='form-control ivar ivar-money c md' id='gold' name='gold' type='number' /> {{ tr[lang]['g'] }}</td>
+                            <td class='ivar ev ivar-money'><input value='{{variables.silver|default}}' class='form-control ivar ivar-money c md' id='silver' name='silver' type='number' /> {{ tr[lang]['s'] }}</td>
+                            <td class='ivar ev ivar-money'><input value='{{variables.copper|default}}' class='form-control ivar ivar-money c md' id='copper' name='copper' type='number' /> {{ tr[lang]['c'] }}</td>
                             </tr>
                     </table>
                 </div>
@@ -55,7 +296,7 @@
         <div class="col-12 col-md-6">
             <div class="card notes" id="card-notes">
                 <div class="card-body">
-                    <div class='cContainer'><div class='ilbl ilbl-notes'> Notes </div><div class='ivar ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div></div>
+                    <div class='cContainer'><div class='ilbl ilbl-notes'> {{ tr[lang]['notes'] }} </div><div class='ivar ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes' id='notes' name='notes' rows='3'  >{{variables.notes|default}}</textarea></div></div></div>
                 </div>
             </div>
         </div>
