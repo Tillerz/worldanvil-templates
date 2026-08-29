@@ -1,0 +1,27 @@
+<div class="container-fluid dnd35-sheet">
+    <div class="row">
+        <div class="col-12 col-md-12 c"><h1>{{variables.name}}</h1></div>
+        {% set img = variables.img|default %}
+        {% set wd = 12 %}{% if img > 0 %}{% set wd = 8 %}{% endif %}
+        <div class="col-12 col-md-{{wd}}">
+            [b]Price / Item Level:[/b] {{ variables.price|default }}<br>
+            [b]Body Slot:[/b] {{ variables.slot|default }}<br>
+            [b]Caster Level:[/b] {{ variables.caster_level|default }}<br>
+            [b]Aura:[/b] {{ variables.aura|default }}<br>
+            [b]Activation:[/b] {{ variables.activation|default }}<br>
+            [b]Weight:[/b] {{ variables.weight|default }}<br><br>
+            {% if variables.description|default|trim != "" %}<i>{{ variables.description|default|nl2br }}</i><br>{% endif %}
+        </div>
+        {% if img > 0 %}
+        <div class="col-12 col-md-4">
+            [img:{{img}}]
+        </div>
+        {% endif %}
+        <div class="col-12 col-md-12">
+            {% if variables.function|default|trim != "" %}{{ variables.function|default|nl2br }}<br><br>{% endif %}
+            {% if variables.lore|default|trim != "" %}{{ variables.lore|default|nl2br }}<br><br>{% endif %}
+            {% if variables.prerequisites|default|trim != "" %}<b>Prerequisites:</b> {{ variables.prerequisites|default }}<br>{% endif %}
+            {% if variables.ctc|default|trim != "" %}<b>Cost to create:</b> {{ variables.ctc|default }}{% endif %}
+        </div>
+    </div>
+</div>

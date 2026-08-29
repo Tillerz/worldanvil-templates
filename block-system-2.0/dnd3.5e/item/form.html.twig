@@ -1,0 +1,58 @@
+<div class="container-fluid dnd35-sheet">
+    <div class="row">
+        <div class="col-12 col-md-12">
+            <div class="card my-2 of">
+                <div class="card-header head-bar c">Item Name: <input value="{{ variables.name|default }}" required="required" class="form-control" id="name" name="name" placeholder="The name of the item" type="text" /></div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12">
+            <div class="card my-2 of">
+                <div class="card-body od">
+                    <table width="100%">
+                        <tr><td class="lbl r" width="20%">Price / Item Level </td><td class="txt l"><input value="{{ variables.price|default }}" class="form-control" id="price" name="price" placeholder="eg. 1500 gp (lesser, 5th)" type="text" /></td></tr>
+                        <tr><td class="lbl r">Body Slot</td><td class="txt l"><input value="{{ variables.slot|default }}" class="form-control" id="slot" name="slot" type="text" placeholder="eg. Gauntlet (worn)" /></td></tr>
+                        <tr><td class="lbl r">Caster Level</td><td class="txt l"><input value="{{ variables.caster_level|default }}" class="form-control" id="caster_level" name="caster_level" type="text" /></td></tr>
+                        <tr><td class="lbl r">Aura</td><td class="txt l"><input value="{{ variables.aura|default }}" class="form-control" id="aura" name="aura" type="text" placeholder="eg. Moderate; (DC 19) transmutation" /></td></tr>
+                        <tr><td class="lbl r">Activation</td><td class="txt l"><input value="{{ variables.activation|default }}" class="form-control" id="activation" name="activation" placeholder="eg. Standard (command)" type="text" /></td></tr>
+                        <tr><td class="lbl r">Weight</td><td class="txt l"><input value="{{ variables.weight|default }}" class="form-control" id="weight" name="weight" placeholder="eg. 15 lb." /></td></tr>
+                        <tr><td class="lbl r">WA Image ID</td><td class="txt l"><input value="{{ variables.img|default }}" class="form-control" id="img" name="img" type="number" /></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12">
+            <div class="card my-2 of">
+                <div class="card-body od pd10">
+                <strong>Visual Description:</strong><br>
+                <textarea class="form-control mention" id="description" name="description" rows="10">{{ variables.description|default }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12">
+            <div class="card my-2 of">
+                <div class="card-body od pd10">
+                <strong>Function:</strong><br>
+                <textarea class="form-control mention" id="function" name="function" rows="10">{{ variables.function|default }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12">
+            <div class="card my-2 of">
+                <div class="card-body od pd10">
+                <strong>Lore:</strong><br>
+                <textarea class="form-control mention" id="lore" name="lore" rows="10">{{ variables.lore|default }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-12">
+            <div class="card my-2 of">
+                <div class="card-body od">
+                    <table width="100%">
+                        <tr><td class="lbl r" width="20%">Prerequisites</td><td class="txt l"><input value="{{ variables.prerequisites|default }}" class="form-control" id="prerequisites" name="prerequisites" placeholder="The feats, spells, or other prerequisites required of the creator of the item." type="text" /></td></tr>
+                        <tr><td class="lbl r">Cost to create</td><td class="txt l"><input value="{{ variables.ctc|default }}" class="form-control" id="ctc" name="ctc" placeholder="The item’s gp cost, XP cost, and days to create." type="text" /></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
