@@ -1,6 +1,6 @@
 <!-- made by Tillerz#3807 v2.03 -->
 {% set ostatus = "Hale,Impaired,Debilitated,Dead" %}
-<section class="cypher-character-trackable">
+<div class="cypher-sheet">
   {% if variables.xp is defined and variables.xp != "" %} {% set tt = variables.xp %}  {% else %} {% set tt = 0 %} {% endif %}
   <div class="row">
     <div class="col-12 col-md-6 col-lg-3">
@@ -88,7 +88,7 @@
           <br>
           <label for="ten_minutes" class="control-label-tracker">
           <input value="0" name="ten_minutes" type="hidden" />
-          <input value="1" {% if variables.ten_minutes is defined and variables.ten_minutes == 1 %} checked="checked"{% endif %} id="ten_minutes" name="ten_minutes" type="checkbox" /> Ten minutes</label>
+          <input value="1" {% if variables.ten_minutes is defined and variables.ten_minutes == 1 %} checked="checked"{% endif %} id="ten_minutes" name="ten_minutes" type="checkbox" /> Ten min.</label>
           <br>
           <label for="one_hour" class="control-label-tracker">
           <input value="0" name="one_hour" type="hidden" />
@@ -109,4 +109,4 @@
       </div> <!-- close notes -->
     </div>
   </div>
-</section>
+</div>

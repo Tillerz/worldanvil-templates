@@ -1,8 +1,9 @@
-{# global #}
+{% import _self as sheet %}
+{% macro genList(list, name, value) %}<datalist id="{{name}}_list">{% for x in list %}<option value="{{x}}" {% if value == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
 {% set ostatus = "Hale,Impaired,Debilitated,Dead" %}
-{% set ofocus = "Abides in Stone,Awakens Dreams,Battles Robots,Bears a Halo of Fire,Blazes with Radiance,Builds Robots,Calculates the Incalcuable,Carries a Quiver,Casts Spells,Channels Divine Blessings,Commands Mental Powers,Conducts Weird Science,Consorts With the Dead,Controls Beasts,Controls Gravity,Crafts Illusions,Crafts Unique Objects,Defends the Weak,Doesn't Do Much,Employs Magnetism,Entertains,Exists in Two Places at Once,Exists Partially Out of Phase,Explores Dark Places,Explores Deep Waters,Fights Dirty,Fights With Panache,Focuses Mind Over Matter,Fuses Flesh and Steel,Fuses Mind and Machine,Grows to Towering Heights,Howls at the Moon,Hunts Nonhumans,Hunts Outcasts,Hunts with Great Skill,Infiltrates,Interprets the Law,Is Idolized by Millions,Is Licensed to Carry,Leads,Lives in the Wilderness,Looks for Trouble,Masters Defense,Masters the Swarm,Masters Weaponry,Metes Out Justice,Moves Like a Cat,Moves Like the Wind,Murders,Needs No Weapon,Nevers Says Die,Operates Undercover,Performs Feats of Strength,Pilots Starcraft,Rages,Rides the Lightning,Sees Beyond,Separates Mind from Body,Sheperds Spirits,Siphons Power,Slays Monsters,Solves Mysteries,Speaks for the Land,Stands Like a Bastion,Talks to Machines,Throws with Deadly Accuracy,Travels Through Time,Wears a Sheen of Ice,Wields Two Weapons At Once,Works Miracles,Works the Back Alleys,Works the System,Would Rather be Reading" %}
-{% set odesc = "Appealing,Brash,Calm,Charming,Clever,Clumsy,Craven,Creative,Cruel,Dishonorable,Doomed,Driven,Empathic,Exiled,Fast,Foolish,Graceful,Guarded,Hardy,Hideous,Honorable,Impulsive,Inquisitive,Intelligent,Jovial,Kind,Learned,Lucky,Mad,Mechanical,Mysterious,Mystical,Naive,Noble,Perceptive,Resilient,Rugged,Sharp Eyed,Skeptical,Spiritual,Stealthy,Strong,Strong Willed,Swift,Tongue Tied,Tough,Vengeful,Virtuous,Wealthy,Weird" %}
-{% set otype = "Adept,Explorer,Speaker,Warrior" %}
+{% set descriptor = [ "Appealing", "Brash", "Calm", "Charming", "Clever", "Clumsy", "Craven", "Creative", "Cruel", "Dishonorable", "Doomed", "Driven", "Empathic", "Exiled", "Fast", "Foolish", "Graceful", "Guarded", "Hardy", "Hideous", "Honorable", "Impulsive", "Inquisitive", "Intelligent", "Jovial", "Kind", "Learned", "Lucky", "Mad", "Mechanical", "Mysterious", "Mystical", "Naive", "Noble", "Perceptive", "Resilient", "Rugged", "Sharp Eyed", "Skeptical", "Spiritual", "Stealthy", "Strong", "Strong Willed", "Swift", "Tongue Tied", "Tough", "Vengeful", "Virtuous", "Wealthy", "Weird" ] %}
+{% set type = [ "Adept", "Explorer", "Speaker", "Warrior" ] %}
+{% set focus = [ "Abides in Stone", "Awakens Dreams", "Battles Robots", "Bears a Halo of Fire", "Blazes with Radiance", "Builds Robots", "Calculates the Incalcuable", "Carries a Quiver", "Casts Spells", "Channels Divine Blessings", "Commands Mental Powers", "Conducts Weird Science", "Consorts With the Dead", "Controls Beasts", "Controls Gravity", "Crafts Illusions", "Crafts Unique Objects", "Defends the Weak", "Doesn't Do Much", "Employs Magnetism", "Entertains", "Exists in Two Places at Once", "Exists Partially Out of Phase", "Explores Dark Places", "Explores Deep Waters", "Fights Dirty", "Fights With Panache", "Focuses Mind Over Matter", "Fuses Flesh and Steel", "Fuses Mind and Machine", "Grows to Towering Heights", "Howls at the Moon", "Hunts Nonhumans", "Hunts Outcasts", "Hunts with Great Skill", "Infiltrates", "Interprets the Law", "Is Idolized by Millions", "Is Licensed to Carry", "Leads", "Lives in the Wilderness", "Looks for Trouble", "Masters Defense", "Masters the Swarm", "Masters Weaponry", "Metes Out Justice", "Moves Like a Cat", "Moves Like the Wind", "Murders", "Needs No Weapon", "Nevers Says Die", "Operates Undercover", "Performs Feats of Strength", "Pilots Starcraft", "Rages", "Rides the Lightning", "Sees Beyond", "Separates Mind from Body", "Sheperds Spirits", "Siphons Power", "Slays Monsters", "Solves Mysteries", "Speaks for the Land", "Stands Like a Bastion", "Talks to Machines", "Throws with Deadly Accuracy", "Travels Through Time", "Wears a Sheen of Ice", "Wields Two Weapons At Once", "Works Miracles", "Works the Back Alleys", "Works the System", "Would Rather be Reading" ] %}
 {# ------------------------------------------- #}
 {% macro generateSkillEntry(myid, mylabel, myvalue) %}
 {% if mylabel is not defined %}{% set mylabel = "" %}{% set myvalue = "trained" %}{% endif %}
@@ -106,63 +107,32 @@
             </div>
         </div><br>
         <div class="row border rounded">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-12">
                 <div class="card text-center m-1">
                     <div class="card-header header text-center"><label for="descriptor" class="control-label">Descriptor</label></div>
                     <div class="card-body">
-                        ... is a(n) <select class="form-control" id="descriptor" name="descriptor">
-                            {% for o in odesc|split(',') %}
-                                <option value="{{o}}" {% if variables.descriptor|default == o %}selected="selected" {% endif %} >{{o}}</option>
-                            {% endfor %}
-                        </select>
+                        ... is a
+                        {% set cur = variables.custom_descriptor|trim ?: variables.descriptor|trim|default %}
+                        <input value='{{cur}}' list='descriptor_list' class='form-control ivar ivar-descriptor' id='descriptor' name='descriptor' />{{ _self.genList(descriptor, 'descriptor', cur) }}
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
-                <div class="card text-center m-1">
-                    <div class="card-header header text-center"><label for="custom_descriptor" class="control-label">Or use a Custom Descriptor</label></div>
-                    <div class="card-body">
-                        <input value="{{ variables.custom_descriptor|default }}" class="form-control" id="custom_descriptor" name="custom_descriptor" type="text" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-12">
                 <div class="card text-center m-1">
                     <div class="card-header header text-center"><label for="type" class="control-label">Type</label></div>
                     <div class="card-body">
-                        <select class="form-control" id="type" name="type">
-                            {% for o in otype|split(',') %}
-                            <option value="{{o}}" {% if variables.type|default == o %}selected="selected" {% endif %} >{{o}}</option>
-                            {% endfor %}
-                        </select>, who ...
+                        {% set cur = variables.custom_type|trim ?: variables.type|trim|default %}
+                        <input value='{{cur}}' list='type_list' class='form-control ivar ivar-type' id='type' name='type' />{{ _self.genList(type, 'type', cur) }}
+                        , who ...
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
-                <div class="card text-center m-1">
-                    <div class="card-header header text-center"><label for="custom_type" class="control-label">Or use a Custom Type</label></div>
-                    <div class="card-body">
-                        <input value="{{ variables.custom_type|default }}" class="form-control" id="custom_type" name="custom_type" type="text" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-12">
                 <div class="card text-center m-1">
                     <div class="card-header header text-center"><label for="focus" class="control-label">Focus</label></div>
                     <div class="card-body">
-                        <select class="form-control" id="focus" name="focus">
-                            {% for o in ofocus|split(',') %}
-                            <option value="{{o}}" {% if variables.focus|default == o %}selected="selected" {% endif %} >{{o}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="card text-center m-1">
-                    <div class="card-header header text-center"><label for="custom_focus" class="control-label">Or use a Custom Focus</label></div>
-                    <div class="card-body">
-                        <input value="{{ variables.custom_focus|default }}" class="form-control" id="custom_focus" name="custom_focus" type="text" />
+                        {% set cur = variables.custom_focus|trim ?: variables.focus|trim|default %}
+                        <input value='{{cur}}' list='focus_list' class='form-control ivar ivar-focus' id='focus' name='focus' />{{ _self.genList(focus, 'focus', cur) }}
                     </div>
                 </div>
             </div>
