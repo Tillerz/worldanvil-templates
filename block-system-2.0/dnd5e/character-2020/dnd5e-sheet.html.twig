@@ -369,10 +369,10 @@ sam:	spell attack modifier (scm + proficiency) + additional mod from items
         {% for a in abilities %}
 		<div class="col-6 col-xs-6 col-sm-4 col-md-2 col-lg-2">
 			<div class="contentContainer contentContainer-attribute lh">
-				<span title="{{a}}">{{a[:3]|upper}}</span><br>
-				<span class="strong lh">{{ attribute(variables, a|lower) }}</span>
+				<span title="{{a}}">{{a[:3]|upper}}</span>
+				<span class="strong lh">{{ attribute(variables, a|lower) }}</span><br><br>
 				<div class="subContainer attmod lh">
-					{{ sheet.attrModifier( attribute(variables, a|lower) ) }}
+					{{ sheet.attrModifier( attribute(variables, a|lower) ) }}<br><br>
 				</div>
 			</div>
 		</div>
@@ -424,7 +424,8 @@ sam:	spell attack modifier (scm + proficiency) + additional mod from items
 		</div>
 		<div class="col-6 col-xs-6 col-sm-6 col-md-3">
 			<div class="contentContainer contentContainer-attribute of">
-				{% set pp = 10 + wis_bonus|number_format %}
+				{% set ppb = variables.pp_bonus|default|number_format %}
+				{% set pp = 10 + wis_bonus|number_format + ppb %}
 				{% if variables.perception_prof|default > 0 %}{% set pp = pp + pb %}{% endif %}
 				<span class="strong">{{pp}}</span><br>
 				<span class="inputLabel" title="Passive Perception">Passive Perception</span>
@@ -950,7 +951,7 @@ sam:	spell attack modifier (scm + proficiency) + additional mod from items
     <div class="row do-not-print">
         <div class="col-12 text-center small">
 				<br><br>
-                &trade; &amp; &copy; Wizards of the Coast - <a href="/w/sheet-creation/a/sheet-list">D &amp; D 5e Character Sheet v2.07</a>, made by Tillerz - <a href="/w/sheet-creation/thread/a85ac181-b0e3-4c85-a636-096853b46c58/view">Updated: 2023-05-29</a><br>
+                &trade; &amp; &copy; Wizards of the Coast - <a href="/w/sheet-creation/a/sheet-list">D &amp; D 5e Character Sheet v2.10</a>, made by Tillerz - <a href="/w/sheet-creation/thread/a85ac181-b0e3-4c85-a636-096853b46c58/view">Updated: 2026-05-13</a><br>
 To print this sheet: Expand the spell book (if you have any entries there), then click "Print Sheet" at the top, select "Print to PDF" and format A3. Then print the resulting PDF to whichever format you need with "fit to page" selected.
         </div>
     </div>
