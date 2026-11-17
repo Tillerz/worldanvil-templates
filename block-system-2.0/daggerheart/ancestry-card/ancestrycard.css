@@ -47,3 +47,4 @@
  .fr { float:right}
  .sub { text-align:center; font-size: 28px}
 select { height: 2.8rem !important }
+.table>:not(caption)>*>* { color: var(--lightest-gray) }

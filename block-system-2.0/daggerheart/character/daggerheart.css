@@ -142,3 +142,4 @@ ul, ol { padding-left:10px !important}
 }
 .badge .card-body { overflow: auto}
 select { height: 2.8rem !important}
+.table>:not(caption)>*>* { color: var(--lightest-gray) }
