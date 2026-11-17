@@ -1,16 +1,16 @@
  {
     padding: 0px!important;
     color: #404040!important;
-    font-family: "IM Fell Double Pica Roman";
+    font-family: IM Fell Double Pica Roman;
     font-size: 18px;
     border: none;
     color: #404040!important;
-    background-color: #ffffef !important;}
+    background-color: #ffffef !important}
  .coc-sheet,  .coc-character-trackable {
-    border: 4px double #000000;}
+    border: 4px double #000000}
  .tdl,  body,  p {
     color: #404040!important;
-    font-family: "IM Fell Double Pica Roman";
+    font-family: IM Fell Double Pica Roman;
     font-size: 18px}
  .logocontainer {
     height: 100px;
@@ -20,16 +20,17 @@
     opacity: 0.5;
     height: 100px;
     margin-bottom: 20px;
-    background: url(https://www.worldanvil.com/i/1060188/render) center center no-repeat;
+    background: url(/i/1060188/render) center center no-repeat;
     background-size: contain;
     margin-top: 20px;
-    height: 100px;}
+    height: 100px}
  .alert {
+    font-size:12px;
     padding: 2px 8px 2px 8px;
     margin: 0px 10px 0px 20px}
  .alert-danger {
     background: #e06060;
-    color: white;}
+    color: white}
  .marginsm {
     margin: 15px 0px 15px 0px}
  .card-header {
@@ -40,20 +41,20 @@
     border: none;
     background-color: #f0e8e000 !important;
     color: #404040!important;
-    padding: 2px;}
+    padding: 2px}
  .card {
     border: none;
     background-color: #f0e8e000 !important;
     box-shadow: 1px 1px 1px 1px #aaa;
     margin-top: 20px;
-    margin-right: 3px;}
+    margin-right: 3px}
  .head-bar {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     font-style: italic;
     color: #890E11;
     text-align: center;
-    background-color: #00000030;}
+    background-color: #00000030}
  .w80 {
     width: 80px}
  .btn-dark.btn-block {
@@ -77,7 +78,7 @@
     height: 40px;
     font-size: 18px;
     text-align: center;
-    padding: 0px 10px 0px 5px;}
+    padding: 0px 10px 0px 5px}
  .tdl {
     height: 40px;
     font-size: 18px;
@@ -112,7 +113,7 @@
     margin-bottom: 0px;
     padding: 2px 2px 2px 4px;
     color: #404040!important;
-    background: #00000010!important;}
+    background: #00000010!important}
  .al {
     text-align: right}
  .sk {
@@ -162,8 +163,7 @@
  .tdsku {
     height: 20px;
     font-size: 15px;
-    text-align: center;
-}
+    text-align: center}
  .tdskl {
     height: 20px;
     font-size: 15px;
@@ -208,7 +208,7 @@
  .of {
     overflow-y: auto;
     width: 100%}
- b,  a,  strong,  small,  em,  i { color: #404040!important;}
+ b,  a,  strong,  small,  em,  i { color: #404040!important}
  .c { text-align: center}
  .skilltable tr:hover {background-color: coral !important}
  .bb { border-bottom: 1px solid #c0c0c0}

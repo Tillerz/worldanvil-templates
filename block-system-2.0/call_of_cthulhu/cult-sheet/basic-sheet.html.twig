@@ -6,7 +6,7 @@
       <div class='card cult' id='card-cult'>
         <div class='card-header header'>Cult Worksheet: {{variables.name|default}}</div>
         <div class='row'>
-          <div class='col-{{wd}}'>
+          <div class='col-12 col-lg-{{wd}}'>
             <div class='row'>
               <div class='col-12 col-md-4'>
                 <div class='lbl od lbl-deity'> Deity </div><div class='var od var-deity'> {{variables.deity|default}} </div>
@@ -17,7 +17,7 @@
               <div class='col-12 col-md-4'>
                 <div class='lbl od lbl-main-location'> Main Location </div><div class='var od var-main-location'> {{variables.main_location|default}} </div>
               </div>
-              <div class='col-12 col-md-8'>
+              <div class='col-12 col-lg-8'>
                 <div class='lbl od lbl-goals-means'> Goals/Means </div><div class='var od var-goals-means'> {{variables.goals_means|default|nl2br}} </div>
               </div>
               <div class='col-12'>
@@ -41,7 +41,7 @@
             </div>
           </div>
           {% if img > 0 %}
-          <div class='col-4'>
+          <div class='hidden-xs hidden-sm hidden-md d-none d-lg-block col-12 col-lg-4'>
             <div class='lbl od lbl-imageid'> Logo/Crest </div><div class='var od var-imageid'>[img:{{img}}]</div>
           </div>
           {% endif %}
