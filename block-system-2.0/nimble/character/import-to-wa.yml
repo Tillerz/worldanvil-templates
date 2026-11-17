@@ -1,0 +1,249 @@
+﻿fields:
+  name:
+    label: "name"
+    input: string
+    description: "name"
+  ancestry:
+    label: "ancestry"
+    input: string
+    description: "ancestry"
+  class:
+    label: "class"
+    input: string
+    description: "class"
+  level:
+    label: "level"
+    input: integer
+    description: "level"
+    min: 1
+  height:
+    label: "height"
+    input: string
+    description: "height"
+  weight:
+    label: "weight"
+    input: string
+    description: "weight"
+  speed:
+    label: "speed"
+    input: string
+    description: "speed"
+  hit dice curr:
+    label: "hit dice curr"
+    input: string
+    description: "hit dice curr"
+  hit dice max:
+    label: "hit dice max"
+    input: string
+    description: "hit dice max"
+  att value 001:
+    label: "att value 001"
+    input: integer
+    description: "{{att[id-1]}}"
+  att value 002:
+    label: "att value 002"
+    input: integer
+    description: "{{att[id-1]}}"
+  att value 003:
+    label: "att value 003"
+    input: integer
+    description: "{{att[id-1]}}"
+  att value 004:
+    label: "att value 004"
+    input: integer
+    description: "{{att[id-1]}}"
+  portrait:
+    label: "portrait"
+    input: integer
+    description: ""
+    render: image
+  hp curr:
+    label: "hp curr"
+    input: integer
+    description: "hp curr"
+  hp max:
+    label: "hp max"
+    input: integer
+    description: "hp max"
+  hp temp:
+    label: "hp temp"
+    input: integer
+    description: "hp temp"
+  armor:
+    label: "armor"
+    input: integer
+    description: "armor"
+  ini:
+    label: "ini"
+    input: string
+    description: "initiative"
+  wounds 001:
+    label: "wounds 001"
+    input: checkbox
+    description: ""
+  wounds 002:
+    label: "wounds 002"
+    input: checkbox
+    description: ""
+  wounds 003:
+    label: "wounds 003"
+    input: checkbox
+    description: ""
+  wounds 004:
+    label: "wounds 004"
+    input: checkbox
+    description: ""
+  wounds 005:
+    label: "wounds 005"
+    input: checkbox
+    description: ""
+  features 001:
+    label: "features 001"
+    input: text
+    description: ""
+    rows: 3
+  features 002:
+    label: "features 002"
+    input: text
+    description: ""
+    rows: 3
+  features 003:
+    label: "features 003"
+    input: text
+    description: ""
+    rows: 3
+  features 004:
+    label: "features 004"
+    input: text
+    description: ""
+    rows: 3
+  features 005:
+    label: "features 005"
+    input: text
+    description: ""
+    rows: 3
+  features 006:
+    label: "features 006"
+    input: text
+    description: ""
+    rows: 3
+  features 007:
+    label: "features 007"
+    input: text
+    description: ""
+    rows: 3
+  features 008:
+    label: "features 008"
+    input: text
+    description: ""
+    rows: 3
+  features 009:
+    label: "features 009"
+    input: text
+    description: ""
+    rows: 3
+  features 010:
+    label: "features 010"
+    input: text
+    description: ""
+    rows: 3
+  features 002:
+    label: "features 002"
+    input: text
+    description: ""
+    rows: 3
+  features 003:
+    label: "features 003"
+    input: text
+    description: ""
+    rows: 3
+  features 004:
+    label: "features 004"
+    input: text
+    description: ""
+    rows: 3
+  features 005:
+    label: "features 005"
+    input: text
+    description: ""
+    rows: 3
+  features 006:
+    label: "features 006"
+    input: text
+    description: ""
+    rows: 3
+  features 007:
+    label: "features 007"
+    input: text
+    description: ""
+    rows: 3
+  features 008:
+    label: "features 008"
+    input: text
+    description: ""
+    rows: 3
+  features 009:
+    label: "features 009"
+    input: text
+    description: ""
+    rows: 3
+  features 010:
+    label: "features 010"
+    input: text
+    description: ""
+    rows: 3
+  features 011:
+    label: "features 011"
+    input: text
+    description: ""
+    rows: 3
+  features 012:
+    label: "features 012"
+    input: text
+    description: ""
+    rows: 3
+  features 013:
+    label: "features 013"
+    input: text
+    description: ""
+    rows: 3
+  features 014:
+    label: "features 014"
+    input: text
+    description: ""
+    rows: 3
+  features 015:
+    label: "features 015"
+    input: text
+    description: ""
+    rows: 3
+  features 016:
+    label: "features 016"
+    input: text
+    description: ""
+    rows: 3
+  features 017:
+    label: "features 017"
+    input: text
+    description: ""
+    rows: 3
+  features 018:
+    label: "features 018"
+    input: text
+    description: ""
+    rows: 3
+  features 019:
+    label: "features 019"
+    input: text
+    description: ""
+    rows: 3
+  features 020:
+    label: "features 020"
+    input: text
+    description: ""
+    rows: 3
+  notes:
+    label: "notes"
+    input: text
+    description: ""
+    rows: 3

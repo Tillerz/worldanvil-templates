@@ -1,0 +1,56 @@
+ .container-fluid {
+   font-family: Grenze;
+   font-size: 24px !important;
+   color: var(--dark) ;
+   padding: 20px}
+ .CodeMirror-buttonsPanel {
+     font-size: 14px;}
+ .table { margin-bottom: 0px}
+ .table>tbody>tr>th,  .table>tbody>tr>td { border-top: none; padding: 0px 6px}
+ .lbl { letter-spacing: 0.03em;}
+ .ilbl,  .lbl {
+   font-size:14px;
+   text-transform: uppercase;}
+ .ivar { font-size: 18px}
+ .var { font-size: 24px}
+ .artist-credits,  .artist-credits a {
+   font-size: 14px;
+   text-align: center;
+   padding-top: 3px}
+ .card {
+   border: none;
+   margin-bottom:8px;}
+ .card-header {
+   border-radius: 0;}
+ .card-body {
+   border: 3px solid var(--dark) ;
+  padding: 0px}
+ .card-header { text-align: center}
+ .card-header,  .lbl {
+     text-transform: uppercase;
+     font-size: 16px;
+     font-weight: 800;
+     padding-top: 6px;
+     padding-left: 6px;
+     padding-bottom: 0px;
+     margin: 0px}
+ .attributes .ivar,  .ivar-portrait,  .ivar-hp,  .ivar-ac { text-align: center}
+ .lbl-hp,  .lbl-armor { padding-top:0px}
+ th.lbl {
+   vertical-align: middle}
+ .var-talents,  .var-gear,  .var-notes,  .var-attacks {
+   padding:6px;
+   font-size:16px;}
+ :is(.hp,  .ac,  .attributes) .var { text-align: center; font-size:32px}
+ .card-header,  :is(.hp,  .ac,  .attacks,  .talents,  .gear,  .notes) .lbl { font-size:22px; color: var(--light) ; background-color: var(--dark)}
+ .c { text-align: center}
+ .l { text-align: left}
+ p { margin-bottom: 0px}
+ ol { padding-left: 20px}
+ .pd { padding: 10px}
+ .sm { font-size:16px}
+ small { font-size:14px}
+ .inline,  .var-wounds,  .ivar-wounds { display: inline-block}
+ textarea .height { height: 40px}
+ .var-features { font-size: 18px}
+ .card-header.attributes { font-size: 32px}

@@ -1,0 +1,199 @@
+﻿<div class='container-fluid sheet-nimble'>
+  {% import _self as sheet %}
+  {% macro genList(list, name, value) %}<datalist id="{{name}}">{% for x in list %}<option value="{{x}}" {% if s == x %}selected=selected{% endif %} > {% endfor %}</datalist>{% endmacro %}
+  {% set att = [ "str", "dex", "int", "wil" ] %}
+  {% set ancestries = [ "Beastfolk", "Birdfolk", "Bunbun", "Celestial", "Changeling", "Construct", "Crystalborn", "Dragonborn", "Dryad", "Dwarf", "Elf", "Fiendkin", "Gnome", "Goblin", "Halfling", "Half-Giant", "Human", "Kobold", "Oozeling", "Orc", "Planarbeing", "Minotaur", "Ratfolk", "Shroomling", "Stoatling", "Stonefolk", "Turtlefolk", "Wyrdling" ] %}
+  {% set classes = [ "Artificer", "Beastmaster", "Berserker", "Cheat", "Commander", "Hexbinder", "Hunter", "Mage", "Oathbreaker", "Oathsworn", "Reaver", "Shadowmancer", "Shepherd", "Songweaver", "Spellblade", "Stormshifter", "Witch", "Zephyr" ] %}
+  {% set skill_list = [
+      ["arcana", "int"],
+      ["examination", "int"],
+      ["finesse", "dex"],
+      ["influence", "wil"],
+      ["insight", "wil"],
+      ["lore", "int"],
+      ["might", "str"],
+      ["naturecraft", "wil"],
+      ["perception", "wil"],
+      ["stealth", "dex"]
+  ] %}
+  <div class='row'>
+    <div class='col-12 col-md-12 c'>
+        <img src="/i/7978043/render" width=350px>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card personal' id='card-personal'>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-name'><label for='name'>name</label></th><td class='ivar od ivar-name'><input value='{{variables.name|default}}' required=required class='form-control ivar ivar-name' id='name' name='name' type='text' /></td></tr>
+            <tr><th class='ilbl ev ilbl-ancestry'><label for='ancestry'>ancestry</label></th><td class='ivar ev ivar-ancestry'>
+              {% set x = attribute(variables, 'ancestry')|default %}<input value='{{x}}' list='ancestries' class='form-control ivar ivar-ancestry' id='ancestry' name='ancestry' />{{ _self.genList(ancestries, 'ancestries', x) }}
+            </td></tr>
+            <tr><th class='ilbl od ilbl-class'><label for='class'>class</label></th><td class='ivar od ivar-class'>
+              {% set x = attribute(variables, 'class')|default %}<input value='{{x}}' list='classes' class='form-control ivar ivar-class' id='class' name='class' />{{ _self.genList(classes, 'classes', x) }}
+            </td></tr>
+            <tr><th class='ilbl ev ilbl-level'><label for='level'>level</label></th><td class='ivar ev ivar-level'><input value='{{variables.level|default}}' class='form-control ivar ivar-level c' id='level' name='level' type='number' min='1' /></td></tr>
+            <tr><th class='ilbl od ilbl-portrait'><label for='portrait'>portrait</label></th><td class='ivar od ivar-portrait'><input value='{{variables.portrait|default}}' class='form-control ivar ivar-portrait c' id='portrait' name='portrait' type='number' placeholder='WA Image ID'/></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card personal' id='card-personal'>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-height'><label for='height'>height</label></th><td class='ivar od ivar-height'><input value='{{variables.height|default}}' class='form-control ivar ivar-height' id='height' name='height' type='text' /></td></tr>
+            <tr><th class='ilbl ev ilbl-weight'><label for='weight'>weight</label></th><td class='ivar ev ivar-weight'><input value='{{variables.weight|default}}' class='form-control ivar ivar-weight' id='weight' name='weight' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-speed'><label for='speed'>speed</label></th><td class='ivar od ivar-speed'><input value='{{variables.speed|default}}' class='form-control ivar ivar-speed' id='speed' name='speed' type='text' /></td></tr>
+            <tr><th class='ilbl od ilbl-hit-dice-max'><label for='hit_dice_max'>hit dice</label></th><td class='ivar od ivar-hit-dice-max'><input value='{{variables.hit_dice_max|default}}' class='form-control ivar ivar-hit-dice-max' id='hit_dice_max' name='hit_dice_max' type='text' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    {% for i in 1..4 %}
+      {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+      {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+      <div class='col-12 col-md-3'>
+        <div class='card attributes' id='card-attributes'>
+          <div class='card-header attributes'>{{att[id-1]}}</div>
+          <div class='card-body of'>
+              <div class='ivar {{eo}} ivar-att-value'><input value='{{attribute(variables, 'att_value_' ~ id)|default}}' class='form-control ivar ivar-att-value c' id='att_value' name='att_value_{{id}}' type='number' /></div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class='row'>
+    <div class='col-12 col-md-3'>
+      <div class='card hp' id='card-hp'>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-hp-curr'><label for='hp_curr'>hp curr</label></th><td class='ivar od ivar-hp-curr'><input value='{{variables.hp_curr|default}}' class='form-control ivar ivar-hp-curr c' id='hp_curr' name='hp_curr' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-3'>
+      <div class='card hp' id='card-hp'>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-hp-max'><label for='hp_max'>hp max</label></th><td class='ivar od ivar-hp-max'><input value='{{variables.hp_max|default}}' class='form-control ivar ivar-hp-max c' id='hp_max' name='hp_max' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-3'>
+      <div class='card hp' id='card-hp'>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-hp-temp'><label for='hp_temp'>hp temp</label></th><td class='ivar od ivar-hp-temp'><input value='{{variables.hp_temp|default}}' class='form-control ivar ivar-hp-temp c' id='hp_temp' name='hp_temp' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-3'>
+      <div class='card ac' id='card-ac'>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-armor'><label for='armor'>armor</label></th><td class='ivar od ivar-armor'><input value='{{variables.armor|default}}' class='form-control ivar ivar-armor c' id='armor' name='armor' type='number' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-3'>
+      <div class='card hp' id='card-hp'>
+        <div class='card-body of'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-ini'><label for='ini'>initiative</label></th><td class='ivar od ivar-ini'><input value='{{variables.ini|default}}' class='form-control ivar ivar-ini' id='ini' name='ini' type='text' /></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card wounds' id='card-wounds'>
+        <div class='card-header wounds'>Wounds</div>
+        <div class='card-body of c'>
+          {% for i in 1..5 %}
+            {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+            {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <div class='ivar {{eo}} ivar-wounds c' width='50%'>
+              <input value='0' id='wounds' name='wounds_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'wounds_' ~ id)|default > 0 %} checked='checked'{% endif %} id='wounds' name='wounds_{{id}}' type='checkbox' />
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card-header skills'>Skills</div>
+      <div class='row'>
+        <div class='col-12 col-md-6'>
+          <div class='card skills' id='card-skills'>
+            <div class='card-body of'>
+              <table class='table'>
+                {% for i in 1..5 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <tr>
+                    <th class='ilbl {{eo}} ilbl-sk-value'><label for='sk_value'>{{skill_list[id-1][0]}}</label></th>
+                    <th class='ilbl {{eo}} ilbl-sk-value r' width='70px'>{{skill_list[id-1][1]|default|upper}} {{ attribute(_context, skill_list[id-1][1]|default)|default }}</th>
+                    <td class='ivar {{eo}} ivar-sk-value' width='70px'><input value='{{attribute(variables, 'sk_value_' ~ id)|default}}' class='form-control ivar ivar-sk-value c' id='sk_value' name='sk_value_{{id}}' type='number' /></td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class='col-12 col-md-6'>
+          <div class='card skills' id='card-skills'>
+            <div class='card-body of'>
+              <table class='table'>
+                {% for i in 6..10 %}
+                  {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                  {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                  <tr>
+                    <th class='ilbl {{eo}} ilbl-sk-value'><label for='sk_value'>{{skill_list[id-1][0]}}</label></th>
+                    <th class='ilbl {{eo}} ilbl-sk-value r' width='70px'>{{skill_list[id-1][1]|default|upper}} {{ attribute(_context, skill_list[id-1][1]|default)|default }}</th>
+                    <td class='ivar {{eo}} ivar-sk-value' width='70px'><input value='{{attribute(variables, 'sk_value_' ~ id)|default}}' class='form-control ivar ivar-sk-value c' id='sk_value' name='sk_value_{{id}}' type='number' /></td>
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-12'>
+      <div class='card-header other'>Equipment, Talents, etc.</div>
+      <div class='row'>
+        {% for i in 1..4 %}
+        <div class='col-12 col-md-6'>
+          <div class='card features' id='card-features'>
+            <div class='card-body of'>
+                {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+                {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+                <div class='ivar {{eo}} ivar-features'><div class='iContent'><textarea class='form-control ivar ivar-features mention' id='features_{{id}}' name='features_{{id}}' rows='1'  >{{attribute(variables, 'features_' ~ id)|default}}</textarea></div></div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class='col-12 col-md-12'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes mention' id='notes' name='notes' rows='1'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class='row do-not-print'>
+      <div class='col-12 c small'>
+        <br>
+        Sheet made by Tillerz - Updated: 2026-09-05</a><br>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class='container-fluid sheet-nimble'>
+  <div class='row'>
+    <div class='col-12 col-md-6'>
+      <div class='card hp' id='card-hp'>
+        <div class='card-body of c'>
+          <table class='table'>
+            <tr><th class='ilbl od ilbl-hp-curr'><label for='hp_curr'>hp curr</label></th><td class='ivar od ivar-hp-curr'><input value='{{variables.hp_curr|default}}' class='form-control ivar ivar-hp-curr c' id='hp_curr' name='hp_curr' type='number' /></td></tr>
+            <tr><th class='ilbl od ilbl-hp-temp'><label for='hp_temp'>hp temp</label></th><td class='ivar od ivar-hp-temp'><input value='{{variables.hp_temp|default}}' class='form-control ivar ivar-hp-temp c' id='hp_temp' name='hp_temp' type='number' /></td></tr>
+          </table>
+          Wounds: 
+          {% for i in 1..5 %}
+            {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+            {% set eo = 'od' %}{% if id is even %}{% set eo = 'ev' %}{% endif %}
+            <div class='ivar {{eo}} ivar-wounds c' width='50%'>
+              <input value='0' id='wounds' name='wounds_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'wounds_' ~ id)|default > 0 %} checked='checked'{% endif %} id='wounds' name='wounds_{{id}}' type='checkbox' />
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class='col-12 col-md-6'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-notes'><div class='iContent'><textarea class='form-control ivar ivar-notes' id='notes' name='notes' rows='1'  >{{variables.notes|default}}</textarea></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
