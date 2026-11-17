@@ -240,7 +240,7 @@ sam:	spell attack modifier (scm + proficiency)
   - dice: The type of dice to roll (default is '20').
   - show: Whether to show the roll notation (default is false).
 #}
-{% macro abiModifier( abi = 10, dice = '20', show = false ) %}
+{% macro abiModifier( label = '', abi = 10, dice = '20', show = false ) %}
 	{% if abi is defined %}
 		{% if abi == '' %}{% set abi = 10 %}{% endif %}
 		{% set mod = (abi - 10) // 2 %}
@@ -254,7 +254,7 @@ sam:	spell attack modifier (scm + proficiency)
 		{% else %}
 			[roll:1d{{dice}}{{ mod }}|1d{{dice}}{{ disbonus }}]
 		{% endif %}
-	{% else %}[roll:1d20|+0]{% endif %}
+	{% else %}[roll:1d20|+0] {% endif %}
 {% endmacro abiModifier %}
 {# ---------------------------------------------- #}
 {# 
@@ -432,7 +432,7 @@ sam:	spell attack modifier (scm + proficiency)
 							<table class="table">
 								<tr>
 									<td class="lbl od" width="30%">Level</td>
-                                                                        {% set tmp = '' %}{% if milestones < 1 %}{% set tmp = ' (' ~ variables.xp|default('0') ~ '/' ~ xpreq|default('?') ~ ' XP for level-up)' %}{% endif %}
+                                        {% set tmp = '' %}{% if milestones < 1 %}{% set tmp = ' (' ~ variables.xp|default('0') ~ '/' ~ xpreq|default('?') ~ ' XP for level-up)' %}{% endif %}
 									<td class="var od">{{ level|default('1') }}{{tmp}}</td>
 								</tr>
 								<tr>
@@ -455,7 +455,7 @@ sam:	spell attack modifier (scm + proficiency)
 					<div class="row">
 						{% for i in 1..4 %}
 							{% if attribute(variables, 'class_' ~ i)|default != '' %}
-						<div class="col-6 col-xs-6 col-sm-3 col-md-6 col-lg-6">
+						<div class="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-6">
 							<div class="card class">
 								<div class="card-header hdr">{{ attribute(variables, 'class_' ~ i)|default }}</div>
 								<div class="card-body nobg">
@@ -475,7 +475,7 @@ sam:	spell attack modifier (scm + proficiency)
 											<td class="var od c">{{hd}}/{{ attribute(variables, 'level_' ~ i)|default('1') }}</td>
 										</tr>
 										<tr>
-											<td class="var ev c" colspan=2 title="The Hit die + bonus, eg 1d8+2">{{ sheet.abiModifier( constitution, attribute(variables, 'hit_die_' ~ i)|default, true ) }}</td>
+											<td class="var ev c" colspan=2 title="The Hit die + bonus, eg 1d8+2">{{ sheet.abiModifier( "Hit Dice", constitution, attribute(variables, 'hit_die_' ~ i)|default, true ) }}</td>
 										</tr>
 									</table>
 								</div>
@@ -500,7 +500,7 @@ sam:	spell attack modifier (scm + proficiency)
 			<div class="card class">
 				<div class="card-header hdr" title="{{a}}">{{a[:3]|upper}} {{ attribute(variables, a|lower) }}</div>
 				<div class="card-body c">
-					<div class="attmod strong lh">{{ sheet.abiModifier( attribute(variables, a|lower) ) }}</div>
+					<div class="attmod strong lh">{{ sheet.abiModifier( a, attribute(variables, a|lower) ) }}</div>
 					<small>{{a[:3]|upper}} save: {{ sheet.mark( attribute(variables, a|lower ~ '_save_prof')|default, 0, pb ) }} {{ sheet.skillRoll( attribute(variables, a|lower ~ '_save_mod')|default, attribute(variables, a|lower)|default, 10, attribute(variables, a|lower ~ '_save_prof')|default, 0, pb, pbd, 0 ) }}</small>
 				</div>
 			</div>
