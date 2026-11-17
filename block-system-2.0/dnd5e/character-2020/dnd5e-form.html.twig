@@ -242,18 +242,18 @@
                         <input class="form-control" type="number" value="{{ variables.level_4 is defined ? variables.level_4 }}" name="level_4" />
                         <label for="hit_die_4" title="Hit Die Type, e.g. 8 for a d8">Hit Die Type</label>
                         <input class="form-control" type="number" placeholder="eg 8 for 1d8" value="{{ variables.hit_die_4 is defined ? variables.hit_die_4 }}" name="hit_die_4" />
-                    </div>      
+                    </div>
                 </div>
                <p class="c dnd5e-sheet-description m-t-10 mt-1">
                 Note: if you want to embed a separate statblock with details for each class, scroll down to Collections: Class Features.
                </p>
-            </div>  
+            </div>
         </div>
     </div>
 	<hr class="hr-dark">
 	<div class="row mainbox">
         <div class="col-12 col-md-12">
-            <label>Attributes</label> 
+            <label>Attributes</label>
         </div>
 		<div class="col-12 col-md-4 col-lg-2">
             <div class="dnd-sheet-box">
@@ -292,7 +292,7 @@
                 <div class="form-group">
                     <label for="wisdom">Wisdom</label>
                     <input class="form-control c" required="required" type="number" value="{{ variables.wisdom is defined ? variables.wisdom }}" name="wisdom" />
-                </div> 
+                </div>
             </div>
         </div>
 		<div class="col-12 col-md-4 col-lg-2">
@@ -300,7 +300,7 @@
                 <div class="form-group">
                     <label for="charisma">Charisma</label>
                     <input class="form-control c" required="required" type="number" value="{{ variables.charisma is defined ? variables.charisma }}" name="charisma" />
-                </div> 
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-12">
@@ -309,43 +309,43 @@
             <p>
         </div>
         <div class="col-12 col-md-12">
-            <label>Saving Throw Proficiencies</label> 
+            <label>Saving Throw Proficiencies</label>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="strength_save_prof">STR</label>
                 <input class="form-control" type="checkbox" value="1" {% if variables.strength_save_prof is defined and variables.strength_save_prof == 1 %}checked="checked"{% endif %} name="strength_save_prof" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="dexterity_save_prof">DEX</label>
                 <input class="form-control" type="checkbox" value="1" {% if variables.dexterity_save_prof is defined and variables.dexterity_save_prof == 1 %}checked="checked"{% endif %} name="dexterity_save_prof" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="constitution_save_prof">CON</label>
                 <input class="form-control" type="checkbox" value="1" {% if variables.constitution_save_prof is defined and variables.constitution_save_prof == 1 %}checked="checked"{% endif %} name="constitution_save_prof" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="intelligence_save_prof">INT</label>
                 <input class="form-control" type="checkbox" value="1" {% if variables.intelligence_save_prof is defined and variables.intelligence_save_prof == 1 %}checked="checked"{% endif %} name="intelligence_save_prof" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="wisdom_save_prof">WIS</label>
                 <input class="form-control" type="checkbox" value="1" {% if variables.wisdom_save_prof is defined and variables.wisdom_save_prof == 1 %}checked="checked"{% endif %} name="wisdom_save_prof" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="charisma_save_prof">CHA</label>
                 <input class="form-control" type="checkbox" value="1" {% if variables.charisma_save_prof is defined and variables.charisma_save_prof == 1 %}checked="checked"{% endif %} name="charisma_save_prof" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-12">
             <p class="c dnd5e-sheet-description m-t-10 mt-1">
@@ -356,37 +356,37 @@
             <div class="form-group">
                 <label for="strength_save_mod">STR</label>
                 <input class="form-control c" type="number" value="{{ variables.strength_save_mod|default('') }}" name="strength_save_mod" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="dexterity_save_mod">DEX</label>
                 <input class="form-control c" type="number" value="{{ variables.dexterity_save_mod|default('') }}" name="dexterity_save_mod" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="constitution_save_mod">CON</label>
                 <input class="form-control c" type="number" value="{{ variables.constitution_save_mod|default('') }}" name="constitution_save_mod" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="intelligence_save_mod">INT</label>
                 <input class="form-control c" type="number" value="{{ variables.intelligence_save_mod|default('') }}" name="intelligence_save_mod" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="wisdom_save_mod">WIS</label>
                 <input class="form-control c" type="number" value="{{ variables.wisdom_save_mod|default('') }}" name="wisdom_save_mod" />
-            </div>  
+            </div>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
             <div class="form-group">
                 <label for="charisma_save_mod">CHA</label>
                 <input class="form-control c" type="number" value="{{ variables.charisma_save_mod|default('') }}" name="charisma_save_mod" />
-            </div>  
+            </div>
         </div>
     </div>
     <div class="row mainbox">
@@ -417,7 +417,7 @@
                             {% endif %}
                             <input placeholder="{{lbl}}" class="form-control" type="string" value="{{ variables.hit_points_first is defined ? variables.hit_points_first }}" name="hit_points_first" />
                             <p class="dnd5e-sheet-description m-t-10 mt-1">Hit Points for first level, leave empty for default (Hit Dice max + CON modifier).</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
@@ -430,7 +430,7 @@
                             {% endif %}
                             <input placeholder="{{lbl}}" class="form-control c" type="number" value="{{ chp }}" name="hit_points_current" />
                             <p class="dnd5e-sheet-description m-t-10 mt-1">Leave empty for default.</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
@@ -442,7 +442,7 @@
                             {% endif %}
                             <input placeholder="{{lbl}}" class="form-control c" type="number" value="{{ hp }}" name="hit_points" min="0" />
                             <p class="dnd5e-sheet-description m-t-10 mt-1">Leave empty for default.</p>
-                        </div>  
+                        </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="form-group">
@@ -460,7 +460,7 @@
                 </div>
                 <div class="row">
                     <p class="dnd5e-sheet-description m-t-10 mt-1">Class resources:
-                    You can ignore those if your character class does not have an additional class resource like Ki (for monk). 
+                    You can ignore those if your character class does not have an additional class resource like Ki (for monk).
                     If it has: enter the resource name in the first field (eg. 'Ki') and the possible maximum value / pool size
                     in the second field. The current value for the resource is trackable on the tracking sheet.</p>
                     {% for i in 1..6 %}
@@ -488,7 +488,7 @@
                                 <label for="{{resfield}}">Possible Max Value</label>
                                 <input class="form-control" type="text" value="{{res}}" name="{{resfield}}" />
                                 <p class="dnd5e-sheet-description m-t-10 mt-1">Ki for monks etc.</p>
-                            </div>  
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -1090,8 +1090,8 @@
                             </td>
                         </tr>
                     </table>
-                </div>  
-            </div>  
+                </div>
+            </div>
         </div>
         <div class="col-12 col-md-12 col-lg-7" id="dnd5e-third-column">
             <div class="row mainbox">
@@ -1121,7 +1121,7 @@
                                 {{ sheet.attack("09", variables.attack_prof_09|default(''), variables.attack_09|default(''), variables.attack_attr_09|default(''), variables.attack_mod_09|default(''), variables.attack_dmg_09|default(''), variables.attack_dmg_type_09|default(''), variables.attack_props_09|default('')) }}
                                 {{ sheet.attack("10", variables.attack_prof_10|default(''), variables.attack_10|default(''), variables.attack_attr_10|default(''), variables.attack_mod_10|default(''), variables.attack_dmg_10|default(''), variables.attack_dmg_type_10|default(''), variables.attack_props_10|default('')) }}
                             </table>
-                        </div>                  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1172,7 +1172,7 @@
                         <div class="form-group">
                             <label for="spellcasting">Spellcasting Notes</label>
                             <textarea name="spellcasting" class="form-control mention" rows="3">{{ variables.spellcasting is defined ? variables.spellcasting }}</textarea>
-                        </div>                  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1185,7 +1185,7 @@
                 <div class="form-group">
                     <label for="proficiences_and_languages">Languages &amp; Proficiencies</label>
                     <textarea name="proficiences_and_languages" class="form-control mention" rows="3">{{ variables.proficiences_and_languages is defined ? variables.proficiences_and_languages }}</textarea>
-                </div> 
+                </div>
             </div>
         </div>
         <div class="col-12 col-sm-12">
@@ -1202,7 +1202,7 @@
                     <input class="form-control in-md" type="number" value="{{ variables.gold_pieces ?? 0 }}" name="gold_pieces" />
                     <label for="platinum_pieces">Platinum</label>
                     <input class="form-control in-md" type="number" value="{{ variables.platinum_pieces ?? 0 }}" name="platinum_pieces" />
-                </div>                      
+                </div>
             </div>
         </div>
         <div class="col-12 col-sm-12">
@@ -1211,7 +1211,7 @@
                 <div class="form-group">
                     <label for="equipment">Equipment</label>
                     <textarea name="equipment" class="form-control mention" rows="3">{{ variables.equipment is defined ? variables.equipment }}</textarea>
-                </div>                      
+                </div>
             </div>
         </div>
         <div class="col-12 col-sm-12">
@@ -1220,7 +1220,7 @@
                 <div class="form-group">
                     <label for="personality_trait">Personality Traits</label>
                         <textarea  name="personality_trait" class="form-control mention" rows="3">{{ variables.personality_trait is defined ? variables.personality_trait }}</textarea>
-                </div>      
+                </div>
             </div>
         </div>
         <div class="col-12 col-sm-12">
@@ -1229,7 +1229,7 @@
                 <div class="form-group">
                     <label for="ideal">Ideals</label>
                         <textarea  name="ideal" class="form-control mention" rows="3">{{ variables.ideal is defined ? variables.ideal }}</textarea>
-                </div>          
+                </div>
             </div>
         </div>
         <div class="col-12 col-sm-12">
@@ -1238,7 +1238,7 @@
                 <div class="form-group">
                     <label for="bond">Bonds</label>
                     <textarea  name="bond" class="form-control mention" rows="3">{{ variables.bond is defined ? variables.bond }}</textarea>
-                </div>      
+                </div>
             </div>
         </div>
         <div class="col-12 col-sm-12">
@@ -1247,7 +1247,7 @@
                 <div class="form-group">
                     <label for="flaw">Flaws</label>
                     <textarea  name="flaw" class="form-control mention" rows="3">{{ variables.flaw is defined ? variables.flaw }}</textarea>
-                </div>      
+                </div>
             </div>
         </div>
         <div class="col-12 col-sm-12">
@@ -1272,11 +1272,11 @@
     <hr>
     <div class="row collections-row" id="dnd5e-collections">
         <div class="col-12 col-md-12">
-            <h1>Collections <small class="text-muted">Attached sheets</small></h1>
+            <h1>Collections <small class="text-muted">Attached sheets - <a href="/community/rpg/system/dnd5e" target="_blank">find existing blocks here</a></small></h1>
             <p class="dnd5e-sheet-description m-t-10 mt-1">
-                Collections allow you to attach additional sheets like magical items, your spells, your companions, assets etc. to your character sheet. 
+                Collections allow you to attach additional sheets like magical items, your spells, your companions, assets etc. to your character sheet.
                 <br>
-                To add the sheets just enter the IDs of the sheets you want on each collection, separated by commas "," 
+                To add the sheets just enter the IDs of the sheets you want on each collection, separated by commas ","
                 <br>
                 <strong>For example adding 51,52,123</strong> to the "Arms and Equipment" collection will make those items accessible under the tab with the same name!
             </p>
@@ -1286,7 +1286,7 @@
                 <div class="form-group">
                     <label for="arms_and_equipment">Arms &amp; Equipment</label>
                     <textarea placeholder="81,112,120" name="arms_and_equipment" class="form-control" rows="2">{{ variables.arms_and_equipment is defined ? variables.arms_and_equipment|replace({'[block:' : '', ']' : ''}) }}</textarea>
-                </div>          
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
@@ -1294,7 +1294,7 @@
                 <div class="form-group">
                     <label for="class_features">Class Features</label>
                     <textarea placeholder="2016,8415" name="class_features" class="form-control" rows="2">{{ variables.class_features is defined ? variables.class_features|replace({'[block:' : '', ']' : ''}) }}</textarea>
-                </div>          
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
@@ -1302,7 +1302,7 @@
                 <div class="form-group">
                     <label for="creatures_and_mounts">Creatures &amp; Mounts</label>
                     <textarea placeholder="196,199" name="creatures_and_mounts" class="form-control" rows="2">{{ variables.creatures_and_mounts is defined ? variables.creatures_and_mounts|replace({'[block:' : '', ']' : ''}) }}</textarea>
-                </div>          
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
@@ -1310,7 +1310,7 @@
                 <div class="form-group">
                     <label for="possessions_and_property">Possessions &amp; Property</label>
                     <textarea placeholder="18431,19683" name="possessions_and_property" class="form-control" rows="2">{{ variables.possessions_and_property is defined ? variables.possessions_and_property|replace({'[block:' : '', ']' : ''}) }}</textarea>
-                </div>          
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
@@ -1318,7 +1318,7 @@
                 <div class="form-group">
                     <label for="racestatblock">Race</label>
                     <textarea name="racestatblock" class="form-control" rows="1">{{ variables.racestatblock is defined ? variables.racestatblock|replace({'[block:' : '', ']' : ''}) }}</textarea>
-                </div>          
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-6 col-lg-4">
@@ -1326,7 +1326,7 @@
                 <div class="form-group">
                     <label for="retinue">Allies, Companions &amp; Retinue</label>
                     <textarea name="retinue" class="form-control" rows="2">{{ variables.retinue is defined ? variables.retinue|replace({'[block:' : '', ']' : ''}) }}</textarea>
-                </div>          
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-12">
@@ -1337,40 +1337,40 @@
             <div class="dnd-sheet-container">
                 <div class="row">
                     <div class="col-12 col-md-4 mb-3">
-                        <input placeholder="0-Level" class="form-control" type="text" value="{{ variables.spellbook_0_level_spells is defined ? variables.spellbook_0_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_0_level_spells" />    
+                        <input placeholder="0-Level" class="form-control" type="text" value="{{ variables.spellbook_0_level_spells is defined ? variables.spellbook_0_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_0_level_spells" />
                     </div>
                     <div class="col-12 col-md-4 mb-3">
-                        <input placeholder="1-Level" class="form-control" type="text" value="{{ variables.spellbook_1_level_spells is defined ? variables.spellbook_1_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_1_level_spells" /> 
+                        <input placeholder="1-Level" class="form-control" type="text" value="{{ variables.spellbook_1_level_spells is defined ? variables.spellbook_1_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_1_level_spells" />
                     </div>
                     <div class="col-12 col-md-4 mb-3">
-                        <input placeholder="2-level" class="form-control" type="text" value="{{ variables.spellbook_2_level_spells is defined ? variables.spellbook_2_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_2_level_spells" /> 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-4 mb-3">
-                        <input placeholder="3-Level" class="form-control" type="text" value="{{ variables.spellbook_3_level_spells is defined ? variables.spellbook_3_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_3_level_spells" />    
-                    </div>
-                    <div class="col-12 col-md-4 mb-3">
-                        <input placeholder="4-Level" class="form-control" type="text" value="{{ variables.spellbook_4_level_spells is defined ? variables.spellbook_4_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_4_level_spells" /> 
-                    </div>
-                    <div class="col-12 col-md-4 mb-3">
-                        <input placeholder="5-level" class="form-control" type="text" value="{{ variables.spellbook_5_level_spells is defined ? variables.spellbook_5_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_5_level_spells" /> 
+                        <input placeholder="2-level" class="form-control" type="text" value="{{ variables.spellbook_2_level_spells is defined ? variables.spellbook_2_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_2_level_spells" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-4 mb-3">
-                        <input placeholder="6-Level" class="form-control" type="text" value="{{ variables.spellbook_6_level_spells is defined ? variables.spellbook_6_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_6_level_spells" />    
+                        <input placeholder="3-Level" class="form-control" type="text" value="{{ variables.spellbook_3_level_spells is defined ? variables.spellbook_3_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_3_level_spells" />
                     </div>
                     <div class="col-12 col-md-4 mb-3">
-                        <input placeholder="7-Level" class="form-control" type="text" value="{{ variables.spellbook_7_level_spells is defined ? variables.spellbook_7_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_7_level_spells" /> 
+                        <input placeholder="4-Level" class="form-control" type="text" value="{{ variables.spellbook_4_level_spells is defined ? variables.spellbook_4_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_4_level_spells" />
                     </div>
                     <div class="col-12 col-md-4 mb-3">
-                        <input placeholder="8-level" class="form-control" type="text" value="{{ variables.spellbook_8_level_spells is defined ? variables.spellbook_8_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_8_level_spells" /> 
+                        <input placeholder="5-level" class="form-control" type="text" value="{{ variables.spellbook_5_level_spells is defined ? variables.spellbook_5_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_5_level_spells" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-4 mb-3">
+                        <input placeholder="6-Level" class="form-control" type="text" value="{{ variables.spellbook_6_level_spells is defined ? variables.spellbook_6_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_6_level_spells" />
+                    </div>
+                    <div class="col-12 col-md-4 mb-3">
+                        <input placeholder="7-Level" class="form-control" type="text" value="{{ variables.spellbook_7_level_spells is defined ? variables.spellbook_7_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_7_level_spells" />
+                    </div>
+                    <div class="col-12 col-md-4 mb-3">
+                        <input placeholder="8-level" class="form-control" type="text" value="{{ variables.spellbook_8_level_spells is defined ? variables.spellbook_8_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_8_level_spells" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-4 mb-3 offset-md-4">
-                        <input placeholder="9-Level" class="form-control" type="text" value="{{ variables.spellbook_9_level_spells is defined ? variables.spellbook_9_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_9_level_spells" />    
+                        <input placeholder="9-Level" class="form-control" type="text" value="{{ variables.spellbook_9_level_spells is defined ? variables.spellbook_9_level_spells|replace({'[block:' : '', ']' : ''}) }}" name="spellbook_9_level_spells" />
                     </div>
                 </div>
             </div>
@@ -1392,12 +1392,12 @@
                 <input value="1" {% if variables.hero_points_enabled is defined and variables.hero_points_enabled == 1 %} checked="checked"{% endif %} id="hero_points_enabled" name="hero_points_enabled" placeholder="" type="checkbox" /> <label for="hero_points_enabled">Track Hero Points (see DMG p264)</label><br>
                 <label for="hero_points">Hero Points (curr)</label>
                 <input class="form-control" type="number" value="{{variables.hero_points is defined ? variables.hero_points}}" name="hero_points" />
-            </div>  
+            </div>
             <div class="form-group">
                 <input value="1" {% if variables.plot_points_enabled is defined and variables.plot_points_enabled == 1 %} checked="checked"{% endif %} id="plot_points_enabled" name="plot_points_enabled" placeholder="" type="checkbox" /> <label for="hero_points_enabled">Track Plot Points (see DMG p269)</label><br>
                 <label for="plot_points">Plot Points (curr)</label>
                 <input class="form-control" type="number" value="{{variables.plot_points is defined ? variables.plot_points}}" name="plot_points" />
-            </div>  
+            </div>
             <div class="form-group">
                 <input value="1" {% if variables.initiative_score is defined and variables.initiative_score == 1 %} checked="checked"{% endif %} id="initiative_score" name="initiative_score" placeholder="" type="checkbox" /> <label for="initiative_score">Use fixed Initiative Score instead of Roll plus Dex Bonus (see DMG p270)</label>
             </div>
@@ -1406,11 +1406,11 @@
             <div class="form-group">
                 <label for="spell_points_curr">Spellpoints (curr)</label>
                 <input class="form-control" type="number" value="{{variables.spell_points_curr is defined ? variables.spell_points_curr}}" name="spell_points_curr" />
-            </div>  
+            </div>
             <div class="form-group">
                 <label for="spell_points_max">Spellpoints (max)</label>
                 <input class="form-control" type="number" value="{{variables.spell_points_max is defined ? variables.spell_points_max}}" name="spell_points_max"/>
-            </div>  
+            </div>
         </div>
     </div>
     <div class="row footer-row" id="dnd5e-footer">
@@ -1439,7 +1439,7 @@
                 </div>
             </div>
         </div>
-	</div>			
+	</div>
 	<div class="contentContainer contentContainer-standard of">
         <h2>Spellbook <small class="text-muted">(Known spells)</small></h2>
         <p class="dnd5e-sheet-description m-t-10 mt-1">
@@ -1492,14 +1492,14 @@
                             {% else %} {{ sheet.spell( id, "", "", "", "", "", "", "", "", "", "", "", "", "", "" ) }} {% endif %}
                             {% endfor %}
                         </table>
-                    </div>                  
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!--
-    Values that are stored and tracked but not visible on the sheet. 
+    Values that are stored and tracked but not visible on the sheet.
     These are mostly used for the tracking sheet which tracks temporary changes on the character during the session.
 -->
 <input type="hidden" value="{{ variables.temporary_hit_points is defined ? variables.temporary_hit_points }}" name="temporary_hit_points" />
