@@ -1,4 +1,4 @@
-{
+ {
   padding: 0px !important;
   font-family: Amarante Regular !important;
   font-weight: 400;
@@ -103,6 +103,7 @@
   width: 100%;
   border: 1px solid #00000040;
   margin-bottom: 6px}
+.form-control-tracker { color: #fff; padding: 0px 2px; }
  textarea.form-control-tracker {
   min-height: 13em !important;
   width: 100%}
