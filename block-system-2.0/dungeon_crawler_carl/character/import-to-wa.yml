@@ -1,0 +1,1098 @@
+﻿fields:
+  name:
+    label: "name"
+    input: string
+    description: "name"
+  race:
+    label: "race"
+    input: string
+    description: "race"
+  gender:
+    label: "gender"
+    input: string
+    description: "gender/pronouns"
+  level:
+    label: "level"
+    input: integer
+    description: "level"
+  crawler number:
+    label: "crawler number"
+    input: integer
+    description: "crawler number"
+  class:
+    label: "class"
+    input: string
+    description: "class"
+  floor:
+    label: "floor"
+    input: integer
+    description: "floor"
+  portrait:
+    label: "portrait"
+    input: integer
+    description: "wa image-id"
+    render: image
+  health 001:
+    label: "health 001"
+    input: checkbox
+    description: "{{con_mod}}"
+  health 002:
+    label: "health 002"
+    input: checkbox
+    description: "{{con_mod}}"
+  health 003:
+    label: "health 003"
+    input: checkbox
+    description: "{{con_mod}}"
+  health 004:
+    label: "health 004"
+    input: checkbox
+    description: "{{con_mod}}"
+  health 005:
+    label: "health 005"
+    input: checkbox
+    description: "{{con_mod}}"
+  health 006:
+    label: "health 006"
+    input: checkbox
+    description: "{{con_mod}}"
+  health 007:
+    label: "health 007"
+    input: checkbox
+    description: "{{con_mod}}"
+  health 008:
+    label: "health 008"
+    input: checkbox
+    description: "{{con_mod}}"
+  health 009:
+    label: "health 009"
+    input: checkbox
+    description: "{{con_mod}}"
+  health 010:
+    label: "health 010"
+    input: checkbox
+    description: "{{con_mod}}"
+  evade buffs:
+    label: "evade buffs"
+    input: integer
+    description: "evade buffs"
+  evade total:
+    label: "evade total"
+    input: integer
+    description: "evade total"
+  dr armor:
+    label: "dr armor"
+    input: integer
+    description: "dr armor"
+  dr buffs:
+    label: "dr buffs"
+    input: integer
+    description: "dr buffs"
+  dr total:
+    label: "dr total"
+    input: integer
+    description: "dr total"
+  debuffs:
+    label: "debuffs"
+    input: string
+    description: "debuffs"
+  ext buff 001:
+    label: "ext buff 001"
+    input: string
+    description: "external buff"
+  ext buff 002:
+    label: "ext buff 002"
+    input: string
+    description: "external buff"
+  ext buff 003:
+    label: "ext buff 003"
+    input: string
+    description: "external buff"
+  move:
+    label: "move"
+    input: integer
+    description: "move"
+  step:
+    label: "step"
+    input: integer
+    description: "step"
+  ai favor:
+    label: "ai favor"
+    input: integer
+    description: "ai favor"
+  size:
+    label: "size"
+    input: string
+    description: "size"
+  mana curr:
+    label: "mana curr"
+    input: integer
+    description: "current mana"
+  mana max:
+    label: "mana max"
+    input: integer
+    description: "max mana"
+  att enh 001:
+    label: "att enh 001"
+    input: string
+    description: "{{att[i-1]}} enhanced"
+  att enh 002:
+    label: "att enh 002"
+    input: string
+    description: "{{att[i-1]}} enhanced"
+  att enh 003:
+    label: "att enh 003"
+    input: string
+    description: "{{att[i-1]}} enhanced"
+  att enh 004:
+    label: "att enh 004"
+    input: string
+    description: "{{att[i-1]}} enhanced"
+  att enh 005:
+    label: "att enh 005"
+    input: string
+    description: "{{att[i-1]}} enhanced"
+  att un 001:
+    label: "att un 001"
+    input: string
+    description: "unenhanced"
+  att un 002:
+    label: "att un 002"
+    input: string
+    description: "unenhanced"
+  att un 003:
+    label: "att un 003"
+    input: string
+    description: "unenhanced"
+  att un 004:
+    label: "att un 004"
+    input: string
+    description: "unenhanced"
+  att un 005:
+    label: "att un 005"
+    input: string
+    description: "unenhanced"
+  att mod 001:
+    label: "att mod 001"
+    input: string
+    description: "mod"
+  att mod 002:
+    label: "att mod 002"
+    input: string
+    description: "mod"
+  att mod 003:
+    label: "att mod 003"
+    input: string
+    description: "mod"
+  att mod 004:
+    label: "att mod 004"
+    input: string
+    description: "mod"
+  att mod 005:
+    label: "att mod 005"
+    input: string
+    description: "mod"
+  attack name 001:
+    label: "attack name 001"
+    input: string
+    description: "name"
+  attack name 002:
+    label: "attack name 002"
+    input: string
+    description: "name"
+  attack name 003:
+    label: "attack name 003"
+    input: string
+    description: "name"
+  attack name 004:
+    label: "attack name 004"
+    input: string
+    description: "name"
+  attack name 005:
+    label: "attack name 005"
+    input: string
+    description: "name"
+  attack to hit 001:
+    label: "attack to hit 001"
+    input: string
+    description: "to hit"
+  attack to hit 002:
+    label: "attack to hit 002"
+    input: string
+    description: "to hit"
+  attack to hit 003:
+    label: "attack to hit 003"
+    input: string
+    description: "to hit"
+  attack to hit 004:
+    label: "attack to hit 004"
+    input: string
+    description: "to hit"
+  attack to hit 005:
+    label: "attack to hit 005"
+    input: string
+    description: "to hit"
+  attack damage 001:
+    label: "attack damage 001"
+    input: string
+    description: "damage"
+  attack damage 002:
+    label: "attack damage 002"
+    input: string
+    description: "damage"
+  attack damage 003:
+    label: "attack damage 003"
+    input: string
+    description: "damage"
+  attack damage 004:
+    label: "attack damage 004"
+    input: string
+    description: "damage"
+  attack damage 005:
+    label: "attack damage 005"
+    input: string
+    description: "damage"
+  attack effects 001:
+    label: "attack effects 001"
+    input: string
+    description: "effects"
+  attack effects 002:
+    label: "attack effects 002"
+    input: string
+    description: "effects"
+  attack effects 003:
+    label: "attack effects 003"
+    input: string
+    description: "effects"
+  attack effects 004:
+    label: "attack effects 004"
+    input: string
+    description: "effects"
+  attack effects 005:
+    label: "attack effects 005"
+    input: string
+    description: "effects"
+  skill name 001:
+    label: "skill name 001"
+    input: string
+    description: "name"
+  skill name 002:
+    label: "skill name 002"
+    input: string
+    description: "name"
+  skill name 003:
+    label: "skill name 003"
+    input: string
+    description: "name"
+  skill name 004:
+    label: "skill name 004"
+    input: string
+    description: "name"
+  skill name 005:
+    label: "skill name 005"
+    input: string
+    description: "name"
+  skill name 006:
+    label: "skill name 006"
+    input: string
+    description: "name"
+  skill name 007:
+    label: "skill name 007"
+    input: string
+    description: "name"
+  skill name 008:
+    label: "skill name 008"
+    input: string
+    description: "name"
+  skill name 009:
+    label: "skill name 009"
+    input: string
+    description: "name"
+  skill name 010:
+    label: "skill name 010"
+    input: string
+    description: "name"
+  skill name 011:
+    label: "skill name 011"
+    input: string
+    description: "name"
+  skill name 012:
+    label: "skill name 012"
+    input: string
+    description: "name"
+  skill name 013:
+    label: "skill name 013"
+    input: string
+    description: "name"
+  skill name 014:
+    label: "skill name 014"
+    input: string
+    description: "name"
+  skill name 015:
+    label: "skill name 015"
+    input: string
+    description: "name"
+  skill name 016:
+    label: "skill name 016"
+    input: string
+    description: "name"
+  skill name 017:
+    label: "skill name 017"
+    input: string
+    description: "name"
+  skill name 018:
+    label: "skill name 018"
+    input: string
+    description: "name"
+  skill name 019:
+    label: "skill name 019"
+    input: string
+    description: "name"
+  skill name 020:
+    label: "skill name 020"
+    input: string
+    description: "name"
+  skill rank 001:
+    label: "skill rank 001"
+    input: string
+    description: "rank"
+  skill rank 002:
+    label: "skill rank 002"
+    input: string
+    description: "rank"
+  skill rank 003:
+    label: "skill rank 003"
+    input: string
+    description: "rank"
+  skill rank 004:
+    label: "skill rank 004"
+    input: string
+    description: "rank"
+  skill rank 005:
+    label: "skill rank 005"
+    input: string
+    description: "rank"
+  skill rank 006:
+    label: "skill rank 006"
+    input: string
+    description: "rank"
+  skill rank 007:
+    label: "skill rank 007"
+    input: string
+    description: "rank"
+  skill rank 008:
+    label: "skill rank 008"
+    input: string
+    description: "rank"
+  skill rank 009:
+    label: "skill rank 009"
+    input: string
+    description: "rank"
+  skill rank 010:
+    label: "skill rank 010"
+    input: string
+    description: "rank"
+  skill rank 011:
+    label: "skill rank 011"
+    input: string
+    description: "rank"
+  skill rank 012:
+    label: "skill rank 012"
+    input: string
+    description: "rank"
+  skill rank 013:
+    label: "skill rank 013"
+    input: string
+    description: "rank"
+  skill rank 014:
+    label: "skill rank 014"
+    input: string
+    description: "rank"
+  skill rank 015:
+    label: "skill rank 015"
+    input: string
+    description: "rank"
+  skill rank 016:
+    label: "skill rank 016"
+    input: string
+    description: "rank"
+  skill rank 017:
+    label: "skill rank 017"
+    input: string
+    description: "rank"
+  skill rank 018:
+    label: "skill rank 018"
+    input: string
+    description: "rank"
+  skill rank 019:
+    label: "skill rank 019"
+    input: string
+    description: "rank"
+  skill rank 020:
+    label: "skill rank 020"
+    input: string
+    description: "rank"
+  skill stat 001:
+    label: "skill stat 001"
+    input: string
+    description: "stat"
+  skill stat 002:
+    label: "skill stat 002"
+    input: string
+    description: "stat"
+  skill stat 003:
+    label: "skill stat 003"
+    input: string
+    description: "stat"
+  skill stat 004:
+    label: "skill stat 004"
+    input: string
+    description: "stat"
+  skill stat 005:
+    label: "skill stat 005"
+    input: string
+    description: "stat"
+  skill stat 006:
+    label: "skill stat 006"
+    input: string
+    description: "stat"
+  skill stat 007:
+    label: "skill stat 007"
+    input: string
+    description: "stat"
+  skill stat 008:
+    label: "skill stat 008"
+    input: string
+    description: "stat"
+  skill stat 009:
+    label: "skill stat 009"
+    input: string
+    description: "stat"
+  skill stat 010:
+    label: "skill stat 010"
+    input: string
+    description: "stat"
+  skill stat 011:
+    label: "skill stat 011"
+    input: string
+    description: "stat"
+  skill stat 012:
+    label: "skill stat 012"
+    input: string
+    description: "stat"
+  skill stat 013:
+    label: "skill stat 013"
+    input: string
+    description: "stat"
+  skill stat 014:
+    label: "skill stat 014"
+    input: string
+    description: "stat"
+  skill stat 015:
+    label: "skill stat 015"
+    input: string
+    description: "stat"
+  skill stat 016:
+    label: "skill stat 016"
+    input: string
+    description: "stat"
+  skill stat 017:
+    label: "skill stat 017"
+    input: string
+    description: "stat"
+  skill stat 018:
+    label: "skill stat 018"
+    input: string
+    description: "stat"
+  skill stat 019:
+    label: "skill stat 019"
+    input: string
+    description: "stat"
+  skill stat 020:
+    label: "skill stat 020"
+    input: string
+    description: "stat"
+  skill check 001:
+    label: "skill check 001"
+    input: string
+    description: "check type"
+  skill check 002:
+    label: "skill check 002"
+    input: string
+    description: "check type"
+  skill check 003:
+    label: "skill check 003"
+    input: string
+    description: "check type"
+  skill check 004:
+    label: "skill check 004"
+    input: string
+    description: "check type"
+  skill check 005:
+    label: "skill check 005"
+    input: string
+    description: "check type"
+  skill check 006:
+    label: "skill check 006"
+    input: string
+    description: "check type"
+  skill check 007:
+    label: "skill check 007"
+    input: string
+    description: "check type"
+  skill check 008:
+    label: "skill check 008"
+    input: string
+    description: "check type"
+  skill check 009:
+    label: "skill check 009"
+    input: string
+    description: "check type"
+  skill check 010:
+    label: "skill check 010"
+    input: string
+    description: "check type"
+  skill check 011:
+    label: "skill check 011"
+    input: string
+    description: "check type"
+  skill check 012:
+    label: "skill check 012"
+    input: string
+    description: "check type"
+  skill check 013:
+    label: "skill check 013"
+    input: string
+    description: "check type"
+  skill check 014:
+    label: "skill check 014"
+    input: string
+    description: "check type"
+  skill check 015:
+    label: "skill check 015"
+    input: string
+    description: "check type"
+  skill check 016:
+    label: "skill check 016"
+    input: string
+    description: "check type"
+  skill check 017:
+    label: "skill check 017"
+    input: string
+    description: "check type"
+  skill check 018:
+    label: "skill check 018"
+    input: string
+    description: "check type"
+  skill check 019:
+    label: "skill check 019"
+    input: string
+    description: "check type"
+  skill check 020:
+    label: "skill check 020"
+    input: string
+    description: "check type"
+  skill notes 001:
+    label: "skill notes 001"
+    input: string
+    description: "notes"
+  skill notes 002:
+    label: "skill notes 002"
+    input: string
+    description: "notes"
+  skill notes 003:
+    label: "skill notes 003"
+    input: string
+    description: "notes"
+  skill notes 004:
+    label: "skill notes 004"
+    input: string
+    description: "notes"
+  skill notes 005:
+    label: "skill notes 005"
+    input: string
+    description: "notes"
+  skill notes 006:
+    label: "skill notes 006"
+    input: string
+    description: "notes"
+  skill notes 007:
+    label: "skill notes 007"
+    input: string
+    description: "notes"
+  skill notes 008:
+    label: "skill notes 008"
+    input: string
+    description: "notes"
+  skill notes 009:
+    label: "skill notes 009"
+    input: string
+    description: "notes"
+  skill notes 010:
+    label: "skill notes 010"
+    input: string
+    description: "notes"
+  skill notes 011:
+    label: "skill notes 011"
+    input: string
+    description: "notes"
+  skill notes 012:
+    label: "skill notes 012"
+    input: string
+    description: "notes"
+  skill notes 013:
+    label: "skill notes 013"
+    input: string
+    description: "notes"
+  skill notes 014:
+    label: "skill notes 014"
+    input: string
+    description: "notes"
+  skill notes 015:
+    label: "skill notes 015"
+    input: string
+    description: "notes"
+  skill notes 016:
+    label: "skill notes 016"
+    input: string
+    description: "notes"
+  skill notes 017:
+    label: "skill notes 017"
+    input: string
+    description: "notes"
+  skill notes 018:
+    label: "skill notes 018"
+    input: string
+    description: "notes"
+  skill notes 019:
+    label: "skill notes 019"
+    input: string
+    description: "notes"
+  skill notes 020:
+    label: "skill notes 020"
+    input: string
+    description: "notes"
+  skill mark 001:
+    label: "skill mark 001"
+    input: checkbox
+    description: "mark"
+  skill mark 002:
+    label: "skill mark 002"
+    input: checkbox
+    description: "mark"
+  skill mark 003:
+    label: "skill mark 003"
+    input: checkbox
+    description: "mark"
+  skill mark 004:
+    label: "skill mark 004"
+    input: checkbox
+    description: "mark"
+  skill mark 005:
+    label: "skill mark 005"
+    input: checkbox
+    description: "mark"
+  skill mark 006:
+    label: "skill mark 006"
+    input: checkbox
+    description: "mark"
+  skill mark 007:
+    label: "skill mark 007"
+    input: checkbox
+    description: "mark"
+  skill mark 008:
+    label: "skill mark 008"
+    input: checkbox
+    description: "mark"
+  skill mark 009:
+    label: "skill mark 009"
+    input: checkbox
+    description: "mark"
+  skill mark 010:
+    label: "skill mark 010"
+    input: checkbox
+    description: "mark"
+  skill mark 011:
+    label: "skill mark 011"
+    input: checkbox
+    description: "mark"
+  skill mark 012:
+    label: "skill mark 012"
+    input: checkbox
+    description: "mark"
+  skill mark 013:
+    label: "skill mark 013"
+    input: checkbox
+    description: "mark"
+  skill mark 014:
+    label: "skill mark 014"
+    input: checkbox
+    description: "mark"
+  skill mark 015:
+    label: "skill mark 015"
+    input: checkbox
+    description: "mark"
+  skill mark 016:
+    label: "skill mark 016"
+    input: checkbox
+    description: "mark"
+  skill mark 017:
+    label: "skill mark 017"
+    input: checkbox
+    description: "mark"
+  skill mark 018:
+    label: "skill mark 018"
+    input: checkbox
+    description: "mark"
+  skill mark 019:
+    label: "skill mark 019"
+    input: checkbox
+    description: "mark"
+  skill mark 020:
+    label: "skill mark 020"
+    input: checkbox
+    description: "mark"
+  inv name 001:
+    label: "inv name 001"
+    input: string
+    description: "name"
+  inv name 002:
+    label: "inv name 002"
+    input: string
+    description: "name"
+  inv name 003:
+    label: "inv name 003"
+    input: string
+    description: "name"
+  inv name 004:
+    label: "inv name 004"
+    input: string
+    description: "name"
+  inv name 005:
+    label: "inv name 005"
+    input: string
+    description: "name"
+  inv name 006:
+    label: "inv name 006"
+    input: string
+    description: "name"
+  inv name 007:
+    label: "inv name 007"
+    input: string
+    description: "name"
+  inv name 008:
+    label: "inv name 008"
+    input: string
+    description: "name"
+  inv name 009:
+    label: "inv name 009"
+    input: string
+    description: "name"
+  inv name 010:
+    label: "inv name 010"
+    input: string
+    description: "name"
+  inv name 011:
+    label: "inv name 011"
+    input: string
+    description: "name"
+  inv name 012:
+    label: "inv name 012"
+    input: string
+    description: "name"
+  inv name 013:
+    label: "inv name 013"
+    input: string
+    description: "name"
+  inv name 014:
+    label: "inv name 014"
+    input: string
+    description: "name"
+  inv name 015:
+    label: "inv name 015"
+    input: string
+    description: "name"
+  inv name 016:
+    label: "inv name 016"
+    input: string
+    description: "name"
+  inv name 017:
+    label: "inv name 017"
+    input: string
+    description: "name"
+  inv name 018:
+    label: "inv name 018"
+    input: string
+    description: "name"
+  inv name 019:
+    label: "inv name 019"
+    input: string
+    description: "name"
+  inv name 020:
+    label: "inv name 020"
+    input: string
+    description: "name"
+  inv quantity 001:
+    label: "inv quantity 001"
+    input: string
+    description: "quantity"
+  inv quantity 002:
+    label: "inv quantity 002"
+    input: string
+    description: "quantity"
+  inv quantity 003:
+    label: "inv quantity 003"
+    input: string
+    description: "quantity"
+  inv quantity 004:
+    label: "inv quantity 004"
+    input: string
+    description: "quantity"
+  inv quantity 005:
+    label: "inv quantity 005"
+    input: string
+    description: "quantity"
+  inv quantity 006:
+    label: "inv quantity 006"
+    input: string
+    description: "quantity"
+  inv quantity 007:
+    label: "inv quantity 007"
+    input: string
+    description: "quantity"
+  inv quantity 008:
+    label: "inv quantity 008"
+    input: string
+    description: "quantity"
+  inv quantity 009:
+    label: "inv quantity 009"
+    input: string
+    description: "quantity"
+  inv quantity 010:
+    label: "inv quantity 010"
+    input: string
+    description: "quantity"
+  inv quantity 011:
+    label: "inv quantity 011"
+    input: string
+    description: "quantity"
+  inv quantity 012:
+    label: "inv quantity 012"
+    input: string
+    description: "quantity"
+  inv quantity 013:
+    label: "inv quantity 013"
+    input: string
+    description: "quantity"
+  inv quantity 014:
+    label: "inv quantity 014"
+    input: string
+    description: "quantity"
+  inv quantity 015:
+    label: "inv quantity 015"
+    input: string
+    description: "quantity"
+  inv quantity 016:
+    label: "inv quantity 016"
+    input: string
+    description: "quantity"
+  inv quantity 017:
+    label: "inv quantity 017"
+    input: string
+    description: "quantity"
+  inv quantity 018:
+    label: "inv quantity 018"
+    input: string
+    description: "quantity"
+  inv quantity 019:
+    label: "inv quantity 019"
+    input: string
+    description: "quantity"
+  inv quantity 020:
+    label: "inv quantity 020"
+    input: string
+    description: "quantity"
+  inv notes 001:
+    label: "inv notes 001"
+    input: string
+    description: "notes"
+  inv notes 002:
+    label: "inv notes 002"
+    input: string
+    description: "notes"
+  inv notes 003:
+    label: "inv notes 003"
+    input: string
+    description: "notes"
+  inv notes 004:
+    label: "inv notes 004"
+    input: string
+    description: "notes"
+  inv notes 005:
+    label: "inv notes 005"
+    input: string
+    description: "notes"
+  inv notes 006:
+    label: "inv notes 006"
+    input: string
+    description: "notes"
+  inv notes 007:
+    label: "inv notes 007"
+    input: string
+    description: "notes"
+  inv notes 008:
+    label: "inv notes 008"
+    input: string
+    description: "notes"
+  inv notes 009:
+    label: "inv notes 009"
+    input: string
+    description: "notes"
+  inv notes 010:
+    label: "inv notes 010"
+    input: string
+    description: "notes"
+  inv notes 011:
+    label: "inv notes 011"
+    input: string
+    description: "notes"
+  inv notes 012:
+    label: "inv notes 012"
+    input: string
+    description: "notes"
+  inv notes 013:
+    label: "inv notes 013"
+    input: string
+    description: "notes"
+  inv notes 014:
+    label: "inv notes 014"
+    input: string
+    description: "notes"
+  inv notes 015:
+    label: "inv notes 015"
+    input: string
+    description: "notes"
+  inv notes 016:
+    label: "inv notes 016"
+    input: string
+    description: "notes"
+  inv notes 017:
+    label: "inv notes 017"
+    input: string
+    description: "notes"
+  inv notes 018:
+    label: "inv notes 018"
+    input: string
+    description: "notes"
+  inv notes 019:
+    label: "inv notes 019"
+    input: string
+    description: "notes"
+  inv notes 020:
+    label: "inv notes 020"
+    input: string
+    description: "notes"
+  hotlist 001:
+    label: "hotlist 001"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  hotlist 002:
+    label: "hotlist 002"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  hotlist 003:
+    label: "hotlist 003"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  hotlist 004:
+    label: "hotlist 004"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  hotlist 005:
+    label: "hotlist 005"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  hotlist 006:
+    label: "hotlist 006"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  hotlist 007:
+    label: "hotlist 007"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  hotlist 008:
+    label: "hotlist 008"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  hotlist 009:
+    label: "hotlist 009"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  hotlist 010:
+    label: "hotlist 010"
+    input: text
+    description: "#{{i}}"
+    rows: 3
+  gear slot 001:
+    label: "gear slot 001"
+    input: string
+    description: "{{gear[i-1]}}"
+  gear slot 002:
+    label: "gear slot 002"
+    input: string
+    description: "{{gear[i-1]}}"
+  gear slot 003:
+    label: "gear slot 003"
+    input: string
+    description: "{{gear[i-1]}}"
+  gear slot 004:
+    label: "gear slot 004"
+    input: string
+    description: "{{gear[i-1]}}"
+  gear slot 005:
+    label: "gear slot 005"
+    input: string
+    description: "{{gear[i-1]}}"
+  gear slot 006:
+    label: "gear slot 006"
+    input: string
+    description: "{{gear[i-1]}}"
+  accessories:
+    label: "accessories"
+    input: text
+    description: ""
+    rows: 3
+  popularity:
+    label: "popularity"
+    input: text
+    description: ""
+    rows: 3
+  past trauma:
+    label: "past trauma"
+    input: text
+    description: ""
+    rows: 3
+  loose ends:
+    label: "loose ends"
+    input: text
+    description: ""
+    rows: 3
+  regrets:
+    label: "regrets"
+    input: text
+    description: ""
+    rows: 3
+  notes:
+    label: "notes"
+    input: text
+    description: ""
+    rows: 3

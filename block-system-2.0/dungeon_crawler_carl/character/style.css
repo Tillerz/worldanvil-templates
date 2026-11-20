@@ -1,0 +1,67 @@
+.container-fluid {
+   align-items: center;
+   font-family: Grenze;
+   font-size: 20px !important;
+   padding: 20px;
+   color: var(--dark)
+}
+.rolldice {
+   font-family: Grenze;
+   font-size: 20px !important;
+   font-weight: 400;
+}
+ .CodeMirror-buttonsPanel {
+     font-size: 14px;}
+ .table { margin-bottom: 0px}
+ .table>tbody>tr>th,  .table>tbody>tr>td { border-top: none; padding: 0px 6px}
+ .table>tbody>tr>th { background-color: #80808020 }
+ .lbl { letter-spacing: 0.03em; background-color: #80808020 }
+ .ilbl,  .lbl {
+   font-size:14px;
+   text-transform: uppercase;}
+ .ivar { font-size: 18px}
+ .var { font-size: 20px; padding-left: 10px }
+ .artist-credits,  .artist-credits a {
+   font-size: 14px;
+   text-align: center;
+   padding-top: 3px}
+ .card {
+   border: none;
+   margin-bottom:8px;}
+ .card-header {
+   border-radius: 0;}
+ .card-body {
+  padding: 5px;
+ border: 3px solid var(--dark) }
+ .card-header { text-align: center; font-weight: 400 }
+ .card-header,  .lbl, .text {
+     text-transform: uppercase;
+     font-size: 16px;
+     padding-top: 6px;
+     padding-left: 6px;
+     padding-bottom: 0px;
+     margin: 0px}
+ .attributes .ivar,  .ivar-portrait,  .ivar-hp,  .ivar-ac { text-align: center}
+ .lbl-hp,  .lbl-armor { padding-top:0px}
+ th.lbl { font-weight: 400;
+   vertical-align: middle}
+ .var-talents,  .var-gear,  .var-notes,  .var-attacks {
+   padding:6px;
+   font-size:16px;}
+ :is(.hp,  .ac,  .attributes) .var { text-align: center; font-size:32px}
+ .card-header,  :is(.hp,  .ac,  .attacks,  .talents,  .gear,  .notes) .lbl { font-size:22px; color: var(--light) ; background-color: var(--dark)}
+ .c { text-align: center}
+ .l { text-align: left}
+ p { margin-bottom: 0px}
+ ol { padding-left: 20px}
+ .pd { padding: 10px}
+ .sm { font-size:16px}
+ small { font-size:14px}
+.inline, .var-wounds, .ivar-wounds { display: inline-block}
+ textarea .height { height: 40px}
+ .var-features { font-size: 18px}
+ .card-header.attributes { font-size: 32px}
+.var-att-name, .ivar-att-name, .var-gear-name, .ivar-gear-name { font-size: 24px }
+.small { color: #808080 }
+.lbl-health {min-width: 55px }
+.of { overflow: auto; width: 100% }
