@@ -73,29 +73,33 @@
 } %}
 <div class='container-fluid sheet-shadowdark'>
   <div class='row'>
-    <div class='col-12 col-md-6 col-lg-5'>
+    {% set img = variables.portrait|default %}{% set wd1 = 7 %}{% set wd2 = 5 %}
+    {% if img > 0 %}{% set wd1 = 5 %}{% set wd2 = 3 %}{% endif %}
+    <div class='col-12 col-md-6 col-lg-{{wd1}}'>
       <div class='card personal c' id='card-personal'>
-<div class='col-12 hidden-md hidden-xs hidden-sm d-none d-lg-block'>[img:5908847|center|300|nolink]</div>
+        <div class='col-12 hidden-md hidden-xs hidden-sm d-none d-lg-block'>[img:5908847|center|300|nolink]</div>
         <div class='card-header personal'>{{variables.name|default}}</div>
         <div class='card-body of'>
           <table class='table'>
-            <tr><th class='lbl ev lbl-class l'> {{ tr[lang]['class'] }} </th><td class='var ev var-class l'> {{variables.class|default}} Lvl {{variables.level|default}}</td></tr>
+            <tr><th class='lbl ev lbl-class l' width='30%'> {{ tr[lang]['class'] }} </th><td class='var ev var-class l'> {{variables.class|default}} Lvl {{variables.level|default}}</td></tr>
             <tr><th class='lbl od lbl-ancestry l'> {{ tr[lang]['ancestry'] }} </th><td class='var od var-ancestry l'> {{variables.ancestry|default}} </td></tr>
+            <tr><th class='lbl ev lbl-title l'> {{ tr[lang]['title'] }} </th><td class='var ev var-title l'> {{variables.title|default}} </td></tr>
+            <tr><th class='lbl od lbl-alignment l'> {{ tr[lang]['alignment'] }} </th><td class='var od var-alignment l'> {{variables.alignment|default}} </td></tr>
+            <tr><th class='lbl ev lbl-background l'> {{ tr[lang]['background'] }} </th><td class='var ev var-background l'> {{variables.background|default}} </td></tr>
+            <tr><th class='lbl od lbl-deity l'> {{ tr[lang]['deity'] }} </th><td class='var od var-deity l'> {{variables.deity|default}} </td></tr>
+            {% if variables.xp_avail|default != "" and variables.xp_level_up|default != "" %}
             <tr><th class='lbl ev lbl-xp-avail l'> {{ tr[lang]['xp'] }} </th><td class='var ev var-xp-avail l'>{{variables.xp_avail|default}} / {{variables.xp_level_up|default}} </td></tr>
-            <tr><th class='lbl od lbl-title l'> {{ tr[lang]['title'] }} </th><td class='var od var-title l'> {{variables.title|default}} </td></tr>
-            <tr><th class='lbl ev lbl-alignment l'> {{ tr[lang]['alignment'] }} </th><td class='var ev var-alignment l'> {{variables.alignment|default}} </td></tr>
-            <tr><th class='lbl od lbl-background l'> {{ tr[lang]['background'] }} </th><td class='var od var-background l'> {{variables.background|default}} </td></tr>
-            <tr><th class='lbl ev lbl-deity l'> {{ tr[lang]['deity'] }} </th><td class='var ev var-deity l'> {{variables.deity|default}} </td></tr>
+            {% endif %}
           </table>
         </div>
       </div>
     </div>
-    <div class='col-12 col-md-6 col-lg-3'>
+    <div class='col-12 col-md-6 col-lg-{{wd2}}'>
       <div class='card attributes' id='card-attributes'>
         <div class='card-header attributes'>{{ tr[lang]['attributes'] }}</div>
         <div class='card-body of'>
           <table class='table'>
-            <tr><th class='lbl od lbl-str'> {{ tr[lang]['str'] }} </th><td class='var od var-str'>{{variables.str|default}} / {{ variables.str_mod|default }} </td></tr>
+            <tr><th class='lbl od lbl-str' width='30%'> {{ tr[lang]['str'] }} </th><td class='var od var-str'>{{variables.str|default}} / {{ variables.str_mod|default }} </td></tr>
             <tr><th class='lbl ev lbl-dex'> {{ tr[lang]['dex'] }} </th><td class='var ev var-dex'>{{variables.dex|default}} / {{ variables.dex_mod|default }} </td></tr>
             <tr><th class='lbl od lbl-con'> {{ tr[lang]['con'] }} </th><td class='var od var-con'>{{variables.con|default}} / {{ variables.con_mod|default }} </td></tr>
             <tr><th class='lbl ev lbl-int'> {{ tr[lang]['int'] }} </th><td class='var ev var-int'>{{variables.int|default}} / {{ variables.int_mod|default }} </td></tr>
@@ -105,14 +109,16 @@
         </div>
       </div>
     </div>
+    {% if img > 0 %}
     <div class='col-12 col-lg-4 hidden-md hidden-xs hidden-sm d-none d-lg-block'>
       <div class='card portrait' id='card-portrait'>
         <div class='card-header portrait'>{{ tr[lang]['portrait'] }}</div>
         <div class='card-body of'>
-          <div class='var od var-portrait'>[img:{{variables.portrait|default}}]</div>
+          <div class='var od var-portrait'>[img:{{img}}]</div>
         </div>
       </div>
     </div>
+    {% endif %}
   </div>
   <div class='row'>
     <div class='col-12 col-md-6'>
@@ -139,36 +145,53 @@
       <div class='card attacks' id='card-attacks'>
         <div class='card-header attacks'>{{ tr[lang]['attacks'] }}</div>
         <div class='card-body of'>
-          <div class='var od var-attacks'> {{variables.attacks|default|nl2br}} </div>
+          {% set att = variables.attacks|default %}
+          {% if '[roll:' not in att %}{% set att = att|replace({ '1d20': '[roll:1d20]', '1d4': '[roll:1d4]', '1d6': '[roll:1d6]', '1d8': '[roll:1d8]', '1d10': '[roll:1d10]', '1d12': '[roll:1d12]' })%}{% endif %}
+          <div class='var od var-attacks'> {{att|nl2br}} </div>
         </div>
       </div>
+      {% if variables.talents|default != "" %}
       <div class='card talents' id='card-talents'>
         <div class='card-header talents'>{{ tr[lang]['talents'] }}</div>
         <div class='card-body of'>
           <div class='var od var-talents'> {{variables.talents|default|nl2br}} </div>
         </div>
       </div>
+      {% endif %}
     </div>
     <div class='col-12 col-md-6'>
       <div class='card gear' id='card-gear'>
         <div class='card-header gear'>{{ tr[lang]['gear'] }}</div>
         <div class='card-body of'>
           <div class='var od var-gear'>
-            <ol>{% for l in variables.gear|default|split('\n') %}<li>{{l}}</li>{% endfor %}</ol>
+            {% set normalized = variables.gear|default|replace({ '[/p]': "\n", '[p]': '', '[br]': "\n", '</p>': "\n", '<br>': "\n", '<br/>': "\n", "\r\n": "\n", "\r": "\n" }) %}
+            <ol>
+            {% for l in normalized|split("\n") %}
+              {% set clean = l|striptags|replace({'&nbsp;': ' ', "\xc2\xa0": ' '})|trim %}
+              {% if clean is not empty %}<li>{{ clean }}</li>{% endif %}
+            {% endfor %}
+            </ol>
           </div>
           <table class='table'>
           <tr>
-          <th class='lbl od lbl-gp c'> {{ tr[lang]['gp'] }} </th>
-          <th class='lbl od lbl-sp c'> {{ tr[lang]['sp'] }} </th>
-          <th class='lbl od lbl-cp c'> {{ tr[lang]['cp'] }} </th>
+            <th class='lbl od lbl-gp c'> {{ tr[lang]['gp'] }} </th>
+            <th class='lbl od lbl-sp c'> {{ tr[lang]['sp'] }} </th>
+            <th class='lbl od lbl-cp c'> {{ tr[lang]['cp'] }} </th>
           </tr>
-          <tr><td class='var var-gp c'>{{variables.gp|default}}</td><td class='var var-sp c'>{{variables.sp|default}}</td><td class='var var-cp c'>{{variables.cp|default}}</td>
+          <tr>
+            <td class='var var-gp c'>{{variables.gp|default}}</td>
+            <td class='var var-sp c'>{{variables.sp|default}}</td>
+            <td class='var var-cp c'>{{variables.cp|default}}</td>
           </tr>
           </table>
-          <div class='lbl od lbl-free-to-carry c'> {{ tr[lang]['free_to_carry'] }} </div><div class='var od var-free-to-carry'> {{variables.free_to_carry|default|nl2br}} </div>
+          {% if variables.free_to_carry|default != "" %}
+          <div class='lbl od lbl-free-to-carry c'> {{ tr[lang]['free_to_carry'] }} </div>
+          <div class='var od var-free-to-carry'> {{variables.free_to_carry|default|nl2br}} </div>
+          {% endif %}
         </div>
       </div>
     </div>
+    {% if variables.notes|default != "" %}
     <div class='col-12 col-md-12'>
       <div class='card notes' id='card-notes'>
         <div class='card-header notes'>{{ tr[lang]['notes'] }}</div>
@@ -177,9 +200,10 @@
         </div>
       </div>
     </div>
+    {% endif %}
   </div>
   <div class='row do-not-print'>
-    <div class='col-12 c small'>Shadowdark &copy; 2023 The Arcane Library, LLC. - Shadowdark v1.1 Sheet made by Tillerz - Updated: 2025-04-08</a><br>
+    <div class='col-12 c small'>Shadowdark &copy; 2023 The Arcane Library, LLC. - Shadowdark v1.2 Sheet made by Tillerz - Updated: 2026-11-21</a><br>
     </div>
   </div>
 </div>
