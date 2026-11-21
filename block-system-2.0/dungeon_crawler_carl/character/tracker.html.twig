@@ -95,19 +95,19 @@
           </div>
         {% endfor %}
       </div>
+      <div class='card mana' id='card-mana'>
+        <div class='card-body of'>
+          <table class='table'><tr>
+            <td class='ilbl od ilbl-mana-curr'><label for='mana_curr'>mana (of max {{variables.mana_max|default}})</label></td><td class='ivar od ivar-mana-curr c'><input value='{{variables.mana_curr|default}}' class='form-control ivar ivar-mana-curr c' id='mana_curr' name='mana_curr' type='number' /></td>
+          </tr></table>
+        </div>
+      </div>
     </div>
-    <div class='col col-12 col-md-9'>
+    <div class='col col-12 col-md-12'>
       <div class='card notes' id='card-notes'>
         <div class='card-header notes'>Notes</div>
         <div class='card-body of'>
           <div class='ivar od ivar-notes'><textarea class='form-control ivar ivar-notes' id='notes' name='notes' rows='3'>{{variables.notes|default}}</textarea></div>
-        </div>
-      </div>
-    </div>
-    <div class='col col-12 col-md-3'>
-      <div class='card mana' id='card-mana'>
-        <div class='card-body of'>
-          <div class='ilbl od ilbl-mana-curr c'><label for='mana_curr'>mana (of max {{variables.mana_max|default}})</label></div><div class='ivar od ivar-mana-curr'><input value='{{variables.mana_curr|default}}' class='form-control ivar ivar-mana-curr c' id='mana_curr' name='mana_curr' type='number' /></div>
         </div>
       </div>
     </div>
