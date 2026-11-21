@@ -1,0 +1,12 @@
+<div class='container-fluid dccarl'>
+  <div class='row'>
+    <div class='col col-12'>
+      <div class='card personal' id='card-personal'>
+        <div class='card-body c'>
+              {{variables.name|default}}, Level {{variables.level|default}}<br/>
+              {% if variables.class|default|trim != "" %}{{variables.class|default}}{% endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

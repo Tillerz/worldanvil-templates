@@ -1069,30 +1069,58 @@
   accessories:
     label: "accessories"
     input: text
-    description: ""
     rows: 3
   popularity:
     label: "popularity"
     input: text
-    description: ""
     rows: 3
   past trauma:
     label: "past trauma"
     input: text
-    description: ""
     rows: 3
   loose ends:
     label: "loose ends"
     input: text
-    description: ""
     rows: 3
   regrets:
     label: "regrets"
     input: text
-    description: ""
     rows: 3
   notes:
     label: "notes"
     input: text
-    description: ""
+    rows: 3
+  pspace tier:
+    label: "Tier"
+    input: string
+  pspace size:
+    label: "Size"
+    input: string
+  pspace amenities:
+    label: "Amenities"
+    input: text
+    rows: 3
+  important:
+    label: "important"
+    input: text
+    rows: 3
+  clubs:
+    label: "clubs"
+    input: text
+    rows: 3
+  deity:
+    label: "deity"
+    input: text
+    rows: 3
+  sponsors:
+    label: "sponsors"
+    input: text
+    rows: 3
+  rabs:
+    label: "rabs"
+    input: text
+    rows: 3
+  cabs:
+    label: "cabs"
+    input: text
     rows: 3

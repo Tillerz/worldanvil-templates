@@ -1,0 +1,112 @@
+<div class='container-fluid dccarl'>
+  {% import _self as sheet %}
+  {% set att = [ "strength", "intelligence", "constitution", "dexterity", "charisma" ] %}
+  {% set gear = [ "head", "torso", "arms", "hands/holding", "legs", "feet" ] %}
+  {% set dex_mod = variables.att_mod_004|default %}
+  {% set con_mod = variables.att_mod_003|default %}
+  <div class='row'>
+    <div class='col col-12'>
+      <div class='card health' id='card-health'>
+        <div class='card-body of'>
+          <div class='row'>
+            <div class='col col-12 col-md-2'>
+              <span class='text'>health</span>
+            </div>
+            {% for i in 1..10 %}
+              {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+              {% set eo = 'od' %}{% if i is even %}{% set eo = 'ev' %}{% endif %}
+              <div class='col col-12 col-md-1'>
+                <span class='text'>{{i}}0%</span>
+                <div class='ilbl {{eo}} ilbl-health c'><label for='health'>{{con_mod}}</label></div><div class='ivar {{eo}} ivar-health c'><input value='0' id='health' name='health_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'health_' ~ id)|default > 0 %} checked='checked'{% endif %} id='health' name='health_{{id}}' type='checkbox' /></div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col col-12 col-md-8'>
+      <div class='card evade' id='card-evade'>
+        <div class='card-body of'>
+          <span class='text'>evade</span>
+          <table class='table'>
+            <tr>
+              <th class='ilbl od ilbl-evade-mod c'>dex mod</th>
+              <th class='ilbl od ilbl-evade-plus c'>&nbsp;</th>
+              <th class='ilbl od ilbl-evade-buffs c'><label for='evade_buffs'>buffs</label></th>
+              <th class='ilbl od ilbl-evade-plus c'>&nbsp;</th>
+              <th class='ilbl od ilbl-evade-total c' colspan='3'><label for='evade_total'>evade total</label></th>
+            </tr>
+            <tr>
+                <td class='ivar ev ivar-evade-mod c'>{{dex_mod}}</td>
+                <td class='ivar ev ivar-evade-plus c'>+</td>
+                <td class='ivar ev ivar-evade-buffs c'><input value='{{variables.evade_buffs|default}}' class='form-control ivar ivar-evade-buffs c' id='evade_buffs' name='evade_buffs' type='string' /></td>
+                <td class='ivar ev ivar-evade-plus c'>=</td>
+                <td class='ivar ev ivar-evade-total c'><input value='{{variables.evade_total|default}}' class='form-control ivar ivar-evade-total c' id='evade_total' name='evade_total' type='number' /></td>
+                <td class='ivar ev ivar-evade-plus c'>+</td>
+                <td class='ivar ev ivar-evade-base c'>1d20</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class='card dr' id='card-dr'>
+        <div class='card-body of'>
+          <span class='text'>damage resistance</span>
+          <table class='table'>
+            <tr>
+              <th class='ilbl od ilbl-dr-armor c'><label for='dr_armor'>armor</label></th>
+              <th class='ilbl od ilbl-dr-plus c'>&nbsp;</th>
+              <th class='ilbl od ilbl-dr-buffs c'><label for='dr_buffs'>buffs</label></th>
+              <th class='ilbl od ilbl-dr-plus c'>&nbsp;</th>
+              <th class='ilbl od ilbl-dr-total c'><label for='dr_total'>dr total</label></th>
+            </tr>
+            <tr>
+              <td class='ivar {{eo}} ivar-dr-armor'><input value='{{variables.dr_armor|default}}' class='form-control ivar ivar-dr-armor c' id='dr_armor' name='dr_armor' type='number' /></td>
+              <td class='ivar {{eo}} ivar-dr-plus'>+</td>
+              <td class='ivar {{eo}} ivar-dr-buffs'><input value='{{variables.dr_buffs|default}}' class='form-control ivar ivar-dr-buffs c' id='dr_buffs' name='dr_buffs' type='number' /></td>
+              <td class='ivar {{eo}} ivar-dr-plus'>=</td>
+              <td class='ivar {{eo}} ivar-dr-total'><input value='{{variables.dr_total|default}}' class='form-control ivar ivar-dr-total c' id='dr_total' name='dr_total' type='number' /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col col-12 col-md-6'>
+          <div class='card debuff' id='card-debuff'>
+            <div class='card-body of'>
+              <div class='ilbl od ilbl-debuffs'><label for='debuffs'>debuffs</label></div><div class='ivar od ivar-debuffs'><input value='{{variables.debuffs|default}}' class='form-control ivar ivar-debuffs' id='debuffs' name='debuffs' type='text' /></div>
+            </div>
+          </div>
+        </div>
+        {% for i in 1..3 %}
+          {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
+          {% set eo = 'od' %}{% if i is even %}{% set eo = 'ev' %}{% endif %}
+          <div class='col col-12 col-md-6'>
+            <div class='card buff' id='card-buff-{{id}}'>
+              <div class='card-body of'>
+                <div class='ilbl {{eo}} ilbl-ext-buff'><label for='ext_buff'>external buff</label></div><div class='ivar {{eo}} ivar-ext-buff'><input value='{{attribute(variables, 'ext_buff_' ~ id)|default}}' class='form-control ivar ivar-ext-buff' id='ext_buff' name='ext_buff_{{id}}' type='text' /></div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class='col col-12 col-md-4'>
+      <div class='card mana' id='card-mana'>
+        <div class='card-body of'>
+          <div class='ilbl od ilbl-mana-curr'><label for='mana_curr'>current mana</label></div><div class='ivar od ivar-mana-curr'><input value='{{variables.mana_curr|default}}' class='form-control ivar ivar-mana-curr c' id='mana_curr' name='mana_curr' type='number' /></div>
+          <div class='ilbl ev ilbl-mana-max'><label for='mana_max'>max mana</label></div><div class='ivar ev ivar-mana-max'><input value='{{variables.mana_max|default}}' class='form-control ivar ivar-mana-max c' id='mana_max' name='mana_max' type='number' /></div>
+        </div>
+      </div>
+    </div>
+    <div class='col col-12 col-md-12'>
+      <div class='card notes' id='card-notes'>
+        <div class='card-header notes'>Notes</div>
+        <div class='card-body of'>
+          <div class='ivar od ivar-notes'><textarea class='form-control ivar ivar-notes mention' id='notes' name='notes' rows='3'>{{variables.notes|default}}</textarea></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

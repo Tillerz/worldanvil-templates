@@ -1,67 +1,97 @@
-.container-fluid {
+.rolldice {
+   font-family: Grenze;
+   font-size: 20px !important;
+   font-weight: 400;
+}
+.CodeMirror-buttonsPanel { font-size: 14px }
+
+.dccarl {
    align-items: center;
    font-family: Grenze;
    font-size: 20px !important;
    padding: 20px;
    color: var(--dark)
 }
-.rolldice {
-   font-family: Grenze;
-   font-size: 20px !important;
-   font-weight: 400;
-}
- .CodeMirror-buttonsPanel {
-     font-size: 14px;}
- .table { margin-bottom: 0px}
- .table>tbody>tr>th,  .table>tbody>tr>td { border-top: none; padding: 0px 6px}
- .table>tbody>tr>th { background-color: #80808020 }
- .lbl { letter-spacing: 0.03em; background-color: #80808020 }
- .ilbl,  .lbl {
-   font-size:14px;
-   text-transform: uppercase;}
- .ivar { font-size: 18px}
- .var { font-size: 20px; padding-left: 10px }
- .artist-credits,  .artist-credits a {
+.dccarl .table { margin-bottom: 0px }
+.dccarl .table>tbody>tr>th,
+.dccarl .table>tbody>tr>td { border-top: none; padding: 0px 6px }
+.dccarl .table>tbody>tr>th { background-color: #80808040 }
+.dccarl .lbl { letter-spacing: 0.03em; background-color: #80808040 }
+.dccarl .ilbl,
+.dccarl .lbl {
    font-size: 14px;
-   text-align: center;
-   padding-top: 3px}
- .card {
+   text-transform: uppercase }
+.dccarl .ivar { font-size: 18px }
+.dccarl .var { font-size: 20px; padding-left: 10px }
+.dccarl .card {
    border: none;
-   margin-bottom:8px;}
- .card-header {
-   border-radius: 0;}
- .card-body {
-  padding: 5px;
- border: 3px solid var(--dark) }
- .card-header { text-align: center; font-weight: 400 }
- .card-header,  .lbl, .text {
-     text-transform: uppercase;
-     font-size: 16px;
-     padding-top: 6px;
-     padding-left: 6px;
-     padding-bottom: 0px;
-     margin: 0px}
- .attributes .ivar,  .ivar-portrait,  .ivar-hp,  .ivar-ac { text-align: center}
- .lbl-hp,  .lbl-armor { padding-top:0px}
- th.lbl { font-weight: 400;
-   vertical-align: middle}
- .var-talents,  .var-gear,  .var-notes,  .var-attacks {
-   padding:6px;
-   font-size:16px;}
- :is(.hp,  .ac,  .attributes) .var { text-align: center; font-size:32px}
- .card-header,  :is(.hp,  .ac,  .attacks,  .talents,  .gear,  .notes) .lbl { font-size:22px; color: var(--light) ; background-color: var(--dark)}
- .c { text-align: center}
- .l { text-align: left}
- p { margin-bottom: 0px}
- ol { padding-left: 20px}
- .pd { padding: 10px}
- .sm { font-size:16px}
- small { font-size:14px}
-.inline, .var-wounds, .ivar-wounds { display: inline-block}
- textarea .height { height: 40px}
- .var-features { font-size: 18px}
- .card-header.attributes { font-size: 32px}
-.var-att-name, .ivar-att-name, .var-gear-name, .ivar-gear-name { font-size: 24px }
-.small { color: #808080 }
-.lbl-health {min-width: 55px }
-.of { overflow: auto; width: 100% }
+   margin-bottom: 8px }
+.dccarl .card-header { border-radius: 0; text-align: center; font-weight: 400 }
+.dccarl .card-body {
+   padding: 5px;
+   border: 3px solid var(--dark) }
+.dccarl .card-header,
+.dccarl .lbl,
+.dccarl .text {
+   text-transform: uppercase;
+   font-size: 16px;
+   padding-top: 6px;
+   padding-left: 6px;
+   padding-bottom: 0px;
+   margin: 0px }
+.dccarl .lbl { font-size: 13px }
+.dccarl .ivar-portrait { text-align: center }
+.dccarl th.lbl { font-weight: 400; vertical-align: middle }
+.dccarl .var-notes { padding: 6px; font-size: 16px }
+.dccarl .card-header { font-size: 22px; color: var(--light) ; background-color: var(--dark) }
+.dccarl .c { text-align: center }
+.dccarl .lbl-gear-slot,
+.dccarl .var-att-name,
+.dccarl .ivar-att-name,
+.dccarl .ivar-gear-name { font-size: 24px }
+.dccarl .ivar-gear-name { width: 30% }
+.dccarl .small { color: #808080; font-size: 14px }
+.dccarl .lbl-health { min-width: 55px }
+
+.dccarl .of { overflow-x: auto; overflow-y: hidden; width: 100% }
+.dccarl .card-body > .row { margin-left: 0; margin-right: 0 }
+
+.dccarl .health-inner { min-width: 720px }
+.dccarl .health-main { display: flex; align-items: flex-start }
+.dccarl .health-title { flex: 0 0 120px }
+.dccarl .health-cells { display: flex; flex: 1 1 auto; gap: 8px }
+.dccarl .health-cell { flex: 1 1 0; min-width: 0 }
+.dccarl .hs { height: 12px; margin-top: 6px }
+.dccarl .hs1 { background-color: #c62828 }
+.dccarl .hs2 { background-color: #d14427 }
+.dccarl .hs3 { background-color: #dd6127 }
+.dccarl .hs4 { background-color: #e87d26 }
+.dccarl .hs5 { background-color: #f39a25 }
+.dccarl .hs6 { background-color: #e2a326 }
+.dccarl .hs7 { background-color: #b59a29 }
+.dccarl .hs8 { background-color: #88902c }
+.dccarl .hs9 { background-color: #5b872f }
+.dccarl .hs10 { background-color: #2e7d32 }
+
+.dccarl .zb.ev { background-color: #80808022 }
+.dccarl .zb.od { background-color: #8080800d }
+
+.dccarl .lbl-attack-to-hit,
+.dccarl .ilbl-attack-to-hit,
+.dccarl .lbl-attack-damage,
+.dccarl .ilbl-attack-damage { width: 80px }
+.dccarl .lbl-skill-name,
+.dccarl .ilbl-skill-name { width: 240px }
+.dccarl .lbl-skill-rank,
+.dccarl .ilbl-skill-rank { width: 60px }
+.dccarl .lbl-skill-stat,
+.dccarl .ilbl-skill-stat { width: 120px }
+.dccarl .lbl-skill-check,
+.dccarl .ilbl-skill-check { width: 130px }
+.dccarl .lbl-skill-mark,
+.dccarl .ilbl-skill-mark { width: 15px }
+.dccarl .lbl-inv-name,
+.dccarl .ilbl-inv-name { width: 30% }
+.dccarl .lbl-inv-quantity,
+.dccarl .ilbl-inv-quantity { width: 40px }
+.dccarl .lbl-gear-slot { width: 30% }
