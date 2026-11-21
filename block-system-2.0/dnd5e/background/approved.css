@@ -1,0 +1,46 @@
+.template-background-dnd5e {
+  padding: 20px;
+  color: #33322b;
+  background: #efeee5;
+  background-color: #e3dbc6;
+  border: 1px solid #760809;
+  background-image: url(/images/rpgsrd/system-imagery/dnd5e/dnd5ebackground.png)
+}
+.template-background-dnd5e h1, h2, h3, h4, b, em {
+  font-family: Crimson Text;
+  color: #58180d;
+  margin: 0;
+  padding: 0;
+}
+.template-background-dnd5e h1 { font-size: 32px }
+.template-background-dnd5e h2 { font-size: 28px }
+.template-background-dnd5e h3 { font-size: 24px }
+.template-background-dnd5e h4 { font-size: 20px }
+
+.template-background-dnd5e .control-label {
+  color: #520404;
+  font-size: 1.2em;
+  margin-bottom: 1px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+.template-background-dnd5e .text-muted {
+  margin-top: 5px !important;
+  font-size: 0.9em;
+}
+.template-background-dnd5e a {
+  color: #58180d !important;
+}
+.template-background-dnd5e a:hover {
+  color: #58180d !important;
+  text-decoration: underline;
+}
+.template-background-dnd5e .ta { background-color: #00000020; margin-bottom: 1em; padding: 6px }
+.template-background-dnd5e .gold, .template-background-dnd5e hr {
+   height: 6px;
+   width: 100%;
+   border: 1px solid #2f2112;
+   border-radius: 2px;
+   margin: 0;
+   background-image: url(/i/5530268/render)
+}

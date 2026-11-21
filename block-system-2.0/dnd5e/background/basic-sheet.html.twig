@@ -1,0 +1,40 @@
+{% import _self as macros %}
+{% macro displayTable(dataString = "") %}
+{% if "|" in dataString %}
+        <table width="100%" class="table">
+        {% set dataRows = dataString|trim|split('\n') %} 
+		{% set x = 1 %}{% set t = 'th' %}
+        {% for dataStringRow in dataRows %}
+            {% if dataStringRow is defined and dataStringRow|length > 0 %}
+                <tr>
+                    {% set valueTab = dataStringRow|trim| split('|') %} 
+					{% if x > 1 %}{% set t = 'td' %}{% endif %}
+					{% set x = x + 1 %}
+                    <{{t}}>{{ valueTab[0]|trim }}</{{t}}>
+                    <{{t}}>{{ valueTab[1]|trim }}</{{t}}>
+                    <{{t}}>{{ valueTab[2]|trim }}</{{t}}>
+                    <{{t}}>{{ valueTab[3]|trim }}</{{t}}>
+                    <{{t}}>{{ valueTab[4]|trim }}</{{t}}>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+{% else %}{{dataString}}{% endif %}
+{% endmacro %}
+<div class="gold"></div>
+<div class="inside-content">
+	<h1>{{variables.name }}</h1>
+    {% if variables.overview|default %}<div class="statblock-stat"><strong>Overview: </strong><div class="ta">{{ variables.overview|default }}</div></div>{% endif %}
+    {% if variables.skillproficiences|default %}<div class="statblock-stat"><strong>Skill Proficiencies: </strong>{{ variables.skillproficiences|default }}</div>{% endif %}
+    {% if variables.toolproficiences|default %}<div class="statblock-stat"><strong>Tool Proficiencies: </strong>{{ variables.toolproficiences|default }}</div>{% endif %}
+    {% if variables.lifestyle|default %}<div class="statblock-stat"><strong>Lifestyle: </strong>{{ variables.lifestyle|default }}</div>{% endif %}
+    {% if variables.languages|default %}<div class="statblock-stat"><strong>Languages: </strong>{{ variables.languages|default }}</div>{% endif %}
+    {% if variables.equipment|default %}<div class="statblock-stat"><strong>Equipment: </strong><div class="ta">{{ variables.equipment|default }}</div></div>{% endif %}
+    {% if variables.features|default %}<div class="statblock-stat"><strong>Features: </strong><div class="ta">{{ variables.features|default }}</div></div>{% endif %}
+    {% if variables.suggestedcharacteristics|default %}<div class="statblock-stat"><strong>Suggested Characteristics: </strong>{{ variables.suggestedcharacteristics|default }}</div>{% endif %}
+    {% if variables.traits|default %}<div class="statblock-stat"><strong>Personality Trait: </strong><div class="ta">{{ macros.displayTable(variables.traits|default) }}</div></div>{% endif %}
+    {% if variables.ideal|default %}<div class="statblock-stat"><strong>Ideal: </strong><div class="ta">{{ macros.displayTable(variables.ideal|default) }}</div></div>{% endif %}
+    {% if variables.bond|default %}<div class="statblock-stat"><strong>Bond: </strong><div class="ta">{{ macros.displayTable(variables.bond|default) }}</div></div>{% endif %}
+    {% if variables.flaw|default %}<div class="statblock-stat"><strong>Flaw: </strong><div class="ta">{{ macros.displayTable(variables.flaw|default) }}</div></div>{% endif %}
+</div>
+<div class="gold"></div>

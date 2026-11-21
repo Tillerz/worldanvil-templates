@@ -1,0 +1,142 @@
+    
+<div class="form-wrapper">
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="name" class="col-sm-2 control-label">
+                <h4 class="header-title">Name</h4>
+            </label>
+            <div class="col-sm-12">
+                <input  value="{{ variables.name is defined ? variables.name }}" required="required" class="form-control" id="name" name="name" placeholder="Profesional Shoe laces untier" type="text" />
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="overview" class="col-sm-2 control-label">
+                <h4 class="header-title">Overview</h4>
+            </label>
+            <div class="col-sm-12">
+                <textarea   class="form-control mention"  id="overview" name="overview" rows="10" placeholder="">{{ variables.overview is defined ? variables.overview }}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="skillproficiences" class="col-sm-2 control-label">
+                <h4 class="header-title">Skill Proficiencies</h4>
+            </label>
+            <div class="col-sm-12">
+                <input  value="{{ variables.skillproficiences is defined ? variables.skillproficiences }}"  class="form-control mention" id="skillproficiences" name="skillproficiences" placeholder="Insight, Religion" type="text" />
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="toolproficiences" class="col-sm-2 control-label">
+                <h4 class="header-title">Tool Proficiencies</h4>
+            </label>
+            <div class="col-sm-12">
+                <input  value="{{ variables.toolproficiences is defined ? variables.toolproficiences }}"  class="form-control mention" id="toolproficiences" name="toolproficiences" placeholder="Thieve's tools" type="text" />
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="lifestyle" class="col-sm-2 control-label">
+                <h4 class="header-title">Lifestyle</h4>
+            </label>
+            <div class="col-sm-12">
+                <input  value="{{ variables.lifestyle is defined ? variables.lifestyle }}"  class="form-control mention" id="lifestyle" name="lifestyle" placeholder="Wealthy" type="text" />
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="languages" class="col-sm-2 control-label">
+                <h4 class="header-title">Languages</h4>
+            </label>
+            <div class="col-sm-12">
+                <input  value="{{ variables.languages is defined ? variables.languages }}"  class="form-control mention" id="languages" name="languages" placeholder="Common, plus 2 more" type="text" />
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="equipment" class="col-sm-2 control-label">
+                <h4 class="header-title">Equipment</h4>
+            </label>
+            <div class="col-sm-12">
+                <textarea   class="form-control mention"  id="equipment" name="equipment" rows="5" placeholder="">{{ variables.equipment is defined ? variables.equipment }}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="features" class="col-sm-2 control-label">
+                <h4 class="header-title">Features</h4>
+            </label>
+            <div class="col-sm-12">
+                <textarea   class="form-control mention"  id="features" name="features" rows="5" placeholder="">{{ variables.features is defined ? variables.features }}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="suggestedcharacteristics" class="col-sm-2 control-label">
+                <h4 class="header-title">Suggested Characteristics</h4>
+            </label>
+            <div class="col-sm-12">
+                <textarea   class="form-control mention"  id="suggestedcharacteristics" name="suggestedcharacteristics" rows="5" placeholder="">{{ variables.suggestedcharacteristics is defined ? variables.suggestedcharacteristics }}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="traits" class="col-sm-2 control-label">
+                <h4 class="header-title">Personality Trait</h4>
+            </label>
+            <div class="col-sm-12">
+                <textarea   class="form-control mention"  id="traits" name="traits" rows="6" placeholder="Dice [roll:1d4]|Personality Trait
+1|Grumpy
+2|Happy
+3|Gloomy
+4|Funny
+">{{ variables.traits is defined ? variables.traits }}</textarea>
+                <p class="description form-control-description">Create a table for your traits</p>
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="ideal" class="col-sm-2 control-label">
+                <h4 class="header-title">Ideal</h4>
+            </label>
+            <div class="col-sm-12">
+                <textarea   class="form-control mention"  id="ideal" name="ideal" rows="6" placeholder="">{{ variables.ideal is defined ? variables.ideal }}</textarea>
+                <p class="description form-control-description">Use the same table building structure as for Personality traits</p>
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="bond" class="col-sm-2 control-label">
+                <h4 class="header-title">Bond</h4>
+            </label>
+            <div class="col-sm-12">
+                <textarea   class="form-control mention"  id="bond" name="bond" rows="6" placeholder="">{{ variables.bond is defined ? variables.bond }}</textarea>
+                <p class="description form-control-description">Use the same table building structure as for Personality traits</p>
+            </div>
+        </div>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <label for="flaw" class="col-sm-2 control-label">
+                <h4 class="header-title">Flaw</h4>
+            </label>
+            <div class="col-sm-12">
+                <textarea   class="form-control mention"  id="flaw" name="flaw" rows="6" placeholder="">{{ variables.flaw is defined ? variables.flaw }}</textarea>
+                <p class="description form-control-description">Use the same table building structure as for Personality traits</p>
+            </div>
+        </div>
+    </div>
+</div>
