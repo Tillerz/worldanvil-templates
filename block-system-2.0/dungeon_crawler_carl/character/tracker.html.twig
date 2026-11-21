@@ -8,25 +8,27 @@
     <div class='col col-12'>
       <div class='card health' id='card-health'>
         <div class='card-body of'>
-          <div class='row'>
-            <div class='col col-12 col-md-2'>
-              <span class='text'>health</span>
-            </div>
+          <div class='health-inner'>
+            <div class='health-main'>
+              <span class='text health-title'>health</span>
+              <div class='health-cells'>
             {% for i in 1..10 %}
               {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
               {% set eo = 'od' %}{% if i is even %}{% set eo = 'ev' %}{% endif %}
-              <div class='col col-12 col-md-1'>
+              <div class='health-cell'>
                 <span class='text'>{{i}}0%</span>
-                <div class='ilbl {{eo}} ilbl-health c'><label for='health'>{{con_mod}}</label></div><div class='ivar {{eo}} ivar-health c'><input value='0' id='health' name='health_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'health_' ~ id)|default > 0 %} checked='checked'{% endif %} id='health' name='health_{{id}}' type='checkbox' /></div>
+                <div class='ilbl {{eo}} ilbl-health c'><label for='health'>{{con_mod}}</label></div><div class='ivar {{eo}} ivar-health c'><input value='0' id='health' name='health_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'health_' ~ id)|default > 0 %} checked='checked'{% endif %} id='health' name='health_{{id}}' type='checkbox' /></div><div class='hs hs{{i}}'></div>
               </div>
             {% endfor %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class='row'>
-    <div class='col col-12 col-md-8'>
+    <div class='col col-12 col-md-6'>
       <div class='card evade' id='card-evade'>
         <div class='card-body of'>
           <span class='text'>evade</span>
@@ -71,6 +73,8 @@
           </table>
         </div>
       </div>
+    </div>
+    <div class='col col-12 col-md-6'>
       <div class='row'>
         <div class='col col-12 col-md-6'>
           <div class='card debuff' id='card-debuff'>
@@ -92,19 +96,18 @@
         {% endfor %}
       </div>
     </div>
-    <div class='col col-12 col-md-4'>
-      <div class='card mana' id='card-mana'>
-        <div class='card-body of'>
-          <div class='ilbl od ilbl-mana-curr'><label for='mana_curr'>current mana</label></div><div class='ivar od ivar-mana-curr'><input value='{{variables.mana_curr|default}}' class='form-control ivar ivar-mana-curr c' id='mana_curr' name='mana_curr' type='number' /></div>
-          <div class='ilbl ev ilbl-mana-max'><label for='mana_max'>max mana</label></div><div class='ivar ev ivar-mana-max'><input value='{{variables.mana_max|default}}' class='form-control ivar ivar-mana-max c' id='mana_max' name='mana_max' type='number' /></div>
-        </div>
-      </div>
-    </div>
-    <div class='col col-12 col-md-12'>
+    <div class='col col-12 col-md-9'>
       <div class='card notes' id='card-notes'>
         <div class='card-header notes'>Notes</div>
         <div class='card-body of'>
-          <div class='ivar od ivar-notes'><textarea class='form-control ivar ivar-notes mention' id='notes' name='notes' rows='3'>{{variables.notes|default}}</textarea></div>
+          <div class='ivar od ivar-notes'><textarea class='form-control ivar ivar-notes' id='notes' name='notes' rows='3'>{{variables.notes|default}}</textarea></div>
+        </div>
+      </div>
+    </div>
+    <div class='col col-12 col-md-3'>
+      <div class='card mana' id='card-mana'>
+        <div class='card-body of'>
+          <div class='ilbl od ilbl-mana-curr c'><label for='mana_curr'>mana (of max {{variables.mana_max|default}})</label></div><div class='ivar od ivar-mana-curr'><input value='{{variables.mana_curr|default}}' class='form-control ivar ivar-mana-curr c' id='mana_curr' name='mana_curr' type='number' /></div>
         </div>
       </div>
     </div>

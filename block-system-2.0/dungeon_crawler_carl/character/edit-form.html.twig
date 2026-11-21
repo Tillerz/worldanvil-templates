@@ -58,18 +58,20 @@
     <div class='col col-12'>
       <div class='card health' id='card-health'>
         <div class='card-body of'>
-          <div class='row'>
-            <div class='col col-12 col-md-2'>
-              <span class='text'>health</span>
-            </div>
+          <div class='health-inner'>
+            <div class='health-main'>
+              <span class='text health-title'>health</span>
+              <div class='health-cells'>
             {% for i in 1..10 %}
               {% set id = i %}{% if id < 10 %}{% set id = '0' ~ id %}{% endif %}{% if id < 100 %}{% set id = '0' ~ id %}{% endif %}
               {% set eo = 'od' %}{% if i is even %}{% set eo = 'ev' %}{% endif %}
-              <div class='col col-12 col-md-1'>
+              <div class='health-cell'>
                 <span class='text'>{{i}}0%</span>
-                <div class='ilbl {{eo}} ilbl-health c'><label for='health'>{{con_mod}}</label></div><div class='ivar {{eo}} ivar-health c'><input value='0' id='health' name='health_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'health_' ~ id)|default > 0 %} checked='checked'{% endif %} id='health' name='health_{{id}}' type='checkbox' /></div>
+                <div class='ilbl {{eo}} ilbl-health c'><label for='health'>{{con_mod}}</label></div><div class='ivar {{eo}} ivar-health c'><input value='0' id='health' name='health_{{id}}' type='hidden' /><input value='1' class='c' {% if attribute(variables, 'health_' ~ id)|default > 0 %} checked='checked'{% endif %} id='health' name='health_{{id}}' type='checkbox' /></div><div class='hs hs{{i}}'></div>
               </div>
             {% endfor %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
